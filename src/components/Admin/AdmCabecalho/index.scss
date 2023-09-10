@@ -35,7 +35,7 @@
             }
         }
     }
-    div {
+    .logo {
             display: flex;
             width: 26%;
             height: 100%;
@@ -50,6 +50,7 @@
         width: 28%;
         padding-right: 30px;
         display: flex;
+        align-items: center;
         gap: 20px;
         justify-content: flex-end;
         h4 {
@@ -60,6 +61,38 @@
         img {
             width: 50px;
             height: 50px;
+        }
+    }
+}
+
+
+@media(max-width: 930px) {
+    .adm {
+        article {
+            display: none;
+        }
+    }
+}
+
+@media(max-width: 500px) {
+    .adm {
+        display: none !important;
+    }
+    .comp-adm-cabecalho {
+        padding-right: 55px;
+        section {
+            padding-left: 20px;
+            article {
+                p {
+                    display: none;
+                }
+            }
+        }
+        .logo {
+            img {
+                width: 180px;
+                height: 60px;
+            }
         }
     }
 }

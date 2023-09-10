@@ -16,6 +16,7 @@ export default function Rotas() {
                 <Route path='/sustentabilidade' element={<Sustentabilidade />}/> 
                 <Route path='/cabeca' element={<CabecalhoAdm />}/>
                 <Route path='/cabecalho' element={<CabecalhoUsuario />}/>
+                <Route path='/cabecalho' element={<CabecalhoUsuario />}/>
             </Routes>
          </BrowserRouter>
     )
