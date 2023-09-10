@@ -1,0 +1,77 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@100;200;300;400;500;600;700&display=swap');
+
+.sustent {
+    font-family: 'Inter';
+    font-weight: 700;
+    color: #000;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+
+    .faixa-titulo {
+        display: flex;
+        width: 100%;
+        padding: 7px;
+        align-items: center;
+        justify-content: center;
+        color: white;
+        background-color: #514641;
+        margin-bottom: 60px;
+        font-weight: bolder;
+    }
+
+    b {
+        font-family: 'Inter';
+        font-size: 17px;
+        font-weight: 900;
+    }
+
+    .texto {
+        font-family: 'Inter';
+        font-weight: 400;
+        display: flex;
+        font-size: 17px;
+        align-items: center;
+        justify-content: center;
+        width: 65%;
+        word-wrap: break-word;
+        
+        p {
+            word-wrap: break-word;
+        }
+    }
+
+    .imagens {
+
+        img {
+            width: 160px;
+            margin: 19px;
+        }   
+    }
+}
+
+@media (max-width: 550px) {
+    .faixa-titulo {
+        font-size: 14px;
+    }
+}
+
+@media (max-width: 440px) {
+    .texto {
+        width: 70%;
+    }
+
+    .imagens {
+        width: 50%;
+        height: 60%;
+
+        img {
+            width: 50%;
+            height: 60%;
+        }
+    }
+    .faixa-titulo {
+        font-size: 13px;
+    }
+}

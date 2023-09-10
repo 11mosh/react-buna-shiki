@@ -1,4 +1,5 @@
 import './index.scss';
+import { Link } from 'react-router-dom';
 
 function UsuarioRodape () {
 
@@ -29,9 +30,9 @@ function UsuarioRodape () {
                 <p>Nossas Políticas</p>
 
                 <div className="botoes-rodape">
-                    <p>Política de Privacidade</p>
-                    <p>Política de Devolução</p>
-                    <p>Campanha de Sustentabilidade</p>
+                    <p><Link to="/privacidade">Política de Privacidade</Link></p>
+                    <p><Link to="/devolucao">Política de Devolução</Link></p>
+                    <p><Link to="/sustentabilidade">Campanha de Sustentabilidade</Link></p>
                 </div>
             </article>
 
