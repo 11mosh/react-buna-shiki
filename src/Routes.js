@@ -5,6 +5,8 @@ import Devolucao from './pages/Usuario/Devolucao';
 import Privacidade from './pages/Usuario/Privacidade';
 import CabecalhoUsuario from './components/Usuario/UsuarioCabecalho';
 import CabecalhoAdm from './components/Admin/AdmCabecalho';
+import UsuarioLogin from './pages/Usuario/UsuarioLogin';
+import UsuarioCadastro from './pages/Usuario/UsuarioCadastro'
 
 export default function Rotas() {
     return(
@@ -16,6 +18,8 @@ export default function Rotas() {
                 <Route path='/sustentabilidade' element={<Sustentabilidade />}/> 
                 <Route path='/cabeca' element={<CabecalhoAdm />}/>
                 <Route path='/cabecalho' element={<CabecalhoUsuario />}/>
+                <Route path='/usuario/login' element={<UsuarioLogin />}/>
+                <Route path='/usuario/cadastro' element={<UsuarioCadastro />} />
             </Routes>
          </BrowserRouter>
     )

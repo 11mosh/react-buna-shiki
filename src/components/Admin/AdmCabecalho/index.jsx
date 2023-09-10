@@ -9,12 +9,14 @@ export default function CabecalhoAdm() {
                     <p> Tela Inicial </p>
                 </article>
             </section>
-            <div>
-                <img src='/assets/images/logo.svg' />
+            <div className='logo'>
+                <img src='/assets/images/logo.svg' alt='logo' />
             </div>
             <div className='adm'>
-                <h4> Bem vindo, Wagner! </h4>
-                <img src='/assets/images/img-adm-wagner.svg' />
+                <article>
+                    <h4> Bem vindo, Wagner! </h4>
+                </article>
+                <img src='/assets/images/img-adm-wagner.svg' alt='adm'/>
             </div>
         </div>
     )
