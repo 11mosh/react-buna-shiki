@@ -8,11 +8,11 @@ function UsuarioRodape () {
             <article className='coluna-1'>
                 <p>Redes Sociais</p>
                 <div className='rede-sociais-icons'>
-                    <img src="./assets/images/facebook.svg" alt="Erro ao exibir imagem" />
-                    <img src="./assets/images/instagram.svg" alt="Erro ao exibir imagem" />
-                    <img src="./assets/images/twitter.svg" alt="Erro ao exibir imagem" />
+                    <img src="/assets/images/facebook.svg" alt="Erro ao exibir imagem" />
+                    <img src="/assets/images/instagram.svg" alt="Erro ao exibir imagem" />
+                    <img src="/assets/images/twitter.svg" alt="Erro ao exibir imagem" />
                 </div>
-                <img src="./assets/images/logo.svg" alt="Erro ao exibir imagem" />
+                <img src="/assets/images/logo.svg" alt="Erro ao exibir imagem" />
             </article>
 
             <hr></hr>
@@ -38,7 +38,7 @@ function UsuarioRodape () {
 
             <hr className='separacao-3'></hr>
             <article className='coluna-4'>
-                <img src="./assets/images/compraSegura.png" alt="Erro ao exibir imagem" />
+                <img src="/assets/images/compraSegura.png" alt="Erro ao exibir imagem" />
             </article>
         </main>
     )

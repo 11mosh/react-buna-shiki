@@ -10,13 +10,13 @@ export default function CabecalhoAdm() {
                 </article>
             </section>
             <div className='logo'>
-                <img src='/assets/images/logo.svg' />
+                <img src='/assets/images/logo.svg' alt='logo' />
             </div>
             <div className='adm'>
                 <article>
                     <h4> Bem vindo, Wagner! </h4>
                 </article>
-                <img src='/assets/images/img-adm-wagner.svg' />
+                <img src='/assets/images/img-adm-wagner.svg' alt='adm'/>
             </div>
         </div>
     )
