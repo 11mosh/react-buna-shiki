@@ -1,20 +1,16 @@
-import './index.scss';
+import './index.scss'
 
-export default function Cabecalho() {
+export default function CabecalhoUsuario() {
     return(
-        <div className='comp-cabecalho'>
+        <div className='comp-usuario-cabecalho'>
             <section>
                 <article>
-                    <img src='/assets/images/ajuda.svg' alt="Erro ao exibir imagem"/>
-                    <p> Suporte </p>
-                </article>
-                <article>
-                    <img src='/assets/images/carrinho.svg' alt="Erro ao exibir imagem"/>
+                    <img src='/assets/images/icon-carrinho.svg' alt='carrinho'/>
                     <p> Carrinho </p>
                 </article>
                 <article>
-                    <img src='/assets/images/conta.svg' alt="Erro ao exibir imagem"/>
-                    <p>Conta</p>
+                    <img src='/assets/images/icon-conta.svg' alt='conta'/>
+                   <p>Conta</p>
                 </article>
             </section>
             <div>
