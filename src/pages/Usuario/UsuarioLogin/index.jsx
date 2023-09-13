@@ -18,13 +18,13 @@ export default function Index() {
                             </article>
                             <button> Logar </button>
                             <article>
-                                <a href=''> Esqueceu a senha?</a>
+                                <a> Esqueceu a senha?</a>
                                 <div id='ajuda'>
                                     <div>
                                         <p> Não tem um conta? </p>
                                     </div>
                                     <div>
-                                        <a href=''>Cadastre-se!</a>
+                                        <a>Cadastre-se!</a>
                                     </div>
                                 </div>
                             </article>
