@@ -7,7 +7,6 @@ export default function Index() {
         <div className='pag-cadastro'>
             <CabecalhoLink />
                 <section>
-                    <div className='espaco'></div>
                     <article id='background'></article>
                     <article>
                         <h1>
@@ -39,7 +38,6 @@ export default function Index() {
                         </div>
                         <button> Finalizar cadastro </button>
                     </article>
-                    <div className='espaco'></div>
                 </section>
             <UsuarioRodape />
         </div>

@@ -1,3 +1,4 @@
+import { Link } from 'react-router-dom';
 import CabecalhoLink from '../../../components/Usuario/CabecalhoLink';
 import UsuarioRodape from '../../../components/Usuario/UsuarioRodape';
 import './index.scss';
@@ -18,13 +19,13 @@ export default function Index() {
                             </article>
                             <button> Logar </button>
                             <article>
-                                <a href=''> Esqueceu a senha?</a>
+                                <Link> Esqueceu a senha?</Link>
                                 <div id='ajuda'>
                                     <div>
                                         <p> Não tem um conta? </p>
                                     </div>
                                     <div>
-                                        <a href=''>Cadastre-se!</a>
+                                        <Link>Cadastre-se!</Link>
                                     </div>
                                 </div>
                             </article>
