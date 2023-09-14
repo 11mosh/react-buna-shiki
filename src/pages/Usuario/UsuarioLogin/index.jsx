@@ -8,7 +8,6 @@ export default function Index() {
         <div className='pag-login'>
             <CabecalhoLink />
                 <section>
-                    <div className='espaco'></div>
                     <article id='background'></article>
                     <article id='conteudo'>
                         <h1> LOGIN </h1>
@@ -19,19 +18,18 @@ export default function Index() {
                             </article>
                             <button> Logar </button>
                             <article>
-                                <Link> Esqueceu a senha?</Link>
+                                <Link>Esqueceu a senha?</Link>
                                 <div id='ajuda'>
                                     <div>
                                         <p> Não tem um conta? </p>
                                     </div>
                                     <div>
-                                        <a>Cadastre-se!</a>
+                                        <Link>Cadastre-se!</Link>
                                     </div>
                                 </div>
                             </article>
                         </div>
                     </article>
-                    <div className='espaco'></div>
                 </section>
             <UsuarioRodape />
         </div>
