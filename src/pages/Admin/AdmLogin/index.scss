@@ -1,0 +1,73 @@
+.page-adm-login{
+    height: 100%;
+    width: 100%;
+    .cabecalho{
+        background-color: #514641;
+        display: flex;
+        height: 70px;
+        width: 100%;
+        align-items: center;
+        justify-content: center;
+    }
+    .conteudo {
+        height: 92.4vh;
+        display: flex;
+        .img {
+            width: 50%;
+            background-image: url('../../../../public/assets/images/login-adm/img-escritorio.png');
+            background-size: cover;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            img {
+                width: 450px;
+            }
+        }
+        
+        .login {
+            width: 50%;
+            padding: 0px 30px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            main {
+                background-color: #d9d9d9;
+                height: 350px;
+                width: 450px;
+                display: flex;
+                flex-direction: column;
+                align-items: center;
+                padding: 15px 0px;
+
+                h2 {
+                    color: #FF7223;
+                    margin-bottom: 50px;
+                }
+
+                input {
+                    border: none;
+                    outline: none;
+                    margin-bottom: 10px;
+                    height: 30px;
+                    width: 250px;
+                    padding: 0px 15px;
+                    border-radius: 10px;
+                }
+                input::placeholder {
+                    color: #b8b4b4;
+                }
+                button {
+                    width: 250px;
+                    height: 30px;
+                    margin-top: 45px;
+                    border: none;
+                    background-color:#FF7223;
+                    border-radius: 20px;
+                    color: white;
+                }
+            }
+        }
+    }
+}
+
+// @media (max-width: )

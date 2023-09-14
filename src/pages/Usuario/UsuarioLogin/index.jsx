@@ -25,7 +25,7 @@ export default function Index() {
                                         <p> Não tem um conta? </p>
                                     </div>
                                     <div>
-                                        <Link>Cadastre-se!</Link>
+                                        <a>Cadastre-se!</a>
                                     </div>
                                 </div>
                             </article>

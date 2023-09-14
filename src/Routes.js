@@ -7,6 +7,9 @@ import CabecalhoUsuario from './components/Usuario/UsuarioCabecalho';
 import CabecalhoAdm from './components/Admin/AdmCabecalho';
 import UsuarioLogin from './pages/Usuario/UsuarioLogin';
 import UsuarioCadastro from './pages/Usuario/UsuarioCadastro'
+import Carrinho from './pages/Usuario/Carrinho';
+import AdmLogin from './pages/Admin/AdmLogin';
+
 
 export default function Rotas() {
     return(
@@ -20,6 +23,8 @@ export default function Rotas() {
                 <Route path='/cabecalho' element={<CabecalhoUsuario />}/>
                 <Route path='/usuario/login' element={<UsuarioLogin />}/>
                 <Route path='/usuario/cadastro' element={<UsuarioCadastro />} />
+                <Route path='/usuario/carrinho' element={<Carrinho/>} />
+                <Route path='/adm/login' element={<AdmLogin />} />
             </Routes>
          </BrowserRouter>
     )
