@@ -10,7 +10,7 @@
         justify-content: center;
     }
     .conteudo {
-        height: 92.4vh;
+        height: 92.8vh;
         display: flex;
         .img {
             width: 50%;
@@ -26,18 +26,19 @@
         
         .login {
             width: 50%;
-            padding: 0px 30px;
+            padding: 0px 20px;
             display: flex;
             align-items: center;
             justify-content: center;
             main {
+                border-radius: 25px;
                 background-color: #d9d9d9;
                 height: 350px;
-                width: 450px;
+                width: 400px;
                 display: flex;
                 flex-direction: column;
                 align-items: center;
-                padding: 15px 0px;
+                padding: 18px 0px;
 
                 h2 {
                     color: #FF7223;
@@ -70,4 +71,16 @@
     }
 }
 
-// @media (max-width: )
+@media(max-width: 900px){
+    .page-adm-login{
+        .conteudo {
+            .img {
+                display: none;
+            }
+            .login {
+                width: 100%;
+
+            }
+        }
+    }
+}
