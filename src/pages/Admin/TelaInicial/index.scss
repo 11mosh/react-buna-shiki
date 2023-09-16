@@ -1,0 +1,90 @@
+#page-adm-inicio {
+    main {
+        height: 91.8vh;
+        display: flex;
+        flex-direction: column;
+        padding: 80px 75px;
+        gap: 150px;
+        width: 100%;
+        #s1{
+            width: 100%;
+            
+            h1 {
+                font-size: 35px;
+            }
+        }
+        #s2 {
+            display: flex;
+            padding: 0px 50px;
+            width: 100%;
+            flex-direction: row;
+            align-items: center;
+            justify-content: space-between;
+            flex-wrap: wrap;
+            a {
+                display: flex;
+                align-items: center;
+                flex-direction: column;
+                padding: 10px;
+                width: 250px;
+                gap: 15px;
+                text-decoration: none;
+                color: black;
+                div {
+                    background-color: #949393;
+                    border-radius: 10px;
+                    width: 160px;
+                    height: 160px;
+                    padding: 5px;
+                    box-shadow: 0px 0px 0px 0px #000;
+                    display: flex;
+                    align-items: center;
+                    justify-content: center;
+                    img {
+                        width: 100px;
+                        height: 100px;
+                    }
+                    #eyes {
+                        width: 120px;
+                        height: 120px;
+                    }
+                }
+                div:active {
+                    background-color: #FF7223;
+                    transition: 0.1s
+                }
+            }
+        }
+    }
+}
+
+@media(max-width: 1000px){
+    #page-adm-inicio{
+        main{
+            #s2{
+                justify-content: space-around;
+            }
+        }
+    }
+}
+@media(max-width: 750px){
+    #page-adm-inicio{
+        main{
+            #s1{
+                display: flex;
+                align-items: center;
+                justify-content: center;
+            }
+            #s2 {
+                padding: unset;
+            }
+        }
+    }
+}
+@media(max-width: 750px){
+    #page-adm-inicio{
+        main{
+            padding: 80px 30px;
+        }
+    }
+}
