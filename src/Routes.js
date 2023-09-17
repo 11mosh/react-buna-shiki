@@ -15,7 +15,7 @@ import Estatisticas from './pages/Admin/Estatísticas';
 import Pedidos from './pages/Admin/Pedidos';
 import Produtos from './pages/Admin/Produtos';
 import CadastroCombo from './pages/Admin/CadastroCombo';
-
+import Cliente from './pages/Usuario/UsuarioPerfil'
 
 export default function Rotas() {
     return(
@@ -29,6 +29,7 @@ export default function Rotas() {
                 <Route path='/cabecalho' element={<CabecalhoUsuario />}/>
                 <Route path='/login' element={<UsuarioLogin />}/>
                 <Route path='/cadastro' element={<UsuarioCadastro />} />
+                <Route path='/cliente' element={<Cliente />} />
                 <Route path='/carrinho' element={<Carrinho/>} />
                 <Route path='/adm' element={<AdmLogin />} />
                 <Route path='/adm/inicio' element={<AdmInicio />} />

@@ -66,12 +66,12 @@
                 .inputResidenciais {
                     width: 298px;
                 }
-                .inputPreenchido {
+                .enderecoPreenchido {
                     width: 298px;
                     background-color: #606060;
-                }
-                .inputPreenchido::placeholder {
-                    color: rgb(31, 30, 30);
+                    display: flex;
+                    align-items: center;
+                    font-size: 14px;
                 }
             }
             button {

@@ -20,11 +20,16 @@ export default function Index() {
         setCarregando(true)
         try{
             const resp = await login(email, senha)
+            if(!resp){
+                toast.error('Senha ou E-mail inválidos ADM!')
+            }
+            else{
+                storage('adm-logado', resp)
+                setTimeout(() => {
+                    navigate('/adm/inicio')
+                }, 3000)
+            }
             
-            storage('adm-logado', resp)
-            setTimeout(() => {
-                navigate('/adm/inicio')
-            }, 3000)
         }
         catch(err){
             ref.current.complete();

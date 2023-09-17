@@ -14,7 +14,7 @@ export default function CabecalhoAdm(props) {
             </div>
             <div className='adm'>
                 <article>
-                    <h4> Bem vindo, {props.adm.nome}! </h4>
+                    <h4> Bem vindo, A! </h4>
                 </article>
                 <img src='/assets/images/img-adm-wagner.svg' alt='adm'/>
             </div>

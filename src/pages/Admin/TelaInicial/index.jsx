@@ -30,7 +30,7 @@ export default function Index() {
                     <h1> Tela inicial </h1>
                 </section>
                 <section id='s2'>
-                    <Link to='/adm/cadastro-produtos'>
+                    <Link to='/adm/cadastro-produto'>
                         <div>
                             <img src='/assets/images/tela-inicial-adm/icon-coffee.svg' alt='icon-coffee' />
                         </div>
