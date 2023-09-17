@@ -1,6 +1,26 @@
 import './index.scss'
+import { useState } from 'react'
 
 export default function CabecalhoUsuario() {
+
+    const [pesquisa, setPesquisa] = useState('');
+    const [mostrarInput, setMostrarInput] = useState(false)
+
+    function exibirPesquisa () {
+        setMostrarInput(!mostrarInput)
+    }
+
+    function teste (event) {
+        if (event.key == "Enter") {
+            // código para pesquisar
+            zerarPesquisa()
+        }
+    }
+
+    function zerarPesquisa() {
+        setPesquisa('');
+    }
+
     return(
         <div className='comp-usuario-cabecalho'>
             <section>
@@ -17,8 +37,10 @@ export default function CabecalhoUsuario() {
                 <img src='/assets/images/logo.svg' alt="Erro ao exibir imagem"/>
             </div>
             <div className='lupa'>
-                <input type="text" placeholder='Pesquise por produtos aqui...'/>
-                <img src='/assets/images/lupa.svg' alt="Erro ao exibir imagem" />
+                {mostrarInput 
+                    ? (<input type="text" placeholder='Pesquise por produtos aqui...' value={pesquisa} onChange={e => setPesquisa(e.target.value)} onKeyDown={teste} />) 
+                    : ( <></> )}
+                <img src='/assets/images/lupa.svg' alt="Erro ao exibir imagem" onClick={exibirPesquisa}/>
             </div>
         </div>
     )

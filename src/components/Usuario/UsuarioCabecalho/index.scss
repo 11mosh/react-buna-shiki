@@ -54,7 +54,6 @@
         
 
         input {
-            display: none;
             border: none;
             border-radius: 8px;
             height: 15px;
@@ -73,10 +72,4 @@
         }
     }
 
-    .lupa:hover {
-        input {
-            transition: 0.9s;
-            display: block;
-        }
-    }
 }
