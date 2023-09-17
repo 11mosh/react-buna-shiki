@@ -17,6 +17,7 @@ export default function CabecalhoUsuario() {
                 <img src='/assets/images/logo.svg' alt="Erro ao exibir imagem"/>
             </div>
             <div className='lupa'>
+                <input type="text" placeholder='Pesquise por produtos aqui...'/>
                 <img src='/assets/images/lupa.svg' alt="Erro ao exibir imagem" />
             </div>
         </div>

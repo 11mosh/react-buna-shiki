@@ -2,7 +2,13 @@
     display: flex;
     flex-direction: column;
 
-    input:focus{
+    > nav {
+        display: flex;
+        flex-direction: row;
+        gap: 10px;
+    }
+
+    textarea:focus{
         outline: none;
     }
 
@@ -11,6 +17,14 @@
         display: flex;
         align-items: center;
         justify-content: center;
+        flex-direction: column;
+        padding: 20px;
+
+        h1 {
+            align-self: flex-start;
+            font-size: 24px;
+            margin: 0px 0px 30px 30px;
+        }
         
     
         .formulario {
@@ -32,11 +46,13 @@
                 justify-content: space-between;
                 width: 100%;
 
-                input {
-                    border-radius: 5px;
+                textarea {
+                    border-radius: 8px;
                     border: 2px solid rgba(0, 0, 0, 0.37);
-                    height: 25px;
-                    margin-top: 10px;
+                    height: 28px;
+                    margin: 0px 0px 13px 0px;
+                    font-size: 17px;
+                    font-family: 'Inter';
                 }
 
                 .lado-esquerdo {
@@ -69,13 +85,37 @@
                     flex-direction: column;
                     width: 45%;
 
+                    > div {
+                        display: flex;
+                        flex-direction: row;
+                        align-items: center;
+                        gap: 10px;
+                        margin-bottom: 40px;
+
+                    }
+
                     #descricao {
                         height: 90px;
                     }
 
                     #alergia {
                         height: 50px;
-                        margin: 0px 0px 10px 0px;
+                        margin: 0px 0px 50px 0px;
+                    }
+
+                    button {
+                        display: flex;
+                        width: 300px;
+                        align-items: center;
+                        justify-content: center;
+                        align-self: center;
+                        font-size: 17px;
+                        font-family: 'Inter';
+                        border: none;
+                        padding: 9px;
+                        border-radius: 10px;
+                        color: white;
+                        background-color: #F47E3C;
                     }
                 }
 
@@ -101,11 +141,6 @@
                             flex-direction: row;
                             align-items: center;
                             gap: 10px;
-
-                            input {
-                                position: relative;
-                                top: -3px;
-                            }
                         }
                     }
 
@@ -113,9 +148,10 @@
                         display: flex;
                         flex-direction: row;
                         align-items: center;
-                        gap: 12px;
+                        gap: 20px;
 
                         section {
+                            margin-top: 20px;
                             display: flex;
                             flex-direction: column;
                             align-items: center;
@@ -126,6 +162,7 @@
                                 border-radius: 0px;
                                 border-bottom: 2px solid #000;
                                 width: 40px;
+                                text-align: center;
                             }
 
                             img {
@@ -141,13 +178,25 @@
             .selecao-imagem {
                 display: flex;
                 justify-content: flex-start;
+                flex-direction: row;
                 width: 100%;
+
+                .campo-imagens {
+                    display: flex;
+                    flex-direction: row;
+                    flex-wrap: wrap;
+                }
         
                 img {
                     width: 140px;
                     height: 140px;
                 }
                 
+                form {
+                    position: relative;
+                    top: -20px;
+                }
+
                 input {
                     background-size: cover;
                 }
@@ -170,17 +219,14 @@
                     justify-content: center;
                     margin: 10px;
                     margin-top: 0px;
+                    padding: 5px;
         
                     img {
-                        height: 120px;
-                        width: 120px;
+                        max-width: fit-content;
+                        padding: 10px;
                     }
                 }
             }
-        }
-
-        .informacoes-produto {
-
         }
         }
     

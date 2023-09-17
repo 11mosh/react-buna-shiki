@@ -24,16 +24,16 @@ function CadastroProduto () {
     return (
         <main className='cadastro-produto'>
             <CabecalhoAdm />
-            <nav>
-                <Link to={'/'} style={{ decoration: 'dashed', color: 0}}> Tela Inicial  &gt;</Link>
-                
+            <nav style={{padding: '20px'}}>
+                <Link to={'/adm/inicio'} style={{ decoration: 'dashed', color: 0}}> Tela Inicial </Link>
+                 &gt;
                 <p>Adicionar um Produto </p>
             </nav>
             <hr />
 
-            <h1>Cadastrar um novo produto</h1>
+            
 
-            <div className='conteudo'>
+            <div className='conteudo'><h1>Cadastrar um novo produto</h1>
                 <div className='formulario'>
                     <div className='selecao-imagem'>
                         <form action=''>
@@ -47,12 +47,15 @@ function CadastroProduto () {
                                 id='arquivo'
                             />
                         </form>
-                        {fotos.map((arquivo) => (
+                        <article className="campo-imagens">
+                            {fotos.map((arquivo) => (
                             <div className='imagem-upada'>
                                 <img src={URL.createObjectURL(arquivo)} alt="" />
                             </div>
                             ))
                         } 
+                        </article>
+                        
                     </div>
                     <hr />
 
@@ -60,29 +63,29 @@ function CadastroProduto () {
                         <section className='lado-esquerdo'>
                             <form action="">
                                 <label htmlFor="">Nome do produto</label>
-                                <input type="text" name="" id="" />
+                                <textarea type="text" name="" id="" style={{resize: 'none', overflow: 'hidden'}}/>
 
                                 <div>
                                     <div>
                                     <label htmlFor="">Peso</label>
-                                    <input type="text" name="" id="peso" />
+                                    <textarea type="text" name="" id="peso" style={{resize: 'none', overflow: 'hidden'}}/>
                                     </div>
                                     
                                     <div>
                                     <label htmlFor="">Estoque</label>
-                                    <input type="text" name="" id="estoque" />
+                                    <textarea type="text" name="" id="estoque" style={{resize: 'none', overflow: 'hidden'}}/>
                                     </div>
                                     
                                 </div>
 
                                 <label htmlFor="">Marca</label>
-                                <input type="text" name="" id="" />
+                                <textarea type="text" name="" id="" style={{resize: 'none', overflow: 'hidden'}}/>
 
                                 <label htmlFor="">Preço de venda</label>
-                                <input type="text" name="" id="" />
+                                <textarea type="text" name="" id="" style={{resize: 'none', overflow: 'hidden'}}/>
 
                                 <label htmlFor="">Dimensões do produto</label>
-                                <input type="text" name="" id="" />
+                                <textarea type="text" name="" id="" style={{resize: 'none', overflow: 'hidden'}}/>
                             </form>
                             
                             <article className='produto-detalhes'>
@@ -128,18 +131,19 @@ function CadastroProduto () {
 
                         <section className='lado-direito'>
                             <label htmlFor="">Descrição do produto</label>
-                            <input type="text" name='' id='descricao'/>
+                            <textarea type="text" name='' id='descricao' style={{resize: 'none', overflow: 'hidden'}}/>
 
                             <label htmlFor="">Preço promocional</label>
-                            <input type="text" name='' id=''/>
+                            <textarea type="text" name='' id='' style={{resize: 'none', overflow: 'hidden'}}/>
 
                             <label htmlFor="">Informações sobre alergia</label>
-                            <input type="text" name='' id='alergia'/>
+                            <textarea type="text" name='' id='alergia' style={{resize: 'none', overflow: 'hidden'}}/>
 
-                            <label htmlFor="">Disponível para assinatura</label>
-                            <input type="checkbox" name="" id="" />
-
-                            <button>Finalizar cadastro</button>
+                            <div>
+                                <input type="checkbox" name="" id="assinatura" />
+                                <label htmlFor="">Disponível para assinatura</label>
+                            </div>
+                            <button className=''>Finalizar cadastro</button>
                         </section>
                     </article>
                 </div>
