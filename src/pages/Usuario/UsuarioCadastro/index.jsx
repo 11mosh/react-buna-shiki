@@ -19,10 +19,10 @@ export default function Index() {
                                     <img src='/assets/images/asterisco.svg' alt='asterisco'/>
                                 </div>
                                 <input className='input' type='text' placeholder='Nome Completo' />
+                                <input className='input' type='text' placeholder='CPF' />
+                                <input className='input' type='text' placeholder='Telefone' />
                                 <input className='input' type='text' placeholder='E-mail' />
                                 <input className='input' type='text' placeholder='Senha' />
-                                <input className='input' type='text' placeholder='Confirmar Senha' />
-                                <input className='input' type='text' placeholder='Telefone' />
                             </article>
                             <article>
                                 <div id='residencial'>

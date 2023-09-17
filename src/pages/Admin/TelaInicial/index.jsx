@@ -8,14 +8,14 @@ export default function Index() {
     const [adm, setAdm] = useState('')
     const navigate = useNavigate()
 
-    useEffect(() => {
-        if(!storage('adm-logado')){
-            navigate('/adm')
-        }else{
-            const admInfo = storage('adm-logado')
-            setAdm(admInfo)
-        }
-    }, [])
+    // useEffect(() => {
+    //     if(!storage('adm-logado')){
+    //         navigate('/adm')
+    //     }else{
+    //         const admInfo = storage('adm-logado')
+    //         setAdm(admInfo)
+    //     }
+    // }, [])
     
     function Sair() {
         storage.remove('adm-logado')
