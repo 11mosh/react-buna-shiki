@@ -1,6 +1,6 @@
 import './index.scss'
 
-export default function CabecalhoAdm() {
+export default function CabecalhoAdm(props) {
     return(
         <div className='comp-adm-cabecalho'>
             <section>
@@ -14,7 +14,7 @@ export default function CabecalhoAdm() {
             </div>
             <div className='adm'>
                 <article>
-                    <h4> Bem vindo, Wagner! </h4>
+                    <h4> Bem vindo, {props.adm.nome}! </h4>
                 </article>
                 <img src='/assets/images/img-adm-wagner.svg' alt='adm'/>
             </div>

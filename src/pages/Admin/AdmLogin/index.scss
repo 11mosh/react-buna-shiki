@@ -60,11 +60,14 @@
                 button {
                     width: 250px;
                     height: 30px;
-                    margin-top: 45px;
+                    margin: 45px 0px;
                     border: none;
                     background-color:#FF7223;
                     border-radius: 20px;
                     color: white;
+                }
+                button:active {
+                    background-color:#c05d24;
                 }
             }
         }

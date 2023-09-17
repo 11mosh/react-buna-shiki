@@ -1,11 +1,30 @@
+import { useEffect, useState } from 'react';
 import CabecalhoAdm from '../../../components/Admin/AdmCabecalho';
 import './index.scss';
-import {Link} from 'react-router-dom'
+import {Link, useNavigate} from 'react-router-dom'
+import storage from 'local-storage'
 
 export default function Index() {
+    const [adm, setAdm] = useState('')
+    const navigate = useNavigate()
+
+    useEffect(() => {
+        if(!storage('adm-logado')){
+            navigate('/adm')
+        }else{
+            const admInfo = storage('adm-logado')
+            setAdm(admInfo)
+        }
+    }, [])
+    
+    function Sair() {
+        storage.remove('adm-logado')
+        navigate('/adm')
+    }
+    
     return(
         <div id='page-adm-inicio'>
-            <CabecalhoAdm />
+            <CabecalhoAdm adm={adm}/>
             <main>
                 <section id='s1'>
                     <h1> Tela inicial </h1>
@@ -41,6 +60,9 @@ export default function Index() {
                         </div>
                         <h3> Adicionar um combo </h3>
                     </Link>
+                </section>
+                <section id='s3'>
+                    <button onClick={Sair}> Sair </button>
                 </section>
             </main>
         </div>

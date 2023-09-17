@@ -30,7 +30,7 @@ export default function Rotas() {
                 <Route path='/login' element={<UsuarioLogin />}/>
                 <Route path='/cadastro' element={<UsuarioCadastro />} />
                 <Route path='/carrinho' element={<Carrinho/>} />
-                <Route path='/adm/login' element={<AdmLogin />} />
+                <Route path='/adm' element={<AdmLogin />} />
                 <Route path='/adm/inicio' element={<AdmInicio />} />
                 <Route path='/adm/cadastro-produto' element={<CadastroProduto />} />
                 <Route path='/adm/produtos' element={<Produtos />} />
