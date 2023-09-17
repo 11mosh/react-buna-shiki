@@ -1,6 +1,7 @@
 import './index.scss'
 
-export default function CabecalhoAdm(props) {
+// export default function CabecalhoAdm(props) {
+export default function CabecalhoAdm() {
     return(
         <div className='comp-adm-cabecalho'>
             <section>

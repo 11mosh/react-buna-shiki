@@ -51,9 +51,25 @@
         padding-right: 30px;
         display: flex;
         justify-content: flex-end;
+        
+
+        input {
+            border: none;
+            border-radius: 8px;
+            height: 15px;
+            margin-right: 20px;
+            padding: 13px;
+            width: 300px;
+        }
+
+        input:focus {
+            outline: none;
+        }
+
         img {
             width: 30px;
             height: 30px;
         }
     }
+
 }
