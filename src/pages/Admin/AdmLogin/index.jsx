@@ -1,7 +1,7 @@
 import { useState, useRef, useEffect } from 'react'
 import './index.scss'
 import { toast } from 'react-toastify';
-import { useNavigate} from 'react-router-dom'
+import { useNavigate } from 'react-router-dom'
 import LoadingBar from 'react-top-loading-bar';
 import { login } from '../../../api/admApi';
 import storage from 'local-storage'

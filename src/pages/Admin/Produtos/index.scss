@@ -1,0 +1,192 @@
+.consulta {
+    display: flex;
+    flex-direction: row;
+    height: 75px;
+    align-items: center;
+    padding: 0px 0px 0px 10px;
+    
+}
+
+.a1 {
+    color: black;
+}
+.a2 {
+   margin-left: 25px;
+   text-decoration: none; 
+   color: black;
+}
+
+.consulta-de-produtos{
+    display: flex;
+    flex-direction: row;
+    height: 90px;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 50px;
+}
+
+.consulta-de-produtos > h2 {
+    margin-left: 30px;
+}
+
+.consulta-de-produtos > button {
+    margin-right: 30px;
+    border: none;
+    border-radius: 10px;
+    height: 45px;
+    width: 240px;
+    font-size: 9px;
+    background-color: #F47E3C;
+}
+
+
+.tabela-consulta {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    
+}
+
+.buscar {
+    margin-bottom: 60px;
+}
+.buscar > input {
+    width: 96%;
+    height: 60px;
+    margin-left: 27px;
+    border-radius: 10px;
+    background-color: #D9D9D9;
+ 
+}
+
+
+
+.filtro {
+    display: flex;
+    flex-direction: row;
+
+
+    width: 96%;
+    height: 200px;
+    margin-left: 27px;
+    border-radius: 10px;
+    border: 2px solid black;
+    margin-bottom: 60px;
+}
+
+.por-preco {
+    margin-left: 80px;
+    margin: 30px;
+
+}
+
+.por-preco > input {
+
+ margin-top: 25px;
+ width: 220px;
+ height: 45px;
+ border-radius: 10px;
+
+}
+
+.selecao-1{
+    margin: 30px;
+}
+
+.selecao-2{
+    margin: 30px;
+}
+
+.selecao-1 > input {
+
+    margin-top: 25px;
+    width: 220px;
+    height: 45px;
+    border-radius: 10px;
+   
+   }
+
+.selecao-2 > input {
+
+    margin-top: 25px;
+    width: 220px;
+    height: 45px;
+    border-radius: 10px;
+   
+   }
+
+.consultas {
+    display: flex;
+    flex-direction: column;
+    width: 96%;
+    margin-left: 27px;
+    background-color: #D9D9D9;
+}
+
+.name {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    width: 95.5%;
+    height: 60px;
+    align-items: center;
+}
+
+
+.tab-consulta {
+    width: 96%;
+    margin-left: 26px;
+}
+.tab {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    background-color: #fff;
+    margin: 10px;
+    height: 220px;
+    border-radius: 10px;
+    border: 2px solid black;
+}
+
+.tab > img {
+    width: 160px;
+}
+
+.tab > div {
+display: flex;
+align-items: center;
+justify-content: center;
+background-color: #D9D9D9;
+height: 40px;
+width: 90px;
+border-radius: 5px;
+margin: 27px;
+
+}
+
+.numb1 {
+  padding: 0px 100px 0px 100px;
+}
+
+.numb2 {
+   padding: 0px 100px 0px 0px;
+  }
+
+  .numb3 {
+    padding: 0px 90px 0px 0px;
+  }
+
+  .numb4 {
+    padding: 0px 90px 0px 0px;
+  }
+
+  .numb5 {
+    padding: 0px 90px 0px 0px;
+  }
+
+  .numb6 {
+    padding: 0px 80px 0px 0px;
+  }
+
+ 
