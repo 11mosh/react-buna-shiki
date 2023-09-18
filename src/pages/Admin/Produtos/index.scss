@@ -3,7 +3,7 @@
     flex-direction: row;
     height: 75px;
     align-items: center;
-    padding: 0px 0px 0px 10px;
+    padding: 0px 0px 0px 26px;
     
 }
 
@@ -26,17 +26,20 @@
 }
 
 .consulta-de-produtos > h2 {
-    margin-left: 30px;
+    margin-left: 26px;
 }
 
 .consulta-de-produtos > button {
-    margin-right: 30px;
+    margin-right: 25px;
     border: none;
-    border-radius: 10px;
+    border-radius: 15px;
     height: 45px;
-    width: 240px;
-    font-size: 9px;
+    width: 220px;
+    font-size: 8px;
     background-color: #F47E3C;
+    color: #fff;
+
+
 }
 
 
@@ -48,13 +51,61 @@
 }
 
 .buscar {
+    display: flex;
     margin-bottom: 60px;
+    flex-direction: row;
+    input{
+        padding-left: 25px;
+     
+    }
+
+    section{
+        width: 60px;
+        height: 60px;
+        padding: 15px;
+        background-color: #ffffff;
+        border-radius: 0px 10px 10px 0px;
+        border: 1
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        px solid black;
+        
+
+        > img{
+            width: 30px;
+        }
+    }
 }
 .buscar > input {
-    width: 96%;
+    width: 91.2%;
     height: 60px;
     margin-left: 27px;
-    border-radius: 10px;
+    border-radius: 15px 0px 0px 15px;
+    border: none;
+   
     background-color: #D9D9D9;
  
 }
@@ -64,13 +115,16 @@
 .filtro {
     display: flex;
     flex-direction: row;
+    justify-content: space-around;
+
+    
 
 
     width: 96%;
     height: 200px;
     margin-left: 27px;
     border-radius: 10px;
-    border: 2px solid black;
+    border: 1px solid black;
     margin-bottom: 60px;
 }
 
@@ -80,12 +134,13 @@
 
 }
 
-.por-preco > input {
+.por-preco > select {
 
  margin-top: 25px;
  width: 220px;
  height: 45px;
  border-radius: 10px;
+
 
 }
 
@@ -97,7 +152,7 @@
     margin: 30px;
 }
 
-.selecao-1 > input {
+.selecao-1 > select {
 
     margin-top: 25px;
     width: 220px;
@@ -106,7 +161,7 @@
    
    }
 
-.selecao-2 > input {
+.selecao-2 > select {
 
     margin-top: 25px;
     width: 220px;
@@ -146,7 +201,7 @@
     margin: 10px;
     height: 220px;
     border-radius: 10px;
-    border: 2px solid black;
+    border: 1.5px solid rgb(56, 49, 56);
 }
 
 .tab > img {
