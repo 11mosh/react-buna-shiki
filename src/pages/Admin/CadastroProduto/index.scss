@@ -2,6 +2,10 @@
     display: flex;
     flex-direction: column;
 
+    input:focus {
+        outline: none;
+    }
+
     > nav {
         display: flex;
         flex-direction: row;
@@ -47,6 +51,7 @@
                 width: 100%;
 
                 textarea {
+                    padding: 3px;
                     border-radius: 8px;
                     border: 2px solid rgba(0, 0, 0, 0.37);
                     height: 28px;
