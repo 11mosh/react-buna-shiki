@@ -1,21 +1,10 @@
-import { useEffect, useState } from 'react';
 import CabecalhoAdm from '../../../components/Admin/AdmCabecalho';
 import './index.scss';
 import {Link, useNavigate} from 'react-router-dom'
 import storage from 'local-storage'
 
 export default function Index() {
-    const [adm, setAdm] = useState('')
     const navigate = useNavigate()
-
-    // useEffect(() => {
-    //     if(!storage('adm-logado')){
-    //         navigate('/adm')
-    //     }else{
-    //         const admInfo = storage('adm-logado')
-    //         setAdm(admInfo)
-    //     }
-    // }, [])
     
     function Sair() {
         storage.remove('adm-logado')
@@ -24,7 +13,7 @@ export default function Index() {
     
     return(
         <div id='page-adm-inicio'>
-            <CabecalhoAdm adm={adm}/>
+            <CabecalhoAdm/>
             <main>
                 <section id='s1'>
                     <h1> Tela inicial </h1>

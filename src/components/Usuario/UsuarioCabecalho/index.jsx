@@ -12,7 +12,6 @@ export default function CabecalhoUsuario() {
 
     function teste (event) {
         if (event.key == "Enter") {
-            // código para pesquisar
             zerarPesquisa()
         }
     }

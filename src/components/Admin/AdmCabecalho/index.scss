@@ -16,13 +16,13 @@
         height: 100%;
         margin-top: 5px;
         padding-left: 30px;
-        article {
+        a{
             display: flex;
             flex-direction: column;
             align-items: center;
             justify-content: center;
             height: 100%;
-
+            text-decoration: none;
             gap: 3px;
             img {
                 width: 25px;
