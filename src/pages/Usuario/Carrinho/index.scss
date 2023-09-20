@@ -1,13 +1,14 @@
 .page-carrinho{
     display: flex;
     flex-direction: column;
+    height: 100vh;
     
     .tudo{
         display: flex;
         justify-content: center;
         align-items: center;
         flex-direction: column;
-        height: 66.6vh;
+        height: 70%;
         width: 100%;
         img{
             height: 150px;

@@ -38,7 +38,7 @@
             display: none;
         }
     }
-    > div {
+    #logo {
         display: flex;
         width: 26%;
         height: 100%;
@@ -46,8 +46,15 @@
         justify-content: center;
         > img {
             width: 240px;
-            height: 100%;
+            height: max-content;
         }
+    }
+    #logoXicara{
+        img{
+            width: 115px;
+            height: max-content;
+        }
+        display: none;
     }
     .lupa {
         width: 28%;
@@ -88,8 +95,13 @@
             }
         }
 
-        .img {
-            align-self: flex-end;
+        #logo {
+            display: none;
+        }
+        #logoXicara {
+            display: flex;
         }
     }
 }
+
+// @media(max-width)
