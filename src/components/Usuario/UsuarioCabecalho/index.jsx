@@ -5,6 +5,7 @@ export default function CabecalhoUsuario() {
 
     const [pesquisa, setPesquisa] = useState('');
     const [mostrarInput, setMostrarInput] = useState(false)
+    const [mostrarMenu, setMostrarMenu] = useState(false)
 
     function exibirPesquisa () {
         setMostrarInput(!mostrarInput)
@@ -31,8 +32,11 @@ export default function CabecalhoUsuario() {
                     <img src='/assets/images/icon-conta.svg' alt='conta'/>
                    <p>Conta</p>
                 </article>
+                <article id='invisivel'>
+                    <img src='/assets/images/tresBarras.svg' alt='tres barras' onClick={e => {if(mostrarMenu === false){setMostrarMenu(true)} else{setMostrarMenu(false)}}}/>
+                </article>
             </section>
-            <div>
+            <div id='img'>
                 <img src='/assets/images/logo.svg' alt="Erro ao exibir imagem"/>
             </div>
             <div className='lupa'>
