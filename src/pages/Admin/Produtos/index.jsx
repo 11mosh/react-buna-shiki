@@ -1,93 +1,100 @@
 import './index.scss';
 import CabecalhoAdm from '../../../components/Admin/AdmCabecalho';
+import { Link } from 'react-router-dom';
 
 
 
 
 function Consulta() {
   return (
+    <div id='page-adm-produtos'>
+      <CabecalhoAdm />
+      <main>
 
-    <body> 
-      <CabecalhoAdm/> 
-      <div className="consulta">
-          <a className="a1" href=''>Tela inicial</a>
-          <a className="a2" href=''>Visualizar produtos</a>
-      </div>
-
-      <div className='consulta-de-produtos'>
-        <h2> Consulta de produtos</h2>
-        <button><h1>Adicionar um produto</h1></button>
-      </div>
-
-      <div className='tabela-consulta'>
-        <div className='buscar'>
-          <input type="text" name='' placeholder='Busque por produtos, id do produto'/> 
-
-          <section>
-            <img src='/assets/images/adm/lupa.svg'/>
-          </section>
+      <section id='s1'>
+        <Link className='link' to={'/adm/'}>Tela inicial</Link>
+        <img src='/assets/images/adm-consultas/icon-seta-direita.svg' alt='icon-seta-direita' />
+        <Link> Visualizar produto </Link>
+      </section>
+      <hr />
+      <section id='s2'>
+        <h1> Consulta de produtos </h1>
+        <button> Adicionar um produto </button>
+      </section>
+      <section id='s3'>
+        <input type='text' placeholder='Busque por produtos, id do produto'/>
+        <article>
+          <img src='/assets/images/lupa-dark.svg' alt='icon-busca'/>
+        </article>
+      </section>
+      <section id='s4'>
+        <article>
+          <h3> Ordenar por:</h3>
+          <div>
+            <select>
+              <option className='option' > Selecionar </option>
+              <option > Selecionar </option>
+              <option > Selecionar </option>
+              <option> Selecionar </option>
+              <option > Selecionar </option>
+            </select>
           </div>
-        <div className='filtro'>
-
-          <div className='por-preco'>
-            <h3>Ordenar por:</h3>
-            <select type="text" name='' id='Mais caro'/>
+        </article>
+        <article>
+          <h3> Filtrar por categoria: </h3>
+          <div>
+            <select>
+              <option> Selecionar </option>
+            </select>
           </div>
-          <div className='selecao-1'>
-            <h3>Filtrar por categoria:</h3>
-            <select type="text" name='' id='Selecionar' placeholder='Filtrar por categoria'/>
+        </article>
+        <article>
+          <h3> Filtrar por ADM:</h3>
+          <div>
+            <select>
+              <option> Selecionar </option>
+            </select>
           </div>
-          <div className='selecao-2'>
-            <h3>Filtrar por ADM:</h3>
-            <select type="text" name='' id='Selecionar'/>
-          </div>
-        </div>
-
-        <div className='consultas'>
-          <div className='name'>
-            <h4 className='numb1'>ID</h4>
-            <h4 className='numb2'>Produto</h4>
-            <h4 className='numb3'>Categoria</h4>
-            <h4 className='numb4'>ADM</h4>
-            <h4 className='numb5'>Estoque</h4>
-            <h4 className='numb6'>Preços</h4>
-            <h4 className='numb7'>Promocional</h4>
-          </div>
-          <div className='tab-consulta'>
-            <div className='tab'>
-                <div>7</div>
-                <img src="/assets/images/cafeteiraa.png" alt="" />
-                <div>Cafeteiras</div>
-                <div>Edonardo</div>
-                <div>10</div>
-                <div>R$302,45</div>
-                <div>-</div>
-            </div>
-            <div className='tab'>
-                <div>7</div>
-                <img src="/assets/images/cafeteiraa.png" alt="" />
-                <div>Cafeteiras</div>
-                <div>Edonardo</div>
-                <div>10</div>
-                <div>R$302,45</div>
-                <div>-</div>
-            </div>
-
-            <div className='tab'>
-                <div>7</div>
-                <img src="/assets/images/cafeteiraa.png" alt="" />
-                <div>Cafeteiras</div>
-                <div>Edonardo</div>
-                <div>10</div>
-                <div>R$302,45</div>
-                <div>-</div>
-            </div>
-          </div>
-        </div>
-      </div>
-    </body>
-  );
-
+        </article>
+      </section>
+      <section id='s5'>
+        <table>
+          <thead>
+            <th>
+              <td className='id desaparece4'> ID </td>
+              <td> Produto </td>
+              <td className='desaparece2'> Categoria </td>
+              <td className='desaparece'> ADM </td>
+              <td className='desaparece2'> Estoque </td>
+              <td className='desaparece3'> Preço </td>
+              <td className='desaparece'> Promocional </td>
+            </th>
+          </thead>
+          <hr />
+          <tbody>
+            <tr>
+              <div>
+                <td className='id desaparece4'> 7 </td>
+                <td id='img'> 
+                  <img src='/assets/images/cafe3coracoes.png' alt=''/>
+                </td>
+                <td className='desaparece2'> Cafeiteiras </td>
+                <td className='desaparece'> eu </td>
+                <td className='desaparece2'> 8 </td>
+                <td className='desaparece3'> 32.55 </td>
+                <td className='desaparece' > - </td>
+              </div>
+              <td id='acoes'>
+                <img src='/assets/images/adm-consultas/icon-alterar.svg' alt='icon-alterar' />
+                <img src='/assets/images/adm-consultas/icon-lixeira.svg' alt='icon-lixeira' />
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </section>
+      </main>
+    </div>
+  )
 }
 
 export default Consulta;
