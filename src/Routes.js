@@ -13,6 +13,7 @@ import AdmInicio from './pages/Admin/TelaInicial';
 import CadastroProduto from './pages/Admin/CadastroProduto';
 import Produtos from './pages/Admin/Produtos';
 import Cliente from './pages/Usuario/UsuarioPerfil'
+import Pedidos from './pages/Admin/Pedidos'
 
 export default function Rotas() {
     return(
@@ -32,6 +33,7 @@ export default function Rotas() {
                 <Route path='/adm/inicio' element={<AdmInicio />} />
                 <Route path='/adm/cadastro-produto' element={<CadastroProduto />} />
                 <Route path='/adm/produtos' element={<Produtos />} />
+                <Route path='/adm/pedidos' element={<Pedidos />} />
             </Routes>
          </BrowserRouter>
     )
