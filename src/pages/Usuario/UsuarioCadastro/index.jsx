@@ -3,7 +3,7 @@ import CabecalhoLink from '../../../components/Usuario/CabecalhoLink';
 import UsuarioRodape from '../../../components/Usuario/UsuarioRodape';
 import './index.scss';
 import { toast } from 'react-toastify'
-import { Buscar, CadastrarCliente, CadastrarEndereco } from '../../../api/usuarioApi';
+import {CadastrarCliente, CadastrarEndereco } from '../../../api/usuarioApi';
 import axios from 'axios';
 import LoadingBar from 'react-top-loading-bar';
 import { useNavigate } from 'react-router-dom';
@@ -22,6 +22,7 @@ export default function Index() {
     const [complemento, setComplemento] = useState('')
     const [nrEndereco, setNrEndereco] = useState('')
     const [carregando, setCarregando] = useState(false)
+    const [buscaCepRepetido, setBuscaCepRepetido] = useState('')
 
     const ref = useRef()
     const navigate = useNavigate()
@@ -29,13 +30,21 @@ export default function Index() {
     async function Cadastrar(){
         setCarregando(true)
         try{
-            const repetidoTelefone = await Buscar(telefone)
-            const repetidoEmail = await Buscar(email)
-            const repetidoCPF = await Buscar(cpf)
-
-            let respCliente = ''
-            if(!repetidoTelefone && !repetidoCPF && !repetidoEmail){
-                respCliente = await CadastrarCliente(nome, cpf, telefone, email, senha)
+            if(buscaCepRepetido !== cep){
+                let certo = await BuscarCep()
+                if(certo === true){
+                    const respCliente = await CadastrarCliente(nome, cpf, telefone, email, senha)
+                    await CadastrarEndereco(cep, rua, cidade, complemento, nrEndereco, respCliente.id)
+                    toast.success('Cadastro finalizado!')
+                    ref.current.continuousStart()
+                    storage('usuario-logado', respCliente)
+                    setTimeout(() => {
+                        navigate('/cliente')
+                    }, 3000)
+                }
+            }
+            else if (cidade !== 'Cidade' && rua !== 'Rua' && rua !== undefined && cidade !== undefined && rua !== '' && cidade !== ''){
+                const respCliente = await CadastrarCliente(nome, cpf, telefone, email, senha)
                 await CadastrarEndereco(cep, rua, cidade, complemento, nrEndereco, respCliente.id)
                 toast.success('Cadastro finalizado!')
                 ref.current.continuousStart()
@@ -45,7 +54,7 @@ export default function Index() {
                 }, 3000)
             }
             else{
-                toast.error('Você já possui cadastrado ')
+                toast.error('CEP inválido')
                 setCarregando(false)
             }
         }
@@ -58,9 +67,20 @@ export default function Index() {
     }
 
     async function BuscarCep() {
-        let buscaCep = await axios.get(`https://viacep.com.br/ws/${cep}/json/`)
-        setRua(buscaCep.data.logradouro)
-        setCidade(buscaCep.data.localidade)
+        try{
+            setBuscaCepRepetido(cep)
+            if(buscaCepRepetido !== cep){
+                let buscaCep = await axios.get(`https://viacep.com.br/ws/${cep}/json/`)
+                if(buscaCep){
+                    setRua(buscaCep.data.logradouro)
+                    setCidade(buscaCep.data.localidade)
+                    return true
+                }
+            }
+        }
+        catch(err){
+            toast.error('CEP inválido')
+        }
     }
 
     return(

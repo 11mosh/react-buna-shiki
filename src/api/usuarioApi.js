@@ -15,18 +15,13 @@ export async function CadastrarCliente(nome, cpf, telefone, email, senha) {
     return resp.data
 }
 export async function CadastrarEndereco(cep, rua, cidade, complemento, numero, id){
-    const resp = await api.post(`${id}/endereco`, {
+    const resp = await api.post(`/endereco/${id}`, {
         cep: cep,
         rua: rua,
         cidade: cidade,
         complemento: complemento,
         numero: numero
     })
-
-    return resp.data
-}
-export async function Buscar(busca){
-    const resp = await api.get(`/cliente/repetido/` + busca)
 
     return resp.data
 }

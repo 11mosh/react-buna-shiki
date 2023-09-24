@@ -11,10 +11,7 @@ import Carrinho from './pages/Usuario/Carrinho';
 import AdmLogin from './pages/Admin/AdmLogin';
 import AdmInicio from './pages/Admin/TelaInicial';
 import CadastroProduto from './pages/Admin/CadastroProduto';
-import Estatisticas from './pages/Admin/Estatísticas';
-import Pedidos from './pages/Admin/Pedidos';
 import Produtos from './pages/Admin/Produtos';
-import CadastroCombo from './pages/Admin/CadastroCombo';
 import Cliente from './pages/Usuario/UsuarioPerfil'
 
 export default function Rotas() {
@@ -35,9 +32,6 @@ export default function Rotas() {
                 <Route path='/adm/inicio' element={<AdmInicio />} />
                 <Route path='/adm/cadastro-produto' element={<CadastroProduto />} />
                 <Route path='/adm/produtos' element={<Produtos />} />
-                <Route path='/adm/cadastro-combo' element={<CadastroCombo />} />
-                <Route path='/adm/estatisticas' element={<Estatisticas />} />
-                <Route path='/adm/pedidos' element={<Pedidos />} />
             </Routes>
          </BrowserRouter>
     )
