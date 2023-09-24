@@ -12,8 +12,9 @@ import AdmLogin from './pages/Admin/AdmLogin';
 import AdmInicio from './pages/Admin/TelaInicial';
 import CadastroProduto from './pages/Admin/CadastroProduto';
 import Produtos from './pages/Admin/Produtos';
-import Cliente from './pages/Usuario/UsuarioPerfil'
-import Pedidos from './pages/Admin/Pedidos'
+import Cliente from './pages/Usuario/UsuarioPerfil';
+import MeusPedidos from './pages/Usuario/MeusPedidos';
+import Pedidos from './pages/Admin/Pedidos';
 
 export default function Rotas() {
     return(
@@ -28,6 +29,7 @@ export default function Rotas() {
                 <Route path='/login' element={<UsuarioLogin />}/>
                 <Route path='/cadastro' element={<UsuarioCadastro />} />
                 <Route path='/cliente' element={<Cliente />} />
+                <Route path='/conta/meus-pedidos' element={<MeusPedidos />} />
                 <Route path='/carrinho' element={<Carrinho/>} />
                 <Route path='/adm' element={<AdmLogin />} />
                 <Route path='/adm/inicio' element={<AdmInicio />} />
