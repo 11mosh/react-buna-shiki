@@ -1,7 +1,7 @@
 import './index.scss';
 import CabecalhoAdm from '../../../components/Admin/AdmCabecalho';
 import { Link } from 'react-router-dom';
-import { useState} from 'react';
+import { useEffect, useState} from 'react';
 import axios from 'axios'
 import { toast } from 'react-toastify';
 import localStorage from 'local-storage';
@@ -31,56 +31,78 @@ function CadastroProduto () {
 
 
     function adicionarImagem () {
-        setFotos([...fotos, urlImagem]);
-        setUrlImagem('');
+        const img = new Image();
+        img.src = urlImagem;
+
+        img.onload = () => {
+            setFotos([...fotos, urlImagem]);
+            setUrlImagem('');
+        }
+        img.onerror = () => {
+            toast.error('URL Inválida!')
+        }
+    }
+
+    function removerImagem (indice) {
+        const novasFotos = fotos.filter((imagem, i) => i !== indice);
+        setFotos(novasFotos);
     }
 
 
     async function cadastrarProduto() {
         try {
-            const idAdm = localStorage('adm-logado').id
-
-            const produto = {
-                idAdm: idAdm,
-                intensidade: intensidade,
-                docura: docura,
-                acidez: acidez,
-                torra: torra,
-                descricao: descricao,
-                marca: marca,
-                peso: peso,
-                alergia: alergia,
-                dimensoes: dimensoes,
-                idCategoria: categoria,
-                nome: nome,
-                preco: precoVenda,
-                promocional: precoPromocao,
-                disponivelAssinatura: assinatura,
-                estoque: estoque
-            };
-
-            let urlProduto = "http://localhost:5000/produto";
-            let respostaProduto = await axios.post(urlProduto, produto);
-
-            cadastrarImagenss(respostaProduto.data.idProduto)
-            resetarCampos();
-            toast.success('Produto cadastrado!')
+            if (fotos.length === 0) {
+                toast.error('Insira ao menos uma imagem!')
+            } else {
+                const idAdm = localStorage('adm-logado').id
+                const produto = {
+                    idAdm: idAdm,
+                    intensidade: intensidade,
+                    docura: docura,
+                    acidez: acidez,
+                    torra: torra,
+                    descricao: descricao,
+                    marca: marca,
+                    peso: peso,
+                    alergia: alergia,
+                    dimensoes: dimensoes,
+                    idCategoria: categoria,
+                    nome: nome,
+                    preco: precoVenda,
+                    promocional: precoPromocao,
+                    disponivelAssinatura: assinatura,
+                    estoque: estoque
+                };
+    
+                let urlProduto = "http://localhost:5000/produto";
+                let respostaProduto = await axios.post(urlProduto, produto);
+    
+                cadastrarImagenss(respostaProduto.data.idProduto)
+                resetarCampos();
+                toast.success('Produto cadastrado!')
+            }
         } catch (error) {
-            toast.error('erro! ' + error)
+            toast.error( error.response.data.erro)
         }
     }
 
     
     async function cadastrarImagenss (idProduto) {
-        for (let item of fotos) {
-            let url = "http://localhost:5000/imagemproduto";
-            const imagem = {
-                idProduto: idProduto,
-                caminho: item
-            }
-            let respostaImagem = await axios.post(url, imagem)
+        try {
+            
+                for (let item of fotos) {
+                    let url = "http://localhost:5000/imagemproduto";
+                    const imagem = {
+                        idProduto: idProduto,
+                        caminho: item
+                    }
+                    let respostaImagem = await axios.post(url, imagem)
+                }
+
+        } catch (error) {
+            toast.error( error.response.data.erro)
         }
-    } 
+    }
 
     
       function resetarCampos () {
@@ -117,21 +139,22 @@ function CadastroProduto () {
             <div className='conteudo'><h1>Cadastrar um novo produto</h1>
                 <div className='formulario'>
                     <div className='selecao-imagem'>
-                        <article className=''>
+                        <article className='insercao-imagem'>
                             <p>Insira a URL da imagem</p>
-                            <input type="text" value={urlImagem} onChange={e => setUrlImagem(e.target.value)}/>
-                            <button onClick={adicionarImagem}> Adicionar </button>
+                            <div>
+                                <textarea type="text" value={urlImagem} style={{resize: 'none', overflow: 'hidden'}} onChange={e => setUrlImagem(e.target.value)}/>
+                                <button onClick={adicionarImagem}> Adicionar </button>
+                            </div>
                         </article>
                         <article className="campo-imagens">
-                            {fotos.map((arquivo) => (
-                            <div className='imagem-upada'>
-                                <img src={arquivo} alt="" />
+                            {fotos.map((arquivo, indice) => (
+                            <div className='imagem-upada' key={indice}>
+                                <p>DELETAR</p>
+                                <img src={arquivo} alt="" onClick={() => removerImagem(indice)}/>
                             </div>
                             ))
-                            
                         }
                         </article>
-                        
                     </div>
                     <hr />
 
