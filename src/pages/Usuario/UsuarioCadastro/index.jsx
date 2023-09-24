@@ -33,22 +33,29 @@ export default function Index() {
             if(buscaCepRepetido !== cep){
                 let certo = await BuscarCep()
                 if(certo === true){
-                    const respCliente = await CadastrarCliente(nome, cpf, telefone, email, senha)
-                    await CadastrarEndereco(cep, rua, cidade, complemento, nrEndereco, respCliente.id)
+                    let infoCliente = undefined
+                    if(!infoCliente){
+                        infoCliente = await CadastrarCliente(nome, cpf, telefone, email, senha)
+                    }
+                    await CadastrarEndereco(cep, rua, cidade, complemento, nrEndereco, infoCliente.id)
                     toast.success('Cadastro finalizado!')
                     ref.current.continuousStart()
-                    storage('usuario-logado', respCliente)
+                    storage('usuario-logado', infoCliente)
                     setTimeout(() => {
                         navigate('/cliente')
                     }, 3000)
                 }
+
             }
             else if (cidade !== 'Cidade' && rua !== 'Rua' && rua !== undefined && cidade !== undefined && rua !== '' && cidade !== ''){
-                const respCliente = await CadastrarCliente(nome, cpf, telefone, email, senha)
-                await CadastrarEndereco(cep, rua, cidade, complemento, nrEndereco, respCliente.id)
+                let infoCliente = undefined
+                if(!infoCliente){
+                    infoCliente = await CadastrarCliente(nome, cpf, telefone, email, senha)
+                }
+                await CadastrarEndereco(cep, rua, cidade, complemento, nrEndereco, infoCliente.id)
                 toast.success('Cadastro finalizado!')
                 ref.current.continuousStart()
-                storage('usuario-logado', respCliente)
+                storage('usuario-logado', infoCliente)
                 setTimeout(() => {
                     navigate('/cliente')
                 }, 3000)
@@ -75,6 +82,9 @@ export default function Index() {
                     setRua(buscaCep.data.logradouro)
                     setCidade(buscaCep.data.localidade)
                     return true
+                }
+                else{
+                    setCarregando(false)
                 }
             }
         }

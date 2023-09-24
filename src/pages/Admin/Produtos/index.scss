@@ -163,9 +163,11 @@
                             display: flex;
                             gap: 10px;
                             margin-bottom: 3px;
-                            img {
-                                width: 25px;
-                                height: 25px;
+                            i{
+                                font-size: 25px;
+                            }
+                            .fa-trash-can:hover {
+                                color: red;
                             }
                         }
                         #img {
