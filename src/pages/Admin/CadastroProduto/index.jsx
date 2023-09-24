@@ -3,10 +3,13 @@ import CabecalhoAdm from '../../../components/Admin/AdmCabecalho';
 import { Link } from 'react-router-dom';
 import { useState} from 'react';
 import axios from 'axios'
+import { toast } from 'react-toastify';
+import localStorage from 'local-storage';
 
 function CadastroProduto () {
 
     const [fotos, setFotos] = useState([]);
+    const [urlImagem, setUrlImagem] = useState('');
 
     const [nome, setNome] = useState("");
     const [peso, setPeso] = useState("");
@@ -21,47 +24,82 @@ function CadastroProduto () {
     const [assinatura, setAssinatura] = useState(false);
 
     const [categoria, setCategoria] = useState("");
-    const [intensidade, setIntensidade] = useState(0);
-    const [acidez, setAcidez] = useState(0);
-    const [docura, setDocura] = useState(0);
-    const [torra, setTorra] = useState(0);
+    const [intensidade, setIntensidade] = useState("");
+    const [acidez, setAcidez] = useState("");
+    const [docura, setDocura] = useState("");
+    const [torra, setTorra] = useState("");
+
+
+    function adicionarImagem () {
+        setFotos([...fotos, urlImagem]);
+        setUrlImagem('');
+    }
 
 
     async function cadastrarProduto() {
-        const produto = {
-            intensidade: intensidade,
-            docura: docura,
-            acidez: acidez,
-            torra: torra,
-            descricao: descricao,
-            marca: marca,
-            peso: peso,
-            alergia: alergia,
-            dimensoes: dimensoes,
-            idCategoria: categoria,
-            nome: nome,
-            preco: precoVenda,
-            promocional: precoPromocao,
-            disponivelAssinatura: assinatura,
-            estoque: estoque
-        };
+        try {
+            const idAdm = localStorage('adm-logado').id
 
-        let url = "http://localhost:5000/produto";
-        
-        let resposta = await axios.post(url, produto);
-        console.log('cadastrado! ' + resposta);
+            const produto = {
+                idAdm: idAdm,
+                intensidade: intensidade,
+                docura: docura,
+                acidez: acidez,
+                torra: torra,
+                descricao: descricao,
+                marca: marca,
+                peso: peso,
+                alergia: alergia,
+                dimensoes: dimensoes,
+                idCategoria: categoria,
+                nome: nome,
+                preco: precoVenda,
+                promocional: precoPromocao,
+                disponivelAssinatura: assinatura,
+                estoque: estoque
+            };
+
+            let urlProduto = "http://localhost:5000/produto";
+            let respostaProduto = await axios.post(urlProduto, produto);
+
+            cadastrarImagenss(respostaProduto.data.idProduto)
+            resetarCampos();
+            toast.success('Produto cadastrado!')
+        } catch (error) {
+            toast.error('erro! ' + error)
+        }
     }
 
     
+    async function cadastrarImagenss (idProduto) {
+        for (let item of fotos) {
+            let url = "http://localhost:5000/imagemproduto";
+            const imagem = {
+                idProduto: idProduto,
+                caminho: item
+            }
+            let respostaImagem = await axios.post(url, imagem)
+        }
+    } 
 
-    function exibirImagens (event) {
-        const novosArquivos = [...fotos];
-        const selecionados = event.target.files;
-
-        for (let i = 0; i < selecionados.length; i++) {
-            novosArquivos.push(URL.createObjectURL(selecionados[i]));
-          };
-          setFotos(novosArquivos);
+    
+      function resetarCampos () {
+        setFotos([]);
+        setNome("");
+        setPeso("");
+        setMarca("");
+        setEstoque("");
+        setPrecoVenda(0);
+        setDimensoes("");
+        setDescricao("");
+        setPrecoPromocao(0);
+        setAlergia("");
+        setAssinatura(false);
+        setCategoria(false);
+        setIntensidade("");
+        setAcidez("");
+        setDocura("");
+        setTorra("");
       }
 
     return (
@@ -79,24 +117,19 @@ function CadastroProduto () {
             <div className='conteudo'><h1>Cadastrar um novo produto</h1>
                 <div className='formulario'>
                     <div className='selecao-imagem'>
-                        <form action=''>
-                            <p>Fazer o upload das imagens</p>
-                            <label htmlFor="arquivo"><img src="/assets/images/seta-upload.png" alt="" /></label>
-                            <input
-                                type="file"
-                                htmlFor='arquivo'
-                                onChange={exibirImagens}
-                                style={{ display: 'none'}}
-                                id='arquivo'
-                            />
-                        </form>
+                        <article className=''>
+                            <p>Insira a URL da imagem</p>
+                            <input type="text" value={urlImagem} onChange={e => setUrlImagem(e.target.value)}/>
+                            <button onClick={adicionarImagem}> Adicionar </button>
+                        </article>
                         <article className="campo-imagens">
                             {fotos.map((arquivo) => (
                             <div className='imagem-upada'>
                                 <img src={arquivo} alt="" />
                             </div>
                             ))
-                        } 
+                            
+                        }
                         </article>
                         
                     </div>
@@ -130,7 +163,7 @@ function CadastroProduto () {
                                 <label htmlFor="">Preço de venda</label>
                                 <textarea type="text" name="" id="" style={{resize: 'none', overflow: 'hidden'}}
                                 value={precoVenda} onChange={e => setPrecoVenda(e.target.value)}/>
-                                {console.log(precoVenda)}
+                                
 
                                 <label htmlFor="">Dimensões do produto</label>
                                 <textarea type="text" name="" id="" style={{resize: 'none', overflow: 'hidden'}}
@@ -141,29 +174,30 @@ function CadastroProduto () {
                                 <section className='categorias'>
                                     <div>
                                         <label htmlFor="">
-                                            <input type="radio" name="a" id="" checked={categoria}/>
+                                            <input type="radio" name="a" value={1}  onChange={e => setCategoria(e.target.value)}/>
                                             <p>Café em grão</p>
                                         </label>
                                         <label htmlFor="">
-                                            <input type="radio" name="a" id="" checked={categoria}/>
+                                            <input type="radio" name="a" value={2}  onChange={e => setCategoria(e.target.value)}/>
                                             <p>Café em pó</p>
                                         </label>
+                                        
                                         <label htmlFor="">
-                                            <input type="radio" name="a" id="" />
+                                            <input type="radio" name="a" value={3}  onChange={e => setCategoria(e.target.value)}/>
                                             <p>Cafeteira</p>
                                         </label>
                                     </div>
                                     <div>
                                         <label htmlFor="">
-                                            <input type="radio" name="a" id="" />
+                                            <input type="radio" name="a" value={4}  onChange={e => setCategoria(e.target.value)}/>
                                             <p>Cápsula</p>
                                         </label>
                                         <label htmlFor="">
-                                            <input type="radio" name="a" id="" />
+                                            <input type="radio" name="a" value={5}  onChange={e => setCategoria(e.target.value)}/>
                                             <p>Moedor</p>
                                         </label>
                                         <label htmlFor="">
-                                            <input type="radio" name="a" id="" />
+                                            <input type="radio" name="a" value={6}  onChange={e => setCategoria(e.target.value)}/>
                                             <p>Filtro</p>
                                         </label>
                                     </div>
