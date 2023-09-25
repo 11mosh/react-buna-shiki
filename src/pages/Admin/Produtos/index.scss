@@ -28,8 +28,13 @@
             justify-content: space-between;
             align-items: center;
             padding: 25px 30px;
-            button {
+            a {
                 width: 200px;
+                text-decoration: none;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                color: black;
                 height: 35px;
                 border: none;
                 font-weight: 700;
@@ -104,6 +109,8 @@
                 background-color: #d9d9d9;
                 display: flex;
                 flex-direction: column;
+                max-height: 700px;
+                height: 400px;
                 gap: 30px;
                 padding: 30px 0px 0px 0px;
                 .id {
@@ -112,11 +119,11 @@
                 }
                 thead {
                     padding: 0px 35px 0px 27px;
-                    th{
-                        width: 90%;
+                    tr{
+                        width: 89.7%;
                         display: flex;
                         justify-content: space-between;
-                        td{
+                        th{
                             width: 100px;
                         }
                     }
@@ -152,9 +159,11 @@
                         td{
                             width: 100px;
                             height: 30px;
+                            padding: 0px 3px;
                             border-radius: 5px;
                             background-color: #d9d9d9;
                             display: flex;
+                            text-align: center;
                             align-items: center;
                             justify-content: center;
                         }
@@ -165,9 +174,11 @@
                             margin-bottom: 3px;
                             i{
                                 font-size: 25px;
+                                cursor: pointer;
                             }
-                            .fa-trash-can:hover {
+                            i:hover {
                                 color: red;
+                                transition: 0.1s;
                             }
                         }
                         #img {
@@ -203,7 +214,7 @@
             > #s5{
                 table{
                     thead{
-                        th {
+                        tr {
                            width: 600px
                         }
                     }
@@ -231,7 +242,7 @@
             > #s5{
                 table{
                     thead{
-                        th {
+                        tr {
                            width: 330px
                         }
                     }
@@ -261,7 +272,7 @@
             > #s5{
                 table{
                     thead{
-                        th {
+                        tr {
                            width: 200px
                         }
                     }

@@ -1,6 +1,6 @@
 import './index.scss';
 import CabecalhoAdm from '../../../components/Admin/AdmCabecalho';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import { buscarTodos, excluir } from '../../../api/produtoApi';
 import { useState } from 'react';
 import {toast} from 'react-toastify'
@@ -10,6 +10,8 @@ import { confirmAlert } from 'react-confirm-alert'
 export default function Consulta() {
   const [buscaInput, setBuscaInput] = useState('')
   const [produtos, setProdutos] = useState([])
+  const navigate = useNavigate()
+
 
   async function buscarTodosClick() { 
     try{
@@ -32,9 +34,9 @@ export default function Consulta() {
         label: 'sim',
         onClick: async () => {
           try{
-            const resp = await excluir(idProduto, idDetalhe)
+            await excluir(idProduto, idDetalhe)
             toast.success('Produto excluido!')
-            buscarTodosClick()
+            setProdutos([])
           }
           catch(err){
             toast.error(err.response.data.erro)
@@ -45,6 +47,10 @@ export default function Consulta() {
         label: 'não'
       }
       ]})
+  }
+
+  function alterar(id){
+    navigate(`/adm/${id}/alterar-produto`)
   }
 
   
@@ -61,10 +67,10 @@ export default function Consulta() {
       <hr />
       <section id='s2'>
         <h1> Consulta de produtos </h1>
-        <button> Adicionar um produto </button>
+        <Link to='/adm/cadastro-produto'> Adicionar um produto </Link>
       </section>
       <section id='s3'>
-        <input type='text' placeholder='Busque por produtos, id do produto' />
+        <input type='text' placeholder='Busque por produtos, id do produto' onChange={e => setBuscaInput(e.target.value)}/>
         <article>
           <img src='/assets/images/lupa-dark.svg' alt='icon-busca' value={buscaInput} onClick={buscarTodosClick}/>
         </article>
@@ -102,15 +108,15 @@ export default function Consulta() {
       <section id='s5'>
         <table>
           <thead>
-            <th>
-              <td className='id desaparece4'> ID </td>
-              <td> Produto </td>
-              <td className='desaparece2'> Categoria </td>
-              <td className='desaparece'> ADM </td>
-              <td className='desaparece2'> Estoque </td>
-              <td className='desaparece3'> Preço </td>
-              <td className='desaparece'> Promocional </td>
-            </th>
+            <tr>
+              <th className='id desaparece4'> ID </th>
+              <th> Produto </th>
+              <th className='desaparece2'> Categoria </th>
+              <th className='desaparece'> ADM </th>
+              <th className='desaparece2'> Estoque </th>
+              <th className='desaparece3'> Preço </th>
+              <th className='desaparece'> Promocional </th>
+            </tr>
           </thead>
           <hr />
           <tbody>
@@ -129,7 +135,7 @@ export default function Consulta() {
                     <td className='desaparece' > {item.promocao ? item.promocao : '-'} </td>
                   </div>
                   <td id='acoes'>
-                    <i className="fa-regular fa-pen-to-square"></i>
+                    <i className="fa-regular fa-pen-to-square" onClick={() => alterar(item.id)}></i>
                     <i className="fa-regular fa-trash-can" onClick={() => excluirClick(item.id, item.id_detalhe)}></i>
                   </td>
                 </tr>

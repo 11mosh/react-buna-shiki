@@ -1,13 +1,15 @@
 import './index.scss';
 import CabecalhoAdm from '../../../components/Admin/AdmCabecalho';
-import { Link } from 'react-router-dom';
+import { Link, useParams } from 'react-router-dom';
 import { useEffect, useState} from 'react';
 import axios from 'axios'
 import { toast } from 'react-toastify';
-import localStorage from 'local-storage';
+import storage from 'local-storage'
+import { alterar, buscarIdDetalhe, buscarIdImagens, buscarIdProduto } from '../../../api/produtoApi';
 
 function CadastroProduto () {
-
+    const [idProduto, setIdProduto] = useState(useParams())
+    const [idDetalhe, setIdDetalhe] = useState(0)
     const [fotos, setFotos] = useState([]);
     const [urlImagem, setUrlImagem] = useState('');
 
@@ -51,61 +53,119 @@ function CadastroProduto () {
 
     async function cadastrarProduto() {
         try {
-            if (fotos.length === 0) {
-                toast.error('Insira ao menos uma imagem!')
-            } else {
-                const idAdm = localStorage('adm-logado').id
-                const produto = {
-                    idAdm: idAdm,
-                    intensidade: intensidade,
-                    docura: docura,
-                    acidez: acidez,
-                    torra: torra,
-                    descricao: descricao,
-                    marca: marca,
-                    peso: peso,
-                    alergia: alergia,
-                    dimensoes: dimensoes,
-                    idCategoria: categoria,
-                    nome: nome,
-                    preco: precoVenda,
-                    promocional: precoPromocao,
-                    disponivelAssinatura: assinatura,
-                    estoque: estoque
-                };
-    
-                let urlProduto = "http://localhost:5000/produto";
-                let respostaProduto = await axios.post(urlProduto, produto);
-    
-                cadastrarImagenss(respostaProduto.data.idProduto)
-                resetarCampos();
-                toast.success('Produto cadastrado!')
-            }
-        } catch (error) {
-            toast.error( error.response.data.erro)
-        }
-    }
-
-    
-    async function cadastrarImagenss (idProduto) {
-        try {
-            
-                for (let item of fotos) {
-                    let url = "http://localhost:5000/imagemproduto";
-                    const imagem = {
-                        idProduto: idProduto,
-                        caminho: item
-                    }
-                    let respostaImagem = await axios.post(url, imagem)
+            if(idProduto){
+                if (fotos.length === 0) {
+                    toast.error('Insira ao menos uma imagem!')
+                } else {
+                    const idAdm = storage('adm-logado').id
+                    const alteracoes = {
+                        idAdm: idAdm,
+                        intensidade: intensidade,
+                        docura: docura,
+                        acidez: acidez,
+                        torra: torra,
+                        descricao: descricao,
+                        marca: marca,
+                        peso: peso,
+                        alergia: alergia,
+                        dimensoes: dimensoes,
+                        idCategoria: categoria,
+                        nome: nome,
+                        preco: precoVenda,
+                        promocional: precoPromocao,
+                        disponivelAssinatura: assinatura,
+                        estoque: estoque
+                    };
+                    await alterar(alteracoes, idDetalhe, idProduto)
+            }}
+            else{
+                if (fotos.length === 0) {
+                    toast.error('Insira ao menos uma imagem!')
+                } else {
+                    const idAdm = storage('adm-logado').id
+                    const produto = {
+                        idAdm: idAdm,
+                        intensidade: intensidade,
+                        docura: docura,
+                        acidez: acidez,
+                        torra: torra,
+                        descricao: descricao,
+                        marca: marca,
+                        peso: peso,
+                        alergia: alergia,
+                        dimensoes: dimensoes,
+                        idCategoria: categoria,
+                        nome: nome,
+                        preco: precoVenda,
+                        promocional: precoPromocao,
+                        disponivelAssinatura: assinatura,
+                        estoque: estoque
+                    };
+        
+                    let urlProduto = "http://localhost:5000/produto";
+                    let respostaProduto = await axios.post(urlProduto, produto);
+        
+                    cadastrarImagens(respostaProduto.data.idProduto)
+                    resetarCampos();
+                    toast.success('Produto cadastrado!')
                 }
+            }
+        } 
+        catch (error) {
+            toast.error( error.response.data.erro)
+        }
+    }
+
+    
+    async function cadastrarImagens (idProduto) {
+        try {
+            for (let item of fotos) {
+                let url = "http://localhost:5000/imagemproduto";
+                const imagem = {
+                    idProduto: idProduto,
+                    caminho: item
+                }
+                await axios.post(url, imagem)
+            }
 
         } catch (error) {
             toast.error( error.response.data.erro)
         }
     }
 
-    
-      function resetarCampos () {
+    async function alterarInputs(){
+        try{
+            const produto = await buscarIdProduto(idProduto.id)
+            setIdDetalhe(produto.id_detalhe)
+            const detalhes = await buscarIdDetalhe(produto.id_detalhe)
+            const imagens = await buscarIdImagens(idProduto.id)
+            let novasImagens = []
+            for(let cont = 0; cont < imagens.length; cont++){
+                novasImagens[cont] = imagens[cont].caminho
+            }
+            setFotos(novasImagens)
+            setNome(produto.produto);
+            setPeso(detalhes.peso);
+            setMarca(detalhes.marca);
+            setEstoque(produto.estoque);
+            setPrecoVenda(produto.preco);
+            setDimensoes(detalhes.dimensoes);
+            setDescricao(detalhes.produto);
+            setPrecoPromocao(produto.promocao);
+            setAlergia(detalhes.alergia);
+            setAssinatura(produto.assinatura);
+            setCategoria(produto.id_categoria);
+            setIntensidade(detalhes.intensidade);
+            setAcidez(detalhes.acidez);
+            setDocura(detalhes.docura);
+            setTorra(detalhes.torra);
+        }
+        catch(err){
+            toast.error(err.response.data.erro)
+        }
+    }
+
+    function resetarCampos () {
         setFotos([]);
         setNome("");
         setPeso("");
@@ -117,14 +177,21 @@ function CadastroProduto () {
         setPrecoPromocao(0);
         setAlergia("");
         setAssinatura(false);
-        setCategoria(false);
+        setCategoria(0);
         setIntensidade("");
         setAcidez("");
         setDocura("");
         setTorra("");
-      }
+    }
 
-    return (
+    useEffect(() => {
+        if(typeof idProduto.id === 'string'){
+            alterarInputs()
+        }
+        // eslint-disable-next-line
+    }, [])
+
+    return ( 
         <main className='cadastro-produto'>
             <CabecalhoAdm />
             <nav style={{padding: '20px'}}>
@@ -197,30 +264,30 @@ function CadastroProduto () {
                                 <section className='categorias'>
                                     <div>
                                         <label htmlFor="">
-                                            <input type="radio" name="a" value={1}  onChange={e => setCategoria(e.target.value)}/>
+                                            <input type="radio" name="a" value={1}  onChange={e => setCategoria(e.target.value)} checked={categoria === 1 ? true : false} />
                                             <p>Café em grão</p>
                                         </label>
                                         <label htmlFor="">
-                                            <input type="radio" name="a" value={2}  onChange={e => setCategoria(e.target.value)}/>
+                                            <input type="radio" name="a" value={2} onChange={e => setCategoria(e.target.value)} checked={categoria === 2 ? true : false}/>
                                             <p>Café em pó</p>
                                         </label>
                                         
                                         <label htmlFor="">
-                                            <input type="radio" name="a" value={3}  onChange={e => setCategoria(e.target.value)}/>
+                                            <input type="radio" name="a" value={3}  onChange={e => setCategoria(e.target.value)} checked={categoria === 3 ? true : false}/>
                                             <p>Cafeteira</p>
                                         </label>
                                     </div>
                                     <div>
                                         <label htmlFor="">
-                                            <input type="radio" name="a" value={4}  onChange={e => setCategoria(e.target.value)}/>
+                                            <input type="radio" name="a" value={4}  onChange={e => setCategoria(e.target.value)} checked={categoria === 4 ? true : false}/>
                                             <p>Cápsula</p>
                                         </label>
                                         <label htmlFor="">
-                                            <input type="radio" name="a" value={5}  onChange={e => setCategoria(e.target.value)}/>
+                                            <input type="radio" name="a" value={5}  onChange={e => setCategoria(e.target.value)} checked={categoria === 5 ? true : false}/>
                                             <p>Moedor</p>
                                         </label>
                                         <label htmlFor="">
-                                            <input type="radio" name="a" value={6}  onChange={e => setCategoria(e.target.value)}/>
+                                            <input type="radio" name="a" value={6}  onChange={e => setCategoria(e.target.value)} checked={categoria === 6 ? true : false}/>
                                             <p>Filtro</p>
                                         </label>
                                     </div>
@@ -253,7 +320,7 @@ function CadastroProduto () {
                                 onChange={e => setAssinatura(e.target.checked)}/>
                                 <label htmlFor="">Disponível para assinatura</label>
                             </div>
-                            <button className='' onClick={cadastrarProduto}>Finalizar cadastro</button>
+                            <button className='' onClick={cadastrarProduto}>{id ? 'Finalizar alteração' : 'Finalizar cadastro'}</button>
                         </section>
                     </article>
                 </div>
