@@ -31,9 +31,20 @@ function CadastroProduto () {
 
     const {id: idParam} = useParams()
 
+<<<<<<< HEAD
+        for (let i = 0; i < selecionados.length; i++) {
+            novosArquivos.push(selecionados[i]);
+            console.log(URL.createObjectURL(novosArquivos[i]))
+          };
+          setFotos(novosArquivos);
+        
+
+      }
+=======
     function adicionarImagem () {
         const img = new Image();
         img.src = urlImagem;
+>>>>>>> 70060397dc070f5881f296e3ea1496d3fe4b5764
 
         img.onload = () => {
             setFotos([...fotos, urlImagem]);

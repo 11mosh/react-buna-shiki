@@ -39,7 +39,6 @@ export default function Rotas() {
                 <Route path='/adm/:id/alterar-produto' element={<CadastroProduto />} />
                 <Route path='/adm/produtos' element={<Produtos />} />
                 <Route path='/adm/pedidos' element={<Pedidos />} />
-                <Route path='/produtos/graos' element={<UsuarioProdutos />} />
             </Routes>
          </BrowserRouter>
     )
