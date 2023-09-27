@@ -15,8 +15,11 @@ function CadastroProduto () {
 
         for (let i = 0; i < selecionados.length; i++) {
             novosArquivos.push(selecionados[i]);
+            console.log(URL.createObjectURL(novosArquivos[i]))
           };
           setFotos(novosArquivos);
+        
+
       }
 
     return (

@@ -15,7 +15,9 @@ import Estatisticas from './pages/Admin/Estatísticas';
 import Pedidos from './pages/Admin/Pedidos';
 import Produtos from './pages/Admin/Produtos';
 import CadastroCombo from './pages/Admin/CadastroCombo';
-import Cliente from './pages/Usuario/UsuarioPerfil'
+import Cliente from './pages/Usuario/UsuarioPerfil';
+import Pagamento from './pages/Usuario/Pagamento';
+import DescricaoProduto from './components/Usuario/DescricaoProduto';
 
 export default function Rotas() {
     return(
@@ -38,6 +40,8 @@ export default function Rotas() {
                 <Route path='/adm/cadastro-combo' element={<CadastroCombo />} />
                 <Route path='/adm/estatisticas' element={<Estatisticas />} />
                 <Route path='/adm/pedidos' element={<Pedidos />} />
+                <Route path='/pagamento' element={<Pagamento/>} />
+                <Route path='/grao/' element={<DescricaoProduto />} />
             </Routes>
          </BrowserRouter>
     )
