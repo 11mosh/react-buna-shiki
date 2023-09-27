@@ -8,11 +8,10 @@ import storage from 'local-storage'
 import { alterar, buscarIdDetalhe, buscarIdImagens, buscarIdProduto } from '../../../api/produtoApi';
 
 function CadastroProduto () {
-    const [idProduto, setIdProduto] = useState(useParams())
+    const [id, setId] = useState(0)
     const [idDetalhe, setIdDetalhe] = useState(0)
     const [fotos, setFotos] = useState([]);
     const [urlImagem, setUrlImagem] = useState('');
-
     const [nome, setNome] = useState("");
     const [peso, setPeso] = useState("");
     const [marca, setMarca] = useState("");
@@ -22,15 +21,15 @@ function CadastroProduto () {
     const [descricao, setDescricao] = useState("");
     const [precoPromocao, setPrecoPromocao] = useState(0);
     const [alergia, setAlergia] = useState("");
-
     const [assinatura, setAssinatura] = useState(false);
-
-    const [categoria, setCategoria] = useState("");
+    const [categoria, setCategoria] = useState(0);
     const [intensidade, setIntensidade] = useState("");
     const [acidez, setAcidez] = useState("");
     const [docura, setDocura] = useState("");
     const [torra, setTorra] = useState("");
+    const [selecionadaCategoria, setSelecionadaCategoria] = useState(categoria)
 
+    const {id: idParam} = useParams()
 
     function adicionarImagem () {
         const img = new Image();
@@ -51,9 +50,10 @@ function CadastroProduto () {
     }
 
 
+
     async function cadastrarProduto() {
         try {
-            if(idProduto){
+            if(id){
                 if (fotos.length === 0) {
                     toast.error('Insira ao menos uma imagem!')
                 } else {
@@ -76,7 +76,9 @@ function CadastroProduto () {
                         disponivelAssinatura: assinatura,
                         estoque: estoque
                     };
-                    await alterar(alteracoes, idDetalhe, idProduto)
+                    await alterar(alteracoes, idDetalhe, id)
+                    cadastrarImagens(id)
+                    toast.success('Produto alterado!')
             }}
             else{
                 if (fotos.length === 0) {
@@ -119,13 +121,25 @@ function CadastroProduto () {
     
     async function cadastrarImagens (idProduto) {
         try {
-            for (let item of fotos) {
-                let url = "http://localhost:5000/imagemproduto";
-                const imagem = {
-                    idProduto: idProduto,
-                    caminho: item
+            if(id === 0){
+                for (let item of fotos) {
+                    let url = `http://localhost:5000/${idProduto}/imagens;`
+                    const imagem = {
+                        idProduto: idProduto,
+                        caminho: item
+                    }
+                    await axios.put(url, imagem)
                 }
-                await axios.post(url, imagem)
+            }
+            else{
+                for (let item of fotos) {
+                    let url = "http://localhost:5000/imagemproduto";
+                    const imagem = {
+                        idProduto: idProduto,
+                        caminho: item
+                    }
+                    await axios.post(url, imagem)
+                }
             }
 
         } catch (error) {
@@ -135,10 +149,11 @@ function CadastroProduto () {
 
     async function alterarInputs(){
         try{
-            const produto = await buscarIdProduto(idProduto.id)
+            const produto = await buscarIdProduto(idParam)
             setIdDetalhe(produto.id_detalhe)
             const detalhes = await buscarIdDetalhe(produto.id_detalhe)
-            const imagens = await buscarIdImagens(idProduto.id)
+            console.log(produto);
+            const imagens = await buscarIdImagens(produto.id)
             let novasImagens = []
             for(let cont = 0; cont < imagens.length; cont++){
                 novasImagens[cont] = imagens[cont].caminho
@@ -159,6 +174,7 @@ function CadastroProduto () {
             setAcidez(detalhes.acidez);
             setDocura(detalhes.docura);
             setTorra(detalhes.torra);
+            setId(produto.id)
         }
         catch(err){
             toast.error(err.response.data.erro)
@@ -185,7 +201,7 @@ function CadastroProduto () {
     }
 
     useEffect(() => {
-        if(typeof idProduto.id === 'string'){
+        if(idParam){
             alterarInputs()
         }
         // eslint-disable-next-line
@@ -264,30 +280,30 @@ function CadastroProduto () {
                                 <section className='categorias'>
                                     <div>
                                         <label htmlFor="">
-                                            <input type="radio" name="a" value={1}  onChange={e => setCategoria(e.target.value)} checked={categoria === 1 ? true : false} />
+                                            <input type="radio" name="a" value={1}  onChange={e => setCategoria(e.target.value)} />
                                             <p>Café em grão</p>
                                         </label>
                                         <label htmlFor="">
-                                            <input type="radio" name="a" value={2} onChange={e => setCategoria(e.target.value)} checked={categoria === 2 ? true : false}/>
+                                            <input type="radio" name="a" value={2} onChange={e => setCategoria(e.target.value)} />
                                             <p>Café em pó</p>
                                         </label>
                                         
                                         <label htmlFor="">
-                                            <input type="radio" name="a" value={3}  onChange={e => setCategoria(e.target.value)} checked={categoria === 3 ? true : false}/>
+                                            <input type="radio" name="a" value={3}  onChange={e => setCategoria(e.target.value)} />
                                             <p>Cafeteira</p>
                                         </label>
                                     </div>
                                     <div>
                                         <label htmlFor="">
-                                            <input type="radio" name="a" value={4}  onChange={e => setCategoria(e.target.value)} checked={categoria === 4 ? true : false}/>
+                                            <input type="radio" name="a" value={4}  onChange={e => setCategoria(e.target.value)} />
                                             <p>Cápsula</p>
                                         </label>
                                         <label htmlFor="">
-                                            <input type="radio" name="a" value={5}  onChange={e => setCategoria(e.target.value)} checked={categoria === 5 ? true : false}/>
+                                            <input type="radio" name="a" value={5}  onChange={e => setCategoria(e.target.value)} />
                                             <p>Moedor</p>
                                         </label>
                                         <label htmlFor="">
-                                            <input type="radio" name="a" value={6}  onChange={e => setCategoria(e.target.value)} checked={categoria === 6 ? true : false}/>
+                                            <input type="radio" name="a" value={6}  onChange={e => setCategoria(e.target.value)}/>
                                             <p>Filtro</p>
                                         </label>
                                     </div>

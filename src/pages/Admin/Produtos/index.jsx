@@ -1,7 +1,7 @@
 import './index.scss';
 import CabecalhoAdm from '../../../components/Admin/AdmCabecalho';
 import { Link, useNavigate } from 'react-router-dom';
-import { buscarTodos, excluir } from '../../../api/produtoApi';
+import { buscarIdImagens, buscarTodos, excluir } from '../../../api/produtoApi';
 import { useState } from 'react';
 import {toast} from 'react-toastify'
 import { confirmAlert } from 'react-confirm-alert'
@@ -17,6 +17,10 @@ export default function Consulta() {
     try{
       if(buscaInput === ''){
         const respProdutos = await buscarTodos()
+        for(let cont = 0; cont < respProdutos.length; cont++){
+          const respImagens = await buscarIdImagens(respProdutos[cont].id)
+          respProdutos[cont].imagem = respImagens[0]
+        }
         setProdutos(respProdutos)
       }
     }
@@ -126,7 +130,7 @@ export default function Consulta() {
                   <div>
                     <td className='id desaparece4'> {item.id} </td>
                     <td id='img'> 
-                      <img src='/assets/images/cafe3coracoes.png' alt=''/>
+                      <img src={item.imagem} alt=''/>
                     </td>
                     <td className='desaparece2'> {item.categoria} </td>
                     <td className='desaparece'> {item.admin} </td>

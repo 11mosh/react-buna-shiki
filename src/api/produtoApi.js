@@ -7,6 +7,7 @@ const api = axios.create({
 
 export async function buscarTodos(){
     const resp = await api.get('/produtos')
+
     return resp.data
 }
 
@@ -39,5 +40,6 @@ export async function alterar(alteracoes, idDetalhe, idProduto){
 
     return resp;
 }
+
 
 
