@@ -32,30 +32,6 @@
             transition: 0.2s;
     }
 
-    .categorias-nav {
-        display: flex;
-        justify-content: space-around;
-        height: 40px;
-        align-items: center;
-        font-size: 17px;
-        flex-direction: row;
-        background: #FFF;
-        box-shadow: 6px 6px 6px 6px rgba(0, 0, 0, 0.25);
-        z-index: 2;
-
-        p {
-            transition: 0.2s;
-            cursor: pointer;
-        }
-
-        p:hover {
-            font-size: 17px;
-            color: #661515;
-            font-weight: 700;
-            transition: 0.2s;
-        }
-    }
-
     .banner-cafe {
         background-image: url('../../../../public/assets/images/image.psd.png');
         z-index: 1;

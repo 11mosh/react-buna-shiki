@@ -6,7 +6,6 @@ import CabecalhoAdm from '../../../components/Admin/AdmCabecalho';
 
 function Consulta() {
   return (
-
     <body> 
       <CabecalhoAdm/> 
       <div className="consulta">

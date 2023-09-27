@@ -10,15 +10,6 @@ function Home () {
     return (
         <main className='home'>
             <Cabecalho />
-            <nav className='categorias-nav'>
-                <p>Café em pó</p>
-                <p>Combos</p>
-                <p>Grãos</p>
-                <p>Cafeteiras</p>
-                <p>Filtros</p>
-                <p>Cápsulas</p>
-                <p>Moedores</p>
-            </nav>
             <article className='banner-cafe'>
                     <h1>Presente nos seus melhores momentos de conforto, nossa empresa transforma cada xícara em um momento especial.</h1>
             </article>
