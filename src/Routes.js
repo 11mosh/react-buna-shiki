@@ -11,12 +11,12 @@ import Carrinho from './pages/Usuario/Carrinho';
 import AdmLogin from './pages/Admin/AdmLogin';
 import AdmInicio from './pages/Admin/TelaInicial';
 import CadastroProduto from './pages/Admin/CadastroProduto';
-import Estatisticas from './pages/Admin/Estatísticas';
-import Pedidos from './pages/Admin/Pedidos';
 import Produtos from './pages/Admin/Produtos';
 import CadastroCombo from './pages/Admin/CadastroCombo';
-import Cliente from './pages/Usuario/UsuarioPerfil'
 import UsuarioProdutos from './pages/Usuario/PaginaProdutos'
+import Cliente from './pages/Usuario/UsuarioPerfil';
+import MeusPedidos from './pages/Usuario/MeusPedidos';
+import Pedidos from './pages/Admin/Pedidos';
 
 export default function Rotas() {
     return(
@@ -31,13 +31,13 @@ export default function Rotas() {
                 <Route path='/login' element={<UsuarioLogin />}/>
                 <Route path='/cadastro' element={<UsuarioCadastro />} />
                 <Route path='/cliente' element={<Cliente />} />
+                <Route path='/conta/meus-pedidos' element={<MeusPedidos />} />
                 <Route path='/carrinho' element={<Carrinho/>} />
                 <Route path='/adm' element={<AdmLogin />} />
                 <Route path='/adm/inicio' element={<AdmInicio />} />
                 <Route path='/adm/cadastro-produto' element={<CadastroProduto />} />
+                <Route path='/adm/:id/alterar-produto' element={<CadastroProduto />} />
                 <Route path='/adm/produtos' element={<Produtos />} />
-                <Route path='/adm/cadastro-combo' element={<CadastroCombo />} />
-                <Route path='/adm/estatisticas' element={<Estatisticas />} />
                 <Route path='/adm/pedidos' element={<Pedidos />} />
                 <Route path='/produtos/graos' element={<UsuarioProdutos />} />
             </Routes>
