@@ -1,58 +1,46 @@
 .page-carrinho{
     display: flex;
     flex-direction: column;
+    height: 100vh;
     
     .tudo{
         display: flex;
         justify-content: center;
         align-items: center;
         flex-direction: column;
-        padding: 144.5px 0px;
-
+        height: 70%;
+        width: 100%;
         img{
             height: 150px;
             margin-left: -32px;
+            margin-bottom: 40px;
+
+        }
+        #textoMaior{
+            font-size: 40px;
+            font-weight: 500;
+            font-family: Inter;
+        }
+        p {
             margin-bottom: 15px;
-        }
-
-
-        h1 {
-            font-size: 30px;
-        }
-        h2{
-            opacity: 0.6;
+            width: 300px;
             text-align: center;
-            width: 281px;
-            
         }
-
         button{
             border-radius: 20px;
             width: 150px;
-            height: 29px;
-
+            height: 35px;
             border: none;
-
-            background-color: #F47E3C;
+            background-color: #661515;
             color: white;
-
+            font-family: 'Inter';
             margin-top: 20px;
-
         }
 
         button:active{
             background-color: #be5f2b;
             transition: 0.1s;
         }
-
-        
-
-        h1 {
-            opacity: 0.6;
-            
-            margin-bottom: 10px;
-        }
-
 
     }
 

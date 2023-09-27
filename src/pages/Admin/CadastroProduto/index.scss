@@ -2,6 +2,10 @@
     display: flex;
     flex-direction: column;
 
+    input:focus {
+        outline: none;
+    }
+
     > nav {
         display: flex;
         flex-direction: row;
@@ -12,6 +16,15 @@
         outline: none;
     }
 
+    textarea {
+        padding: 3px;
+        border-radius: 8px;
+        border: 2px solid rgba(0, 0, 0, 0.37);
+        height: 28px;
+        margin: 0px 0px 13px 0px;
+        font-size: 17px;
+        font-family: 'Inter';
+    }
 
     .conteudo {
         display: flex;
@@ -34,6 +47,7 @@
             align-items: center;
             padding: 40px;
             flex-direction: column;
+            
 
             hr {
                 width: 100%;
@@ -46,14 +60,7 @@
                 justify-content: space-between;
                 width: 100%;
 
-                textarea {
-                    border-radius: 8px;
-                    border: 2px solid rgba(0, 0, 0, 0.37);
-                    height: 28px;
-                    margin: 0px 0px 13px 0px;
-                    font-size: 17px;
-                    font-family: 'Inter';
-                }
+                
 
                 .lado-esquerdo {
                     display: flex;
@@ -180,6 +187,37 @@
                 justify-content: flex-start;
                 flex-direction: row;
                 width: 100%;
+                flex-direction: column;
+
+                .insercao-imagem {
+                    width: 100%;
+                    display: flex;
+                    flex-direction: column;
+
+                    > p {
+                        margin-bottom: 5px;;
+                    }
+                    > div {
+                        display: flex;
+                        align-items: center;
+                        justify-content: space-between;
+                        
+                        button {
+                            background-color: #F47E3C;
+                            color: white;
+                            border: none;
+                            border-radius: 7px;
+                            font-size: 15px;
+                            font-family: 'Inter';
+                            padding: 10px;
+                            cursor: pointer;
+                        }
+                        textarea {
+                         width: 85%;
+                        }
+                    }
+                }
+                
 
                 .campo-imagens {
                     display: flex;
@@ -190,7 +228,41 @@
                 img {
                     width: 140px;
                     height: 140px;
+                    transition: 0.5s;
                 }
+
+                .imagem-upada {
+                    p {
+                        z-index: 2;
+                        display: none;
+                        color:#000;
+                        font-family: 'Inter';
+                        font-weight: 900;
+                    }
+
+                    img {
+                        
+                       
+                    }
+                }
+
+                .imagem-upada:hover {
+                    p {
+                        display: block;
+                        position: relative;
+                        right: -67px;
+                    }
+
+                    img {
+                        transform: scale(1.06);
+                        transition: 0.5s;
+                        opacity: 0.1;
+                        position: relative;
+                        left: -37px;
+                    }
+                }
+
+                
                 
                 form {
                     position: relative;

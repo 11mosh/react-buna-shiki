@@ -3,12 +3,12 @@
     display: flex;
     align-items: center;
     flex-direction: row;
-    padding: 10px 0px;
+    padding: 10px 0px 10px 0px;
     height: 80px !important;
     justify-content: space-between;
     box-shadow: 0px 0px 10px 0px #000;
     height: 65px;
-    width: 100%;
+    width: 100vw;
     section {
         width: 27%;
         display: flex;
@@ -34,8 +34,11 @@
                 color: white;
             }
         }
+        #invisivel {
+            display: none;
+        }
     }
-    > div {
+    #logo {
         display: flex;
         width: 26%;
         height: 100%;
@@ -43,8 +46,15 @@
         justify-content: center;
         > img {
             width: 240px;
-            height: 100%;
+            height: max-content;
         }
+    }
+    #logoXicara{
+        img{
+            width: 115px;
+            height: max-content;
+        }
+        display: none;
     }
     .lupa {
         width: 28%;
@@ -73,3 +83,25 @@
     }
 
 }
+
+@media(max-width:850px){
+    .comp-usuario-cabecalho {
+
+        section{
+            article{
+                p{
+                    display: none;
+                }
+            }
+        }
+
+        #logo {
+            display: none;
+        }
+        #logoXicara {
+            display: flex;
+        }
+    }
+}
+
+// @media(max-width)
