@@ -2,8 +2,7 @@
     display: flex;
     flex-direction: column;
     height: 100vh;
-    
-    .tudo{
+    #carrinho-vazio{
         display: flex;
         justify-content: center;
         align-items: center;
@@ -42,6 +41,49 @@
             transition: 0.1s;
         }
 
+    }
+    #carrinho-cheio {
+        padding: 30px 70px 10px 70px;
+        > h2 {
+            font-size: 28px;
+            text-align: center;
+        }
+        #s1 {
+            margin: 20px;
+            padding: 20px 0px 20px 0px;
+            display: flex;
+            width: 500px;
+            flex-direction: row;
+            justify-content: space-around;
+            background-color: #d9d9d9;
+            #a1 {
+                display: flex;
+                gap: 20px;
+                #detalhes {
+                    display: flex;
+                    justify-content: start;
+                    flex-direction: column;
+                    gap: 20px;
+                    > div {
+                        display: flex;
+                        gap: 7px;
+                        button {
+                            width: 20px;
+                            display: flex;
+                            align-items: center;
+                            justify-content: center;
+                            background-color: rgba(10,23,55,0);
+                            border: 0.5px solid black;
+                        }
+                    }
+                }
+            }
+            #a2 {
+                img {
+                    width: 25px;
+                }
+            }
+        }
     }
 
 }
