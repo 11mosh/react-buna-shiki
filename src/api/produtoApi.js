@@ -12,9 +12,12 @@ export async function buscarTodos(){
 }
 
 export async function excluir(idProduto, idDetalhe) {
-    const resp = await api.delete(`/deletar/produto?idDetalhe=${idDetalhe}&idProduto=${idProduto}`)
-    console.log(resp);
-    return resp
+    console.log(idProduto);
+    console.log(idDetalhe);
+    const resp = await api.delete(`/deletar/produto`, {
+        idDetalhe: idDetalhe,
+        idProduto: idProduto
+    })
 }
 
 export async function buscarIdProduto(id) {
@@ -40,7 +43,6 @@ export async function excluirImagens(idFotosExcluir, idProduto){
         deletar: idFotosExcluir
     })
 
-    return resp
 }
 
 export async function alterar(alteracoes, idDetalhe, idProduto){

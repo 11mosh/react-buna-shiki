@@ -10,6 +10,9 @@ import { confirmAlert } from 'react-confirm-alert'
 export default function Consulta() {
   const [buscaInput, setBuscaInput] = useState('')
   const [produtos, setProdutos] = useState([])
+  const [adms, setAdms] = useState([])
+  const [categorias, setCategorias] = useState([]) 
+
   const navigate = useNavigate()
 
 
