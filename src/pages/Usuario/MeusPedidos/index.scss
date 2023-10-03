@@ -1,6 +1,8 @@
 .meusPedidos {
     display: flex;
     flex-direction: column;
+    
+
     hr {
         margin: 20px;
     }
@@ -17,6 +19,11 @@
         flex-direction: column;
         align-items: center;
         justify-content: center;
+
+        > h1 {
+            margin-bottom: 30px;
+            font-size: 26px;
+        }
         
 
         .pedido {
@@ -36,6 +43,7 @@
                 border: 1px solid #7C7C7C;
                 border-top-left-radius: 6px;
                 border-top-right-radius: 6px;
+                padding: 5px 0px 5px 0px;
                 gap: 25px;
                 justify-content: space-evenly;
             }
@@ -56,6 +64,11 @@
                 .descricao-pedido {
                     display: flex;
                     flex-direction: column;
+                    p {
+                        b{
+                            font-size: 20px;
+                        }
+                    }
                 }
 
                 .links {
