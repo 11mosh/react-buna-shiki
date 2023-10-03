@@ -19,7 +19,7 @@ export default function Consulta() {
         const respProdutos = await buscarTodos()
         for(let cont = 0; cont < respProdutos.length; cont++){
           const respImagens = await buscarIdImagens(respProdutos[cont].id)
-          respProdutos[cont].imagem = respImagens[0]
+          respProdutos[cont].imagem = respImagens[0].caminho
         }
         setProdutos(respProdutos)
       }
@@ -43,6 +43,7 @@ export default function Consulta() {
             setProdutos([])
           }
           catch(err){
+            setProdutos([])
             toast.error(err.response.data.erro)
           }
         }

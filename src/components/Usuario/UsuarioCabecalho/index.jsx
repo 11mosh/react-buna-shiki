@@ -6,7 +6,6 @@ export default function CabecalhoUsuario() {
 
     const [pesquisa, setPesquisa] = useState('');
     const [mostrarInput, setMostrarInput] = useState(false)
-    const [celular, setCelular] = useState(false)
 
     function exibirPesquisa () {
         setMostrarInput(!mostrarInput)
@@ -36,15 +35,13 @@ export default function CabecalhoUsuario() {
                         <img src='/assets/images/icon-conta.svg' alt='conta'/>
                     <p>Conta</p>
                     </article>
-                    {/* <article id='invisivel'>
-                        <img src='/assets/images/tresBarras.svg' alt='tres barras' onClick={e => {if(mostrarMenu === false){setMostrarMenu(true)} else{setMostrarMenu(false)}}}/>
-                    </article> */}
                 </section>
                 <div id='logo'>
                     <img src='/assets/images/logo.svg'  alt="Erro ao exibir imagem"/>
                 </div>
-
-
+                <div id='invisivel'>
+                        <img src='/assets/images/logo-xicara.png' alt='logo-xicara '/>
+                </div>
                 <div className='lupa'>
                     {mostrarInput 
                         ? (<input type="text" placeholder='Pesquise por produtos aqui...' value={pesquisa} onChange={e => setPesquisa(e.target.value)} onKeyDown={teste} />) 

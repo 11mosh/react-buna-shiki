@@ -7,12 +7,12 @@ import { Link } from "react-router-dom";
 
 
 export default function Carrinho () {
-    const [produtos, setProdutos] = useState([])
+    const [produtos, setProdutos] = useState(["teste"])
     
     return (    
       <main className="page-carrinho">
         <Cabecalho />
-            {produtos.length > 0
+            {produtos.length === 0
             ?   <div id="carrinho-vazio">
                     <img src="/assets/images/carrinhoo.svg" alt="carrinho"/>
                     <p id="textoMaior">
@@ -49,7 +49,7 @@ export default function Carrinho () {
                             </div>
                         </article>
                         <article id="a2">
-                            <img src='/assets/images/icon-lixeira.svg' alt='' />
+                            <i className="fa-regular fa-trash-can"></i>
                         </article>
                     </section>
                     <hr />
@@ -58,8 +58,8 @@ export default function Carrinho () {
                         <p> R$ 345,00 </p>
                     </section>
                     <section id="s3">
-                        <Link> Adicionar mais produtos</Link>
-                        <Link> Ir para o pagamento </Link>
+                        <Link id="marrom"> Adicionar mais produtos</Link>
+                        <Link id="laranja"> Ir para o pagamento </Link>
                     </section>
                 </div>
             }

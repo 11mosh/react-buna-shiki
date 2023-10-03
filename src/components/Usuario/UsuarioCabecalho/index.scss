@@ -36,7 +36,7 @@
                 }
             }
         }
-        > div {
+        #logo{
             display: flex;
             width: 26%;
             height: 100%;
@@ -47,6 +47,17 @@
                 height: 100%;
             }
         }
+        #invisivel {
+            display: none;
+            width: 26%;
+            height: 100%;
+            align-items: center;
+            justify-content: center;
+            img {
+                width: 80px;
+            }
+        }
+
         .lupa {
             width: 28%;
             padding-right: 30px;
@@ -72,13 +83,12 @@
                 height: 30px;
             }
         }
-    
-            a:hover {
-                font-size: 17px;
-                color: #661515;
-                font-weight: 700;
-                transition: 0.2s;
-            }
+        a:hover {
+            font-size: 17px;
+            color: #661515;
+            font-weight: 700;
+            transition: 0.2s;
+        }
     }
     > nav {
         height: 40px;
@@ -99,21 +109,49 @@
 
 @media(max-width:850px){
     .comp-usuario-cabecalho {
-        section{
-            article{
-                p{
-                    display: none;
+        > div {
+            section{
+                article{
+                    p{
+                        display: none;
+                    }
                 }
             }
+            
+            #logo {
+                display: none;
+            }
+            #invisivel{
+                display: flex;
+            }
         }
-
-        #logo {
-            display: none;
-        }
-        #logoXicara {
-            display: flex;
+        nav {
+            padding: 0px 35px;
         }
     }
 }
 
-// @media(max-width)
+@media(max-width: 650px) {
+    .comp-usuario-cabecalho {
+        nav {
+            display: none;
+        }
+    }
+}
+
+@media(max-width: 500px) {
+    .comp-usuario-cabecalho {
+        > div {
+            .lupa {
+                display: none;
+            }
+            #invisivel {
+                width: 58%;
+                justify-content: flex-start;
+            }
+            section {
+                gap: 15px;
+            }
+        }
+    }
+}

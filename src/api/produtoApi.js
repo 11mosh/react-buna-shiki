@@ -35,6 +35,14 @@ export async function buscarIdImagens(idProduto){
     return resp.data
 }
 
+export async function excluirImagens(idFotosExcluir, idProduto){
+    const resp  = await api.put(`/${idProduto}/imagens`, {
+        deletar: idFotosExcluir
+    })
+
+    return resp
+}
+
 export async function alterar(alteracoes, idDetalhe, idProduto){
     const resp = await api.put(`/produto/${idProduto}/detalhes/${idDetalhe}`, alteracoes)
 

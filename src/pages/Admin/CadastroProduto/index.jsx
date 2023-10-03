@@ -5,7 +5,7 @@ import { useEffect, useState} from 'react';
 import axios from 'axios'
 import { toast } from 'react-toastify';
 import storage from 'local-storage'
-import { alterar, buscarIdDetalhe, buscarIdImagens, buscarIdProduto } from '../../../api/produtoApi';
+import { alterar, buscarIdDetalhe, buscarIdImagens, buscarIdProduto, excluirImagens } from '../../../api/produtoApi';
 
 function CadastroProduto () {
     const [id, setId] = useState(0)
@@ -27,8 +27,8 @@ function CadastroProduto () {
     const [acidez, setAcidez] = useState("");
     const [docura, setDocura] = useState("");
     const [torra, setTorra] = useState("");
-    const [selecionadaCategoria, setSelecionadaCategoria] = useState(categoria)
-
+    const [fotosExcluir, setFotosExcluir]= useState([])
+    const [fotosAdicionadas, setFotosAdicionadas] = useState([])
     const {id: idParam} = useParams()
 
     function adicionarImagem () {
@@ -36,15 +36,23 @@ function CadastroProduto () {
         img.src = urlImagem;
 
         img.onload = () => {
-            setFotos([...fotos, urlImagem]);
-            setUrlImagem('');
+            if(id !== 0) {
+                setFotosAdicionadas([...fotosAdicionadas, urlImagem])
+                let object = { caminho: urlImagem }
+                setFotos([...fotos, object])
+                setUrlImagem('');
+            }
+            else{
+                setFotos([...fotos, urlImagem]);
+                setUrlImagem('');
+            }
         }
         img.onerror = () => {
             toast.error('URL Inválida!')
         }
     }
 
-    function removerImagem (indice) {
+    function removerImagem(indice) {
         const novasFotos = fotos.filter((imagem, i) => i !== indice);
         setFotos(novasFotos);
     }
@@ -78,6 +86,7 @@ function CadastroProduto () {
                     };
                     await alterar(alteracoes, idDetalhe, id)
                     cadastrarImagens(id)
+                    resetarCampos()
                     toast.success('Produto alterado!')
             }}
             else{
@@ -119,17 +128,23 @@ function CadastroProduto () {
     }
 
     
-    async function cadastrarImagens (idProduto) {
+    async function cadastrarImagens(idProduto) {
         try {
-            if(id === 0){
-                for (let item of fotos) {
-                    let url = `http://localhost:5000/${idProduto}/imagens;`
-                    const imagem = {
-                        idProduto: idProduto,
-                        caminho: item
+            if(id !== 0){
+                console.log(fotosAdicionadas);
+                if(fotosAdicionadas) {
+                    for (let item of fotosAdicionadas) {
+                        let url = "http://localhost:5000/imagemproduto";
+                        const imagem = {
+                            idProduto: idProduto,
+                            caminho: item
+                        }
+                        await axios.post(url, imagem)
                     }
-                    await axios.put(url, imagem)
                 }
+                if(fotosExcluir) {
+                    await excluirImagens(fotosExcluir, idProduto)
+                } 
             }
             else{
                 for (let item of fotos) {
@@ -152,11 +167,10 @@ function CadastroProduto () {
             const produto = await buscarIdProduto(idParam)
             setIdDetalhe(produto.id_detalhe)
             const detalhes = await buscarIdDetalhe(produto.id_detalhe)
-            console.log(produto);
             const imagens = await buscarIdImagens(produto.id)
             let novasImagens = []
             for(let cont = 0; cont < imagens.length; cont++){
-                novasImagens[cont] = imagens[cont].caminho
+                novasImagens[cont] = imagens[cont]
             }
             setFotos(novasImagens)
             setNome(produto.produto);
@@ -225,10 +239,12 @@ function CadastroProduto () {
                         <article className='insercao-imagem'>
                             <p>Insira a URL da imagem</p>
                             <div>
-                                <textarea type="text" value={urlImagem} style={{resize: 'none', overflow: 'hidden'}} onChange={e => setUrlImagem(e.target.value)}/>
+                                <input type="text" value={urlImagem}  onChange={e => setUrlImagem(e.target.value)}/>
                                 <button onClick={adicionarImagem}> Adicionar </button>
                             </div>
                         </article>
+                        {id === 0 
+                        ?
                         <article className="campo-imagens">
                             {fotos.map((arquivo, indice) => (
                             <div className='imagem-upada' key={indice}>
@@ -238,6 +254,16 @@ function CadastroProduto () {
                             ))
                         }
                         </article>
+                        :
+                        <article className="campo-imagens">
+                            {fotos.map((item, indice) => (
+                            <div className='imagem-upada' key={indice}>
+                                <p>DELETAR</p>
+                                <img src={item.caminho} alt="" onClick={() => {setFotosExcluir([...fotosExcluir, item.id]); removerImagem(indice)}} />
+                            </div>
+                            ))
+                        }
+                        </article>}
                     </div>
                     <hr />
 
@@ -280,30 +306,30 @@ function CadastroProduto () {
                                 <section className='categorias'>
                                     <div>
                                         <label htmlFor="">
-                                            <input type="radio" name="a" value={1}  onChange={e => setCategoria(e.target.value)} />
+                                            <input type="radio" name="a" onClick={() => setCategoria(1)} checked={categoria === 1 ? true : false}/>
                                             <p>Café em grão</p>
                                         </label>
                                         <label htmlFor="">
-                                            <input type="radio" name="a" value={2} onChange={e => setCategoria(e.target.value)} />
+                                            <input type="radio" name="a" onClick={() => setCategoria(2)} checked={categoria === 2 ? true : false}/>
                                             <p>Café em pó</p>
                                         </label>
                                         
                                         <label htmlFor="">
-                                            <input type="radio" name="a" value={3}  onChange={e => setCategoria(e.target.value)} />
+                                            <input type="radio" name="a" onClick={() => setCategoria(3)} checked={categoria === 3 ? true : false}/>
                                             <p>Cafeteira</p>
                                         </label>
                                     </div>
                                     <div>
                                         <label htmlFor="">
-                                            <input type="radio" name="a" value={4}  onChange={e => setCategoria(e.target.value)} />
+                                            <input type="radio" name="a" onClick={() => setCategoria(4)} checked={categoria === 4 ? true : false} />
                                             <p>Cápsula</p>
                                         </label>
                                         <label htmlFor="">
-                                            <input type="radio" name="a" value={5}  onChange={e => setCategoria(e.target.value)} />
+                                            <input type="radio" name="a" onClick={() => setCategoria(5)} checked={categoria === 5 ? true : false} />
                                             <p>Moedor</p>
                                         </label>
                                         <label htmlFor="">
-                                            <input type="radio" name="a" value={6}  onChange={e => setCategoria(e.target.value)}/>
+                                            <input type="radio" name="a"  onClick={() => setCategoria(6)} checked={categoria === 6 ? true : false}/>
                                             <p>Filtro</p>
                                         </label>
                                     </div>
