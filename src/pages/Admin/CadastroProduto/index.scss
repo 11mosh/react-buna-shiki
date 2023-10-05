@@ -42,7 +42,7 @@
         .formulario {
             background-color: #E8E8E8;
             display: flex;
-            width: 65%;
+            width: 75%;
             align-items: center;
             padding: 40px;
             flex-direction: column;
@@ -121,7 +121,17 @@
                         padding: 9px;
                         border-radius: 10px;
                         color: white;
+                        transition: .3s;
+
                         background-color: #F47E3C;
+                    }
+
+                    button:hover {
+                        transform: translateY(-5px);
+                        transition: .3s;
+                        font-weight: bold;
+                        background-color: #f7945a;
+                        cursor: pointer;
                     }
                 }
 
@@ -218,6 +228,14 @@
                             font-size: 15px;
                             font-family: 'Inter';
                             padding: 10px;
+                            transition: .3s;
+                        }
+
+                        button:hover {
+                            transform: translateY(-5px);
+                            transition: .3s;
+                            font-weight: bold;
+                            background-color: #f7945a;
                             cursor: pointer;
                         }
                         textarea {
@@ -295,6 +313,8 @@
                     margin: 10px;
                     margin-top: 0px;
                     padding: 5px;
+                    border-radius: 5px;
+                    cursor: pointer;
         
                     img {
                         max-width: fit-content;

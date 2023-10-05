@@ -1,8 +1,169 @@
 .cadastro-combo {
-
-
-    .texto-apresentacao {
-        
-          
+    display: flex;
+    flex-direction: column;
+    
+    
+    img {
+        width: 85px;
     }
+
+    > nav {
+        display: flex;
+        flex-direction: row;
+        gap: 10px;
+    }
+
+    
+
+    .conteudo-site {
+        display: flex;
+        justify-content: center;
+        flex-direction: column;
+        padding: 20px;
+        align-items: center;
+        height: 100%;
+        
+
+        h1 {
+            align-self: flex-start;
+            font-size: 24px;
+            margin: 0px 0px 30px 30px;
+        }
+
+        .card-cadastro {
+            display: flex;
+            flex-direction: row;
+            width: 75%;
+            background-color: #e8e8e8;
+            padding: 40px;
+            justify-content: space-between;
+            height: 602px;
+
+            .sec1 {
+                display: flex;
+                flex-direction: column;
+                width: 40%;
+                justify-content: space-between;
+                align-items: center;
+                
+                button {
+                    display: flex;
+                    border: none;
+                    padding: 10px;
+                    background-color: #F47E3C;
+                    font-family: 'Inter';
+                    color: white;
+                    border-radius: 10px;
+                    font-size: 18px;
+                    align-items: center;
+                    justify-content: center;
+                    width: 50%;
+                    transition: .3s;
+                }
+
+                button:hover {
+                    transform: translateY(-5px);
+                    transition: .3s;
+                    font-weight: bold;
+                    background-color: #f7945a;
+                    width: 53%;
+                    cursor: pointer;
+                }
+
+                .formulario {
+                    display: flex;
+                    flex-direction: column;
+                    width: 100%;
+                
+                    > div {
+                        display: flex;
+                        flex-direction: column;
+                        font-family: 'Inter';
+                        width: 100%;
+
+                        input {
+                            padding: 3px;
+                            border-radius: 8px;
+                            border: 2px solid rgba(0, 0, 0, 0.37);
+                            height: 28px;
+                            margin: 0px 0px 13px 0px;
+                            font-size: 17px;
+                            width: 100%;
+                            font-family: 'Inter';
+                        }
+
+                        input:focus {
+                            outline: none;
+                        }
+                    }
+                }
+            }
+
+            .selecao-produtos {
+                display: flex;
+                flex-direction: column;
+                width: 55%;
+                font-family: 'Inter';
+                font-size: 15px;
+
+                >h6 {
+                    margin: 5px 0px 10px 0px;
+                    font-size: 17px;
+                    align-self: flex-end;
+
+                    b {
+                        color: #661515;
+                    }
+                }
+
+                #produtos-visualizacao {
+                    height: 100%;
+                }
+
+                .produtos-disponiveis {
+                    background-color: #D9D9D9;
+                    display: flex;
+                    flex-direction: row;
+                    gap: 15px;
+                    flex-wrap: wrap;
+                    padding: 10px;
+                    height: 50%;
+                    overflow: scroll;
+                    overflow-x: hidden;
+                    overflow-y: auto;
+
+                    > div {
+                        display: flex;
+                        flex-direction: column;
+                        align-items: center;
+                        justify-content: center;
+
+                        > div {
+                            display: flex;
+                            flex-direction: row;
+                            gap: 10px;
+
+                            > h2 {
+                                width: 25px;
+                                font-size: 16px;
+                                display: flex;
+                                align-items: center;
+                                justify-content: center;
+                            }
+                            
+                            > p {
+                                border: 2px solid black;
+                                width: 25px;
+                                display: flex;
+                                align-items: center;
+                                justify-content: center;
+                                cursor: pointer;
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
+    
 }

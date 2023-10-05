@@ -4,9 +4,6 @@ import { Link, useParams } from 'react-router-dom';
 import { useEffect, useState} from 'react';
 import axios from 'axios'
 import { toast } from 'react-toastify';
-import storage from 'local-storage';
-import { alterar, buscarIdDetalhe, buscarIdImagens, buscarIdProduto, excluirImagens } from '../../../api/produtoApi';
-
 
 export default function CadastroCombo () {
 
@@ -14,21 +11,82 @@ export default function CadastroCombo () {
     return (
         <main className='cadastro-combo'>
             <CabecalhoAdm/>
-            <main className='corpo-site'>
-                <h1>Receba mensalmente os sabores marcantes que você adora, no conforto de sua casa: grãos ou moídos!</h1>
-                <section className='texto-apresentacao'>
-                    <p>Nós selecionamos uma lista dos melhores sabores de café pelos quais você pode se interessar, além de alguns itens que possam ser necessários.  :)</p>
-                    <ul>
-                        <li>&bull; Nossos produtos são enviados sempre o mais fresco possível;</li>
-                        <li>&bull; Os produtos têm 5% de desconto ao final do pagamento;</li>
-                        <li>&bull; Muito mais conforto e comodidade.</li>
-                    </ul>
-                </section>
+            <nav style={{padding: '20px'}}>
+                <Link to={'/adm/inicio'} style={{ decoration: 'dashed', color: 0}}> Tela Inicial </Link>
+                 &gt;
+                <p>Cadastrar um novo combo </p>
+            </nav>
 
-                <section>
-                    
+            <hr />
+
+            
+            <div className='conteudo-site'>
+            <h1>Cadastrar um novo combo</h1>
+            <article className="card-cadastro">
+                <section className='sec1'>
+                    <div className="formulario">
+                        <div>
+                            <label htmlFor="">Nome do combo</label>
+                            <input type="text" name="" id="" />
+                        </div>
+                        <div>
+                            <label htmlFor="">Preço de venda</label>
+                            <input type="text" />
+                        </div>
+                        <div>
+                            <label htmlFor="">Estoque</label>
+                            <input type="text" />
+                        </div>
+                    </div>
+
+                    <button>Finalizar cadastro</button>
                 </section>
-            </main>
+                
+                <section className="selecao-produtos">
+                    <p style={{fontFamily: 'Inter'}}>Produtos disponíveis para montar combos</p>
+                    <article className='produtos-disponiveis'>
+                        <div className="item">
+                            <img src="/assets/images/cafeteiraa.png" alt="" />
+                            <p>Café Orfeu Clássico 1kg</p>
+                            <div className='quantidade-item'>
+                                <p>-</p>
+                                <h2>1</h2>
+                                <p>+</p>
+                            </div>
+                        </div>
+                        <div className="item">
+                            <img src="/assets/images/cafeteiraa.png" alt="" />
+                            <p>Café Orfeu Clássico 1kg</p>
+                            <div className='quantidade-item'>
+                                <p>-</p>
+                                <h2>1</h2>
+                                <p>+</p>
+                            </div>
+                        </div>
+                        <div className="item">
+                            <img src="/assets/images/cafeteiraa.png" alt="" />
+                            <p>Café Orfeu Clássico 1kg</p>
+                            <div className='quantidade-item'>
+                                <p>-</p>
+                                <h2>1</h2>
+                                <p>+</p>
+                            </div>
+                        </div>
+                    </article>
+                    <h6>Preço sugerido: <b>R$169,39</b></h6>
+                    <article className='visualizacao'>
+                        <p style={{fontFamily: 'Inter'}}>Pré-visualização do combo:</p>
+                        <div className='produtos-disponiveis' id='produtos-visualizacao'>
+                            <div className="item">
+                                <img src="/assets/images/cafeteiraa.png" alt="" />
+                                <p>Café Orfeu Clássico 1kg</p>
+                                <div style={{color: 'black', borderRadius: '100px', padding: '5px', backgroundColor: '#F47E3C', width: '20px', height: '20px', display: 'flex', alignItems: 'center', justifyContent: 'center'}}>1</div>
+                            </div>
+                        </div>
+                    </article>
+                </section>
+            </article>
+            </div>
         </main>
     )
 }
