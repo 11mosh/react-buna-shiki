@@ -14,9 +14,9 @@ export default function Combos(){
                         <div>
                             <section>
                                 <div>
-                                    <img className='combo' src='/assets/images/cafe3coracoes.png' alt='' />
+                                    <img id='combo-esquerda' src='/assets/images/cafe3coracoes.png' alt='' />
                                     <img  src='/assets/images/cafe3coracoes.png' alt='' />
-                                    <img className='combo' src='/assets/images/cafe3coracoes.png' alt='' />    
+                                    <img id='combo-direita' src='/assets/images/cafe3coracoes.png' alt='' />    
                                 </div>
                                 <p> Orfeu orgânico 250g </p>
                                 <h5 className='precoMarrom'> R$20,00 x 3</h5>

@@ -15,8 +15,10 @@ export async function excluir(idProduto, idDetalhe) {
     console.log(idProduto);
     console.log(idDetalhe);
     const resp = await api.delete(`/deletar/produto`, {
-        idDetalhe: idDetalhe,
-        idProduto: idProduto
+        data: {
+            idDetalhe: idDetalhe,
+            idProduto: idProduto
+        }
     })
 }
 

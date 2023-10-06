@@ -4,7 +4,7 @@
         background-image: url("../../../../public/assets/images/backgroundImg.png");
         background-size: cover;
         background-repeat: no-repeat;
-        height: 70%;
+        min-height: 71.1vh;
         width: 100%;
         padding: 20px;
         display: flex;
@@ -24,7 +24,7 @@
             border-radius: 10px;
             box-shadow: 5px 5px 50px 0px #000;
             z-index: 50;
-            padding: 25px 30px 40px 30px ;
+            padding: 25px 30px 45px 30px ;
             background-color: white;
             display: flex;
             flex-direction: column;
@@ -76,7 +76,7 @@
                     font-size: 14px;
                 }
             }
-            button {
+            > button {
                 background-color: #F47E3C;
                 color: white;
                 height: 33px;

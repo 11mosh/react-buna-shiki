@@ -7,13 +7,13 @@ export default function CabecalhoAdm() {
     const [adm, setAdm] = useState('')
     const navigate = useNavigate()
 
-    useEffect(() => {
-        if(!storage('adm-logado')){
-            navigate('/adm')
-        }else{
-            setAdm(storage('adm-logado'))
-        }
-    }, [navigate])
+    // useEffect(() => {
+    //     if(!storage('adm-logado')){
+    //         navigate('/adm')
+    //     }else{
+    //         setAdm(storage('adm-logado'))
+    //     }
+    // }, [navigate])
    
     return(
         <div className='comp-adm-cabecalho'>
