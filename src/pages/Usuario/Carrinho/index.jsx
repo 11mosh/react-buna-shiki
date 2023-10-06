@@ -54,11 +54,14 @@ export default function Carrinho () {
                                     <i className="fa-regular fa-trash-can"></i>
                                 </article>
                             </section>
+                            
                         </main>
-                        <hr />
                         <section id="s2">
-                            <p> Subtotal </p>
-                            <p> R$ 345,00 </p>
+                            <hr />
+                            <article>
+                                <p> Subtotal </p>
+                                <p> R$ 345,00 </p>
+                            </article>
                         </section>
                         <section id="s3">
                             <Link id="marrom"> Adicionar mais produtos</Link>

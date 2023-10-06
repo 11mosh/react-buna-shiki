@@ -7,44 +7,44 @@ export default function Combos(){
     return(
         <div id='page-combos'>
             <CabecalhoUsuario />
-            <main>
+            <main id='conteudo'>
                 <section id='s1'>
                     <article id='a1'>
                         <h2> Combo iniciante </h2>
                         <div>
                             <section>
                                 <div>
-                                    <img src='/assets/images/cafe3coracoes.png' alt='' />
-                                    <img src='/assets/images/cafe3coracoes.png' alt='' />
-                                    <img src='/assets/images/cafe3coracoes.png' alt='' />    
+                                    <img className='combo' src='/assets/images/cafe3coracoes.png' alt='' />
+                                    <img  src='/assets/images/cafe3coracoes.png' alt='' />
+                                    <img className='combo' src='/assets/images/cafe3coracoes.png' alt='' />    
                                 </div>
                                 <p> Orfeu orgânico 250g </p>
-                                <h5> R$20,00 x 3</h5>
+                                <h5 className='precoMarrom'> R$20,00 x 3</h5>
                             </section>
                             <img src='/assets/images/icon-mais.png' alt='' />
                             <section>
                                 <img src='/assets/images/cafe3coracoes.png' alt='' />
                                 <p> Orfeu orgânico 250g </p>
-                                <h5> R$20,00 x 3</h5>
+                                <h5 className='precoMarrom'> R$20,00 x 3</h5>
                             </section>
                             <img src='/assets/images/icon-mais.png' alt='' />
                             <section>
                                 <img src='/assets/images/cafe3coracoes.png' alt='' />
                                 <p> Orfeu orgânico 250g </p>
-                                <h5> R$20,00 x 3</h5>
+                                <h5 className='precoMarrom'> R$20,00 x 3</h5>
                             </section>
                             <img src='/assets/images/icon-mais.png' alt='' />
                             <section>
                                 <img src='/assets/images/cafe3coracoes.png' alt='' />
                                 <p> Orfeu orgânico 250g </p>
-                                <h5> R$20,00 x 3</h5>
+                                <h5 className='precoMarrom'> R$20,00 x 3</h5>
                             </section>
                         </div>
                     </article>
                     <article id='a2'>
                         <h2> Por apenas </h2>
-                        <h2> R$ 430,00 </h2>
-                        <button> Adicionar no carrinho</button>
+                        <h2 className='precoMarrom'> R$ 430,00 </h2>
+                        <button className='btLaranja'> Adicionar no carrinho</button>
                     </article>
                 </section>
                 <section id='s2'>
@@ -54,34 +54,36 @@ export default function Combos(){
                             <section>
                                 <img src='/assets/images/cafe3coracoes.png' alt='' />
                                 <p> Orfeu orgânico 250g </p>
-                                <h5> R$20,00 x 3</h5>
+                                <h5 className='precoMarrom'> R$20,00 x 3</h5>
                             </section>
                             <img src='/assets/images/icon-mais.png' alt='' />
                             <section>
                                 <img src='/assets/images/cafe3coracoes.png' alt='' />
                                 <p> Orfeu orgânico 250g </p>
-                                <h5> R$20,00 x 3</h5>
+                                <h5 className='precoMarrom'> R$20,00 x 3</h5>
                             </section>
                             <img src='/assets/images/icon-mais.png' alt='' />
                             <section>
                                 <img src='/assets/images/cafe3coracoes.png' alt='' />
                                 <p> Orfeu orgânico 250g </p>
-                                <h5> R$20,00 x 3</h5>
+                                <h5 className='precoMarrom'> R$20,00 x 3</h5>
                             </section>
                             <img src='/assets/images/icon-mais.png' alt='' />
                             <section>
                                 <img src='/assets/images/cafe3coracoes.png' alt='' />
                                 <p> Orfeu orgânico 250g </p>
-                                <h5> R$20,00 x 3</h5>
+                                <h5 className='precoMarrom'> R$20,00 x 3</h5>
                             </section>
                         </div>
                     </article>
                     <article id='a2'>
                         <h2> Por apenas </h2>
-                        <h2> R$ 430,00 </h2>
-                        <button> Combo Santa Mônica</button>
-                        <button> Combo 3 corações </button>
-                        <button> Adicionar no carrinho</button>
+                        <h2 className='precoMarrom'> R$ 430,00 </h2>
+                        <div>
+                            <button className='btMarrom' > Combo Santa Mônica</button>
+                            <button className='btMarrom' > Combo 3 corações </button>
+                            <button className='btLaranja'> Adicionar no carrinho</button>
+                        </div>
                     </article>
                 </section>
                 <section id='s3'>
@@ -91,34 +93,32 @@ export default function Combos(){
                             <section>
                                 <img src='/assets/images/cafe3coracoes.png' alt='' />
                                 <p> Orfeu orgânico 250g </p>
-                                <h5> R$20,00 x 3</h5>
+                                <h5 className='precoMarrom'> R$20,00 x 3</h5>
                             </section>
                             <img src='/assets/images/icon-mais.png' alt='' />
                             <section>
                                 <img src='/assets/images/cafe3coracoes.png' alt='' />
                                 <p> Orfeu orgânico 250g </p>
-                                <h5> R$20,00 x 3</h5>
+                                <h5 className='precoMarrom'> R$20,00 x 3</h5>
                             </section>
                             <img src='/assets/images/icon-mais.png' alt='' />
                             <section>
                                 <img src='/assets/images/cafe3coracoes.png' alt='' />
                                 <p> Orfeu orgânico 250g </p>
-                                <h5> R$20,00 x 3</h5>
+                                <h5 className='precoMarrom'> R$20,00 x 3</h5>
                             </section>
                             <img src='/assets/images/icon-mais.png' alt='' />
                             <section>
                                 <img src='/assets/images/cafe3coracoes.png' alt='' />
                                 <p> Orfeu orgânico 250g </p>
-                                <h5> R$20,00 x 3</h5>
+                                <h5 className='precoMarrom'> R$20,00 x 3</h5>
                             </section>
                         </div>
                     </article>
                     <article id='a2'>
                         <h2> Por apenas </h2>
-                        <h2> R$ 430,00 </h2>
-                        <button> Combo Santa Mônica</button>
-                        <button> Combo 3 corações </button>
-                        <button> Adicionar no carrinho</button>
+                        <h2 className='precoMarrom'> R$ 430,00 </h2>
+                        <button className='btLaranja'> Adicionar no carrinho</button>
                     </article>
                 </section>
             </main>
