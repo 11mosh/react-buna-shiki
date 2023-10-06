@@ -117,9 +117,20 @@
     .rodape {
         padding: 40px;
         flex-direction: column;
+
+        
+    .coluna-2 {
+        display: none;
+    }
+
+    .coluna-3 {
+        display: none;
+    }
+
     }
     
     hr {
-        margin: 10px;
+        display: none;
     }
+
 }

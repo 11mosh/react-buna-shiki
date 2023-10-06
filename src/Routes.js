@@ -19,6 +19,8 @@ import MeusPedidos from './pages/Usuario/MeusPedidos';
 import Pedidos from './pages/Admin/Pedidos';
 import Combos from './pages/Usuario/Combos';
 import Assinatura from './pages/Usuario/Assinatura';
+import UsuarioRodape from './components/Usuario/UsuarioRodape';
+import Avaliacao from './pages/Usuario/MeusPedidos/avaliacao/telaAvaliacao';
 
 export default function Rotas() {
     return(
@@ -30,11 +32,15 @@ export default function Rotas() {
                 <Route path='/sustentabilidade' element={<Sustentabilidade />}/> 
                 <Route path='/cabeca' element={<CabecalhoAdm />}/>
                 <Route path='/cabecalho' element={<CabecalhoUsuario />}/>
+                <Route path='/rodape' element={<UsuarioRodape />} />
                 <Route path='/login' element={<UsuarioLogin />}/>
                 <Route path='/cadastro' element={<UsuarioCadastro />} />
                 <Route path='/combos' element={<Combos />} />
                 <Route path='/cliente' element={<Cliente />} />
                 <Route path='/conta/meus-pedidos' element={<MeusPedidos />} />
+
+                <Route path='/avalie' element={<Avaliacao />} />
+            
                 <Route path='/produtos/graos' element={<UsuarioProdutos />} />
                 <Route path='/carrinho' element={<Carrinho/>} />
                 <Route path='/combos' element={<Combos/>} />
