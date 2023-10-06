@@ -1,6 +1,7 @@
 import './index.scss';
 import CabecalhoUsuario from '../../../components/Usuario/UsuarioCabecalho';
-import UsuarioRodape from '../../../components/Usuario/UsuarioRodape'
+import UsuarioRodape from '../../../components/Usuario/UsuarioRodape';
+
 
 export default function MeusPedidos () {
 
@@ -10,14 +11,16 @@ export default function MeusPedidos () {
             <CabecalhoUsuario />
 
             <nav className='navegador'>
-                <p>Minha Conta</p>
+                <p style={{textDecoration: 'underline', cursor: 'pointer'}}>Minha Conta</p>
                 &gt;
                 <p>Meus Pedidos</p>
             </nav>
 
-            <h1>Pedidos</h1>
+            
 
             <article className='aba-pedidos'>
+                <h1>Meus Pedidos</h1>
+
                 <section className="pedido">
                     <nav className='dados-pedido'>
                         <p>Pedido realizado em: 04/06/2023</p>
@@ -112,7 +115,7 @@ export default function MeusPedidos () {
                 <hr style={{width: '90%'}}/>
 
                 <h3 style={ {opacity: 0.5}}>Seus pedidos acabam por aqui.</h3>
-                <img src="/assets/images/pedidosAcabam.png" alt="" style={{height: '80px', opacity: 0.5}}/>
+                <img src="/assets/images/pedidosAcabam.png" alt="" style={{height: '80px', opacity: 0.5, marginBottom: '40px'}}/>
             </article>
             <UsuarioRodape />
         </main>

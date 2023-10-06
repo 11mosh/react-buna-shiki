@@ -27,9 +27,9 @@ function CadastroProduto () {
     const [acidez, setAcidez] = useState("");
     const [docura, setDocura] = useState("");
     const [torra, setTorra] = useState("");
-    const [fotosExcluir, setFotosExcluir]= useState([])
-    const [fotosAdicionadas, setFotosAdicionadas] = useState([])
-    const {id: idParam} = useParams()
+    const [fotosExcluir, setFotosExcluir]= useState([]);
+    const [fotosAdicionadas, setFotosAdicionadas] = useState([]);
+    const {id: idParam} = useParams();
 
     function adicionarImagem () {
         const img = new Image();

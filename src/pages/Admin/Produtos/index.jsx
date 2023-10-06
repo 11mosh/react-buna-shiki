@@ -90,7 +90,7 @@ export default function Consulta() {
 
       <section id='s1'>
         <Link className='link' to={'/adm/'}>Tela inicial</Link>
-        <img src='/assets/images/adm-consultas/icon-seta-direita.svg' alt='icon-seta-direita' />
+        <img src='/assets/images/icon-seta-direita.svg' alt='icon-seta-direita' />
         <Link> Visualizar produto </Link>
       </section>
       <hr />
