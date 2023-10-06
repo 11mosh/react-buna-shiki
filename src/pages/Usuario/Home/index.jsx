@@ -13,8 +13,12 @@ function Home () {
             <article className='banner-cafe'>
                     <h1>Presente nos seus melhores momentos de conforto, nossa empresa transforma cada xícara em um momento especial.</h1>
             </article>
+
+            
             <article className='categorias-carrossel'>
-                <h1>Categorias</h1>
+                <h1>Categoria
+                    
+                    </h1>
                 <nav>
                     <div><img src="/assets/images/graosz-cat.png" alt="" /> <p>Grãos</p></div>
                     <div><img src="/assets/images/poo-cat.png" alt="" /> <p>Café em pó</p></div>
