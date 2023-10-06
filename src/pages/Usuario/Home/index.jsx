@@ -6,7 +6,7 @@ import { Link } from 'react-router-dom';
 
 function Home () {
 
-
+    
     return (
         <main className='home'>
             <Cabecalho />
@@ -16,15 +16,15 @@ function Home () {
             <article className='categorias-carrossel'>
                 <h1>Categorias</h1>
                 <nav>
-                    <div><img src="/assets/images/graosz-cat.png" alt="" /> <p>Grãos</p></div>
-                    <div><img src="/assets/images/poo-cat.png" alt="" /> <p>Café em pó</p></div>
-                    <div><img src="/assets/images/cafeteiraa-cat.png" alt="" /> <p>Cafeteiras</p></div>
-                    <div><img src="/assets/images/cat-graoss.png" alt="" /> <p>Combos</p></div>
+                    <div><img src="/assets/images/categorias/graosz-cat.png" alt="" /> <p>Grãos</p></div>
+                    <div><img src="/assets/images/categorias/poo-cat.png" alt="" /> <p>Café em pó</p></div>
+                    <div><img src="/assets/images/categorias/cafeteiraa-cat.png" alt="" /> <p>Cafeteiras</p></div>
+                    <div><img src="/assets/images/categorias/cat-graoss.png" alt="" /> <p>Combos</p></div>
                 </nav>
             </article>
             <article className="banner-ambiental">
                 <h1>Compromisso Ambiental</h1>
-                <div className='conteudo'>
+                <div className='conteudo'>cx
                     <div>
                         <h3>Cada produto que você adquire não apenas traz qualidade, mas também contribui para um planeta mais sustentável. Junte-se a nós e faça parte dessa mudança positiva. Juntos, podemos construir um futuro melhor para todos. <br></br> <br></br> Descubra uma nova forma de fazer a diferença. Na nossa empresa, parte dos nossos lucros é destinada à causa ambiental. </h3>
                         <button className='botão'>

@@ -1,4 +1,4 @@
-import { BrowserRouter, Routes, Route } from 'react-router-dom';
+import { BrowserRouter, Routes, Route, Router } from 'react-router-dom';
 import Home from './pages/Usuario/Home';
 import Sustentabilidade from './pages/Usuario/Sustentabilidade';
 import Devolucao from './pages/Usuario/Devolucao';
@@ -17,6 +17,7 @@ import UsuarioProdutos from './pages/Usuario/PaginaProdutos'
 import Cliente from './pages/Usuario/UsuarioPerfil';
 import MeusPedidos from './pages/Usuario/MeusPedidos';
 import Pedidos from './pages/Admin/Pedidos';
+import Combos from './pages/Usuario/Combos'
 
 export default function Rotas() {
     return(
@@ -40,6 +41,7 @@ export default function Rotas() {
                 <Route path='/adm/:id/alterar-produto' element={<CadastroProduto />} />
                 <Route path='/adm/produtos' element={<Produtos />} />
                 <Route path='/adm/pedidos' element={<Pedidos />} />
+                <Route path='/combos' element={<Combos />} />
             </Routes>
          </BrowserRouter>
     )
