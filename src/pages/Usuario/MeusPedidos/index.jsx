@@ -19,7 +19,7 @@ export default function MeusPedidos () {
             }
         }
 
-        confirmAlert(opcoes)
+        confirmAlert(opcoes);
     }
     
     return (
@@ -31,7 +31,7 @@ export default function MeusPedidos () {
                  &gt;
                 <p>Meus pedidos </p>
             </nav>
-            <hr style={{width: '200%'}}/>
+            <hr />
             
 
             <article className='aba-pedidos'>
