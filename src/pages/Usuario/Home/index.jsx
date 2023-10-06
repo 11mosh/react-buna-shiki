@@ -6,7 +6,7 @@ import { Link } from 'react-router-dom';
 
 function Home () {
 
-
+    
     return (
         <main className='home'>
             <Cabecalho />
@@ -20,10 +20,10 @@ function Home () {
                     
                     </h1>
                 <nav>
-                    <div><img src="/assets/images/graosz-cat.png" alt="" /> <p>Grãos</p></div>
-                    <div><img src="/assets/images/poo-cat.png" alt="" /> <p>Café em pó</p></div>
-                    <div><img src="/assets/images/cafeteiraa-cat.png" alt="" /> <p>Cafeteiras</p></div>
-                    <div><img src="/assets/images/cat-graoss.png" alt="" /> <p>Combos</p></div>
+                    <div><img src="/assets/images/categorias/graosz-cat.png" alt="" /> <p>Grãos</p></div>
+                    <div><img src="/assets/images/categorias/poo-cat.png" alt="" /> <p>Café em pó</p></div>
+                    <div><img src="/assets/images/categorias/cafeteiraa-cat.png" alt="" /> <p>Cafeteiras</p></div>
+                    <div><img src="/assets/images/categorias/cat-graoss.png" alt="" /> <p>Combos</p></div>
                 </nav>
             </article>
             <article className="banner-ambiental">

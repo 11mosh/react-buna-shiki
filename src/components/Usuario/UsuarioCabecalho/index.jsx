@@ -27,14 +27,14 @@ export default function CabecalhoUsuario() {
         <div className='comp-usuario-cabecalho'>
             <div>
                 <section style={{ "display": exibirPesquisa}}>
-                    <article>
+                    <Link to='/carrinho'>
                         <img src='/assets/images/icon-carrinho.svg' alt='carrinho'/>
                         <p> Carrinho </p>
-                    </article>
-                    <article>
+                    </Link>
+                    <Link to='/cliente'>
                         <img src='/assets/images/icon-conta.svg' alt='conta'/>
-                    <p>Conta</p>
-                    </article>
+                        <p>Conta</p>
+                    </Link>
                 </section>
                 <div id='logo'>
                     <img src='/assets/images/logo.svg'  alt="Erro ao exibir imagem"/>

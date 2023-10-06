@@ -2,124 +2,178 @@
     display: flex;
     flex-direction: column;
     height: 100vh;
-    #carrinho-vazio{
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        flex-direction: column;
-        height: 70%;
-        width: 100%;
-        img{
-            height: 150px;
-            margin-left: -32px;
-            margin-bottom: 40px;
-
-        }
-        #textoMaior{
-            font-size: 40px;
-            font-weight: 500;
-            font-family: Inter;
-        }
-        p {
-            margin-bottom: 15px;
-            width: 300px;
-            text-align: center;
-        }
-        button{
-            border-radius: 20px;
-            width: 150px;
-            height: 35px;
-            border: none;
-            background-color: #661515;
-            color: white;
-            font-family: 'Inter';
-            margin-top: 20px;
-        }
-
-        button:active{
-            background-color: #be5f2b;
-            transition: 0.1s;
-        }
-
-    }
-    #carrinho-cheio {
-        padding: 30px 70px 10px 70px;
-        height: 70%;
-        > h2 {
-            font-size: 28px;
-            text-align: center;
-        }
-        #s1 {
-            margin: 20px;
-            padding: 20px 0px;
+    > #conteudo {
+        #carrinho-vazio{
             display: flex;
-            width: 500px;
-            flex-direction: row;
-            justify-content: space-around;
-            background-color: #d9d9d9;
-            #a1 {
-                display: flex;
-                gap: 20px;
-                #detalhes {
-                    display: flex;
-                    justify-content: start;
-                    flex-direction: column;
-                    gap: 20px;
-                    > div {
-                        display: flex;
-                        gap: 7px;
-                        button {
-                            width: 20px;
-                            display: flex;
-                            align-items: center;
-                            justify-content: center;
-                            background-color: rgba(10,23,55,0);
-                            border: 0.5px solid black;
-                        }
-                    }
-                }
+            justify-content: center;
+            align-items: center;
+            flex-direction: column;
+            width: 100%;
+            img{
+                height: 150px;
+                margin-left: -32px;
+                margin-bottom: 40px;
+    
             }
-            #a2 {
-                i {
-                    font-size: 25px;
-                }
+            #textoMaior{
+                font-size: 40px;
+                font-weight: 500;
+                font-family: Inter;
             }
+            p {
+                margin-bottom: 15px;
+                width: 300px;
+                text-align: center;
+            }
+            button{
+                border-radius: 20px;
+                width: 150px;
+                height: 35px;
+                border: none;
+                background-color: #661515;
+                color: white;
+                font-family: 'Inter';
+                margin-top: 20px;
+            }
+    
+            button:active{
+                background-color: #be5f2b;
+                transition: 0.1s;
+            }
+    
         }
-        hr {
-            border-color: #dbdbdb;
-            margin-bottom: 50px;
+        #carrinho-cheio {
+            display: flex;
+            flex-direction: column;
+            padding: 45px 70px 40px 70px;
+            > h2 {
+                font-size: 31px;
+                text-align: center;
+                margin-bottom: 30px;
+            }
+            main{
+               display: flex;
+               flex-direction: column;
+               align-items: center;
+               justify-content: center;
+               margin: 20px;
+               gap: 25px;
+               > section {
+                   padding: 20px 50px;
+                   display: flex;
+                   width: 45%;
+                   min-width: 400px;
+                   flex-direction: row;
+                    border-radius: 10px;
+                   justify-content: space-between;
+                   background-color: #dddada;
+                   #a1 {
+                       display: flex;
+                       gap: 20px;
+                       #detalhes {
+                           display: flex;
+                           justify-content: start;
+                           flex-direction: column;
+                           gap: 20px;
+                           > div {
+                               display: flex;
+                               gap: 7px;
+                               button {
+                                   width: 20px;
+                                   display: flex;
+                                   align-items: center;
+                                   justify-content: center;
+                                   background-color: rgba(10,23,55,0);
+                                   border: 0.5px solid black;
+                               }
+                           }
+                       }
+                   }
+                   #a2 {
+                       i {
+                           font-size: 25px;
+                       }
+                   }
+               }
+            }
+            hr {
+                border-color: #dbdbdb;
+                width: 70%;
+                margin-bottom: 50px;
+            }
+            #s2 {
+                display: flex;
+                flex-direction: column;
+                justify-content: center;
+                align-items: center;
+                padding: 0px 20px;  
+                font-family: 'Inter';
+                gap: 22px;
+                article {
+                    display: flex;
+                    align-items: center;
+                    width: 18%;
+                    min-width: 180px;
+                    justify-content: space-between;
+                }
+                hr {
+                    width: 90%;
+                }
+            }
+            > #s3 {
+                display: flex;
+                flex-direction: row;
+                justify-content: center;
+                width: 100%;
+                height: 80px;
+                gap: 100px;
+                margin: 90px 0px 0px 0px;
+                a {
+                    width: 280px;
+                    text-decoration: none;
+                    color: white;
+                    border-radius: 30px;
+                    height: 36px;
+                    min-height: 36px;
+                    display: flex;
+                    align-items: center;
+                    justify-content: center;
+                    font-size: 15px;
+                }
+                #marrom {
+                    background-color: #661515;
+                }
+                #laranja {
+                    background-color: #F47E3C;
+                }
+            }
+    
+        }
+    }
+}
+
+@media (max-width: 700px) {
+    #carrinho-cheio{
+        main{
+            > section {
+                padding: 20px 25px !important;
+                min-width: 290px !important;
+                #a1 {
+                    gap: 5px !important;
+                }
+            }
         }
         #s2 {
-            display: flex;
-            justify-content: space-between;
-            width: 350px;
-            padding: 0px 20px;
-            font-family: 'Inter';
+            hr {
+                min-width: 280px;
+            }
         }
         #s3 {
-            display: flex;
-            flex-direction: row;
-            justify-content: space-evenly;
-            padding: 50px 20px 20px 20px;
-            a {
-                width: 280px;
-                text-decoration: none;
-                color: white;
-                border-radius: 30px;
-                height: 35px;
-                display: flex;
-                align-items: center;
-                justify-content: center;
-                
-            }
-            #marrom {
-                background-color: #661515;
-            }
-            #laranja {
-                background-color: #be5f2b;
-            }
+            align-items: center;
+            flex-direction: column !important;
+            gap: 10px !important;
+            margin-bottom: 40px;
+            margin-top: 50px !important;
         }
-
     }
-
 }

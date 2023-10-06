@@ -51,5 +51,16 @@ export async function alterar(alteracoes, idDetalhe, idProduto){
     return resp;
 }
 
+export async function buscarCategorias(){
+    const resp = await api.get('/categorias')
+
+    return resp.data
+}
+
+export async function buscarAdms(){
+    const resp = await api.get('/adms')
+
+    return resp.data
+}
 
 

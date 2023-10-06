@@ -1,0 +1,102 @@
+#page-combos{
+    > #conteudo {
+        display: flex;
+        align-items:center;
+        flex-direction: column;
+        padding: 50px 0px;
+        gap: 50px;
+        .precoMarrom {
+            color: #661515;
+        }
+        > section {
+            border: 4px solid #661515;
+            padding: 30px;
+            border-radius: 10px;
+            gap: 50px;
+            > #a1 {
+                display: flex;
+                flex-direction: column;
+                gap: 50px;
+                h2 {    
+                    margin-left: 35px;
+                }
+                > div {
+                    display: flex;
+                    align-items: center;
+                    > img {
+                        width: 30px;
+                        height: 30px;
+                    }
+                    > section {
+                        display: flex;
+                        flex-direction: column;
+                        justify-content: center;
+                        align-items: center;
+                        gap: 5px;
+                    }
+                }
+            }
+            > #a2 {
+                display: flex;
+                flex-direction: column;
+                justify-content: center;
+                text-align: center;
+                button {
+                    height: 36px;
+                    width: 200px;
+                    color: white;
+                    border-radius: 10px;
+                    border: none;
+                    font-family: "Inter";
+                }
+                .btMarrom {
+                    background-color:#661515;
+                }
+                .btLaranja {
+                    background-color: #F47E3C;
+                }
+            }
+            display: flex;
+        }
+
+        #s1 {
+            > #a1 {
+                > div {
+                    > section {
+                        position: relative;
+                        .combo {
+                            position: absolute;
+                            bottom: 50px;
+                            margin: 0px 5px;
+                            right: 10px;
+                            width: 50px;
+                        }
+                    }
+                }
+            }
+            > #a2 {
+              > button {
+                margin-top: 25px;
+              }  
+            }
+        }
+        #s2 {
+            > #a2 {
+                > div {
+                    margin-top: 30px;
+                    display: flex;
+                    flex-direction: column;
+                    gap: 10px;
+                }
+            }
+        }
+        #s3 {
+            > #a2 {
+              > button {
+                margin-top: 25px;
+              }  
+            }
+        }
+    }
+
+}

@@ -1,8 +1,8 @@
 import './index.scss';
 import CabecalhoAdm from '../../../components/Admin/AdmCabecalho';
 import { Link, useNavigate } from 'react-router-dom';
-import { buscarIdImagens, buscarTodos, excluir } from '../../../api/produtoApi';
-import { useState } from 'react';
+import { buscarAdms, buscarCategorias, buscarIdImagens, buscarTodos, excluir } from '../../../api/produtoApi';
+import { useEffect, useState } from 'react';
 import {toast} from 'react-toastify'
 import { confirmAlert } from 'react-confirm-alert'
 
@@ -12,6 +12,9 @@ export default function Consulta() {
   const [produtos, setProdutos] = useState([])
   const [adms, setAdms] = useState([])
   const [categorias, setCategorias] = useState([]) 
+  const [ordenarPor, setOrdenarPor] = useState('')
+  const [filtrarAdm, setFiltrarAdm] = useState('')
+  const [FiltrarCategoria, setFiltrarCategoria] = useState('')
 
   const navigate = useNavigate()
 
@@ -61,6 +64,24 @@ export default function Consulta() {
     navigate(`/adm/${id}/alterar-produto`)
   }
 
+  async function buscarCategoriasFiltro(){
+    const categoriasResp = await buscarCategorias()
+    setCategorias(categoriasResp)
+  }
+
+  async function buscarAdmsFiltro(){
+    const admsResp = await buscarAdms()
+    
+    setAdms(admsResp)
+  }
+
+  useEffect(() => {
+    buscarCategoriasFiltro()
+    buscarAdmsFiltro()
+  }, [])
+
+
+
   
   return (
     <div id='page-adm-produtos'>
@@ -69,7 +90,7 @@ export default function Consulta() {
 
       <section id='s1'>
         <Link className='link' to={'/adm/'}>Tela inicial</Link>
-        <img src='/assets/images/adm-consultas/icon-seta-direita.svg' alt='icon-seta-direita' />
+        <img src='/assets/images/icon-seta-direita.svg' alt='icon-seta-direita' />
         <Link> Visualizar produto </Link>
       </section>
       <hr />
@@ -88,11 +109,11 @@ export default function Consulta() {
           <h3> Ordenar por:</h3>
           <div>
             <select>
-              <option className='option' > Selecionar </option>
-              <option > Selecionar </option>
-              <option > Selecionar </option>
               <option> Selecionar </option>
-              <option > Selecionar </option>
+              <option> Estoque </option>
+              <option> ID </option>
+              <option> Preço </option>
+              <option> Promocional </option>
             </select>
           </div>
         </article>
@@ -101,6 +122,11 @@ export default function Consulta() {
           <div>
             <select>
               <option> Selecionar </option>
+              {categorias.map(item => {
+                return(
+                  <option> {item.nome} </option>
+                )
+              })}
             </select>
           </div>
         </article>
@@ -109,6 +135,11 @@ export default function Consulta() {
           <div>
             <select>
               <option> Selecionar </option>
+              {adms.map(item => {
+                return(
+                  <option> {item.usuario}</option>
+                )
+              })}
             </select>
           </div>
         </article>
