@@ -1,11 +1,14 @@
 .pag-cadastro {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
     height: 100vh;
     > section {
         background-image: url("../../../../public/assets/images/backgroundImg.png");
         background-size: cover;
         background-repeat: no-repeat;
-        flex-grow: 2;
         width: 100%;
+        height: 100%;
         padding: 30px;
         display: flex;
         flex-direction: column;
@@ -146,7 +149,7 @@
             > article {
                 width: 295px;
                 h1 {
-                    font-size: 25px;
+                    font-size: 23px;
                 }
                 form {
                     flex-direction: column;
@@ -164,6 +167,14 @@
                     }
                     .input {
                         width: 250px;
+                    }
+                }
+                #cadastrar {
+                    display: flex;
+                    align-items: center;
+                    button {
+                        width: 200px;
+                        height: 31px;
                     }
                 }
             }

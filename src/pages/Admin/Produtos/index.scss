@@ -1,30 +1,7 @@
 #page-adm-produtos{
     height: 100vh;
     main{
-        > #s1{
-            height: 65px;
-            padding: 0px 30px;
-            display: flex;
-            align-items: center;
-            width: 100%;
-            gap: 15px;
-            a{
-                text-decoration: none;
-                color: black;
-                min-width: 130px;
-            }
-            .link {
-                text-decoration: underline;
-                color: black;
-                min-width: 75px;
-            }
-            img {
-                width: 8px;
-                height: max-content;
-                margin-top: 4px;
-            }
-        }   
-        > #s2 {
+        > #s1 {
             display: flex;
             justify-content: space-between;
             align-items: center;
@@ -44,7 +21,7 @@
                 border-radius: 10px;
             }
         }
-        > #s3 {
+        > #s2 {
             display: flex;
             padding: 15px 30px;
             position: relative;
@@ -70,7 +47,7 @@
                 right: 31px;
             }
         }
-        > #s4 {
+        > #s3 {
             display: flex;
             border: 2px solid black;
             margin: 20px 30px;
@@ -103,7 +80,7 @@
                 }
             }
         }
-        > #s5 {
+        > #s4 {
             padding: 0px 30px;
             padding-bottom: 30px;
             table {
@@ -119,9 +96,10 @@
                     margin-right: 50px ;
                 }
                 thead {
-                    padding: 0px 35px 0px 27px;
+                    padding: 0px 37px 0px 27px;
                     tr{
-                        width: 89.7%;
+                        width: 90%;
+                        padding: 0px 8px 0px 0px;
                         display: flex;
                         justify-content: space-between;
                         th{
@@ -153,6 +131,7 @@
                         align-items: center;
                         > div {
                             width: 90%;
+                            padding-right: 8px;
                             display: flex;
                             justify-content: space-between;
                             align-items: center;
@@ -212,20 +191,8 @@
 @media(max-width: 1300px){
     #page-adm-produtos{
         main {
-            > #s5{
+            > #s4{
                 table{
-                    thead{
-                        tr {
-                           width: 600px
-                        }
-                    }
-                    tbody{
-                        tr{
-                            > div {
-                                width: 600px;
-                            }
-                        }
-                    }
                     .desaparece{
                         display: none;
                     }
@@ -234,23 +201,47 @@
         }
     }
 }
+
+@media(max-width: 1115px){
+    #page-adm-produtos{
+        main {
+            > #s4{
+                table{
+                    thead {
+                        tr {
+                            width: 85%;
+                        }
+                    }
+                    tbody {
+                        tr{
+                            > div {
+                                width: 85%;
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
+}
+
 @media(max-width: 850px) {
     #page-adm-produtos{
         main {
-            > #s4 {
+            > #s3 {
                 justify-content: center;
             }
-            > #s5{
+            > #s4{
                 table{
-                    thead{
+                    thead {
                         tr {
-                           width: 330px
+                            width: 80%;
                         }
                     }
-                    tbody{
+                    tbody {
                         tr{
                             > div {
-                                width: 330px;
+                                width: 80%;
                             }
                         }
                     }
@@ -262,28 +253,33 @@
         }
     }
 }
-@media(max-width: 570px) {
+
+@media(max-width: 620px) {
     #page-adm-produtos{
         main {
-            > #s2 {
+            > #s1 {
                 flex-direction: column;
                 align-items: flex-start;
                 gap: 15px;
+                h1 {
+                    font-size: 22px;
+                }
             }
-            > #s5{
+            > #s4{
                 table{
-                    thead{
+                    thead {
                         tr {
-                           width: 200px
+                            width: 70%;
                         }
                     }
-                    tbody{
+                    tbody {
                         tr{
                             > div {
-                                width: 200px;
+                                width: 70%;
                             }
                         }
                     }
+                    
                     .desaparece3{
                         display: none;
                     }
@@ -292,13 +288,50 @@
         }
     }
 }
-@media(max-width: 430px) {
+@media(max-width: 435px) {
     #page-adm-produtos{
         main {
-            > #s5{
+            > #s1 {
+                h1 {
+                    font-size: 21px;
+                }
+                a {
+                    width: 180px;
+                    height: 33px;
+                    font-weight: 700;
+                    font-size: 14.5px;
+                }
+            }
+            > #s3 {
+                article {
+                    gap: 10px ;
+                    h3 {
+                        font-size: 17px;
+                    }
+                }
+            }
+            > #s4{
                 table{
                     .desaparece4{
                         display: none;
+                    }
+                    tbody {
+                        tr {
+                            height: 120px;
+                            > div {
+                                #img {
+                                    img {
+                                        width: 80px;
+                                        height: 80px;
+                                    }
+                                }
+                            }
+                            #acoes {
+                                i {
+                                    font-size: 22px;
+                                }
+                            }
+                        }
                     }
                 }
             }

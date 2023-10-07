@@ -21,6 +21,7 @@ import Combos from './pages/Usuario/Combos';
 import Assinatura from './pages/Usuario/Assinatura';
 import UsuarioRodape from './components/Usuario/UsuarioRodape';
 import Avaliacao from './pages/Usuario/MeusPedidos/avaliacao/telaAvaliacao';
+import PedidoFinalizado from './pages/Usuario/PedidoFinalizado'
 
 export default function Rotas() {
     return(
@@ -43,8 +44,8 @@ export default function Rotas() {
             
                 <Route path='/produtos/graos' element={<UsuarioProdutos />} />
                 <Route path='/carrinho' element={<Carrinho/>} />
-                <Route path='/combos' element={<Combos/>} />
                 <Route path='/assinatura' element={<Assinatura/>} />
+                <Route path='/pedido-finalizado' element={<PedidoFinalizado />} />
 
                 <Route path='/adm' element={<AdmLogin />} />
                 <Route path='/adm/inicio' element={<AdmInicio />} />
@@ -52,7 +53,6 @@ export default function Rotas() {
                 <Route path='/adm/:id/alterar-produto' element={<CadastroProduto />} />
                 <Route path='/adm/produtos' element={<Produtos />} />
                 <Route path='/adm/pedidos' element={<Pedidos />} />
-                <Route path='/combos' element={<Combos />} />
                 <Route path='/adm/cadastro-combo' element={<CadastroCombo />} />
             </Routes>
          </BrowserRouter>

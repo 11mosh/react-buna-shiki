@@ -7,7 +7,7 @@ export default function CabecalhoLink() {
             <section>
                 <article>
                     <Link to={'/'}>
-                        <img src="/assets/images/divisa 1.png" alt="" />
+                        <img src="/assets/images/icon-seta-longa-esquerda.png" alt="" />
                         <p>Voltar à página inicial</p>
                     </Link>
                 </article>
