@@ -6,7 +6,7 @@ import { toast } from 'react-toastify'
 import {CadastrarCliente, CadastrarEndereco } from '../../../api/usuarioApi';
 import axios from 'axios';
 import LoadingBar from 'react-top-loading-bar';
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, Link } from 'react-router-dom';
 import storage from 'local-storage'
 
 export default function Index() {
@@ -103,7 +103,7 @@ export default function Index() {
                         <h1>
                             CADASTRAR-SE
                         </h1>
-                        <div>
+                        <form>
                             <article>
                                 <div>
                                     <h3> Informações pessoais: </h3>
@@ -126,8 +126,19 @@ export default function Index() {
                                 <input className='input inputResidenciais' type='text' placeholder='Número da casa' value={nrEndereco} onChange={e => {setNrEndereco(e.target.value); BuscarCep() }} />
                                 <input className='input inputResidenciais' type='text' placeholder='Complemento' value={complemento} onChange={e => setComplemento(e.target.value)} />
                             </article>
+                        </form>
+                        <div id='cadastrar'>
+                            <button onClick={Cadastrar} disabled={carregando}> Finalizar cadastro </button>
+                            <div>
+                                <div>
+                                    <p> Já tem uma conta? </p>
+                                </div>
+                                <div>
+                                    <Link to='/login'>Faça login!</Link>
+                                </div>
+                            </div>
                         </div>
-                        <button onClick={Cadastrar} disabled={carregando}> Finalizar cadastro </button>
+
                     </article>
                 </section>
             <UsuarioRodape />

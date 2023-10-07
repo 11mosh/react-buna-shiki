@@ -1,5 +1,5 @@
-import CabecalhoUsuario from '../UsuarioCabecalho';
-import UsuarioRodape from '../UsuarioRodape';
+import CabecalhoUsuario from '../../../components/Usuario/UsuarioCabecalho';
+import UsuarioRodape from '../../../components/Usuario/UsuarioRodape';
 import { Link } from 'react-router-dom';
 import './index.scss';
 
