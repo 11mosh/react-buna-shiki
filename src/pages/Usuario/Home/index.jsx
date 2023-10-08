@@ -39,43 +39,54 @@ function Home () {
                 </div>
             </article>
             <article className="combo-iniciante">
-                <h3>Combo Iniciante</h3>
-                <div className='agrupamento-itens-combo'>
-                    <div className='item-combo'>
-                        <img src="/assets/images/cafee3.png" alt="" />
-                        <p>Café 3 Corações Orgânico 250g</p>
-                        <b><p>R$20,00 x 3</p></b>
-                    </div>
-                    <p> + </p>
-                    <div className='item-combo'>
-                        <img src="/assets/images/moedorr.png" alt="" />
-                        <p>Moedor de café Hamilton Beach</p>
-                        <b><p>R$369,45</p></b>
-                    </div>
-                    <p> + </p>
-                    <div className='item-combo' id='filtro'>
-                        <img src="/assets/images/filtroo.png" alt="" />
-                        <p>Filtro de papel N4 Melitta 30 unidades</p>
-                        <b><p>R$6,50</p></b>
-                    </div>
-                    <p> + </p>
-                    <div className='item-combo' id='cafeteira'>
-                        <img src="/assets/images/cafeteiraa.png" alt="" />
-                        <p>Cafeteira Elétrica Cadence Desperta Contrast</p>
-                        <b><p>R$104,90</p></b>
-                    </div>
+            <h3 style={{fontSize: '24px'}}>Combo Iniciante</h3>
 
+                <div className='agrupamento-principal'>
+                    <div className='agrupamento-itens-combo'>
+                        <div className="divisoria1">
+                        <div className='item-combo'>
+                            <img src="/assets/images/cafee3.png" alt="" />
+                            <p>Café 3 Corações Orgânico</p>
+                            <b><p>R$20,00 x 3</p></b>
+                        </div>
+                        <p id='separacao-moedor'> + </p>
+                        <div className='item-combo'>
+                            <img src="/assets/images/moedorr.png" alt="" />
+                            <p>Moedor de café Hamilton </p>
+                            <b><p>R$369,45</p></b>
+                        </div>
+                        <p id='separacao-meio'> + </p>
+
+                        </div>
+                        <div className="divisoria2">
+                            <div className='item-combo' id='filtro'>
+                                <img src="/assets/images/filtroo.png" alt="" />
+                                <p>Filtro de papel Melitta</p>
+                                <b><p>R$6,50</p></b>
+                            </div>
+                            <p id='separacao-cafeteira'> + </p>
+                            <div className='item-combo' id='cafeteira'>
+                                <img src="/assets/images/cafeteiraa.png" alt="" />
+                                <p>Cafeteira Elétrica Cadence </p>
+                                <b><p>R$104,90</p></b>
+                            </div>
+                        </div>
+                        
+                        
+                    </div>
                     <div className='preco-combo'>
                         <h2>
                         Por apenas <br></br>
-                        <b>R$430,00 </b>
+                        <b style={{color: '#661515'}}>R$430,00 </b>
                         </h2>
                         <button className='botão'>
                          <Link to={'/carrinho'}>Adicionar ao carrinho</Link>
                         </button>
-                    </div>
                 </div>
+                </div>
+                
             </article>
+
             <article className="assinatura-mensal">
                 <h3>Faça parte do nosso clube de assinatura mensal!
                     <br></br> <br></br>

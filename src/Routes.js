@@ -21,6 +21,7 @@ import Combos from './pages/Usuario/Combos';
 import Assinatura from './pages/Usuario/Assinatura';
 import UsuarioRodape from './components/Usuario/UsuarioRodape';
 import Avaliacao from './pages/Usuario/MeusPedidos/avaliacao/telaAvaliacao';
+import DescricaoProduto from './components/Usuario/DescricaoProduto';
 
 export default function Rotas() {
     return(
@@ -38,6 +39,7 @@ export default function Rotas() {
                 <Route path='/combos' element={<Combos />} />
                 <Route path='/cliente' element={<Cliente />} />
                 <Route path='/conta/meus-pedidos' element={<MeusPedidos />} />
+                <Route path='/descricao/:id' element={<DescricaoProduto />} />
 
                 <Route path='/avalie' element={<Avaliacao />} />
             
