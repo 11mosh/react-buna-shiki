@@ -87,24 +87,17 @@ export default function Consulta() {
     <div id='page-adm-produtos'>
       <CabecalhoAdm />
       <main>
-
       <section id='s1'>
-        <Link className='link' to={'/adm/'}>Tela inicial</Link>
-        <img src='/assets/images/icon-seta-direita.svg' alt='icon-seta-direita' />
-        <Link> Visualizar produto </Link>
-      </section>
-      <hr />
-      <section id='s2'>
         <h1> Consulta de produtos </h1>
         <Link to='/adm/cadastro-produto'> Adicionar um produto </Link>
       </section>
-      <section id='s3'>
+      <section id='s2'>
         <input type='text' placeholder='Busque por produtos, id do produto' onChange={e => setBuscaInput(e.target.value)}/>
         <article>
           <img src='/assets/images/lupa-dark.svg' alt='icon-busca' value={buscaInput} onClick={buscarTodosClick}/>
         </article>
       </section>
-      <section id='s4'>
+      <section id='s3'>
         <article>
           <h3> Ordenar por:</h3>
           <div>
@@ -144,7 +137,7 @@ export default function Consulta() {
           </div>
         </article>
       </section>
-      <section id='s5'>
+      <section id='s4'>
         <table>
           <thead>
             <tr>

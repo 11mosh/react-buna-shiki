@@ -3,12 +3,17 @@
         display: flex;
         align-items:center;
         flex-direction: column;
-        padding: 50px 0px;
+        padding: 50px 30px;
         gap: 50px;
+        font-family: 'Inter';
+        button:hover {
+            cursor: pointer;
+        }
         .precoMarrom {
             color: #661515;
         }
         > section {
+            display: flex;
             border: 4px solid #661515;
             padding: 30px;
             border-radius: 10px;
@@ -21,6 +26,7 @@
                     margin-left: 35px;
                 }
                 > div {
+                    flex-wrap: wrap;
                     display: flex;
                     align-items: center;
                     > img {
@@ -29,17 +35,39 @@
                     }
                     > section {
                         display: flex;
+                        flex-direction: row;
+                        align-items: center;
+                        margin-top: 15px;
+                        gap: 5px;
+                        > div {
+                            display: flex;
+                            flex-direction: column;
+                            align-items: center;
+                            gap: 5px;
+                            h5 {
+                                font-family: 'Inter';
+                                font-size: 15px;
+                            }
+                        }
+                    }
+                    .naoSoma {
+                        display: flex;
                         flex-direction: column;
-                        justify-content: center;
                         align-items: center;
                         gap: 5px;
+                        h5 {
+                            font-family: 'Inter';
+                            font-size: 15px;
+                        }
                     }
                 }
             }
             > #a2 {
                 display: flex;
                 flex-direction: column;
-                justify-content: space-between;
+                justify-content: center;
+                gap: 50px;
+                align-items: center;
                 text-align: center;
                 button {
                     height: 36px;
@@ -52,8 +80,16 @@
                 .btMarrom {
                     background-color:#661515;
                 }
+                .btMarrom:active {
+                    background-color:#331111;
+                }
                 .btLaranja {
                     background-color: #F47E3C;
+                }
+                .btLaranja:active {
+                    transform: translateY(-3px);
+                    background-color: #c76a35;
+                    transition: 0.2s
                 }
             }
             display: flex;
@@ -68,7 +104,7 @@
                             position: absolute;
                             bottom: 50px;
                             margin: 0px 5px;
-                            right: 0px;
+                            right: 10px;
                             width: 50px;
                         }
                         #combo-direita {
@@ -82,29 +118,28 @@
 
                 }
             }
-            > #a2 {
-              > button {
-                margin-top: 25px;
-              }  
-            }
         }
         #s2 {
             > #a2 {
-                > div {
-                    margin-top: 30px;
+                justify-content: center;
+                gap: 50px;
+                #buttons {
                     display: flex;
                     flex-direction: column;
                     gap: 10px;
                 }
             }
         }
-        #s3 {
-            > #a2 {
-              > button {
-                margin-top: 25px;
-              }  
+    }
+}
+
+@media(max-width: 1150px){
+    #page-combos{
+        > #conteudo {
+            > section {
+                display: flex;
+                flex-direction: column;
             }
         }
     }
-
 }

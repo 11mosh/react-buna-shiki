@@ -1,6 +1,5 @@
 #page-adm-inicio {
     main {
-        height: 91.8vh;
         display: flex;
         flex-direction: column;
         padding: 80px 75px;
@@ -56,8 +55,6 @@
             }
         }
         #s3 {
-            margin-top: 100px;
-            padding-top: 30px;
             button {
                 width: 100px;
                 border-radius: 20px;
@@ -83,6 +80,7 @@
 @media(max-width: 750px){
     #page-adm-inicio{
         main{
+            padding: 80px 30px;
             #s1{
                 display: flex;
                 align-items: center;
@@ -94,10 +92,57 @@
         }
     }
 }
-@media(max-width: 750px){
+@media(max-width: 570px){
     #page-adm-inicio{
         main{
-            padding: 80px 30px;
+            gap: 100px;
+            #s1 {
+                h1 {
+                    font-size: 32px;
+                }
+            }
+            #s2 {
+                a {
+                    h3 {
+                        font-size: 17px;
+                    }
+                    div {
+                        width: 140px;
+                        height: 140px;
+                        img {
+                            width: 80px;
+                            height: 80px;
+                        }
+                    }
+                }
+            }
+        }
+    }
+}
+@media(max-width: 400px){
+    #page-adm-inicio{
+        main{
+            gap: 80px;
+            #s1 {
+                h1 {
+                    font-size: 30px;
+                }
+            }
+            #s2 {
+                a {
+                    h3 {
+                        font-size: 16px;
+                    }
+                    div {
+                        width: 120px;
+                        height: 120px;
+                        img {
+                            width: 60px;
+                            height: 60px;
+                        }
+                    }
+                }
+            }
         }
     }
 }

@@ -1,12 +1,15 @@
 .pag-cadastro {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
     height: 100vh;
     > section {
         background-image: url("../../../../public/assets/images/backgroundImg.png");
         background-size: cover;
         background-repeat: no-repeat;
-        min-height: 71.1vh;
         width: 100%;
-        padding: 20px;
+        height: 100%;
+        padding: 30px;
         display: flex;
         flex-direction: column;
         align-items: center;
@@ -34,11 +37,17 @@
                 color: #96391C;
                 font-size: 27px;
             }
-            > div {
+            form {
                 display: flex;
                 justify-content: space-around;
                 align-items: center;
                 width: 100%;
+                > article {
+                    display: flex;
+                    width: 105%;
+                    flex-direction: column;
+                    align-items: center;
+                }
                 > article > div {
                     display: flex;
                     gap: 85px;
@@ -52,9 +61,6 @@
                 }
                 #residencial {
                     gap: 75px;
-                }
-                > article {
-                    width: 300px;
                 }
                 .input {
                     width: 280px;
@@ -76,22 +82,35 @@
                     font-size: 14px;
                 }
             }
-            > button {
-                background-color: #F47E3C;
-                color: white;
-                height: 33px;
-                width: 250px;
-                border: none;
-                outline: none;
-                border-radius: 30px;
-                font-size: 15px;
-                font-weight: 600;
+            #cadastrar{
+                display: flex;
+                flex-direction: column;
+                gap: 20px;
+                > button {
+                    background-color: #F47E3C;
+                    color: white;
+                    height: 33px;
+                    width: 250px;
+                    border: none;
+                    outline: none;
+                    border-radius: 30px;
+                    font-size: 15px;
+                    font-weight: 600;
+                }
+                button:active{
+                    background-color: #be5f2b;
+                    transition: 0.1s;
+                }
+    
+                > div {
+                    display: flex;
+                    justify-content: center;
+                    gap: 5px;
+                    a{
+                        color: #000;
+                    }
+                }
             }
-            button:active{
-                background-color: #be5f2b;
-                transition: 0.1s;
-            }
-
         }
 
     }
@@ -102,7 +121,7 @@
         > section {
             > article {
                 width: 500px;
-                > div {
+                form {
                     flex-direction: column;
                     gap: 30px;
                 }
@@ -115,7 +134,7 @@
         > section {
             > article {
                 width: 350px;
-                > div {
+                form {
                     flex-direction: column;
                     gap: 30px;
                 }
@@ -128,10 +147,35 @@
     .pag-cadastro {
         > section {
             > article {
-                width: 310px;
-                > div {
+                width: 295px;
+                h1 {
+                    font-size: 23px;
+                }
+                form {
                     flex-direction: column;
                     gap: 30px;
+                    > article > div {
+                        width: 100%;
+                        gap: 50px;
+                        h3 {
+                            font-size: 16px;
+                            width: 200px;
+                        }
+                    }
+                    > article > #residencial {
+                        gap: 50px;
+                    }
+                    .input {
+                        width: 250px;
+                    }
+                }
+                #cadastrar {
+                    display: flex;
+                    align-items: center;
+                    button {
+                        width: 200px;
+                        height: 31px;
+                    }
                 }
             }
         }

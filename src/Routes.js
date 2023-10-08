@@ -1,4 +1,4 @@
-import { BrowserRouter, Routes, Route, Router } from 'react-router-dom';
+import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import Home from './pages/Usuario/Home';
 import Sustentabilidade from './pages/Usuario/Sustentabilidade';
 import Devolucao from './pages/Usuario/Devolucao';
@@ -21,7 +21,11 @@ import Combos from './pages/Usuario/Combos';
 import Assinatura from './pages/Usuario/Assinatura';
 import UsuarioRodape from './components/Usuario/UsuarioRodape';
 import Avaliacao from './pages/Usuario/MeusPedidos/avaliacao/telaAvaliacao';
+<<<<<<< HEAD
 import DescricaoProduto from './components/Usuario/DescricaoProduto';
+=======
+import PedidoFinalizado from './pages/Usuario/PedidoFinalizado'
+>>>>>>> 96ee03a2e61f3479552330533eb31b79354d2343
 
 export default function Rotas() {
     return(
@@ -45,8 +49,8 @@ export default function Rotas() {
             
                 <Route path='/produtos/graos' element={<UsuarioProdutos />} />
                 <Route path='/carrinho' element={<Carrinho/>} />
-                <Route path='/combos' element={<Combos/>} />
                 <Route path='/assinatura' element={<Assinatura/>} />
+                <Route path='/pedido-finalizado' element={<PedidoFinalizado />} />
 
                 <Route path='/adm' element={<AdmLogin />} />
                 <Route path='/adm/inicio' element={<AdmInicio />} />
@@ -54,7 +58,6 @@ export default function Rotas() {
                 <Route path='/adm/:id/alterar-produto' element={<CadastroProduto />} />
                 <Route path='/adm/produtos' element={<Produtos />} />
                 <Route path='/adm/pedidos' element={<Pedidos />} />
-                <Route path='/combos' element={<Combos />} />
                 <Route path='/adm/cadastro-combo' element={<CadastroCombo />} />
             </Routes>
          </BrowserRouter>

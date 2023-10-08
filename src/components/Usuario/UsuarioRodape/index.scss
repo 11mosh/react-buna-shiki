@@ -12,7 +12,6 @@
         text-align: center;
         word-wrap: break-word;
     }
-
     display: flex;
     flex-direction: row;
     background-color: #210B0B;
@@ -21,12 +20,13 @@
     padding-right: 10px;
     padding-top: 40px;
     padding-bottom: 40px;
-    justify-content: space-between;
+    justify-content: space-between;x
     
     .botoes-rodape {
         p {
             margin-bottom: 3px;
             text-decoration: underline;
+            color: white;
         }
         a {
             display: flex;
@@ -127,4 +127,14 @@
             margin: 10px;
         }
     }
+<<<<<<< HEAD
+=======
+
+    }
+    
+    > hr {
+        display: none;
+    }
+
+>>>>>>> 96ee03a2e61f3479552330533eb31b79354d2343
 }
