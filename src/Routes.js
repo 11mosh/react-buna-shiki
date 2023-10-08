@@ -21,7 +21,11 @@ import Combos from './pages/Usuario/Combos';
 import Assinatura from './pages/Usuario/Assinatura';
 import UsuarioRodape from './components/Usuario/UsuarioRodape';
 import Avaliacao from './pages/Usuario/MeusPedidos/avaliacao/telaAvaliacao';
+<<<<<<< HEAD
+import DescricaoProduto from './components/Usuario/DescricaoProduto';
+=======
 import PedidoFinalizado from './pages/Usuario/PedidoFinalizado'
+>>>>>>> 96ee03a2e61f3479552330533eb31b79354d2343
 
 export default function Rotas() {
     return(
@@ -39,6 +43,7 @@ export default function Rotas() {
                 <Route path='/combos' element={<Combos />} />
                 <Route path='/cliente' element={<Cliente />} />
                 <Route path='/conta/meus-pedidos' element={<MeusPedidos />} />
+                <Route path='/descricao/:id' element={<DescricaoProduto />} />
 
                 <Route path='/avalie' element={<Avaliacao />} />
             

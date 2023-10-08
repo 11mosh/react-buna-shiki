@@ -58,7 +58,7 @@
             text-decoration: none;
             color: white;
             font-weight: 800;
-            width: 50%;
+            width: 70%;
         }
  
     }
@@ -142,15 +142,52 @@
         padding: 70px;
         flex-direction: column;
         align-items: center;
+        
 
-        > h3 {
+        .agrupamento-principal {
+            display: flex;
+            flex-direction: row;
+        }
+
+         h3 {
             margin-bottom: 26px;
+        }
+
+        .preco-combo {
+            text-align: center;
+            margin-left: 50px;
+
+            b {
+                font-size: 22px;
+            }
         }
 
         .agrupamento-itens-combo {
             display: flex;
             flex-direction: row;
             align-items: center;
+            position: relative;
+            right: -40px;
+
+            .divisoria1 {
+                display: flex;
+                flex-direction: row;
+                align-items: center;
+
+                > p {
+                    font-size: 60px;
+                }
+            }
+
+            .divisoria2 {
+                display: flex;
+                flex-direction: row;
+                align-items: center;
+
+                > p {
+                    font-size: 60px;
+                }
+            }
 
             > p {
                 font-size: 60px;
@@ -161,21 +198,14 @@
                 font-size: 18px;
             }
 
-            .preco-combo {
-                text-align: center;
-                margin-left: 50px;
-
-                b {
-                    font-size: 22px;
-                }
-            }
+            
 
             .item-combo {
                 justify-content: center;
-                align-items: center;
+                align-items: start;
                 display: flex;
                 flex-direction: column;
-
+                
                 img {
                     width: 140px;
                 }
@@ -185,14 +215,25 @@
 
             #filtro {
                 img {
-                width: 260px;
+                    width: 260px;
+                    position: relative;
+                    left: -20px;
             }
             }
 
             #cafeteira {
+                position: relative;
+                    left: -30px;
                  img {
                     width: 260px;
+                    position: relative;
+                    left: -30px;
                 }
+            }
+
+            #separacao-cafeteira {
+                position: relative;
+                left: -40px;
             }
         }
     }
@@ -218,3 +259,187 @@
         }
     }
 }
+
+@media (max-width: 1210px) {
+    .home {
+        .combo-iniciante {
+            width: 100% !important;
+            align-items: center;
+
+            img {
+                width: 110px !important;
+            }
+
+            #filtro {
+                img {
+                    width: 230px !important;
+                    
+                }
+            }
+
+            #cafeteira {
+                img {
+                    width: 230px !important;
+                }
+            }
+        }
+
+        .preco-combo {
+            position: relative;
+            left: -27px;
+        }
+    }
+}
+
+@media (max-width: 1053px) {
+    .home {
+        .agrupamento-principal {
+            gap: 20px;
+            display: flex;
+            flex-direction: column !important;
+        }
+
+        .banner-ambiental {
+            .conteudo {
+                flex-direction: column;
+                align-items: center;
+
+                h3 {
+                    width: 200% !important;
+                }
+            }
+        }
+    }
+}
+
+
+@media (max-width: 830px) {
+    .home {
+        .combo-iniciante {
+            img {
+                width: 105px !important;
+            }
+
+            #filtro {
+                img {
+                    width: 200px !important;
+                }
+            }
+
+            #cafeteira {
+                img {
+                    width: 200px !important;
+                }
+            }
+        }
+
+        .banner-ambiental {
+            .conteudo {
+                flex-direction: column;
+                align-items: center;
+
+                h3 {
+                    width: 220% !important;
+                }
+            }
+        }
+    }
+}
+
+
+@media (max-width: 784px) {
+    .home {
+        .categorias-carrossel {
+            img {
+                width: 100px !important;
+                height: 100px !important;
+            }
+        }
+        .assinatura-mensal {
+            flex-direction: column;
+            width: 100% !important;
+            padding: 50px;
+            
+            h3 {
+                width: 100% !important;
+            }
+        }
+
+        .combo-iniciante {
+            img {
+                width: 75px !important;
+            }
+            #filtro {
+                img {
+                    width: 150px !important;
+                }
+            }
+
+            #cafeteira {
+                img {
+                    width: 150px !important;
+                }
+            }
+        }
+    }
+}
+
+@media (max-width: 560px) {
+    .home {
+        .categorias-carrossel {
+            img {
+                width: 80px !important;
+                height: 80px !important;
+            }
+        }
+
+        .agrupamento-itens-combo{
+            flex-direction: column !important;
+
+            .divisoria1 {
+                justify-content: space-between;
+
+            }
+
+            .divisoria2 {
+                justify-content: space-between;
+
+            }
+
+            .item-combo {
+                width: 40%;
+            }
+        }
+
+        #separacao-meio {
+            display: none;
+        }
+
+        #cafeteira {
+            position: relative;
+            left: 9px !important;
+        }
+
+        #filtro {
+            position: relative;
+            left: -10px !important;
+        }
+
+        #separacao-cafeteira {
+            position: relative;
+            left: -14px !important;
+        }
+
+        #separacao-moedor {
+            position: relative;
+            left: -14px !important;
+        }
+
+        .agrupamento-itens-combo {
+            position: relative;
+            left: 16px !important;
+        }
+    }
+}
+
+

@@ -58,6 +58,7 @@ export default function CabecalhoUsuario() {
                 <Link to='/produtos/capsulas'>Cápsulas</Link>
                 <Link to='/produtos/moedores'>Moedores</Link>
             </nav>
+            <hr />
         </div>
     )
 }
