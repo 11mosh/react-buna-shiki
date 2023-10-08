@@ -144,8 +144,20 @@
                 #marrom {
                     background-color: #661515;
                 }
+                #marrom:active {
+                    background-color:#331111;
+                    transition: 0.2s;
+                }
                 #laranja {
                     background-color: #F47E3C;
+                }
+                #laranja:active {
+                    background-color: #be5f2b;
+                    transition: 0.2s;
+                }
+                a:hover {
+                    transform: translateY(-3px);
+                    transition: 0.2s;
                 }
             }
     

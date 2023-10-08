@@ -4,13 +4,69 @@
     flex-direction: column;
     height: 100vh;
     main {
+        font-family: 'Inter';
         display: flex;
         flex-direction: column;
+        padding: 30px 30px;
+        height: 1200px;
         #s1 {
-
+            display: flex;
+            gap: 5px;
+            flex-direction: column;
+            align-items: center;
+            img {
+                width: 100px;
+            }
         }
         #s2 {
+            padding-top: 30px;
+        }
+        #s3 {
+            display: flex;
+            padding: 30px 0px 0px 0px;
+            flex-direction: column;
+            align-items: center;
+            font-size: 18px;
+            span {
+                color: #32ca2c;
+                font-weight: 600;
+            }
+            article {
+                display: flex;
+                padding-top: 30px;
+                flex-direction: row;
+                gap: 60px;
+                font-size: 16px;
+                #voltar {
+                    width: 150px;
+                    gap: 10px;
 
+                    img {
+                        width: 20px;
+                    }
+                }
+                a {
+                    display: flex;
+                    align-items: center;
+                    justify-content: center;
+                    height: 36px;
+                    border-radius: 20px;
+                    color: white;
+                    background-color: #F47E3C;
+                    text-decoration: none;
+                }
+                a:active {
+                    background-color: #be5f2b;
+                    transition: 0.2s;
+                }
+                a:hover {
+                    transform: translateY(-3px);
+                    transition: 0.2s;
+                }
+                #acompanhar {
+                    width: 250px;
+                }
+            }
         }
     }
 }

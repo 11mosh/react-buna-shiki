@@ -1,6 +1,7 @@
 #page-adm-produtos{
     height: 100vh;
     main{
+        font-family: 'Inter';
         > #s1 {
             display: flex;
             justify-content: space-between;
@@ -19,6 +20,10 @@
                 font-size: 15px;
                 background-color: #FF7223;
                 border-radius: 10px;
+            }
+            a:active {
+                background-color: #be5f2b;
+                transition: 0.2s;
             }
         }
         > #s2 {
@@ -172,17 +177,6 @@
                         }
                     }
                 }
-                tbody::-webkit-scrollbar{
-                    scroll-behavior: auto;
-                    width: 13px;
-                }
-                tbody::-webkit-scrollbar-track{
-                    visibility: hidden;
-                }   
-                tbody::-webkit-scrollbar-thumb{
-                    background-color: #636262;
-                    border-radius: 25px;
-                }   
             }
         }
     }

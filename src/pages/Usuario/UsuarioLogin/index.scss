@@ -15,6 +15,7 @@
         align-items: center;
         justify-content: center;
         position: relative;
+        font-family: 'Inter';
         #background{
             position: absolute;
             background-color: #000;
@@ -92,7 +93,7 @@
             }
             button:active{
                 background-color: #be5f2b;
-                transition: 0.1s;
+                transition: 0.2s;
             }
         }
     }

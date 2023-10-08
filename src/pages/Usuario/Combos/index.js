@@ -1,5 +1,4 @@
 import './index.scss';
-import {Link} from 'react-router-dom';
 import CabecalhoUsuario from '../../../components/Usuario/UsuarioCabecalho';
 import UsuarioRodape from '../../../components/Usuario/UsuarioRodape'
 
@@ -30,7 +29,7 @@ export default function Combos(){
                                     <p> Orfeu orgânico 250g </p>
                                     <h5 className='precoMarrom'> R$20,00</h5>
                                 </div>
-                                <img src='/assets/images/icon-mais.png' alt='' />
+                                <img id='some'src='/assets/images/icon-mais.png' alt='' />
                             </section>
                             <section>
                                 <div>

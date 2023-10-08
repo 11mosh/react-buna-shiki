@@ -2,6 +2,7 @@
     main {
         display: flex;
         flex-direction: column;
+        font-family: 'Inter';
         padding: 80px 75px;
         gap: 150px;
         width: 100%;
@@ -63,6 +64,10 @@
                 background-color: #514641;
                 color: white;
                 cursor: pointer;
+            }
+            button:active {
+                background-color: #363230;
+                transition: 0.2s
             }
         }
     }

@@ -18,13 +18,13 @@ export default function Index(){
                     <ResumoPedido />
                 </section>
                 <section id='s3'>
-                    <p>Parabéns! Sua compra estará contribuindo diretamente para a <span> causa verda!</span></p>
+                    <p>Parabéns! Sua compra estará contribuindo diretamente para a <span> causa verde!</span></p>
                     <article>
-                        <Link>
+                        <Link id='voltar'>
                             <img src="/assets/images/icon-esquerda-curto.png" alt="" />
                             Voltar
                         </Link>
-                        <Link>
+                        <Link id='acompanhar'>
                             Acompanhar pedido
                         </Link>
                     </article>
