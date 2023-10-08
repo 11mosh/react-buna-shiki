@@ -17,14 +17,16 @@ body {
 
   ::-webkit-scrollbar{
     scroll-behavior: smooth;
-    width: 14px;
+    
+    width: 18px;
   }   
   ::-webkit-scrollbar-track {
     opacity: 0;
   }
   ::-webkit-scrollbar-thumb{
-    padding: 0px 5px;
-    background-color: #636262;
+    border: 3px solid #fff;
+
+    background-color: #ff0202;
   } 
 }
 
