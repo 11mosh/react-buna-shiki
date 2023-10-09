@@ -144,11 +144,11 @@
     .comp-usuario-cabecalho {
         > div {
             .lupa {
-                display: none;
-            }
-            #invisivel {
-                width: 62%;
-                justify-content: flex-start;
+                visibility: hidden;
+                img {
+                    width: 30px;
+                    height: 30px;
+                }
             }
             section {
                 gap: 15px;

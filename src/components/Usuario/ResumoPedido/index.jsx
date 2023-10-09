@@ -9,17 +9,38 @@ export default function Index() {
                     <section id='detalhes'>
                         <article>
                             <p> Status do pedido: <span> Aguardando pagamento...</span></p>
-                            <p> Data de envio: <span> Entrega Express </span> prevista para o dia 06/06/2023</p>
+                            <div>
+                                <p> Data de envio:</p>
+                                <p className='detalheComprido'> <span> Entrega Express </span> prevista para o dia 06/06/2023 </p>
+                            </div>
                         </article>
                         <article>
                             <p> Codigo do pedido: 0001-0003 </p>
                             <p> Data do pedido: 04/06/2023 20:15:06 </p>
-                            <p> Endereço de envio: Rua lopes trovão 251, Sâo Paulo, 05326-442</p>
+                            <div>
+                                <p> Endereço de envio: </p>
+                                <p className='detalheComprido'> Rua lopes trovão 251, Sâo Paulo, 05326-442</p>
+                            </div>
                         </article>
-                        <article>
-                            <p>Subtotal: R$ 344, 97</p>
-                            <p> Frete:   20,00 </p>
-                            <p> Total:   366, 97</p> 
+                        <article id='detalhesPagamento'>
+                            <div>
+                                <p>Subtotal:</p>
+                                <div >
+                                    <p> R$ 344, 97</p>
+                                </div>
+                            </div>
+                            <div>
+                                <p> Frete:</p>
+                                <div>
+                                    <p>R$ 20,00</p>
+                                </div>
+                            </div>
+                            <div>
+                                <p> Total:</p> 
+                                <div>
+                                    <p> R$366, 97</p>
+                                </div>
+                            </div>
                         </article>
                     </section>
                     <section id='produtos'>

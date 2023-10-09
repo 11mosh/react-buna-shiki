@@ -26,19 +26,19 @@
                     margin-left: 35px;
                 }
                 > div {
-                    flex-wrap: wrap;
+                    width: 100%;
                     display: flex;
                     align-items: center;
+                    justify-content: center;
+                    > img {
+                        width: 30px;
+                        margin-bottom: 20px;
+                    }
                     > section {
                         display: flex;
-                        flex-direction: row;
+                        flex-direction: column;
                         align-items: center;
-                        margin-top: 15px;
                         gap: 5px;
-                        > img {
-                            width: 30px;
-                            margin-bottom: 20px;
-                        }
                         > div {
                             display: flex;
                             flex-direction: column;
@@ -48,21 +48,6 @@
                                 font-family: 'Inter';
                                 font-size: 15px;
                             }
-                        }
-                    }
-                    .naoSoma {
-                        display: flex;
-                        flex-direction: column;
-                        align-items: center;
-                        gap: 5px;
-                        h5 {
-                            font-family: 'Inter';
-                            font-size: 15px;
-                        }
-                        img {
-                            width: 86px;
-                            height: 149px;
-                            margin-bottom: 0px;
                         }
                     }
                 }
@@ -81,6 +66,8 @@
                     border-radius: 10px;
                     border: none;
                     font-family: "Inter";
+                    font-size: 14.5px;
+                    font-weight: 500;
                 }
                 .btMarrom {
                     background-color:#661515;
@@ -150,16 +137,24 @@
             > section {
                 display: flex;
                 flex-direction: column;
+                gap: 80px;
+                width: 90%;
+                #a1 {
+                    align-items: flex-start;
+                }
+                #a2 {
+                    gap: 30px !important;
+                }
+
             }
         }
     }
 }
-@media(max-width: 900px){
+@media(max-width: 950px){
     #page-combos{
         > #conteudo {
             > section {
-                gap: 70px;
-                width: 90%;
+               width: 600px;
                 #a1 {
                     align-items: center;
                     width: 100%;
@@ -167,15 +162,126 @@
                         margin: unset;
                     }
                     > div {
+                        flex-wrap: wrap;
+                        width: 490px;
+                        gap: 25px;
+                        > section {
+                            margin-top: 15px;
+                        } 
+                        .some {
+                            display: none;
+                        }
+                    }
+                }
+            }
+        }
+    }
+}
+@media(max-width: 700px){
+    #page-combos{
+        > #conteudo {
+            > section {
+               width: 90%;
+                #a1 {
+                    align-items: center;
+                    width: 100%;
+                    h2 {
+                        margin: unset;
+                    }
+                    > div {
+                        flex-wrap: wrap;
+                        width: 480px;
+                        min-width: none;
+                        section {
+                            img {
+                                height: 129px !important;
+                                width: 70px !important;
+                            }
+                            #combo-esquerda {
+                                height: 75px !important;
+                                width: 45px !important;
+                                right: 35px !important;
+                            }
+                            #combo-direita {
+                                height: 75px !important;
+                                width: 45px !important;
+                                left: 35px !important;
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
+}
+
+@media(max-width: 570px){
+    #page-combos{
+        > #conteudo {
+            padding: 50px 15px;
+            > section {
+                padding: 25px 15px !important;
+                #a1 {
+                    h2 {
+                        font-size: 22px;
+                        text-align: center;
+                    }
+                    > div {
                         width: 100%;
-                        justify-content: center;
+                        gap: 0px;
+                        section {
+                            img {
+                                height: 109px !important;
+                                width: 62px !important;
+                            }
+                            #combo-esquerda {
+                                height: 70px !important;
+                                width: 43px !important;
+                                right: 35px !important;
+                            }
+                            #combo-direita {
+                                height: 70px !important;
+                                width: 43px !important;
+                                left: 35px !important;
+                            }
+                        }
                     }
                 }
                 #a2 {
-                    gap: 20px;
+                    h2 {
+                        font-size: 22px;
+                    }
+                    button {
+                        height: 33px;
+                        width: 180px;
+                        font-size: 14px;
+                        font-weight: 500;
+                    }
                 }
-                #some {
-                    display: none;
+            }
+        }
+    }
+}
+@media(max-width: 465px){
+    #page-combos{
+        > #conteudo {
+            > section {
+                width: 261px !important;
+                #a1 {
+                    > div {
+                        width: 100%;
+                        flex-direction: column;
+                        gap: 20px;
+                        section {
+                            margin-top: 0px;
+                        }
+                        .some  {
+                            display:flex;
+                        }
+                        > img {
+                            margin-bottom: 0px !important;
+                        }
+                    }
                 }
             }
         }

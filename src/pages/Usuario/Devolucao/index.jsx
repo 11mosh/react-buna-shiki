@@ -4,7 +4,7 @@ import CabecalhoLink from '../../../components/Usuario/CabecalhoLink';
 function Devolucao () {
 
     return (
-        <main className='sustent'>
+        <main className='devolu'>
             <CabecalhoLink />
             <section className='faixa-titulo'>Política de devolução</section>
             <div className='texto'>
