@@ -2,6 +2,7 @@
     height: 100vh;
     overflow: scroll;
     overflow-x: hidden;
+
     .botão {
         margin: 30px;
         
@@ -72,6 +73,7 @@
 
         > nav {
             display: flex;
+            align-items: center;
             flex-direction: row;
             justify-content: space-evenly;
             width: 100%;
@@ -92,6 +94,7 @@
                     width: 120px;
                     height: 120px;
                     border-radius: 100px;
+                    cursor: pointer;
                 }
             }
         }
@@ -260,6 +263,24 @@
     }
 }
 
+.home::-webkit-scrollbar {
+    width: 10px;
+    position: relative;
+    left: 10px;
+    z-index: 2;
+
+}
+
+.home::-webkit-scrollbar-track {
+    background-color: transparent;
+}
+
+.home::-webkit-scrollbar-thumb {
+    background-color: rgb(134, 134, 134);
+    border-radius: 100px;
+}
+  
+
 @media (max-width: 1210px) {
     .home {
         .combo-iniciante {
@@ -384,14 +405,28 @@
     }
 }
 
-@media (max-width: 560px) {
+@media (max-width: 618px) {
     .home {
         .categorias-carrossel {
+            > nav {
+                flex-direction: column !important;
+
+
+                .botao-categoria {
+                    transform: rotate(90deg);
+                }
+            }
             img {
-                width: 80px !important;
-                height: 80px !important;
+                width: 120px !important;
+                height: 120px !important;
             }
         }
+    }
+}
+
+@media (max-width: 560px) {
+    .home {
+       
 
         .agrupamento-itens-combo{
             flex-direction: column !important;

@@ -3,7 +3,6 @@ import UsuarioRodape from '../../../components/Usuario/UsuarioRodape';
 import Cabecalho from '../../../components/Usuario/UsuarioCabecalho';
 import { Link } from 'react-router-dom';
 
-
 function Home () {
 
     
@@ -16,15 +15,15 @@ function Home () {
 
             
             <article className='categorias-carrossel'>
-                <h1>Categoria
-                    
-                    </h1>
+                <h1>Categorias</h1>
                 <nav>
                     <div><img src="/assets/images/categorias/graosz-cat.png" alt="" /> <p>Grãos</p></div>
                     <div><img src="/assets/images/categorias/poo-cat.png" alt="" /> <p>Café em pó</p></div>
                     <div><img src="/assets/images/categorias/cafeteiraa-cat.png" alt="" /> <p>Cafeteiras</p></div>
                     <div><img src="/assets/images/categorias/cat-graoss.png" alt="" /> <p>Combos</p></div>
+                    <div className='botao-categoria' style={{backgroundColor: '#F47e3C', padding: '10px 16px', borderRadius: '100px', cursor: 'pointer'}}> &gt;</div>
                 </nav>
+
             </article>
             <article className="banner-ambiental">
                 <h1>Compromisso Ambiental</h1>

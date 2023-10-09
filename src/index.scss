@@ -4,7 +4,6 @@
   margin: 0px;
   padding: 0px;
   box-sizing: border-box;
-
 }
 
 body {
@@ -14,18 +13,6 @@ body {
     sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-
-  ::-webkit-scrollbar{
-    scroll-behavior: smooth;
-    width: 14px;
-  }   
-  ::-webkit-scrollbar-track {
-    opacity: 0;
-  }
-  ::-webkit-scrollbar-thumb{
-    padding: 0px 5px;
-    background-color: #636262;
-  } 
 }
 
 
