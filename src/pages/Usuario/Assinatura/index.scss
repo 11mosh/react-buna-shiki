@@ -1,0 +1,89 @@
+.assinatura {
+    display: flex;
+    flex-direction: column;
+    font-family: 'Inter';
+
+    b {
+        color: #661515;
+    }
+    
+    .corpo-site {
+        display: flex;
+        flex-direction: column;
+        align-self: center;
+        align-items: flex-start;
+        width: 100%;
+        padding: 40px;
+        
+        > h1 {
+            font-size: 25px;
+            align-self: center;
+            margin: 20px 0px;
+        }
+
+        .texto-apresentacao {
+            display: flex;
+            flex-direction: column;
+            
+            ul {
+                margin: 0px 0px 40px 30px;
+            }
+        }
+
+        .selecionar-itens {
+            display: flex;
+            flex-direction: column;
+            width: 100%;
+
+            .titulo {
+                display: flex;
+                flex-direction: row;
+                justify-content: space-between;
+
+                select {
+                    width: 40%;
+                }
+            }
+
+            .itens-cafe {
+                width: 100%;
+                display: flex;
+                flex-direction: row;
+                justify-content: space-evenly;
+                margin-top: 30px;
+                align-items: center;
+
+                .trocar-produtos {
+                    background-color: #F47E3C;
+                    display: flex;
+                    align-items: center;
+                    justify-content: center;
+                    padding: 10px;
+                    border-radius: 100px;
+                    cursor: pointer;
+
+                    img {
+                        width: 20px;
+                        transform: rotate(180deg);
+                    }
+                }
+                .item {
+                    display: flex;
+                    flex-direction: column;
+                    align-items: center;
+
+                    img {
+                        width: 120px;
+                    }
+
+                    .quantidade-item {
+                        display: flex;
+                        flex-direction: row;
+                        align-items: center;
+                        gap: 15px;
+                    }
+                }
+            }
+        }
+    }
+}
