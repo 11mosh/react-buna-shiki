@@ -3,12 +3,11 @@
     justify-content: space-between;
     flex-direction: column;
     height: 100vh;
-    > main {
+    > #conteudo {
         font-family: 'Inter';
         display: flex;
         flex-direction: column;
-        padding: 30px 30px;
-        height: 1200px;
+        padding: 20px 30px 20px 30px;
         #s1 {
             display: flex;
             gap: 5px;
@@ -19,11 +18,11 @@
             }
         }
         #s2 {
-            padding-top: 30px;
+            padding-top: 20px;
         }
         #s3 {
             display: flex;
-            padding: 30px 0px 0px 0px;
+            padding: 20px 20px 0px 20px;
             flex-direction: column;
             align-items: center;
             font-size: 18px;
@@ -33,12 +32,11 @@
             }
             article {
                 display: flex;
-                padding-top: 30px;
+                padding-top: 20px;
                 flex-direction: row;
                 gap: 60px;
                 font-size: 16px;
                 #voltar {
-                    width: 150px;
                     gap: 10px;
 
                     img {
@@ -54,6 +52,7 @@
                     color: white;
                     background-color: #F47E3C;
                     text-decoration: none;
+                    width: 250px;
                 }
                 a:active {
                     background-color: #be5f2b;
@@ -63,8 +62,60 @@
                     transform: translateY(-3px);
                     transition: 0.2s;
                 }
-                #acompanhar {
-                    width: 250px;
+            }
+        }
+    }
+}
+@media(max-width: 950px){
+    #page-pedido-finalizado {
+        > #conteudo {
+            #s3 {
+                p {
+                    font-size: 16px;
+                    text-align: center;
+                }
+            }
+        }
+    }
+}
+@media(max-width: 700px){
+    #page-pedido-finalizado {
+        > #conteudo {
+            #s3 {
+                p {
+                    font-size: 15.5px;
+                }
+                article {
+                    flex-direction: column;
+                    gap: 10px;
+                    font-size: 15.5px;
+                }
+            }
+        }
+    }
+}
+@media(max-width: 550px){
+    #page-pedido-finalizado {
+        > #conteudo {
+            #s1 {
+                h2 {
+                    font-size: 22px;
+                }
+                p {
+                    font-size: 15px;
+                }
+            }
+            #s3 {
+                p {
+                    font-size: 15.5px;
+                }
+                article {
+                    flex-direction: column;
+                    gap: 10px;
+                    font-size: 15px;
+                    a {
+                        width: 230px;
+                    }
                 }
             }
         }
