@@ -1,11 +1,13 @@
 import './index.scss';
 import { useState } from 'react';
 import CabecalhoUsuario from '../../../components/Usuario/UsuarioCabecalho';
-
+import UsuarioRodape from '../../../components/Usuario/UsuarioRodape'
 
 export default function Assinatura () {
 
-
+    const [exibirCartao, setExibirCartao] = useState(false);
+    const [exibirEndereco, setExibirEndereco] = useState(false);
+    
     return (
         <main className="assinatura">
             <CabecalhoUsuario/>
@@ -23,7 +25,12 @@ export default function Assinatura () {
                 <section className='selecionar-itens'>
                     <nav className='titulo'>
                         <h1>1 - Escolha entre os principais sabores disponíveis e quantidade:</h1>
-                        <select name="" id=""></select>
+                        <select name="" id="">
+                        <option value="">CEFDS</option>
+                        <option value="">CEFDS</option>
+                        <option value="">CEFDS</option>
+                        <option value="">CEFDS</option>
+                        </select>
                     </nav>
 
                     <div className="itens-cafe">
@@ -31,9 +38,9 @@ export default function Assinatura () {
                             <img src="/assets/images/cafeteiraa.png" alt="" />
                             <p>Café Orfeu Clássico 1kg</p>
                             <div className='quantidade-item'>
-                                <p>-</p>
+                                <p className='adicionar'>-</p>
                                 <p>1</p>
-                                <p>+</p>
+                                <p className='adicionar'>+</p>
                             </div>
                         </div>
 
@@ -41,9 +48,9 @@ export default function Assinatura () {
                             <img src="/assets/images/cafeteiraa.png" alt="" />
                             <p>Café Orfeu Clássico 1kg</p>
                             <div className='quantidade-item'>
-                                <p>-</p>
+                                <p className='adicionar'>-</p>
                                 <p>1</p>
-                                <p>+</p>
+                                <p className='adicionar'>+</p>
                             </div>
                         </div>
 
@@ -51,9 +58,36 @@ export default function Assinatura () {
                             <img src="/assets/images/cafeteiraa.png" alt="" />
                             <p>Café Orfeu Clássico 1kg</p>
                             <div className='quantidade-item'>
-                                <p>-</p>
+                                <p className='adicionar'>-</p>
                                 <p>1</p>
-                                <p>+</p>
+                                <p className='adicionar'>+</p>
+                            </div>
+                        </div>
+                        <div className="item">
+                            <img src="/assets/images/cafeteiraa.png" alt="" />
+                            <p>Café Orfeu Clássico 1kg</p>
+                            <div className='quantidade-item'>
+                                <p className='adicionar'>-</p>
+                                <p>1</p>
+                                <p className='adicionar'>+</p>
+                            </div>
+                        </div>
+                        <div className="item">
+                            <img src="/assets/images/cafeteiraa.png" alt="" />
+                            <p>Café Orfeu Clássico 1kg</p>
+                            <div className='quantidade-item'>
+                                <p className='adicionar'>-</p>
+                                <p>1</p>
+                                <p className='adicionar'>+</p>
+                            </div>
+                        </div>
+                        <div className="item">
+                            <img src="/assets/images/cafeteiraa.png" alt="" />
+                            <p>Café Orfeu Clássico 1kg</p>
+                            <div className='quantidade-item'>
+                                <p className='adicionar'>-</p>
+                                <p>1</p>
+                                <p className='adicionar'>+</p>
                             </div>
                         </div>
 
@@ -61,34 +95,73 @@ export default function Assinatura () {
                             <img src="/assets/images/cafeteiraa.png" alt="" />
                             <p>Café Orfeu Clássico 1kg</p>
                             <div className='quantidade-item'>
-                                <p>-</p>
+                                <p className='adicionar'>-</p>
                                 <p>1</p>
-                                <p>+</p>
+                                <p className='adicionar'>+</p>
                             </div>
                         </div>
-
                         <div className="item">
                             <img src="/assets/images/cafeteiraa.png" alt="" />
                             <p>Café Orfeu Clássico 1kg</p>
                             <div className='quantidade-item'>
-                                <p>-</p>
+                                <p className='adicionar'>-</p>
                                 <p>1</p>
-                                <p>+</p>
+                                <p className='adicionar'>+</p>
                             </div>
                         </div>
-
                         <div className="item">
                             <img src="/assets/images/cafeteiraa.png" alt="" />
                             <p>Café Orfeu Clássico 1kg</p>
                             <div className='quantidade-item'>
-                                <p>-</p>
+                                <p className='adicionar'>-</p>
                                 <p>1</p>
-                                <p>+</p>
+                                <p className='adicionar'>+</p>
                             </div>
                         </div>
-
-                        <div className='trocar-produtos'>
-                            <img src="/assets/images/setadropdown.png" alt="" />
+                        <div className="item">
+                            <img src="/assets/images/cafeteiraa.png" alt="" />
+                            <p>Café Orfeu Clássico 1kg</p>
+                            <div className='quantidade-item'>
+                                <p className='adicionar'>-</p>
+                                <p>1</p>
+                                <p className='adicionar'>+</p>
+                            </div>
+                        </div>
+                        <div className="item">
+                            <img src="/assets/images/cafeteiraa.png" alt="" />
+                            <p>Café Orfeu Clássico 1kg</p>
+                            <div className='quantidade-item'>
+                                <p className='adicionar'>-</p>
+                                <p>1</p>
+                                <p className='adicionar'>+</p>
+                            </div>
+                        </div>
+                        <div className="item">
+                            <img src="/assets/images/cafeteiraa.png" alt="" />
+                            <p>Café Orfeu Clássico 1kg</p>
+                            <div className='quantidade-item'>
+                                <p className='adicionar'>-</p>
+                                <p>1</p>
+                                <p className='adicionar'>+</p>
+                            </div>
+                        </div>
+                        <div className="item">
+                            <img src="/assets/images/cafeteiraa.png" alt="" />
+                            <p>Café Orfeu Clássico 1kg</p>
+                            <div className='quantidade-item'>
+                                <p className='adicionar'>-</p>
+                                <p>1</p>
+                                <p className='adicionar'>+</p>
+                            </div>
+                        </div>
+                        <div className="item">
+                            <img src="/assets/images/cafeteiraa.png" alt="" />
+                            <p>Café Orfeu Clássico 1kg</p>
+                            <div className='quantidade-item'>
+                                <p className='adicionar'>-</p>
+                                <p>1</p>
+                                <p className='adicionar'>+</p>
+                            </div>
                         </div>
                     </div>
                 </section>
@@ -100,40 +173,45 @@ export default function Assinatura () {
                         <article className='info-cartao'>
                             <div className='titulo'>
                                 <p>Não tem? Cadastre um agora!</p>
-                                    <img src="/assets/images/setadropdown.png" alt="" />
+                                <input type="checkbox" name="checkbox1" id="checkbox1" style={{display: 'none'}}/>
+                                <label htmlFor="checkbox1">
+                                    <img src="/assets/images/setadropdown.png" alt="" onClick={() => setExibirCartao(!exibirCartao)}/>
+                                </label>
                             </div>
-                            <div className='campo-inputs'>
-                                <div>
-                                    <label htmlFor="">Número do cartão</label>
-                                    <input type="text" />
-                                </div>
-                                <article className='secao2'>
-                                    <div>
-                                        <label htmlFor="">Validade</label>
-                                        <input type="text" name="" id="" />
-                                    </div>
-                                    <div>
-                                        <label htmlFor="">CVV</label>
-                                        <input type="text" />
-                                    </div>
-                                </article>
-                                <div>
-                                    <label htmlFor="">Nome do títular</label>
-                                    <input type="text" />
-                                </div>
-                                <div>
-                                    <label htmlFor="">CPF/CNPJ do títular</label>
-                                    <input type="text" />
-                                </div>
+                            {exibirCartao 
+                            ? <div className='campo-inputs'>
+                            <div>
+                                <label htmlFor="">Número do cartão *</label>
+                                <input type="text" />
                             </div>
+                            <article className='secao2'>
+                                <div>
+                                    <label htmlFor="">Validade *</label>
+                                    <input type="text" name="" id="" />
+                                </div>
+                                <div>
+                                    <label htmlFor="">CVV *</label>
+                                    <input type="text" />
+                                </div>
+                            </article>
+                            <div>
+                                <label htmlFor="">Nome do títular *</label>
+                                <input type="text" />
+                            </div>
+                            <div>
+                                <label htmlFor="">CPF/CNPJ do títular *</label>
+                                <input type="text" />
+                            </div>
+                        <button>Cadastrar</button>
 
-                            <button>Cadastrar</button>
+                        </div>
+
+                            : <></>
+                            }
+                            
                         </article>
                     <select name="" id="">
-                        <option value="">CEFDS</option>
-                        <option value="">CEFDS</option>
-                        <option value="">CEFDS</option>
-                        <option value="">CEFDS</option>
+                        <option value="">Selecionar cartão</option>
                     </select>
                     </div>
                 </section>
@@ -141,54 +219,66 @@ export default function Assinatura () {
 
                 <section className='selecionar-endereco'>
                     <h2>3 - Cadastre ou escolha um endereço de entrega:</h2>
+                    <div className="agrupamento">
                     <article className='info-endereco'>
                         <div className='titulo'>
                             <p>Não tem? Cadastre um agora!</p>
-                            <img src="/assets/images/setadropdown.png" alt="" />
+                            <input type="checkbox" name="checkbox2" id="checkbox2" style={{display: 'none'}}/>
+                            <label htmlFor="checkbox2">
+                                <img src="/assets/images/setadropdown.png" alt="" onClick={() => setExibirEndereco(!exibirEndereco)}/>
+                            </label>
                         </div>
+                        {exibirEndereco
+                        ? <div className="resto">
                         <div className="campo1">
                             <div>
-                                <label htmlFor="">Informe o CEP &nbsp; &nbsp; *</label>
+                                <label htmlFor="">Informe o CEP  *</label>
                                 <input type="text" name="" id="" />
                             </div>
                             <div>
-                                <label htmlFor="">Informe o número &nbsp; &nbsp; *</label>
+                                <label htmlFor="">Informe o número *</label>
                                 <input type="text" />
                             </div>
                         </div>
 
                         <div className="campo2">
-                            <label htmlFor=""></label>
+                            <label htmlFor="">Complemento</label>
                             <input type="text" />
-                            <div className='enderecoPreenchido'></div>
-                            <div className='enderecoPreenchido'></div>
+                            <input type="text" disabled className='endereco-usuario'/>
+                            <input type="text" disabled className='endereco-usuario'/>
                         </div>
 
                         <button>Cadastrar</button>
+                        </div>
+                        : <></>
+                        }
+                        
                     </article>
-                    <select name="" id="">
-                        <option value="">CEFDS</option>
-                        <option value="">CEFDS</option>
-                        <option value="">CEFDS</option>
-                        <option value="">CEFDS</option>
+                    <select name="sssssssss" id="">
+                        <option value="">Selecionar endereço</option>
                     </select>
+                    </div>
+                    
                 </section>
 
                 <button>
-                    Continuar
+                    <img src="/assets/images/icon-s.png" alt="" id='imagem-fantasma'/>
+                    <p>Continuar</p>
                     <img src="/assets/images/icon-seta-longa-esquerda.png" alt="" style={{transform: 'rotate(180deg)', width: '50px'}}/>
                 </button>
 
                 <section className="texto-ajuda">
                     <h2>Você pode se perguntar:</h2>
                     <h2>Como funciona a assinatura mensal?</h2>
+                    <div>
                     <p>Nosso método de pagamento nessa modalidade aceita apenas <b>cartão de crédito</b>.</p>
                     <p>1 - Você escolhe quais produtos deseja levar;</p>
                     <p>2 - Cadastra o cartão de crédito e efetua o primeiro pagamento</p>
                     <p>3 - Todos os meses, no mesmo dia em que o primeiro pagamento foi confirmado, uma nova cobrança chegará no cartão cadastrado e nós separaremos os produtos <b>selecionados por você</b>;</p>
-                    <p>4 - A qualquer momento <b>você pode alterar</b> os produtos envolvidos na assinatura, <b>porém</b>, uma vez que o pagamento for confirmado, as alterações só serão atendidas no próximo mês!</p>
-                </section>
+                    </div>
+                    </section>
             </main>
+            <UsuarioRodape />
         </main>
     )
 }

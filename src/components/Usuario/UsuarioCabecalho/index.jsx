@@ -37,10 +37,10 @@ export default function CabecalhoUsuario() {
                     </Link>
                 </section>
                 <div id='logo'>
-                    <img src='/assets/images/logo.svg'  alt="Erro ao exibir imagem"/>
+                    <Link to={'/'}><img src='/assets/images/logo.svg'  alt="Erro ao exibir imagem"/></Link>
                 </div>
                 <div id='invisivel'>
-                        <img src='/assets/images/logo-xicara.png' alt='logo-xicara '/>
+                    <Link to={'/'}><img src='/assets/images/logo-xicara.png'  alt="Erro ao exibir imagem"/></Link>
                 </div>
                 <div className='lupa'>
                     {mostrarInput 
