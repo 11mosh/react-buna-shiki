@@ -6,6 +6,27 @@
     b {
         color: #661515;
     }
+
+    button {
+        padding: 8px;
+        background-color: #F47E3C;
+        color: white;
+        border: none;
+        border-radius: 37px;
+        cursor: pointer;
+        font-family: 'Inter';
+        font-size: 17px;
+        width: 30%;
+        margin-top: 20px;
+        transition: .3s;
+    }
+
+    button:hover {
+        background-color: #f88f52;
+        font-weight: bolder;
+        transition: .3s;
+        transform: translateY(-3px);
+    }
     
     .corpo-site {
         display: flex;
@@ -18,7 +39,8 @@
         > h1 {
             font-size: 25px;
             align-self: center;
-            margin: 20px 0px;
+            margin: -20px 0px 20px 0px;
+            text-align: center;
         }
 
         .texto-apresentacao {
@@ -46,35 +68,47 @@
 
                 select {
                     width: 40%;
+                    height: 30px;
+                    font-size: 17px;
+                    font-family: 'Inter';
+                }
+                select:focus {
+                    outline: none;
                 }
             }
 
             .itens-cafe {
                 width: 100%;
+                overflow-x: auto;
+                scroll-behavior: smooth;
+                overflow-y: hidden;
                 display: flex;
                 flex-direction: row;
-                justify-content: space-evenly;
                 margin-top: 30px;
                 align-items: center;
+                gap: 45px;
 
-                .trocar-produtos {
-                    background-color: #F47E3C;
-                    display: flex;
-                    align-items: center;
-                    justify-content: center;
-                    padding: 14px;
-                    border-radius: 100px;
-                    cursor: pointer;
-
-                    img {
-                        width: 15px;
-                        transform: rotate(180deg);
-                    }
-                }
                 .item {
                     display: flex;
                     flex-direction: column;
+                    text-align: center;
                     align-items: center;
+
+                    .adicionar {
+                        cursor: pointer;
+                        font-size: larger;
+                        transition: .2s;
+                        font-size: 20px;
+                        user-select: none;
+                    }
+
+                    .adicionar:active {
+                        font-weight: bolder;
+                        transition: .2s;
+                        color:#661515;
+                        font-size: 23px;
+                        user-select: none;
+                    }
 
                     img {
                         width: 120px;
@@ -94,7 +128,19 @@
             display: flex;
             flex-direction: column;
             width: 100%;
-            margin-top: 50px;
+            margin-top: 70px;
+
+            label {
+                transform: .2s;
+                display: flex;
+                align-items: center;
+            }
+            
+            
+            #checkbox1:checked ~ label img {
+                transform: rotate(90deg);
+                transform: .2s;
+            }
 
             > h2 {
                 font-size: 21px;
@@ -110,43 +156,55 @@
                     width: 30%;
                     margin-top: 15px;
                     height: 40px;
+                    font-size: 17px;
+                    font-family: 'Inter';
+                }
+
+                select:focus {
+                    outline: none;
                 }
 
                 .info-cartao {
                     display: flex;
                     flex-direction: column;
                     background-color: #E8E8E8;
-                    padding: 16px;
+                    padding: 0px 20px 0px 20px;
                     width: 60%;
                     align-items: center;
                     box-shadow: 0px 5px 4px 0px rgba(0, 0, 0, 0.25);
                     margin-top: 15px;
 
-    
+                    button {
+                        align-self: center;
+                        margin-bottom: 20px;
+                    }
+
                     .titulo {
                         display: flex;
                         flex-direction: row;
                         align-items: center;
                         justify-content: space-between;
-                        margin-bottom: 10px;
+                        margin: 10px 0px;
                         width: 100%;
+
+                       
 
                         p {
                             font-weight: bolder;
                         }
-                        
                         img {
                             width: 24px;
-                            transform: rotate(90deg);
+                            transform: rotate(-90deg);
                             cursor: pointer;
                         }
+                        
                     }
 
                     .campo-inputs {
                         display: flex;
                         flex-direction: column;
                         width: 100%;
-                        gap: 7px;
+                        gap: 13px;
 
                         input {
                             width: 100%;
@@ -180,39 +238,222 @@
                 }  
             }
 
-            button {
-                padding: 8px;
-                background-color: #F47E3C;
-                color: white;
-                border: none;
-                border-radius: 37px;
-                cursor: pointer;
-                font-family: 'Inter';
-                font-size: 17px;
-                width: 30%;
-                margin-top: 20px;
-                transition: .3s;
-            }
-
-            button:hover {
-                background-color: #f88f52;
-                font-weight: bolder;
-                transition: .3s;
-                transform: translateY(-3px);
-            }
+            
             
         }
 
         .selecionar-endereco {
+            display: flex;
+            flex-direction: column;
+            width: 100%;
+            margin-top: 70px;
 
+            label {
+                transform: .2s;
+                display: flex;
+                align-items: center;
+            }
+            
+            
+            #checkbox2:checked ~ label img {
+                transform: rotate(90deg);
+                transform: .2s;
+            }
+
+            button {
+                align-self: center;
+                margin: 30px 0px 20px 0px;
+            }
+
+            select {
+                width: 30%;
+                height: 40px;
+                font-size: 17px;
+                font-family: 'Inter';
+                margin-top: 16px;
+            }
+
+            select:focus{outline: none;}
+
+            > h2 {
+                font-size: 21px;
+            }
+            .agrupamento {
+                display: flex;
+                flex-direction: row;
+                align-items: flex-start;
+                width: 100%;
+                font-size: 17px;
+                justify-content: space-between;
+
+                
+
+                input {
+                    width: 100%;
+                    border: 1px solid black;
+                    height: 30px;
+                    border-radius: 5px;
+                    font-size: 18px;
+                    font-family: 'Inter';
+                    padding: 5px;
+                }
+
+                input:focus {
+                    outline: none;
+                }
+
+                .info-endereco {
+                    width: 60%;
+                    background-color:#E8E8E8;
+                    box-shadow: 0px 5px 4px 0px rgba(0, 0, 0, 0.25);
+                    padding: 0px 20px;
+                    margin-top: 16px;
+                    display: flex;
+                    flex-direction: column;
+                    align-items: center;
+
+                    .resto {
+                        width: 100%;
+                        display: flex;
+                        flex-direction: column;
+                    }
+
+                .titulo {
+                    display: flex;
+                    flex-direction: row;
+                    align-items: center;
+                    justify-content: space-between;
+                    margin: 10px 0px;
+                    width: 100%;
+
+                    p {
+                        font-weight: bolder;
+                    }
+                    
+                    img {
+                        width: 24px;
+                        transform: rotate(-90deg);
+                        cursor: pointer;
+                    }
+                }
+
+                .campo1 {
+                    display: flex;
+                    flex-direction: row;
+                    justify-content: space-between;
+                    width: 100%;
+
+                    > div {
+                        display: flex;
+                        flex-direction: column;
+                        width: 45%;
+
+                        input {
+                            width: 100%;
+                        }
+                    }
+                }
+                
+                .campo2 {
+                    display: flex;
+                    flex-direction: column;
+                    gap: 20px;
+                    width: 100%;
+
+                    .endereco-usuario {
+                        background-color: #81818191;
+                        color: rgb(255, 17, 0);
+                        font: optional;
+                    }
+
+                    label {
+                        margin: 10px 0px -20px 0px;
+                    }
+
+                    input {
+                        width: 100%;
+                    }
+                }
+            }
+        }
         }
 
         > button {
-
+            display: flex;
+            flex-direction: row;
+            align-items: center;
+            justify-content: space-evenly;
+            padding: 0px;
+            margin: 60px 0px 100px 0px;
+            width: 25%;
+            align-self: center;
+            font-size: 19px;
         }
 
         .texto-ajuda {
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
 
+            h2 {
+                font-size: 21px;
+            }
         }
     }
+}
+
+@media (max-width: 892px) {
+    .assinatura {
+        .corpo-site {
+           > button {
+            width: 40%;
+           }
+        
+    }
+}}
+
+@media (max-width: 793px) {
+    .assinatura {
+        .corpo-site {
+
+            .selecionar-endereco {
+                width: 100% !important;
+                select {
+                    width: 100% !important;
+                }
+                .info-endereco {
+                    width: 100% !important;
+                    
+                }
+            }
+
+            .selecionar-cartao {
+                width: 100% !important;
+                select {
+                    width: 100% !important;
+                }
+                .info-cartao {
+                    width: 100% !important;
+                }
+            }
+
+            .agrupamento {
+                display: flex;
+                flex-direction: column !important;
+                width: 100% !important;
+            }
+
+        .info-cartao {
+             button {
+                width: 70% !important;
+            }
+        }
+
+        .info-endereco {
+             button {
+                width: 70% !important;
+            }
+        }
+    }
+}
 }

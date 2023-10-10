@@ -38,7 +38,7 @@ function UsuarioRodape () {
 
             <hr className='separacao-3'></hr>
             <article className='coluna-4'>
-                <img src="/assets/images/compraSegura.png" alt="Erro ao exibir imagem" />
+                <img src="/assets/images/compracgura.png" alt="Erro ao exibir imagem" />
             </article>
         </main>
     )
