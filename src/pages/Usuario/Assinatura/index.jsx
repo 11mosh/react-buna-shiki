@@ -96,27 +96,55 @@ export default function Assinatura () {
                 <section className="selecionar-cartao">
                 <h2>2 - Cadastre ou escolha um cartão de crédito:</h2>
 
-                    <article className='info-cartao'>
-                        <div className='titulo'>
-                            <p>Não tem? Cadastre um agora!</p>
-                            &darr;
-                        </div>
-                        
-                    </article>
+                    <div className="agrupamento">
+                        <article className='info-cartao'>
+                            <div className='titulo'>
+                                <p>Não tem? Cadastre um agora!</p>
+                                    <img src="/assets/images/setadropdown.png" alt="" />
+                            </div>
+                            <div className='campo-inputs'>
+                                <div>
+                                    <label htmlFor="">Número do cartão</label>
+                                    <input type="text" />
+                                </div>
+                                <article className='secao2'>
+                                    <div>
+                                        <label htmlFor="">Validade</label>
+                                        <input type="text" name="" id="" />
+                                    </div>
+                                    <div>
+                                        <label htmlFor="">CVV</label>
+                                        <input type="text" />
+                                    </div>
+                                </article>
+                                <div>
+                                    <label htmlFor="">Nome do títular</label>
+                                    <input type="text" />
+                                </div>
+                                <div>
+                                    <label htmlFor="">CPF/CNPJ do títular</label>
+                                    <input type="text" />
+                                </div>
+                            </div>
+
+                            <button>Cadastrar</button>
+                        </article>
                     <select name="" id="">
                         <option value="">CEFDS</option>
                         <option value="">CEFDS</option>
                         <option value="">CEFDS</option>
                         <option value="">CEFDS</option>
                     </select>
+                    </div>
                 </section>
+                
 
                 <section className='selecionar-endereco'>
                     <h2>3 - Cadastre ou escolha um endereço de entrega:</h2>
                     <article className='info-endereco'>
                         <div className='titulo'>
                             <p>Não tem? Cadastre um agora!</p>
-                            &darr;
+                            <img src="/assets/images/setadropdown.png" alt="" />
                         </div>
                         <div className="campo1">
                             <div>
@@ -138,7 +166,10 @@ export default function Assinatura () {
 
                         <button>Cadastrar</button>
                     </article>
-                    <select name="Selecionar endereço" id="">
+                    <select name="" id="">
+                        <option value="">CEFDS</option>
+                        <option value="">CEFDS</option>
+                        <option value="">CEFDS</option>
                         <option value="">CEFDS</option>
                     </select>
                 </section>
