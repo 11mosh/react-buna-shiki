@@ -47,12 +47,15 @@
                 }
                 #detalhesPagamento {
                     > div {
-                        width: 180px;
+                        max-width: 180px;
                         justify-content: space-between;
                         > div {
                             display: flex;
                             justify-content: flex-start;
                             width: 100px;
+                        }
+                        p {
+                            min-width: 70px;
                         }
                     }
                 }
@@ -163,8 +166,11 @@
 @media(max-width: 700px) {
     #comp-resumo-pedido {
         > #conteudo {
+            h3 {
+                font-size: 18px;
+            }
             main {
-                padding: 25px;
+                padding: 35px;
                 #detalhes {
                     min-width: unset;
                     width: 100% ;
@@ -173,7 +179,6 @@
                             font-size: 15.5px;
                         }
                         > div {
-                            gap: 0px;
                             .detalheComprido {
                                 min-width: unset;
                                 width: 275px;
@@ -189,13 +194,20 @@
     #comp-resumo-pedido {
         > #conteudo {
             h3 {
-                font-size: 18px;
+                font-size: 17px;
             }
             main {
+                padding: 25px;
                 #detalhes {
                     article {
                         p {
                             font-size: 15px;
+                        }
+                        span {
+                            font-size: 15px;
+                        }
+                        #endereco {
+                            min-width: 137px !important;
                         }
                         > div {
                             .detalheComprido {
@@ -224,4 +236,50 @@
             }
         }
     }
+}
+@media(max-width: 450px){
+    #comp-resumo-pedido {
+        > #conteudo {
+            h3 {
+                font-size: 16px;
+            }
+            main {
+                padding: 20px;
+                #detalhes {
+                    article {
+                        gap: 10px;
+                        p {
+                            font-size: 14px;
+                        }
+                        span {
+                            font-size: 14px;
+                        }
+                        > div {
+                            flex-wrap: wrap;
+                            gap: 3px;
+                        }
+                    }
+                }
+                #produtos {
+                    gap: 30px;
+                    padding-bottom: 5px;
+                    article {
+                        div {
+                            img {
+                                width: 60px;
+                                height: 105px;
+                            }
+                        }
+                        h4 {
+                            font-size: 13.5px;
+                        }
+                        span {
+                            font-size: 14px;
+                        }
+                    }
+                }
+            }
+        }
+    }
+    
 }

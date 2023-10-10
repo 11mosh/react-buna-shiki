@@ -8,37 +8,46 @@ export default function Index() {
                 <main>
                     <section id='detalhes'>
                         <article>
-                            <p> Status do pedido: <span> Aguardando pagamento...</span></p>
+                            <div>
+                                <p> Status do pedido: </p>
+                                <span className='valor'> Aguardando pagamento...</span>
+                            </div>
                             <div>
                                 <p> Data de envio:</p>
-                                <p className='detalheComprido'> <span> Entrega Express </span> prevista para o dia 06/06/2023 </p>
+                                <p className='valor detalheComprido'> <span> Entrega Express </span> prevista para o dia 06/06/2023 </p>
                             </div>
                         </article>
                         <article>
-                            <p> Codigo do pedido: 0001-0003 </p>
-                            <p> Data do pedido: 04/06/2023 20:15:06 </p>
+                            <div>
+                                <p> Codigo do pedido:</p>
+                                <p className='valor'>0001-0003</p>
+                            </div>
+                            <div>
+                                <p> Data do pedido:</p>
+                                <p className='valor'>04/06/2023 20:15:06</p>
+                            </div>
                             <div>
                                 <p id='endereco'> Endereço de envio: </p>
-                                <p className='detalheComprido'> Rua lopes trovão 251, Sâo Paulo, 05326-442</p>
+                                <p className='valor detalheComprido'> Rua lopes trovão 251, Sâo Paulo, 05326-442</p>
                             </div>
                         </article>
                         <article id='detalhesPagamento'>
                             <div>
                                 <p>Subtotal:</p>
                                 <div >
-                                    <p> R$ 344, 97</p>
+                                    <p className='valor'> R$ 344, 97</p>
                                 </div>
                             </div>
                             <div>
                                 <p> Frete:</p>
                                 <div>
-                                    <p>R$ 20,00</p>
+                                    <p className='valor'>R$ 20,00</p>
                                 </div>
                             </div>
                             <div>
                                 <p> Total:</p> 
                                 <div>
-                                    <p> R$366, 97</p>
+                                    <p className='valor'> R$366, 97</p>
                                 </div>
                             </div>
                         </article>
