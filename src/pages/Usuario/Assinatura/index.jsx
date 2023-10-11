@@ -1,7 +1,8 @@
 import './index.scss';
 import { useState } from 'react';
 import CabecalhoUsuario from '../../../components/Usuario/UsuarioCabecalho';
-import UsuarioRodape from '../../../components/Usuario/UsuarioRodape'
+import UsuarioRodape from '../../../components/Usuario/UsuarioRodape';
+import { Link } from 'react-router-dom';
 
 export default function Assinatura () {
 
@@ -26,10 +27,7 @@ export default function Assinatura () {
                     <nav className='titulo'>
                         <h1>1 - Escolha entre os principais sabores disponíveis e quantidade:</h1>
                         <select name="" id="">
-                        <option value="">CEFDS</option>
-                        <option value="">CEFDS</option>
-                        <option value="">CEFDS</option>
-                        <option value="">CEFDS</option>
+                        <option value="">Café em grão</option>
                         </select>
                     </nav>
 
@@ -81,88 +79,7 @@ export default function Assinatura () {
                                 <p className='adicionar'>+</p>
                             </div>
                         </div>
-                        <div className="item">
-                            <img src="/assets/images/cafeteiraa.png" alt="" />
-                            <p>Café Orfeu Clássico 1kg</p>
-                            <div className='quantidade-item'>
-                                <p className='adicionar'>-</p>
-                                <p>1</p>
-                                <p className='adicionar'>+</p>
-                            </div>
-                        </div>
-
-                        <div className="item">
-                            <img src="/assets/images/cafeteiraa.png" alt="" />
-                            <p>Café Orfeu Clássico 1kg</p>
-                            <div className='quantidade-item'>
-                                <p className='adicionar'>-</p>
-                                <p>1</p>
-                                <p className='adicionar'>+</p>
-                            </div>
-                        </div>
-                        <div className="item">
-                            <img src="/assets/images/cafeteiraa.png" alt="" />
-                            <p>Café Orfeu Clássico 1kg</p>
-                            <div className='quantidade-item'>
-                                <p className='adicionar'>-</p>
-                                <p>1</p>
-                                <p className='adicionar'>+</p>
-                            </div>
-                        </div>
-                        <div className="item">
-                            <img src="/assets/images/cafeteiraa.png" alt="" />
-                            <p>Café Orfeu Clássico 1kg</p>
-                            <div className='quantidade-item'>
-                                <p className='adicionar'>-</p>
-                                <p>1</p>
-                                <p className='adicionar'>+</p>
-                            </div>
-                        </div>
-                        <div className="item">
-                            <img src="/assets/images/cafeteiraa.png" alt="" />
-                            <p>Café Orfeu Clássico 1kg</p>
-                            <div className='quantidade-item'>
-                                <p className='adicionar'>-</p>
-                                <p>1</p>
-                                <p className='adicionar'>+</p>
-                            </div>
-                        </div>
-                        <div className="item">
-                            <img src="/assets/images/cafeteiraa.png" alt="" />
-                            <p>Café Orfeu Clássico 1kg</p>
-                            <div className='quantidade-item'>
-                                <p className='adicionar'>-</p>
-                                <p>1</p>
-                                <p className='adicionar'>+</p>
-                            </div>
-                        </div>
-                        <div className="item">
-                            <img src="/assets/images/cafeteiraa.png" alt="" />
-                            <p>Café Orfeu Clássico 1kg</p>
-                            <div className='quantidade-item'>
-                                <p className='adicionar'>-</p>
-                                <p>1</p>
-                                <p className='adicionar'>+</p>
-                            </div>
-                        </div>
-                        <div className="item">
-                            <img src="/assets/images/cafeteiraa.png" alt="" />
-                            <p>Café Orfeu Clássico 1kg</p>
-                            <div className='quantidade-item'>
-                                <p className='adicionar'>-</p>
-                                <p>1</p>
-                                <p className='adicionar'>+</p>
-                            </div>
-                        </div>
-                        <div className="item">
-                            <img src="/assets/images/cafeteiraa.png" alt="" />
-                            <p>Café Orfeu Clássico 1kg</p>
-                            <div className='quantidade-item'>
-                                <p className='adicionar'>-</p>
-                                <p>1</p>
-                                <p className='adicionar'>+</p>
-                            </div>
-                        </div>
+                                                
                     </div>
                 </section>
 
@@ -262,21 +179,23 @@ export default function Assinatura () {
                 </section>
 
                 <button>
-                    <img src="/assets/images/icon-s.png" alt="" id='imagem-fantasma'/>
-                    <p>Continuar</p>
-                    <img src="/assets/images/icon-seta-longa-esquerda.png" alt="" style={{transform: 'rotate(180deg)', width: '50px'}}/>
+                    <Link to={'/assinatura/confirmacao'}>
+                        <img src="/assets/images/icon-s.png" alt="" id='imagem-fantasma' />
+                        <p>Continuar</p>
+                        <img src="/assets/images/icon-seta-longa-esquerda.png" alt="" style={{transform: 'rotate(180deg)', width: '50px'}}/>
+                    </Link>
                 </button>
 
                 <section className="texto-ajuda">
                     <h2>Você pode se perguntar:</h2>
                     <h2>Como funciona a assinatura mensal?</h2>
                     <div>
-                    <p>Nosso método de pagamento nessa modalidade aceita apenas <b>cartão de crédito</b>.</p>
-                    <p>1 - Você escolhe quais produtos deseja levar;</p>
-                    <p>2 - Cadastra o cartão de crédito e efetua o primeiro pagamento</p>
-                    <p>3 - Todos os meses, no mesmo dia em que o primeiro pagamento foi confirmado, uma nova cobrança chegará no cartão cadastrado e nós separaremos os produtos <b>selecionados por você</b>;</p>
+                        <p>Nosso método de pagamento nessa modalidade aceita apenas <b>cartão de crédito</b>.</p>
+                        <p>1 - Você escolhe quais produtos deseja levar;</p>
+                        <p>2 - Cadastra o cartão de crédito e efetua o primeiro pagamento;</p>
+                        <p>3 - Todos os meses, no mesmo dia em que o primeiro pagamento foi confirmado, uma nova cobrança chegará no cartão cadastrado e nós separaremos os produtos <b>selecionados por você</b>.</p>
                     </div>
-                    </section>
+                </section>
             </main>
             <UsuarioRodape />
         </main>
