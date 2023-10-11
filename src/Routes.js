@@ -22,7 +22,8 @@ import Assinatura from './pages/Usuario/Assinatura';
 import UsuarioRodape from './components/Usuario/UsuarioRodape';
 import Avaliacao from './pages/Usuario/MeusPedidos/avaliacao/telaAvaliacao';
 import DescricaoProduto from './pages/Usuario/DescricaoProduto';
-import PedidoFinalizado from './pages/Usuario/PedidoFinalizado'
+import PedidoFinalizado from './pages/Usuario/PedidoFinalizado';
+import Confirmacao from './pages/Usuario/Assinatura/Confirmacao';
 
 export default function Rotas() {
     return(
@@ -47,6 +48,7 @@ export default function Rotas() {
                 <Route path='/produtos/graos' element={<UsuarioProdutosGraos />} />
                 <Route path='/carrinho' element={<Carrinho/>} />
                 <Route path='/assinatura' element={<Assinatura/>} />
+                <Route path='/assinatura/confirmacao' element={<Confirmacao />} />
                 <Route path='/pedido-finalizado' element={<PedidoFinalizado />} />
 
                 <Route path='/adm' element={<AdmLogin />} />
