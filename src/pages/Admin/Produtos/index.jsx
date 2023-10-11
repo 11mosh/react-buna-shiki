@@ -1,6 +1,6 @@
 import './index.scss';
 import CabecalhoAdm from '../../../components/Admin/AdmCabecalho';
-import { Link, useNavigate } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 import { buscarAdms, buscarCategorias, buscarIdImagens, buscarTodos, excluir } from '../../../api/produtoApi';
 import { useEffect, useState } from 'react';
 import {toast} from 'react-toastify'
@@ -65,14 +65,24 @@ export default function Consulta() {
   }
 
   async function buscarCategoriasFiltro(){
-    const categoriasResp = await buscarCategorias()
-    setCategorias(categoriasResp)
+    try{
+      const categoriasResp = await buscarCategorias()
+      setCategorias(categoriasResp)
+    }
+    catch(err){
+      toast.error('Não foi possível buscar as categorias disponíveis para filtro')
+    }
   }
 
   async function buscarAdmsFiltro(){
-    const admsResp = await buscarAdms()
-    
-    setAdms(admsResp)
+    try{
+      const admsResp = await buscarAdms()
+      
+      setAdms(admsResp)
+    }
+    catch(err){
+      toast.error('Não foi possível buscar os adms disponíveis para filtro')
+    }
   }
 
   useEffect(() => {
@@ -89,7 +99,6 @@ export default function Consulta() {
       <main>
       <section id='s1'>
         <h1> Consulta de produtos </h1>
-        <Link to='/adm/cadastro-produto'> Adicionar um produto </Link>
       </section>
       <section id='s2'>
         <input type='text' placeholder='Busque por produtos, id do produto' onChange={e => setBuscaInput(e.target.value)}/>

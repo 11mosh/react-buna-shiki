@@ -162,7 +162,7 @@ export default function Assinatura () {
                             <label htmlFor="">Complemento</label>
                             <input type="text" />
                             <input type="text" disabled className='endereco-usuario'/>
-                            <input type="text" disabled className='endereco-usuario'/>
+                            <input type="text" disabled className='endereco-usuario' placeholder='oi'/>
                         </div>
 
                         <button>Cadastrar</button>

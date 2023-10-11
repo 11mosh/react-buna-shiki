@@ -17,6 +17,7 @@ export default function Index() {
             <main>
                 <section id='s1'>
                     <h1> Tela inicial </h1>
+                    <button onClick={Sair}> Sair </button>
                 </section>
                 <section id='s2'>
                     <Link to='/adm/cadastro-produto'>
@@ -49,9 +50,6 @@ export default function Index() {
                         </div>
                         <h3> Adicionar um combo </h3>
                     </Link>
-                </section>
-                <section id='s3'>
-                    <button onClick={Sair}> Sair </button>
                 </section>
             </main>
         </div>

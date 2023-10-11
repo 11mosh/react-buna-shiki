@@ -2,15 +2,32 @@
     main {
         display: flex;
         flex-direction: column;
+        flex-direction: space-between;
         font-family: 'Inter';
         padding: 80px 75px;
         gap: 150px;
         width: 100%;
         #s1{
             width: 100%;
-            
+            display: flex;
+            flex-direction: row;
+            justify-content: space-between;
+            align-items: center;
             h1 {
                 font-size: 35px;
+            }
+            button {
+                width: 90px;
+                border-radius: 20px;
+                height: 35px;
+                border: none;
+                background-color: #514641;
+                color: white;
+                cursor: pointer;
+            }
+            button:active {
+                background-color: #363230;
+                transition: 0.2s
             }
         }
         #s2 {
@@ -41,11 +58,11 @@
                     align-items: center;
                     justify-content: center;
                     img {
-                        width: 100px;
+                        max-width: 100px;
                         height: 100px;
                     }
                     #eyes {
-                        width: 120px;
+                        max-width: 120px;
                         height: 120px;
                     }
                 }
@@ -88,8 +105,6 @@
             padding: 80px 30px;
             #s1{
                 display: flex;
-                align-items: center;
-                justify-content: center;
             }
             #s2 {
                 padding: unset;
