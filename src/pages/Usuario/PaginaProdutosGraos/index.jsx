@@ -14,7 +14,7 @@ export default function Index(){
                             <h3> Café 3 Corações: Edição Gourmet</h3>
                         </div>
                     </article>
-                    <img src='/assets/images/produtos/graos/cafe3coracoes.png' alt='imagem-suporte' />
+                    <img src='/assets/images/produtos/graos/cafe3coracoes.svg' alt='imagem-suporte-cafe3coracoes' />
                 </section>
                 <section className='faixaProdutos faixaProdutos1'>
                     <article >
@@ -47,7 +47,7 @@ export default function Index(){
                     </aside>
                 </section>
                 <section className='faixaApresentacao faixaApresentacao2'>
-                    <img src='/assets/images/produtos/graos/cafeOrfeu.png' alt='imagem-suporte' />
+                    <img src='/assets/images/produtos/graos/cafeOrfeu.png' alt='imagem-suporte-cafeOrfeu' />
                     <article>
                         <article>
                             <div>
@@ -92,7 +92,7 @@ export default function Index(){
                             <h3> Café Santa Mônica</h3>
                         </div>
                     </article>
-                    <img src='/assets/images/produtos/graos/cafeSantaMonica.png' alt='imagem-suporte' />
+                    <img src='/assets/images/produtos/graos/cafeSantaMonica.png' alt='imagem-suporte-cafeSantaMonica' />
                 </section>
                 <section className='faixaProdutos faixaProdutos3'>
                     <article>
