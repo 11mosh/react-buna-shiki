@@ -7,6 +7,23 @@
             h1 {
                 font-size: 23px;
             }
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            a {
+                height: 40px;
+                font-weight: 600;
+                background-color: #F47E3C;
+                border-radius: 10px;
+                font-size: 15.5px;
+                text-decoration: none;
+                color: black;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                width: 200px;
+                border: none;
+            }
         }
         > #s2 {
             display: flex;
@@ -48,7 +65,7 @@
                 flex-direction: column;
                 gap: 20px;
                 h3 {
-                    font-size: 18px;
+                    font-size: 17px;
                 }
                 > div {
                     width: 200px;
@@ -86,10 +103,10 @@
                     margin-right: 50px ;
                 }
                 thead {
-                    padding: 0px 37px 0px 27px;
+                    padding: 0px 39px 0px 27px;
                     tr{
                         width: 90%;
-                        padding: 0px 8px 0px 0px;
+                        padding-right: 16px;
                         display: flex;
                         justify-content: space-between;
                         th{
@@ -102,14 +119,22 @@
                     align-self: center;
                 }
                 tbody{
-                    padding: 0px 10px 10px 10px;
+                    padding: 0px 20px 30px 10px;
                     display: flex;
                     flex-direction: column;
+                    margin-right: 3px;
                     gap: 20px;
                     width: 99.6%;
                     height: 650px;
                     overflow: scroll;
                     overflow-x: hidden;
+                    ::-webkit-scrollbar {
+                        scroll-behavior: smooth;
+                    }
+                    ::-webkit-scrollbar-thumb {
+                        border-radius: 10px;
+                        background-color: red;
+                    }
                     tr{
                         display: flex;
                         justify-content: space-between;
@@ -151,7 +176,7 @@
                                 transition: 0.1s;
                             }
                         }
-                        #img {
+                        .img {
                             background-color: unset;
                             width: 100px;
                             height: 136px;
@@ -161,6 +186,14 @@
                             }
                         }
                     }
+                }
+                tbody::-webkit-scrollbar {
+                    scroll-behavior: smooth;
+                    width: 13px;
+                }
+                tbody::-webkit-scrollbar-thumb {
+                    border-radius: 10px;
+                    background-color:#828282;
                 }
             }
         }
@@ -172,144 +205,56 @@
         main {
             > #s4{
                 table{
-                    .desaparece{
+                    padding: 15px 0px;
+                    height: 800px;
+                    flex-direction: row;
+                    hr {
                         display: none;
+                        
                     }
-                }
-            }
-        }
-    }
-}
-
-@media(max-width: 1115px){
-    #page-adm-produtos{
-        main {
-            > #s4{
-                table{
                     thead {
+                        padding: 7px 30px;
+                        height: 100%;
                         tr {
-                            width: 85%;
-                        }
-                    }
-                    tbody {
-                        tr{
-                            > div {
-                                width: 85%;
+                            height: 90%;
+                            min-width: 120px;
+                            padding-bottom:px;
+                            display: flex;
+                            flex-direction: column;
+                            th {
+                                display: flex;
+                                justify-content: flex-start;
+                                align-items: center;
+                                height: 30px;
+                            }
+                            .img {
+                                height: 80px;
                             }
                         }
                     }
-                }
-            }
-        }
-    }
-}
-
-@media(max-width: 850px) {
-    #page-adm-produtos{
-        main {
-            > #s3 {
-                justify-content: center;
-            }
-            > #s4{
-                table{
-                    thead {
-                        tr {
-                            width: 80%;
-                        }
-                    }
                     tbody {
-                        tr{
-                            > div {
-                                width: 80%;
-                            }
-                        }
-                    }
-                    .desaparece2{
-                        display: none;
-                    }
-                }
-            }
-        }
-    }
-}
-
-@media(max-width: 620px) {
-    #page-adm-produtos{
-        main {
-            > #s1 {
-                flex-direction: column;
-                align-items: flex-start;
-                gap: 15px;
-                h1 {
-                    font-size: 22px;
-                }
-            }
-            > #s4{
-                table{
-                    thead {
+                        flex-direction: row;
+                        padding-bottom: 0px;
+                        height: 100%;
                         tr {
-                            width: 70%;
-                        }
-                    }
-                    tbody {
-                        tr{
+                            height: 100%;
+                            padding-right: 17px;
                             > div {
-                                width: 70%;
-                            }
-                        }
-                    }
-                    
-                    .desaparece3{
-                        display: none;
-                    }
-                }
-            }
-        }
-    }
-}
-@media(max-width: 435px) {
-    #page-adm-produtos{
-        main {
-            > #s1 {
-                h1 {
-                    font-size: 21px;
-                }
-                a {
-                    width: 180px;
-                    height: 33px;
-                    font-weight: 700;
-                    font-size: 14.5px;
-                }
-            }
-            > #s3 {
-                article {
-                    gap: 10px ;
-                    h3 {
-                        font-size: 17px;
-                    }
-                }
-            }
-            > #s4{
-                table{
-                    .desaparece4{
-                        display: none;
-                    }
-                    tbody {
-                        tr {
-                            height: 120px;
-                            > div {
-                                #img {
+                                flex-direction: column;
+                                height: 90%;
+                                padding: unset;
+                                min-width: 100px;
+                                .img {
+                                    height: 80px;
                                     img {
-                                        width: 80px;
-                                        height: 80px;
+                                        max-height: 80px;
                                     }
                                 }
-                            }
-                            #acoes {
-                                i {
-                                    font-size: 22px;
+                                .id {
+                                    margin: unset;
                                 }
                             }
+                            flex-direction: column;
                         }
                     }
                 }
@@ -317,3 +262,154 @@
         }
     }
 }
+
+// @media(max-width: 1300px){
+//     #page-adm-produtos{
+//         main {
+//             > #s4{
+//                 table{
+//                     .desaparece{
+//                         display: none;
+//                     }
+//                 }
+//             }
+//         }
+//     }
+// }
+
+// @media(max-width: 1115px){
+//     #page-adm-produtos{
+//         main {
+//             > #s4{
+//                 table{
+//                     thead {
+//                         tr {
+//                             width: 85%;
+//                         }
+//                     }
+//                     tbody {
+//                         tr{
+//                             > div {
+//                                 width: 85%;
+//                             }
+//                         }
+//                     }
+//                 }
+//             }
+//         }
+//     }
+// }
+
+// @media(max-width: 850px) {
+//     #page-adm-produtos{
+//         main {
+//             > #s3 {
+//                 justify-content: center;
+//             }
+//             > #s4{
+//                 table{
+//                     thead {
+//                         tr {
+//                             width: 80%;
+//                         }
+//                     }
+//                     tbody {
+//                         tr{
+//                             > div {
+//                                 width: 80%;
+//                             }
+//                         }
+//                     }
+//                     .desaparece2{
+//                         display: none;
+//                     }
+//                 }
+//             }
+//         }
+//     }
+// }
+
+// @media(max-width: 620px) {
+//     #page-adm-produtos{
+//         main {
+//             > #s1 {
+//                 flex-direction: column;
+//                 align-items: flex-start;
+//                 gap: 15px;
+//                 h1 {
+//                     font-size: 22px;
+//                 }
+//             }
+//             > #s4{
+//                 table{
+//                     thead {
+//                         tr {
+//                             width: 70%;
+//                         }
+//                     }
+//                     tbody {
+//                         tr{
+//                             > div {
+//                                 width: 70%;
+//                             }
+//                         }
+//                     }
+                    
+//                     .desaparece3{
+//                         display: none;
+//                     }
+//                 }
+//             }
+//         }
+//     }
+// }
+// @media(max-width: 435px) {
+//     #page-adm-produtos{
+//         main {
+//             > #s1 {
+//                 h1 {
+//                     font-size: 21px;
+//                 }
+//                 a {
+//                     width: 180px;
+//                     height: 33px;
+//                     font-weight: 700;
+//                     font-size: 14.5px;
+//                 }
+//             }
+//             > #s3 {
+//                 article {
+//                     gap: 10px ;
+//                     h3 {
+//                         font-size: 17px;
+//                     }
+//                 }
+//             }
+//             > #s4{
+//                 table{
+//                     .desaparece4{
+//                         display: none;
+//                     }
+//                     tbody {
+//                         tr {
+//                             height: 120px;
+//                             > div {
+//                                 .img {
+//                                     img {
+//                                         width: 80px;
+//                                         height: 80px;
+//                                     }
+//                                 }
+//                             }
+//                             #acoes {
+//                                 i {
+//                                     font-size: 22px;
+//                                 }
+//                             }
+//                         }
+//                     }
+//                 }
+//             }
+//         }
+//     }
+// }

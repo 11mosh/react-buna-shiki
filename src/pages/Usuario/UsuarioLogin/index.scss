@@ -55,7 +55,11 @@
                         text-decoration: none;
                         width: 100%;
                         color: black;
-                        text-align: center
+                        text-align: center;
+                        font-size: 15px;
+                    }
+                    p {
+                        font-size: 15px;
                     }
                     #ajuda {
                         display: flex;
@@ -99,11 +103,19 @@
     }
 }
 
-@media(max-width: 555px) {
+@media(max-width: 600px) {
     .pag-login {
         > section {
             #conteudo {
                 width: 350px;
+                > div {
+                    a{
+                        font-size: 14.5px;
+                    }
+                    p {
+                        font-size: 14.5px;
+                    }
+                }
             }
         }
     }

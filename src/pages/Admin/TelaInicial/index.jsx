@@ -51,6 +51,9 @@ export default function Index() {
                         <h3> Adicionar um combo </h3>
                     </Link>
                 </section>
+                <section id='s3'>
+                    <button onClick={Sair}> Sair </button>
+                </section>
             </main>
         </div>
     )

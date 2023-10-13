@@ -4,7 +4,7 @@ import { useNavigate, Link } from 'react-router-dom'
 import storage from 'local-storage'
 
 export default function CabecalhoAdm() {
-    const [adm, setAdm] = useState('')
+    const [adm, setAdm] = useState({})
     const navigate = useNavigate()
 
     // useEffect(() => {
@@ -24,13 +24,14 @@ export default function CabecalhoAdm() {
                 </Link>
             </section>
             <div className='logo'>
-                <img src='/assets/images/logo.svg' alt='logo' />
+                <img id='logo' src='/assets/images/logo.svg' alt='logo' />
+                <img id='logo-xicara' src='/assets/images/logo-xicara-6.svg' alt='logo-xicara' />
             </div>
             <div className='adm'>
                 <article>
-                    <h4> Bem vindo, {adm.nome}! </h4>
+                    <h4> Bem vindo, {adm.nome ? adm.nome : '' }! </h4>
                 </article>
-                <img src={adm.img === null ? '/assets/images/img-adm-wagner.svg' : adm.img} alt='adm'/>
+                <img src={adm.img ? adm.img : '/assets/images/img-adm-wagner.svg'} alt='adm'/>
             </div>
         </div>
     )

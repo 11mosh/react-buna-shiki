@@ -55,6 +55,7 @@
                     margin-bottom: 30px;
                     h3 {
                         font-weight: 500;
+                        font-size: 17px;
                     }
                     img {
                         width: 10px;
@@ -105,10 +106,15 @@
     
                 > div {
                     display: flex;
+                    align-items:center;
                     justify-content: center;
                     gap: 5px;
                     a{
                         color: #000;
+                        font-size: 15px;
+                    }
+                    p {
+                        font-size: 15px;
                     }
                 }
             }
@@ -120,6 +126,7 @@
 @media(max-width: 900px) {
     .pag-cadastro {
         > section {
+            height: unset;
             > article {
                 width: 500px;
                 form {
@@ -134,17 +141,23 @@
     .pag-cadastro {
         > section {
             > article {
-                width: 350px;
+                width: 355px;
                 form {
                     flex-direction: column;
                     gap: 30px;
+                    > article > #residencial {
+                        h3 {
+                            font-size: 16.5px;
+                            width: 210px;
+                        }
+                    }
                 }
             }
         }
     }
 }
 
-@media(max-width: 389px) {
+@media(max-width: 400px) {
     .pag-cadastro {
         > section {
             > article {
@@ -159,12 +172,15 @@
                         width: 100%;
                         gap: 50px;
                         h3 {
-                            font-size: 16px;
+                            font-size: 16px !important;
                             width: 200px;
                         }
                     }
                     > article > #residencial {
-                        gap: 50px;
+                        gap: 30px;
+                        h3 {
+                            width: 220px;
+                        }
                     }
                     .input {
                         width: 250px;

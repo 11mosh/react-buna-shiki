@@ -24,6 +24,7 @@ import Avaliacao from './pages/Usuario/MeusPedidos/avaliacao/telaAvaliacao';
 import DescricaoProduto from './pages/Usuario/DescricaoProduto';
 import PedidoFinalizado from './pages/Usuario/PedidoFinalizado';
 import Confirmacao from './pages/Usuario/Assinatura/Confirmacao';
+import Estatisticas from './pages/Admin/Estatísticas'
 
 export default function Rotas() {
     return(
@@ -58,6 +59,7 @@ export default function Rotas() {
                 <Route path='/adm/produtos' element={<Produtos />} />
                 <Route path='/adm/pedidos' element={<Pedidos />} />
                 <Route path='/adm/cadastro-combo' element={<CadastroCombo />} />
+                <Route path='/adm/estatisticas' element={<Estatisticas />} />
             </Routes>
          </BrowserRouter>
     )

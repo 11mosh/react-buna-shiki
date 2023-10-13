@@ -37,16 +37,20 @@
         }
     }
     .logo {
-            display: flex;
-            width: 26%;
-            height: 100%;
-            align-items: center;
-            justify-content: center;
-    img {
+        display: flex;
+        width: 26%;
+        min-width: 240px;
+        height: 100%;
+        align-items: center;
+        justify-content: center;
+        #logo {
             width: 240px;
             height: 100%;
-            }
         }
+        #logo-xicara {
+            display: none;
+        }
+    }
     .adm {
         width: 28%;
         padding-right: 30px;
@@ -80,19 +84,24 @@
         display: none !important;
     }
     .comp-adm-cabecalho {
-        padding-right: 55px;
+        padding-right: 10px;
         section {
-            padding-left: 20px;
-            article {
+
+
+            a {
                 p {
                     display: none;
                 }
             }
         }
         .logo {
-            img {
-                width: 175px;
-                height: 60px;
+            width: 91px;
+            min-width: unset;
+            #logo {
+                display: none;
+            }
+            #logo-xicara {
+                display: flex;
             }
         }
     }

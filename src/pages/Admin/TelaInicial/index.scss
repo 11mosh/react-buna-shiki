@@ -1,4 +1,5 @@
 #page-adm-inicio {
+    font-family: 'Inter';
     main {
         display: flex;
         flex-direction: column;
@@ -17,11 +18,12 @@
                 font-size: 35px;
             }
             button {
-                width: 90px;
+                width: 100px;
                 border-radius: 20px;
-                height: 35px;
+                height: 38px;
                 border: none;
                 background-color: #514641;
+                font-size: 15px;
                 color: white;
                 cursor: pointer;
             }
@@ -73,12 +75,14 @@
             }
         }
         #s3 {
+            display: none;
             button {
                 width: 100px;
                 border-radius: 20px;
-                height: 30px;
+                height: 38px;
                 border: none;
                 background-color: #514641;
+                font-size: 15px;
                 color: white;
                 cursor: pointer;
             }
@@ -105,9 +109,17 @@
             padding: 80px 30px;
             #s1{
                 display: flex;
+                justify-content: center;
+                button {
+                    display: none
+                }
             }
             #s2 {
                 padding: unset;
+            }
+            #s3 {
+                display: flex;
+                justify-content: center;
             }
         }
     }

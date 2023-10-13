@@ -1,4 +1,4 @@
-.comp-cabecalho {
+.comp-cabecalho-link {
     background-color: #514641;
     display: flex;
     align-items: center;
@@ -14,7 +14,6 @@
         align-items: center;
         gap: 20px;
         height: 100%;
-        margin-top: 5px;
         article {
             display: flex;
             flex-direction: column;
@@ -25,7 +24,7 @@
                 width: 35px;
             }
             p {
-                font-size: 13px;
+                font-size: 14px;
             }
             justify-content: center;
         }
@@ -39,13 +38,16 @@
             width: 200px;
             height: 100%;
         }
+        #logo-xicara {
+            display: none;
+            height: unset;
+            width: unset;
+        }
     }
     .lupa {
         display: flex;
-        justify-content: flex-end;
-        img {
-            width: 25px;
-        }
+        width: 33%;
+        height: 100%;
     }
     a {
         display: flex;
@@ -60,16 +62,21 @@
     }
 }
 
-@media (max-width: 560px) {
-    a {
-        width: 47px;
-        
-        img {
-            width: 47px;
-        }
-
-        p {
-            display: none;
+@media (max-width: 700px) {
+    .comp-cabecalho-link {
+        section {
+            article {
+                a {
+                    img {
+                        width: 47px;
+                    }
+            
+                    > p {
+                        display: none !important;
+                    }
+                }
+                    
+            }
         }
     }
 }
