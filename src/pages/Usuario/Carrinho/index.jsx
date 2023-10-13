@@ -33,58 +33,12 @@ export default function Carrinho () {
                         <main>
                             <section>
                                 <article id="a1">
-                                    <div>
-                                        <img src='/assets/images/cafe3coracoes.png' alt='' />
+                                    <div id="produto">
+                                        <img src='/assets/images/cafeteiraa.png' alt='' />
                                     </div>
                                     <div id="detalhes">
-                                        <p> Orfeu intenso </p>
-                                        <p> 1kg </p>
-                                        <div> 
-                                            <button> 
-                                                <img src='/assets/images/icon-menos.svg' alt=''/>
-                                            </button>
-                                            3
-                                            <button>
-                                                <img src='/assets/images/icon-mais.svg' alt=''/>
-                                            </button>
-                                        </div>
-                                    </div>
-                                </article>
-                                <article id="a2">
-                                    <i className="fa-regular fa-trash-can"></i>
-                                </article>
-                            </section>
-                            <section>
-                                <article id="a1">
-                                    <div>
-                                        <img src='/assets/images/cafe3coracoes.png' alt='' />
-                                    </div>
-                                    <div id="detalhes">
-                                        <p> Orfeu intenso </p>
-                                        <p> 1kg </p>
-                                        <div> 
-                                            <button> 
-                                                <img src='/assets/images/icon-menos.svg' alt=''/>
-                                            </button>
-                                            3
-                                            <button>
-                                                <img src='/assets/images/icon-mais.svg' alt=''/>
-                                            </button>
-                                        </div>
-                                    </div>
-                                </article>
-                                <article id="a2">
-                                    <i className="fa-regular fa-trash-can"></i>
-                                </article>
-                            </section>
-                            <section>
-                                <article id="a1">
-                                    <div>
-                                        <img src='/assets/images/cafe3coracoes.png' alt='' />
-                                    </div>
-                                    <div id="detalhes">
-                                        <p> Orfeu intenso </p>
-                                        <p> 1kg </p>
+                                        <p> Orfeu intenso 1kg</p>
+                                        <p> R$135,50 </p>
                                         <div> 
                                             <button> 
                                                 <img src='/assets/images/icon-menos.svg' alt=''/>

@@ -154,6 +154,14 @@
                         }
                     }
                 }
+                tbody::-webkit-scrollbar {
+                    scroll-behavior: smooth;
+                    width: 13px;
+                }
+                tbody::-webkit-scrollbar-thumb {
+                    border-radius: 10px;
+                    background-color:#828282;
+                }
             }
         }
     }

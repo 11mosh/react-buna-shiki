@@ -1,0 +1,436 @@
+#page-pagamento {
+    #conteudo {
+        font-family: 'Inter';
+        .etapas {
+            background-color: #d9d9d9;
+            height: 50px;
+            width: 100%;
+            max-width: 555px;
+            min-width: 555px;
+            display: flex;
+            align-items: center;
+            padding: 0px 20px;
+            h3 {
+                font-size: 17px;
+            }
+        }
+        #s1{
+            padding: 50px;
+            display: flex;
+            flex-direction: column;
+            gap: 30px;
+            article {
+                width: 100%;
+                height: 500px;
+                overflow: scroll;
+                overflow-x: hidden;
+                flex-wrap: wrap;
+                padding: 30px;
+                display: flex;
+                gap: 50px;
+                box-shadow: 0px 0px 10px 0px black;
+                #produto {
+                    display: flex;
+                    gap: 5px;
+                    figure{
+                        img {
+                            width: 130px;
+                            height: 130px;
+                        }
+                    }
+                    aside {
+                        display: flex;
+                        flex-direction: column;
+                        align-items: center;
+                        gap: 7px;
+                        h5 {
+                            font-size: 15.5px;
+                            font-weight: 600;
+                        }
+                        b {
+                            color: #661515;
+                            font-size: 14.5px;
+                        }
+                        > div {
+                            display: flex;
+                            flex-direction: row;
+                            margin-top: 25px;
+                            gap: 7px;
+                            button {
+                                width: 20px;
+
+                                display: flex;
+                                align-items: center;
+                                justify-content: center;
+                                background-color: rgba(10,23,55,0);
+                                border: 0.5px solid black;
+                            }
+                        }
+                    }
+                }
+            }
+            article::-webkit-scrollbar {
+                scroll-behavior: smooth;
+                width: 28px;
+            }
+            article::-webkit-scrollbar-thumb {
+                border-radius: 25px;
+                background-color:#828282;
+                border: 8px solid #fff;
+            }
+
+        }
+        #s2 {
+            display: flex;
+            align-items: center;
+            flex-wrap: wrap;
+            justify-content: space-between;
+            gap: 80px;
+            padding: 0px 50px 50px 50px;
+            width: 100%;
+            select {
+                width: 100%;
+                border-radius: 8px;
+                height: 30px;
+                padding: 0px 8px;
+                font-size: 14.5px;
+            }
+            select:focus {
+                outline: none;
+            }
+            #entrega {
+                display: flex;flex-direction: column;
+                gap: 20px;
+                height: 100%;
+                #entrega-conteudo {
+                    box-shadow: 0px 0px 10px 0px black;
+                    padding: 30px;
+                    height: 400px;
+                    display: flex;
+                    flex-direction: column;
+                    justify-content: space-between;
+                    gap: 50px;
+                    section {
+                        display: flex;
+                        flex-direction: column;
+                        gap: 25px;
+                        h5 {
+                            font-size: 16px;
+                            font-weight: 650;
+                        }
+                        > div {
+                            display: flex;
+                            justify-content: space-between;
+                            align-items: center;
+                            flex-wrap: wrap;
+                            gap: 20px;
+                            padding-left: 10px;
+                            article {
+                                display: flex;
+                                flex-direction: column;
+                                align-items: center;
+                                gap: 5px;
+                                div {
+                                    padding: 5px 18px;
+                                    font-size: 15.5px;
+                                    margin-bottom: 10px;
+                                    font-weight: 500;
+                                }
+                                #tipoEntregaSelecionado {
+                                    color: white;
+                                    transition: 0.2s;
+                                    background-color: #f47e3c;
+                                    box-shadow: 1.5px 4px 10px rgb(27, 27, 27);
+                                }
+                                figure {
+                                    max-width: 100px;
+                                    height: 50px;
+                                    display: flex;
+                                    align-items: center;
+                                    justify-content:center;
+                                    img {
+                                        max-width: 100px;
+                                    }
+                                }
+                                > p {
+                                    font-size: 14.3px;
+                                    text-align: center;
+                                    width: 90%;
+                                    b {
+                                        color: #661515;
+                                    }
+                                }
+                            } 
+                        }
+                    }
+                }
+                
+            }
+            #pagamento {
+                height: 470px;
+                .etapas {
+                    margin-bottom: 20px;
+                }
+                #alinharButton {
+                    width: 100%;
+                    display: flex;
+                    align-items: center ;
+                    justify-content: center ;
+                    button {
+                        height: 40px;
+                        font-size: 15.5px;
+                        color: white;
+                        width: 250px;
+                        border-radius: 25px;
+                        background-color: #f47e3c;
+                        margin-top: 80px;
+                        border: none;
+                        font-weight: 550;
+                    }
+                }
+                #total {
+                    display: flex;
+                    flex-direction: column;
+                    padding: 0px 15px;
+                    gap: 8px;
+                    > div {
+                        display: flex;
+                        font-size: 15px;
+                        justify-content: space-between;
+                        .preco {
+                            width: 80px;
+                        }
+                    }
+                }
+                select {
+                    margin: 50px 0px 30px 0px;
+                }
+                #pagamentoPix {
+                    border: 1px solid rgb(118, 118, 118);
+                    display: flex;
+                    align-items: center;
+                    font-size: 14px;
+                    width: 100%;
+                    justify-content: space-between;
+                    border-radius: 8px;
+                    height: 30px;
+                    padding: 0px 8px;
+                    > div {
+                        display: flex;
+                        align-items: center;
+                        gap: 5px;
+                    }
+                }
+            }
+        }
+    }
+}
+@media(max-width: 650px){
+    #page-pagamento {
+        #conteudo {
+            .etapas {
+                min-width: unset;
+                justify-content: center;
+                h3 {
+                    font-size: 16.5px;
+                }
+            }
+            #s1 {
+                article {
+                    > div {
+                        figure {
+                            img {
+                                width: 115px !important;
+                                height: 115px !important;
+                            }
+                        }
+                        aside {
+                            div {
+                                font-size: 15px;
+                            }
+                        }
+                    }
+                }
+            }
+            #s2 {
+                #entrega {
+                    width: 100%;
+                    #entrega-conteudo {
+                        height: unset;
+                        section {
+                            height: unset;
+                            > div {
+                                flex-direction: column;
+                                gap: 50px;
+                            }
+                        }
+                    }
+                }
+                #pagamento {
+                    width: 100%;
+                    #alinharButton {
+                        button {
+                            height: 35px;
+                            font-size: 15.2px;
+                        }
+                    }
+                }
+            }
+        }
+    }
+}
+@media(max-width: 500px){
+    #page-pagamento {
+        #conteudo {
+            .etapas {
+                min-width: unset;
+                justify-content: center;
+                height: 43px;
+                h3 {
+                    font-size: 16px;
+                }
+            }
+            #s1 {
+                article {
+                    > div {
+                        h5 {                            
+                            font-size: 15px !important;
+                         }
+                         b {
+                             font-size: 14px !important;
+                        }
+                        figure {
+                            img {
+                                width: 110px !important;
+                                height: 110px !important;
+                            }
+                        }
+                    }
+                }
+            }
+            #s2 {
+                select {
+                    font-size: 14px;
+                }
+                #entrega {
+                    width: 100%;
+                    #entrega-conteudo {
+                        height: unset;
+                        section {
+                            align-items: center;
+                            height: unset;
+                            > div {
+                                flex-direction: column;
+                                gap: 50px;
+                                article {
+                                    > div {
+                                        font-size: 15.2px;
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+                #pagamento {
+                    width: 100%;
+                    #paga
+                    #alinharButton {
+                        button {
+                            height: 35px;
+                            font-size: 15.2px;
+                        }
+                    }
+                    #pagamentoPix {
+                        flex-direction: column;
+                        align-items: flex-start;
+                        height: 60px;
+                        padding: 5px 8px;
+                    }
+                    #total {
+                        > div {
+                                font-size: 14.5px;
+                        } 
+                    }
+                }
+            }
+        }
+    }
+}
+@media(max-width: 400px){
+    #page-pagamento {
+        #conteudo {
+            .etapas {
+                min-width: unset;
+                justify-content: center;
+                height: 43px;
+                h3 {
+                    font-size: 16px;
+                }
+            }
+            #s1 {
+                article {
+                    > div {
+                        h5 {                            
+                            font-size: 15px !important;
+                         }
+                         b {
+                             font-size: 14px !important;
+                        }
+                        figure {
+                            img {
+                                width: 100px !important;
+                                height: 100px !important;
+                            }
+                        }
+                    }
+                }
+            }
+            #s2 {
+                select {
+                    font-size: 14px;
+                }
+                #entrega {
+                    width: 100%;
+                    #entrega-conteudo {
+                        height: unset;
+                        section {
+                            align-items: center;
+                            height: unset;
+                            > div {
+                                flex-direction: column;
+                                gap: 50px;
+                                article {
+                                    > div {
+                                        font-size: 15.2px;
+                                        text-align: center;
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+                #pagamento {
+                    width: 100%;
+                    #paga
+                    #alinharButton {
+                        button {
+                            height: 35px;
+                            font-size: 15.2px;
+                        }
+                    }
+                    #pagamentoPix {
+                        flex-direction: column;
+                        align-items: flex-start;
+                        height: 60px;
+                        padding: 5px 8px;
+                    }
+                    #total {
+                        > div {
+                                font-size: 14.5px;
+                        } 
+                    }
+                }
+            }
+        }
+    }
+}

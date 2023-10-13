@@ -25,6 +25,7 @@ import DescricaoProduto from './pages/Usuario/DescricaoProduto';
 import PedidoFinalizado from './pages/Usuario/PedidoFinalizado';
 import Confirmacao from './pages/Usuario/Assinatura/Confirmacao';
 import Estatisticas from './pages/Admin/Estatísticas'
+import Pagamento from './pages/Usuario/Pagamento'
 
 export default function Rotas() {
     return(
@@ -51,6 +52,7 @@ export default function Rotas() {
                 <Route path='/assinatura' element={<Assinatura/>} />
                 <Route path='/assinatura/confirmacao' element={<Confirmacao />} />
                 <Route path='/pedido-finalizado' element={<PedidoFinalizado />} />
+                <Route path='/pagamento' element={<Pagamento />} />
 
                 <Route path='/adm' element={<AdmLogin />} />
                 <Route path='/adm/inicio' element={<AdmInicio />} />

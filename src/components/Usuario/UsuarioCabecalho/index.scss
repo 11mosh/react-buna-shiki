@@ -111,7 +111,8 @@
         }
     }
     > nav {
-        height: 40px;
+        height: 42px;
+
         display: flex;
         align-items: center;
         > section {
@@ -126,8 +127,9 @@
             color: black;
             text-decoration: none;
             transition: .2s;
+            font-size: 15px;
         }
-        > a:hover {
+         a:hover {
             font-weight: bold;
             transition: .2s;
         }
