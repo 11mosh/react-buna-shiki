@@ -25,16 +25,22 @@ export default function MeusPedidos () {
         <main className='meusPedidos'>
             <CabecalhoUsuario />
 
-            <nav style={{padding: '20px'}}>
-                <Link to={'/adm/inicio'} style={{ decoration: 'dashed', color: 0}}> Minha conta </Link>
-                 &gt;
-                <p>Meus pedidos </p>
-            </nav>
-            <hr />
+        <div className="corpo">
             
-
+            <nav>
+                    <div className="listra"></div>
+                    <nav>
+                        <Link to={'/conta/cartoes'}>Cartões</Link> <hr className="desaparece" />
+                        <Link to={'/conta/assinaturas'}>Assinaturas</Link> <hr className="desaparece" />
+                        <Link to={'/conta/dados-pessoais'}>Dados Pessoais</Link> <hr className="desaparece" />
+                        <Link to={'/conta/enderecos'}>Endereços</Link> <hr className="desaparece" />
+                        <Link to={'/conta/meus-pedidos'}  style={{color: '#F47E3C'}}>Meus Pedidos</Link> <hr className="desaparece" />
+                        <Link to={'/'}>Sair</Link>
+                    </nav>
+                </nav>
+            
+            
             <article className='aba-pedidos'>
-                <h1>Meus Pedidos</h1>
 
                 <section className="pedido">
                     <nav className='dados-pedido'>
@@ -132,7 +138,9 @@ export default function MeusPedidos () {
                 <h3 style={ {opacity: 0.5}}>Seus pedidos acabam por aqui.</h3>
                 <img src="/assets/images/pedidosAcabam.png" alt="" style={{height: '80px', opacity: 0.5, marginBottom: '40px'}}/>
             </article>
+        </div>
             <UsuarioRodape />
+
         </main>
     )
 }

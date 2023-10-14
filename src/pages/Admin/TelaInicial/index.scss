@@ -26,10 +26,11 @@
                 font-size: 15px;
                 color: white;
                 cursor: pointer;
+                transition: 0.2s;
             }
             button:active {
                 background-color: #363230;
-                transition: 0.2s
+                transition: 0.2s;
             }
         }
         #s2 {
@@ -45,6 +46,7 @@
                 align-items: center;
                 flex-direction: column;
                 padding: 10px;
+                justify-content: center;
                 width: 250px;
                 gap: 15px;
                 text-decoration: none;
@@ -59,6 +61,8 @@
                     display: flex;
                     align-items: center;
                     justify-content: center;
+                    transition: 0.2s;
+
                     img {
                         max-width: 100px;
                         height: 100px;
@@ -69,8 +73,8 @@
                     }
                 }
                 div:active {
-                    background-color: #FF7223;
-                    transition: 0.1s
+                    background-color: #ff7e33;
+                    transition: 0.2s;
                 }
             }
         }

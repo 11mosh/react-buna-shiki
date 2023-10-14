@@ -50,6 +50,12 @@ export default function Index() {
                         </div>
                         <h3> Adicionar um combo </h3>
                     </Link>
+                    <Link to='/adm/consulta-assinaturas'>
+                        <div>
+                            <img src='/assets/images/calendar.png' alt='icon-box' />
+                        </div>
+                        <h3> Assinaturas </h3>
+                    </Link>
                 </section>
                 <section id='s3'>
                     <button onClick={Sair}> Sair </button>

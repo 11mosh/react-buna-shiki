@@ -24,8 +24,11 @@ import Avaliacao from './pages/Usuario/MeusPedidos/avaliacao/telaAvaliacao';
 import DescricaoProduto from './pages/Usuario/DescricaoProduto';
 import PedidoFinalizado from './pages/Usuario/PedidoFinalizado';
 import Confirmacao from './pages/Usuario/Assinatura/Confirmacao';
-import Estatisticas from './pages/Admin/Estatísticas'
-import Pagamento from './pages/Usuario/Pagamento'
+import Estatisticas from './pages/Admin/Estatísticas';
+import Pagamento from './pages/Usuario/Pagamento';
+import ConsultaAssinaturas from './pages/Admin/Assinaturas';
+import RevisaoProduto from './pages/Admin/RevisaoProduto';
+import Cartoes from './pages/Usuario/PerfilCartoes';
 
 export default function Rotas() {
     return(
@@ -41,12 +44,13 @@ export default function Rotas() {
                 <Route path='/login' element={<UsuarioLogin />}/>
                 <Route path='/cadastro' element={<UsuarioCadastro />} />
                 <Route path='/combos' element={<Combos />} />
-                <Route path='/cliente' element={<Cliente />} />
-                <Route path='/conta/meus-pedidos' element={<MeusPedidos />} />
                 <Route path='/descricao/:id' element={<DescricaoProduto />} />
-
+                <Route path='/conta/cartoes' element={<Cartoes />} />
                 <Route path='/avalie' element={<Avaliacao />} />
-            
+
+                <Route path='/conta/meus-pedidos' element={<MeusPedidos />} />
+                <Route path='/conta/cartoes' element={<Cartoes />} />
+
                 <Route path='/produtos/graos' element={<UsuarioProdutosGraos />} />
                 <Route path='/carrinho' element={<Carrinho/>} />
                 <Route path='/assinatura' element={<Assinatura/>} />
@@ -62,6 +66,8 @@ export default function Rotas() {
                 <Route path='/adm/pedidos' element={<Pedidos />} />
                 <Route path='/adm/cadastro-combo' element={<CadastroCombo />} />
                 <Route path='/adm/estatisticas' element={<Estatisticas />} />
+                <Route path='/adm/consulta-assinaturas' element={<ConsultaAssinaturas />} />
+                <Route path='/adm/:id/revisao-produto' element={<RevisaoProduto />} />
             </Routes>
          </BrowserRouter>
     )

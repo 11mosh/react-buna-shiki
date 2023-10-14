@@ -8,7 +8,7 @@ import 'react-toastify/dist/ReactToastify.css';
 export default function Confirmacao () {
 
     const notificacao = () => {
-        toast('Feito! Seja bem-vindo à nossa assinatura! :)', {
+        toast('Seja bem-vindo à nossa assinatura! :)', {
             icon: (
                 <img
                     src="/assets/images/bunashikiSeta.svg"
