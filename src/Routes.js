@@ -13,11 +13,11 @@ import AdmInicio from './pages/Admin/TelaInicial';
 import CadastroProduto from './pages/Admin/CadastroProduto';
 import Produtos from './pages/Admin/Produtos';
 import CadastroCombo from './pages/Admin/CadastroCombo';
-import UsuarioProdutosGraos from './pages/Usuario/PaginaProdutosGraos'
+import ProdutosGraos from './pages/Usuario/PaginaProdutos/Graos'
 import Cliente from './pages/Usuario/UsuarioPerfil';
 import MeusPedidos from './pages/Usuario/MeusPedidos';
 import Pedidos from './pages/Admin/Pedidos';
-import Combos from './pages/Usuario/Combos';
+import Combos from './pages/Usuario/PaginaProdutos/Combos';
 import Assinatura from './pages/Usuario/Assinatura';
 import UsuarioRodape from './components/Usuario/UsuarioRodape';
 import Avaliacao from './pages/Usuario/MeusPedidos/avaliacao/telaAvaliacao';
@@ -26,6 +26,8 @@ import PedidoFinalizado from './pages/Usuario/PedidoFinalizado';
 import Confirmacao from './pages/Usuario/Assinatura/Confirmacao';
 import Estatisticas from './pages/Admin/Estatísticas'
 import Pagamento from './pages/Usuario/Pagamento'
+import RevisaoPedido from './pages/Admin/Pedidos/Revisão'
+import AcompanharPedido from './pages/Usuario/AcompanharPedido'
 
 export default function Rotas() {
     return(
@@ -42,12 +44,13 @@ export default function Rotas() {
                 <Route path='/cadastro' element={<UsuarioCadastro />} />
                 <Route path='/combos' element={<Combos />} />
                 <Route path='/cliente' element={<Cliente />} />
+                <Route path='/acompanhar-pedido' element={<AcompanharPedido />} />
                 <Route path='/conta/meus-pedidos' element={<MeusPedidos />} />
                 <Route path='/descricao/:id' element={<DescricaoProduto />} />
 
                 <Route path='/avalie' element={<Avaliacao />} />
             
-                <Route path='/produtos/graos' element={<UsuarioProdutosGraos />} />
+                <Route path='/produtos/graos' element={<ProdutosGraos />} />
                 <Route path='/carrinho' element={<Carrinho/>} />
                 <Route path='/assinatura' element={<Assinatura/>} />
                 <Route path='/assinatura/confirmacao' element={<Confirmacao />} />
@@ -62,6 +65,7 @@ export default function Rotas() {
                 <Route path='/adm/pedidos' element={<Pedidos />} />
                 <Route path='/adm/cadastro-combo' element={<CadastroCombo />} />
                 <Route path='/adm/estatisticas' element={<Estatisticas />} />
+                <Route path='/adm/pedidos/revisao' element={<RevisaoPedido />} />
             </Routes>
          </BrowserRouter>
     )

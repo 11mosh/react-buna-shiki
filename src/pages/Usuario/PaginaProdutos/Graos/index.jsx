@@ -1,6 +1,6 @@
 import './index.scss';
-import Cabecalho from '../../../components/Usuario/UsuarioCabecalho';
-import UsuarioRodape from '../../../components/Usuario/UsuarioRodape';
+import Cabecalho from '../../../../components/Usuario/UsuarioCabecalho';
+import UsuarioRodape from '../../../../components/Usuario/UsuarioRodape';
 
 
 export default function Index(){

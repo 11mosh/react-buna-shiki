@@ -1,6 +1,6 @@
 import './index.scss';
-import CabecalhoUsuario from '../../../components/Usuario/UsuarioCabecalho';
-import UsuarioRodape from '../../../components/Usuario/UsuarioRodape'
+import CabecalhoUsuario from '../../../../components/Usuario/UsuarioCabecalho';
+import UsuarioRodape from '../../../../components/Usuario/UsuarioRodape'
 
 export default function Combos(){
     return(

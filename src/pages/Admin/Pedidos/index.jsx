@@ -36,6 +36,7 @@ export default function index() {
                                 <option> Pedido em preparo </option>
                                 <option> À caminho </option>
                                 <option> Entregue </option>
+                                <option> Cancelado </option>
                             </select>
                         </div>
                     </article>
@@ -61,20 +62,20 @@ export default function index() {
                     <table>
                     <thead>
                         <tr>
-                        <th className='desaparece4 pequeno'> Código </th>
-                        <th className='grande'> Cliente </th>
-                        <th className='desaparece2 grande'> Status </th>
-                        <th className='desaparece medio'> Data </th>
-                        <th className='desaparece2 medio'> Faturamento </th>
-                        <th className='desaparece3 grande'> Pagamento </th>
+                        <th className='pequeno'> Código </th>
+                        <th className='desaparece4 grande'> Cliente </th>
+                        <th className='grande'> Status </th>
+                        <th className='desaparece2 medio'> Data </th>
+                        <th className='desaparece3 medio'> Faturamento </th>
+                        <th className='desaparece grande'> Pagamento </th>
                         </tr>
                     </thead>
                     <hr />
-                    <tbody>
+                    <tbody>     
                         <tr>
-                            <td className='desaparece4 pequeno'> 12 </td>
-                            <td className='desaparece2 grande'> cliente cliente </td>
-                            <td className='desaparece grande'> 
+                            <td className='pequeno'> 12 </td>
+                            <td className='desaparece4 grande'> cliente cliente </td>
+                            <td className='grande'> 
                                 <select>
                                     <option> Pedido realizado </option>
                                     <option> Aguardando pagamento</option>
