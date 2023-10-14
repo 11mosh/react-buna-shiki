@@ -13,28 +13,28 @@ export default function Combos(){
                         <div>
                             <section>
                                 <div>
-                                    <img id='combo-esquerda' src='/assets/images/cafe3coracoes.png' alt='' />
-                                    <img  src='/assets/images/cafe3coracoes.png' alt='' />
-                                    <img id='combo-direita' src='/assets/images/cafe3coracoes.png' alt='' />    
+                                    <img id='combo-esquerda' src='/assets/images/cafe3coracoes.svg' alt='' />
+                                    <img  src='/assets/images/cafe3coracoes.svg' alt='' />
+                                    <img id='combo-direita' src='/assets/images/cafe3coracoes.svg' alt='' />    
                                 </div>
                                 <p> Orfeu orgânico 250g </p>
                                 <h5 className='precoMarrom'> R$20,00 x 3</h5>
                             </section>
                             <img src='/assets/images/icon-mais.png' alt='' />
                             <section>
-                                <img src='/assets/images/cafe3coracoes.png' alt='' />
+                                <img src='/assets/images/cafe3coracoes.svg' alt='' />
                                 <p> Orfeu orgânico 250g </p>
                                 <h5 className='precoMarrom'> R$20,00</h5>
                             </section>
                             <img className='some' src='/assets/images/icon-mais.png' alt='' />
                             <section>
-                                <img src='/assets/images/cafe3coracoes.png' alt='' />
+                                <img src='/assets/images/cafe3coracoes.svg' alt='' />
                                 <p> Orfeu orgânico 250g </p>
                                 <h5 className='precoMarrom'> R$20,00</h5>
                             </section>
                             <img src='/assets/images/icon-mais.png' alt='' />
                             <section>
-                                <img src='/assets/images/cafe3coracoes.png' alt='' />
+                                <img src='/assets/images/cafe3coracoes.svg' alt='' />
                                 <p> Orfeu orgânico 250g </p>
                                 <h5 className='precoMarrom'> R$20,00</h5>
                             </section>
@@ -53,25 +53,25 @@ export default function Combos(){
                         <h2> Combo 4 cafés variado </h2>
                         <div>
                             <section>
-                                <img src='/assets/images/cafe3coracoes.png' alt='' />
+                                <img src='/assets/images/cafe3coracoes.svg' alt='' />
                                 <p> Orfeu orgânico 250g </p>
                                 <h5 className='precoMarrom'> R$20,00</h5>
                             </section>
                             <img src='/assets/images/icon-mais.png' alt='' />
                             <section>
-                                <img src='/assets/images/cafe3coracoes.png' alt='' />
+                                <img src='/assets/images/cafe3coracoes.svg' alt='' />
                                 <p> Orfeu orgânico 250g </p>
                                 <h5 className='precoMarrom'> R$20,00</h5>
                             </section>
                             <img className='some' src='/assets/images/icon-mais.png' alt='' />
                             <section>
-                                <img src='/assets/images/cafe3coracoes.png' alt='' />
+                                <img src='/assets/images/cafe3coracoes.svg' alt='' />
                                 <p> Orfeu orgânico 250g </p>
                                 <h5 className='precoMarrom'> R$20,00</h5>
                             </section>
                             <img src='/assets/images/icon-mais.png' alt='' />
                             <section>
-                                <img src='/assets/images/cafe3coracoes.png' alt='' />
+                                <img src='/assets/images/cafe3coracoes.svg' alt='' />
                                 <p> Orfeu orgânico 250g </p>
                                 <h5 className='precoMarrom'> R$20,00</h5>
                             </section>
@@ -94,25 +94,25 @@ export default function Combos(){
                         <h2> Combo diversificado </h2>
                         <div>
                             <section>
-                                <img src='/assets/images/cafe3coracoes.png' alt='' />
+                                <img src='/assets/images/cafe3coracoes.svg' alt='' />
                                 <p> Orfeu orgânico 250g </p>
                                 <h5 className='precoMarrom'> R$20,00</h5>
                             </section>
                             <img src='/assets/images/icon-mais.png' alt='' />
                             <section>
-                                <img src='/assets/images/cafe3coracoes.png' alt='' />
+                                <img src='/assets/images/cafe3coracoes.svg' alt='' />
                                 <p> Orfeu orgânico 250g </p>
                                 <h5 className='precoMarrom'> R$20,00</h5>
                             </section>
                             <img className='some'src='/assets/images/icon-mais.png' alt='' />
                             <section>
-                                <img src='/assets/images/cafe3coracoes.png' alt='' />
+                                <img src='/assets/images/cafe3coracoes.svg' alt='' />
                                 <p> Orfeu orgânico 250g </p>
                                 <h5 className='precoMarrom'> R$20,00</h5>
                             </section>
                             <img src='/assets/images/icon-mais.png' alt='' />
                             <section>
-                                <img src='/assets/images/cafe3coracoes.png' alt='' />
+                                <img src='/assets/images/cafe3coracoes.svg' alt='' />
                                 <p> Orfeu orgânico 250g </p>
                                 <h5 className='precoMarrom'> R$20,00</h5>
                             </section>

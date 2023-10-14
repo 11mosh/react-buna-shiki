@@ -14,7 +14,6 @@ import CadastroProduto from './pages/Admin/CadastroProduto';
 import Produtos from './pages/Admin/Produtos';
 import CadastroCombo from './pages/Admin/CadastroCombo';
 import ProdutosGraos from './pages/Usuario/PaginaProdutos/Graos'
-import Cliente from './pages/Usuario/UsuarioPerfil';
 import MeusPedidos from './pages/Usuario/MeusPedidos';
 import Pedidos from './pages/Admin/Pedidos';
 import Combos from './pages/Usuario/PaginaProdutos/Combos';
@@ -28,6 +27,7 @@ import Estatisticas from './pages/Admin/Estatísticas'
 import Pagamento from './pages/Usuario/Pagamento'
 import RevisaoPedido from './pages/Admin/Pedidos/Revisão'
 import AcompanharPedido from './pages/Usuario/AcompanharPedido'
+import DadosPessoais from './pages/Usuario/UsuarioPerfil/dadosPessoais'
 
 export default function Rotas() {
     return(
@@ -42,10 +42,10 @@ export default function Rotas() {
                 <Route path='/rodape' element={<UsuarioRodape />} />
                 <Route path='/login' element={<UsuarioLogin />}/>
                 <Route path='/cadastro' element={<UsuarioCadastro />} />
-                <Route path='/combos' element={<Combos />} />
-                <Route path='/cliente' element={<Cliente />} />
+                <Route path='/produtos/combos' element={<Combos />} />
                 <Route path='/acompanhar-pedido' element={<AcompanharPedido />} />
                 <Route path='/conta/meus-pedidos' element={<MeusPedidos />} />
+                <Route path='/conta/dados-pessoais' element={<DadosPessoais />} />
                 <Route path='/descricao/:id' element={<DescricaoProduto />} />
 
                 <Route path='/avalie' element={<Avaliacao />} />
