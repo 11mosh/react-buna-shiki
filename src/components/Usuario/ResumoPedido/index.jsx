@@ -55,7 +55,7 @@ export default function Index() {
                     <section id='produtos'>
                         <article>
                             <div>
-                                <img src="/assets/images/cafe3coracoes.png" alt="produto" />
+                                <img src="/assets/images/cafe3coracoes.svg" alt="produto" />
                                 <div id='qtd'> 3 </div>
                             </div>
                             <h4> Orfeu Intenso 1kg</h4>
@@ -63,7 +63,7 @@ export default function Index() {
                         </article>
                         <article>
                             <div>
-                                <img src="/assets/images/cafe3coracoes.png" alt="produto" />
+                                <img src="/assets/images/cafe3coracoes.svg" alt="produto" />
                                 <div id='qtd'> 3 </div>
                             </div>
                             <h4> Orfeu Intenso 1kg</h4>
@@ -71,7 +71,7 @@ export default function Index() {
                         </article>
                         <article>
                             <div>
-                                <img src="/assets/images/cafe3coracoes.png" alt="produto" />
+                                <img src="/assets/images/cafe3coracoes.svg" alt="produto" />
                                 <div id='qtd'> 3 </div>
                             </div>
                             <h4> Orfeu Intenso 1kg</h4>
@@ -79,7 +79,7 @@ export default function Index() {
                         </article>
                         <article>
                             <div>
-                                <img src="/assets/images/cafe3coracoes.png" alt="produto" />
+                                <img src="/assets/images/cafe3coracoes.svg" alt="produto" />
                                 <div id='qtd'> 3 </div>
                             </div>
                             <h4> Orfeu Intenso 1kg</h4>
@@ -87,7 +87,7 @@ export default function Index() {
                         </article>
                         <article>
                             <div>
-                                <img src="/assets/images/cafe3coracoes.png" alt="produto" />
+                                <img src="/assets/images/cafe3coracoes.svg" alt="produto" />
                                 <div id='qtd'> 3 </div>
                             </div>
                             <h4> Orfeu Intenso 1kg</h4>
@@ -95,7 +95,7 @@ export default function Index() {
                         </article>
                         <article>
                             <div>
-                                <img src="/assets/images/cafe3coracoes.png" alt="produto" />
+                                <img src="/assets/images/cafe3coracoes.svg" alt="produto" />
                                 <div id='qtd'> 3 </div>
                             </div>
                             <h4> Orfeu Intenso 1kg</h4>
@@ -103,7 +103,7 @@ export default function Index() {
                         </article>
                         <article>
                             <div>
-                                <img src="/assets/images/cafe3coracoes.png" alt="produto" />
+                                <img src="/assets/images/cafe3coracoes.svg" alt="produto" />
                                 <div id='qtd'> 3 </div>
                             </div>
                             <h4> Orfeu Intenso 1kg</h4>
@@ -111,7 +111,7 @@ export default function Index() {
                         </article>
                         <article>
                             <div>
-                                <img src="/assets/images/cafe3coracoes.png" alt="produto" />
+                                <img src="/assets/images/cafe3coracoes.svg" alt="produto" />
                                 <div id='qtd'> 3 </div>
                             </div>
                             <h4> Orfeu Intenso 1kg</h4>

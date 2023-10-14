@@ -28,6 +28,7 @@ import Pagamento from './pages/Usuario/Pagamento'
 import RevisaoPedido from './pages/Admin/Pedidos/Revisão'
 import AcompanharPedido from './pages/Usuario/AcompanharPedido'
 import DadosPessoais from './pages/Usuario/UsuarioPerfil/dadosPessoais'
+import ResumoPedido from './pages/Usuario/MeusPedidos/resumoPedido'
 
 export default function Rotas() {
     return(
@@ -45,6 +46,7 @@ export default function Rotas() {
                 <Route path='/produtos/combos' element={<Combos />} />
                 <Route path='/acompanhar-pedido' element={<AcompanharPedido />} />
                 <Route path='/conta/meus-pedidos' element={<MeusPedidos />} />
+                <Route path='/conta/meus-pedidos/resumoPedido' element={<ResumoPedido />} />
                 <Route path='/conta/dados-pessoais' element={<DadosPessoais />} />
                 <Route path='/descricao/:id' element={<DescricaoProduto />} />
 
