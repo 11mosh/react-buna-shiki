@@ -14,12 +14,12 @@ import CadastroProduto from './pages/Admin/CadastroProduto';
 import Produtos from './pages/Admin/Produtos';
 import CadastroCombo from './pages/Admin/CadastroCombo';
 import ProdutosGraos from './pages/Usuario/PaginaProdutos/Graos'
-import MeusPedidos from './pages/Usuario/MeusPedidos';
+import MeusPedidos from './pages/Usuario/UsuarioPerfil/MeusPedidos';
 import Pedidos from './pages/Admin/Pedidos';
 import Combos from './pages/Usuario/PaginaProdutos/Combos';
 import Assinatura from './pages/Usuario/Assinatura';
 import UsuarioRodape from './components/Usuario/UsuarioRodape';
-import Avaliacao from './pages/Usuario/MeusPedidos/avaliacao/telaAvaliacao';
+import Avaliacao from './pages/Usuario/UsuarioPerfil/MeusPedidos/avaliacao/telaAvaliacao';
 import DescricaoProduto from './pages/Usuario/DescricaoProduto';
 import PedidoFinalizado from './pages/Usuario/PedidoFinalizado';
 import Confirmacao from './pages/Usuario/Assinatura/Confirmacao';
@@ -27,7 +27,7 @@ import Estatisticas from './pages/Admin/Estatísticas';
 import Pagamento from './pages/Usuario/Pagamento';
 import ConsultaAssinaturas from './pages/Admin/Assinaturas';
 import RevisaoProduto from './pages/Admin/RevisaoProduto';
-import Cartoes from './pages/Usuario/PerfilCartoes';
+import Cartoes from './pages/Usuario/UsuarioPerfil/PerfilCartoes';
 import RevisaoPedido from './pages/Admin/Pedidos/Revisão'
 import AcompanharPedido from './pages/Usuario/AcompanharPedido'
 import DadosPessoais from './pages/Usuario/UsuarioPerfil/dadosPessoais'
@@ -51,7 +51,6 @@ export default function Rotas() {
                 <Route path='/conta/dados-pessoais' element={<DadosPessoais />} />
                 <Route path='/combos' element={<Combos />} />
                 <Route path='/descricao/:id' element={<DescricaoProduto />} />
-                <Route path='/cliente' element={<Cliente />} />
                 <Route path='/avalie' element={<Avaliacao />} />
 
                 <Route path='/conta/meus-pedidos' element={<MeusPedidos />} />

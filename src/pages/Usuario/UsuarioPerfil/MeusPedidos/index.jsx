@@ -1,6 +1,6 @@
 import './index.scss';
-import CabecalhoUsuario from '../../../components/Usuario/UsuarioCabecalho';
-import UsuarioRodape from '../../../components/Usuario/UsuarioRodape';
+import CabecalhoUsuario from '../../../../components/Usuario/UsuarioCabecalho';
+import UsuarioRodape from '../../../../components/Usuario/UsuarioRodape';
 import { Link } from 'react-router-dom';
 import 'react-confirm-alert/src/react-confirm-alert.css';
 import { confirmAlert } from 'react-confirm-alert';
