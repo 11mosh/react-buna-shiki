@@ -7,6 +7,8 @@ import { Link } from "react-router-dom";
 
 
 export default function Carrinho () {
+
+    // eslint-disable-next-line
     const [produtos, setProdutos] = useState(["teste"])
     
     return (    

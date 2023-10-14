@@ -1,12 +1,10 @@
 import './index.scss';
 import CabecalhoUsuario from '../../../../components/Usuario/UsuarioCabecalho';
 import UsuarioRodape from '../../../../components/Usuario/UsuarioRodape';
-import { Link } from 'react-router-dom';
 import 'react-confirm-alert/src/react-confirm-alert.css';
 import { confirmAlert } from 'react-confirm-alert';
-import axios from 'axios';
 import Avaliacao from './avaliacao/telaAvaliacao';
-
+import BarraNavegacao from '../../../../components/Usuario/BarraNavegacaoConta'
 
 export default function MeusPedidos () {
 
@@ -27,19 +25,7 @@ export default function MeusPedidos () {
 
         <div className="corpo">
             
-            <nav>
-                    <div className="listra"></div>
-                    <nav>
-                        <Link to={'/conta/cartoes'}>Cartões</Link> <hr className="desaparece" />
-                        <Link to={'/conta/assinaturas'}>Assinaturas</Link> <hr className="desaparece" />
-                        <Link to={'/conta/dados-pessoais'}>Dados Pessoais</Link> <hr className="desaparece" />
-                        <Link to={'/conta/enderecos'}>Endereços</Link> <hr className="desaparece" />
-                        <Link to={'/conta/meus-pedidos'}  style={{color: '#F47E3C'}}>Meus Pedidos</Link> <hr className="desaparece" />
-                        <Link to={'/'}>Sair</Link>
-                    </nav>
-                </nav>
-            
-            
+            <BarraNavegacao selecionar='MeusPedidos'/>
             <article className='aba-pedidos'>
 
                 <section className="pedido">
@@ -135,7 +121,7 @@ export default function MeusPedidos () {
                 </section>
                 <hr style={{width: '90%'}}/>
 
-                <h3 style={ {opacity: 0.5}}>Seus pedidos acabam por aqui.</h3>
+                <h3 style={ {opacity: 0.5, marginTop: '5px' }}>Seus pedidos acabam por aqui.</h3>
                 <img src="/assets/images/pedidosAcabam.png" alt="" style={{height: '80px', opacity: 0.5, marginBottom: '40px'}}/>
             </article>
         </div>
