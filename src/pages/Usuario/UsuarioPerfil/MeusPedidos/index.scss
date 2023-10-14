@@ -67,6 +67,7 @@
     .aba-pedidos {
         border: 2px solid rgba(146, 146, 146, 0.411);
         border-radius: 10px;
+        padding-top: 20px;
         width: 78%;
         height: 89%;
         display: flex;
@@ -138,4 +139,97 @@
         }
     }
 }
+}
+
+
+@media (max-width: 1146px) {
+    .meusPedidos {
+
+        .corpo {
+            justify-content: space-around;
+        }
+        .aba-cartoes {
+            width: 70% !important;
+            // justify-self: flex-end !important;
+        }
+    }
+}
+
+@media (max-width: 931px) {
+    .meusPedidos {
+        .aba-cartoes {
+            width: 60% !important;
+        }
+    }
+}
+
+@media (max-width: 771px) {
+    .meusPedidos {
+        height: 290vh !important;
+
+        .corpo {
+            height: 400vh !important;
+
+            .info-cartao {
+                width: 115% !important;
+                gap: 15px;
+                position: relative;
+                left: -20px;
+
+                .titulo {
+                    width: 100% !important;
+                }
+            }
+        }
+        // .rodape {
+        //      height: 70vh !important;
+        // }
+    }
+}
+
+@media (max-width: 696px) {
+    .meusPedidos {
+        .corpo {
+            flex-direction: column;
+            height: 90vh;
+            margin-right: 0px;
+
+            .aba-cartoes {
+                width: 90% !important;
+            }
+
+            > nav {
+                flex-direction: column;
+                height: auto;
+                margin: 30px 5px;
+                font-size: smaller;
+
+                .desaparece {
+                    display: block;
+                }
+
+                .listra {
+                    transform: rotate(90deg);
+                    height: 110% !important;
+                    display: none;
+                }
+
+                > nav {
+                    flex-direction: row;
+                    text-align: center;
+                    gap: 15px;
+                    height: auto;
+                    align-items: center;
+                    flex-wrap: wrap;
+                    justify-content: center;
+
+                    a {
+                        height: auto;
+                        font-size: 16px;
+
+                    }
+                }
+            }
+        }
+    }
 }

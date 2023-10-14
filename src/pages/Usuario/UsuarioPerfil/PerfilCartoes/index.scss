@@ -100,6 +100,7 @@
                     align-items: center;
                     justify-content: space-between;
                     margin: 10px 0px;
+                    gap: 8px;
                     width: 100%;
 
                     label {
@@ -256,6 +257,12 @@
                         .imagens {
                             display: flex;
                             flex-direction: column;
+                            align-self: flex-end;
+                            justify-self: flex-end;
+
+                            img {
+                                width: 50px;
+                            }
                         }
                     }
 
@@ -291,6 +298,30 @@
         .aba-cartoes {
             width: 60% !important;
         }
+    }
+}
+
+@media (max-width: 771px) {
+    .perfil-cartoes {
+        height: 290vh !important;
+
+        .corpo {
+            height: 400vh !important;
+
+            .info-cartao {
+                width: 115% !important;
+                gap: 15px;
+                position: relative;
+                left: -20px;
+
+                .titulo {
+                    width: 100% !important;
+                }
+            }
+        }
+        // .rodape {
+        //      height: 70vh !important;
+        // }
     }
 }
 
