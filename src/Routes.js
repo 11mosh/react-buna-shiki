@@ -13,11 +13,10 @@ import AdmInicio from './pages/Admin/TelaInicial';
 import CadastroProduto from './pages/Admin/CadastroProduto';
 import Produtos from './pages/Admin/Produtos';
 import CadastroCombo from './pages/Admin/CadastroCombo';
-import UsuarioProdutosGraos from './pages/Usuario/PaginaProdutosGraos'
-import Cliente from './pages/Usuario/UsuarioPerfil';
+import ProdutosGraos from './pages/Usuario/PaginaProdutos/Graos'
 import MeusPedidos from './pages/Usuario/MeusPedidos';
 import Pedidos from './pages/Admin/Pedidos';
-import Combos from './pages/Usuario/Combos';
+import Combos from './pages/Usuario/PaginaProdutos/Combos';
 import Assinatura from './pages/Usuario/Assinatura';
 import UsuarioRodape from './components/Usuario/UsuarioRodape';
 import Avaliacao from './pages/Usuario/MeusPedidos/avaliacao/telaAvaliacao';
@@ -29,6 +28,9 @@ import Pagamento from './pages/Usuario/Pagamento';
 import ConsultaAssinaturas from './pages/Admin/Assinaturas';
 import RevisaoProduto from './pages/Admin/RevisaoProduto';
 import Cartoes from './pages/Usuario/PerfilCartoes';
+import RevisaoPedido from './pages/Admin/Pedidos/Revisão'
+import AcompanharPedido from './pages/Usuario/AcompanharPedido'
+import DadosPessoais from './pages/Usuario/UsuarioPerfil/dadosPessoais'
 
 export default function Rotas() {
     return(
@@ -43,15 +45,19 @@ export default function Rotas() {
                 <Route path='/rodape' element={<UsuarioRodape />} />
                 <Route path='/login' element={<UsuarioLogin />}/>
                 <Route path='/cadastro' element={<UsuarioCadastro />} />
+                <Route path='/produtos/combos' element={<Combos />} />
+                <Route path='/acompanhar-pedido' element={<AcompanharPedido />} />
+                <Route path='/conta/meus-pedidos' element={<MeusPedidos />} />
+                <Route path='/conta/dados-pessoais' element={<DadosPessoais />} />
                 <Route path='/combos' element={<Combos />} />
                 <Route path='/descricao/:id' element={<DescricaoProduto />} />
-                <Route path='/conta/cartoes' element={<Cartoes />} />
+                <Route path='/cliente' element={<Cliente />} />
                 <Route path='/avalie' element={<Avaliacao />} />
 
                 <Route path='/conta/meus-pedidos' element={<MeusPedidos />} />
                 <Route path='/conta/cartoes' element={<Cartoes />} />
 
-                <Route path='/produtos/graos' element={<UsuarioProdutosGraos />} />
+                <Route path='/produtos/graos' element={<ProdutosGraos />} />
                 <Route path='/carrinho' element={<Carrinho/>} />
                 <Route path='/assinatura' element={<Assinatura/>} />
                 <Route path='/assinatura/confirmacao' element={<Confirmacao />} />
@@ -68,6 +74,7 @@ export default function Rotas() {
                 <Route path='/adm/estatisticas' element={<Estatisticas />} />
                 <Route path='/adm/consulta-assinaturas' element={<ConsultaAssinaturas />} />
                 <Route path='/adm/:id/revisao-produto' element={<RevisaoProduto />} />
+                <Route path='/adm/pedidos/revisao' element={<RevisaoPedido />} />
             </Routes>
          </BrowserRouter>
     )

@@ -1,0 +1,78 @@
+#page-conta-dados-pessoais{
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    height: 100vh;
+    #conteudo {
+        font-family: 'Inter';
+        height: 100%;
+        display: flex;
+        justify-content: space-between;
+        padding: 30px 30px 30px 0px;
+        display: flex;
+        section {
+            width: 70%;
+            height: 100%;
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+            > div {
+                height: 380px;
+                border: 1px solid black;
+                width: 60%;
+                padding: 10px;
+                padding: 30px;
+                display: flex;
+                flex-direction: column;
+                justify-content: space-between;
+                align-items: center;
+                border-radius: 30px;
+                gap: 30px;
+                > article {
+                    width: 80%;
+                    input {
+                        width: 93%;
+                        min-width: 250px;
+                    }
+                }
+                input {
+                    height: 30px;
+                    background: #d9d9d9;
+                    border-radius: 10px;
+                    padding: 5px 15px;
+                    border: none;
+                }
+                input:focus {
+                    outline: none;
+                }
+                article {
+                    display: flex;
+                    flex-direction: column;
+                    gap: 5px;
+                    label {
+                        font-size: 15px;
+                        font-weight: 500;
+                    }
+                }
+                > div {
+                    height: 65%;
+                    display: flex;
+                    flex-direction: column;
+                    gap: 35px;
+                    width:80%;
+                    > div {
+                        display: flex; 
+                        width: 50%;
+                        width: 100%;
+                        gap: 30px;
+                        #email {
+                            width: 140%;
+                        }
+                    }
+                }
+            }
+
+        }
+        
+    }
+}
