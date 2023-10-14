@@ -18,7 +18,7 @@ export default function Index() {
                         <h3>Resumo do pedido</h3>
                     </div>
                     <article>
-                        <div id='produto'>
+                         <div id='produto'>
                             <figure>
                                 <img src='/assets/images/cafeteiraa.png' alt='cafeteira' />
                             </figure>
@@ -215,7 +215,7 @@ export default function Index() {
                                     </button>
                                 </div>
                             </aside>
-                        </div>
+                        </div> 
                         <div id='produto'>
                             <figure>
                                 <img src='/assets/images/cafeteiraa.png' alt='cafeteira' />

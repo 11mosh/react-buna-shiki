@@ -1,0 +1,342 @@
+.perfil-cartoes {
+    display: flex;
+    flex-direction: column;
+    height: 124.1vh;
+    font-family: 'Inter';
+
+    .corpo {
+        border-radius: 10px;
+        width: 95%;
+        height: 89%;
+        display: flex;
+        flex-direction: row;
+        justify-content: space-between;
+        align-items: center;
+        align-self: center;
+        overflow: auto;
+
+        > nav {
+            display: flex;
+            flex-direction: row;
+            height: 100%;
+            margin: 0px 10px;
+            align-items: center;
+
+            .desaparece {
+                width: 3px;
+                height: 3px;
+                display: none;
+                
+                border: none;
+                background-color: rgb(219, 151, 24);
+            }
+
+            .listra {
+                width: 9px;
+                margin: 0px 10px;
+                border-radius: 14px;
+                background-color: #D6D6D6;
+                height: 90%;
+                display: flex;
+                align-self: center;
+            }
+
+            > nav {
+                display: flex;
+                flex-direction: column;
+                align-self: center;
+                height: 89%;
+                justify-content: space-between;
+                
+                a {
+                    color: black;
+                    font-weight: 600;
+                    font-size: 17.5px;
+                    text-decoration: none;
+                    transition: .1s;
+                }
+
+                a:hover {
+                    color: #F47E3c;
+                    transition: .1s;
+                }
+            }
+        }
+
+        .aba-cartoes {
+            border: 2px solid rgba(146, 146, 146, 0.411);
+            border-radius: 10px;
+            width: 78%;
+            height: 89%;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            align-self: center;
+            overflow: auto;
+            
+            .cadastro-cartao {
+                display: flex;
+                flex-direction: column;
+                width: 70%;
+            
+            .info-cartao {
+                display: flex;
+                flex-direction: column;
+                background-color: #E8E8E8;
+                padding: 0px 20px 0px 20px;
+                width: 100%;
+                align-items: center;
+                box-shadow: 0px 5px 4px 0px rgba(0, 0, 0, 0.25);
+                margin-top: 15px;
+
+                button {
+                    align-self: center;
+                    margin-bottom: 20px;
+                }
+
+                .titulo {
+                    display: flex;
+                    flex-direction: row;
+                    align-items: center;
+                    justify-content: space-between;
+                    margin: 10px 0px;
+                    width: 100%;
+
+                    label {
+                        transform: .2s;
+                        display: flex;
+                        align-items: center;
+                    }
+                    
+                    #checkbox1 ~ label img{
+                        transition: .5s;
+                    }
+                    
+                    #checkbox1:checked ~ label img {
+                        transform: rotate(90deg);
+                        transition: .5s;
+                        user-select: none;
+                    }
+
+                    p {
+                        font-weight: bolder;
+                    }
+                    img {
+                        width: 24px;
+                        transform: rotate(-90deg);
+                        cursor: pointer;
+                    }
+                    
+                }
+
+                button {
+                    padding: 8px;
+                    background-color: #F47E3C;
+                    color: white;
+                    border: none;
+                    border-radius: 37px;
+                    cursor: pointer;
+                    font-family: 'Inter';
+                    font-size: 17px;
+                    width: 30%;
+                    margin-top: 20px;
+                    transition: .3s;
+                }
+            
+                button:active {
+                    background-color: #f88f52;
+                    font-weight: bolder;
+                    transition: .3s;
+                    transform: translateY(-3px);
+                }
+
+                .campo-inputs {
+                    display: flex;
+                    flex-direction: column;
+                    width: 100%;
+                    gap: 13px;
+
+                    input {
+                        width: 100%;
+                        border: 1px solid black;
+                        height: 30px;
+                        border-radius: 5px;
+                        font-size: 18px;
+                        font-family: 'Inter';
+                        padding: 5px;
+                    }
+
+                    input:focus {
+                        outline: none;
+                    }
+
+                    .secao2 {
+                        display: flex;
+                        flex-direction: row;
+                        width: 100%;
+                        justify-content: space-between;
+                        > div {
+                            width: 45%;
+                            display: flex;
+                            flex-direction: column;
+                        }
+                        input {
+                            width: 100%;
+                        }
+                    }
+                }
+            }
+        }
+
+        .cartoes-existentes {
+            display: flex;
+            flex-direction: column;
+            width: 100%;
+            align-items: center;
+
+            > h3 {
+                margin-top: 30px;
+            }
+
+            .cartoes {
+                margin-top: 20px;
+                display: flex;
+                flex-direction: row;
+                flex-wrap: wrap;
+                width: 95%;
+                align-items: center;
+                justify-content: center;
+                gap: 35px;
+
+                .cartao {
+                    display: flex;
+                    flex-direction: column;
+                    background-color: #f88f52;
+                    padding: 15px;
+                    width: 315px;
+                    border-radius: 10px;
+                    color: white;
+
+                    > p {
+                        font-size: 20px;
+                    }
+
+                    h3 {
+                        margin: 5px 0px 20px 0px;
+                    }
+
+                    .agrupamento {
+                        display: flex;
+                        flex-direction: row;
+                        justify-content: space-between;
+
+                        p {
+                            font-size: 15px;
+                        }
+
+                        .fonte-maior {
+                            font-size: 17px;
+                            font-weight: 600;
+                        }
+
+                        .validade-cvv {
+                            display: flex;
+                            flex-direction: row;
+                            justify-content: space-between;
+                            gap: 30px;
+                            margin-top: 10px;
+
+                            .validade {
+                                display: flex;
+                                flex-direction: column;
+                                align-items: center;
+                            }
+                        }
+
+                        .imagens {
+                            display: flex;
+                            flex-direction: column;
+                        }
+                    }
+
+                    transition: .15s;
+                    
+                }
+
+                .cartao:hover {
+                    transform: scale(1.02);
+                    transition: .15s;
+                }
+            }
+        }
+    }
+    }
+}
+
+@media (max-width: 1146px) {
+    .perfil-cartoes {
+
+        .corpo {
+            justify-content: space-around;
+        }
+        .aba-cartoes {
+            width: 70% !important;
+            // justify-self: flex-end !important;
+        }
+    }
+}
+
+@media (max-width: 931px) {
+    .perfil-cartoes {
+        .aba-cartoes {
+            width: 60% !important;
+        }
+    }
+}
+
+@media (max-width: 696px) {
+    .perfil-cartoes {
+        .corpo {
+            flex-direction: column;
+            height: 90vh;
+            margin-right: 0px;
+
+            .aba-cartoes {
+                width: 90% !important;
+            }
+
+            > nav {
+                flex-direction: column;
+                height: auto;
+                margin: 30px 5px;
+                font-size: smaller;
+
+                .desaparece {
+                    display: block;
+                }
+
+                .listra {
+                    transform: rotate(90deg);
+                    height: 110% !important;
+                    display: none;
+                }
+
+                > nav {
+                    flex-direction: row;
+                    text-align: center;
+                    gap: 15px;
+                    height: auto;
+                    align-items: center;
+                    flex-wrap: wrap;
+                    justify-content: center;
+
+                    a {
+                        height: auto;
+                        font-size: 16px;
+
+                    }
+                }
+            }
+        }
+    }
+}
