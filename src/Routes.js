@@ -30,8 +30,8 @@ import RevisaoProduto from './pages/Admin/RevisaoProduto';
 import Cartoes from './pages/Usuario/UsuarioPerfil/PerfilCartoes';
 import RevisaoPedido from './pages/Admin/Pedidos/Revisão'
 import AcompanharPedido from './pages/Usuario/AcompanharPedido'
-import DadosPessoais from './pages/Usuario/UsuarioPerfil/dadosPessoais'
-import ResumoPedido from './pages/Usuario/MeusPedidos/resumoPedido'
+import DadosPessoais from './pages/Usuario/UsuarioPerfil/DadosPessoais'
+import ResumoPedido from './pages/Usuario/UsuarioPerfil/MeusPedidos/resumoPedido'
 
 export default function Rotas() {
     return(

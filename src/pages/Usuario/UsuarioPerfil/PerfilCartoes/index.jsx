@@ -1,8 +1,9 @@
 import './index.scss';
 import Cabecalho from '../../../../components/Usuario/UsuarioCabecalho';
 import UsuarioRodape from '../../../../components/Usuario/UsuarioRodape';
-import { Link } from 'react-router-dom';
+import BarraNavegacao from '../../../../components/Usuario/BarraNavegacaoConta';
 import { useState } from 'react';
+
 
 export default function Cartoes () {
 
@@ -12,18 +13,8 @@ export default function Cartoes () {
         <main className="perfil-cartoes">
             <Cabecalho/>
             <main className="corpo">
-                <nav>
-                    <div className="listra"></div>
-                    <nav>
-                        <Link to={'/conta/cartoes'} style={{color: '#F47E3C'}}>Cartões</Link> <hr className="desaparece" />
-                        <Link to={'/conta/assinaturas'}>Assinaturas</Link> <hr className="desaparece" />
-                        <Link to={'/conta/dados-pessoais'}>Dados Pessoais</Link> <hr className="desaparece" />
-                        <Link to={'/conta/enderecos'}>Endereços</Link> <hr className="desaparece" />
-                        <Link to={'/conta/meus-pedidos'}>Meus Pedidos</Link> <hr className="desaparece" />
-                        <Link to={'/'}>Sair</Link>
-                    </nav>
-                </nav>
 
+                <BarraNavegacao selecionar='Cartões' />
                 <main className="aba-cartoes">
                     <article className="cadastro-cartao">
                     <article className='info-cartao'>

@@ -8,6 +8,9 @@
         gap: 8px;
         width: 1001px;
         font-family: 'Inter';
+        h3 {
+            font-size: 18.5px;
+        }
         > main {
             display: flex;
             flex-direction: row;
@@ -25,6 +28,7 @@
                 min-width: 500px;
                 display: flex;
                 flex-direction: column;
+                font-size: 15.8px;
                 gap: 30px;
                 article {
                     display: flex;

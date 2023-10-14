@@ -1,0 +1,91 @@
+#comp-barra-navegacao-conta {
+    height: 100%;
+    > nav {
+        display: flex;
+        flex-direction: row;
+        height: 100%;
+        margin: 0px 10px;
+        align-items: center;
+        
+        .desaparece {
+            width: 3px;
+            height: 3px;
+            display: none;
+            
+            border: none;
+            background-color: rgb(219, 151, 24);
+        }
+
+        .listra {
+            width: 9px;
+            margin: 0px 10px;
+            border-radius: 14px;
+            background-color: #d9d9d9;
+            height: 90%;
+            display: flex;
+            align-self: center;
+        }
+
+
+        > nav {
+            display: flex;
+            flex-direction: column;
+            align-self: center;
+            height: 89%;
+            justify-content: space-between;
+            
+            a {
+                color: black;
+                font-weight: 600;
+                font-size: 17.5px;
+                text-decoration: none;
+                transition: .1s;
+            }
+
+            a:hover {
+                color: #F47E3c;
+                transition: .1s;
+            }
+            .selecionado {
+                color: #F47E3c;
+            }
+        }
+    } 
+}
+
+@media (max-width: 696px) {
+    #comp-barra-navegacao-conta {
+        > nav {
+            flex-direction: column;
+            height: auto;
+            margin: 30px 5px;
+            font-size: smaller;
+
+            .desaparece {
+                display: block;
+            }
+
+            .listra {
+                transform: rotate(90deg);
+                height: 110% !important;
+                display: none;
+            }
+
+            > nav {
+                flex-direction: row;
+                text-align: center;
+                gap: 15px;
+                height: auto;
+                align-items: center;
+                flex-wrap: wrap;
+                justify-content: center;
+
+                a {
+                    height: auto;
+                    font-size: 16px;
+
+                }
+            }
+        }
+    }
+}

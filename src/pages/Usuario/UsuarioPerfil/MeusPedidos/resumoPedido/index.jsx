@@ -1,8 +1,8 @@
-import CabecalhoUsuario from '../../../../components/Usuario/UsuarioCabecalho'
+import CabecalhoUsuario from '../../../../../components/Usuario/UsuarioCabecalho'
 import './index.scss'
 
-import ResumoPedido from '../../../../components/Usuario/ResumoPedido'
-import UsuarioRodape from '../../../../components/Usuario/UsuarioRodape'
+import ResumoPedido from '../../../../../components/Usuario/ResumoPedido'
+import UsuarioRodape from '../../../../../components/Usuario/UsuarioRodape'
 import { Link } from 'react-router-dom'
 
 export default function Index() {
