@@ -304,7 +304,6 @@ function CadastroProduto () {
                             
                             <article className='produto-detalhes'>
                                 <section className='categorias'>
-                                    <div>
                                         <label htmlFor="">
                                             <input type="radio" name="a" onClick={() => setCategoria(1)} checked={categoria === 1 ? true : false}/>
                                             <p>Café em grão</p>
@@ -318,8 +317,6 @@ function CadastroProduto () {
                                             <input type="radio" name="a" onClick={() => setCategoria(3)} checked={categoria === 3 ? true : false}/>
                                             <p>Cafeteira</p>
                                         </label>
-                                    </div>
-                                    <div>
                                         <label htmlFor="">
                                             <input type="radio" name="a" onClick={() => setCategoria(4)} checked={categoria === 4 ? true : false} />
                                             <p>Cápsula</p>
@@ -332,7 +329,6 @@ function CadastroProduto () {
                                             <input type="radio" name="a"  onClick={() => setCategoria(6)} checked={categoria === 6 ? true : false}/>
                                             <p>Filtro</p>
                                         </label>
-                                    </div>
                                 </section>
                                 
                                 <nav className='detalhes'>

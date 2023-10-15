@@ -149,15 +149,18 @@
 
                     .categorias {
                         display: flex;
-                        flex-direction: row;
-                        width: 100%;
-                        justify-content: space-evenly;
-                    
+                        flex-direction: column;
+                        flex-wrap: wrap;
+                        gap: 8px;
+                        height: 100px;
+                        justify-content: center;
+                        align-items: center;
                         label {
                             display: flex;
                             flex-direction: row;
                             align-items: center;
                             gap: 10px;
+                            width: 130px;
                         }
                     }
 
