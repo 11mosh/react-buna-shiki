@@ -1,11 +1,15 @@
 import { Link } from 'react-router-dom';
 import './index.scss'
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
+import { buscarCategorias } from '../../../api/produtoApi';
+import { toast } from 'react-toastify';
 
 export default function CabecalhoUsuario() {
 
     const [pesquisa, setPesquisa] = useState('');
     const [mostrarInput, setMostrarInput] = useState(false)
+    const [categorias, setCategorias] = useState([])
+    const [caminhos, setCaminhos] = useState(['/produtos/graos', '/produtos/cafe-em-po', '/produtos/cafeteiras', '/produtos/combos', '/produtos/filtros', '/produtos/capsulas', '/produtos/moedores', '/produtos/acessorios' ])
 
     function exibirPesquisa () {
         setMostrarInput(!mostrarInput)
@@ -18,6 +22,21 @@ export default function CabecalhoUsuario() {
             setPesquisa('');
         }
     }
+
+
+    async function buscarCategoriasExibicao(){
+        try{
+            const categoriasBanco = await buscarCategorias()
+            setCategorias(categoriasBanco)
+        }
+        catch(err){
+            toast.error(err.response.data.erro)
+        }
+    }
+
+    useEffect(() => {
+        buscarCategoriasExibicao()
+    }, [])
 
     return(
         <div className='comp-usuario-cabecalho'>
@@ -55,13 +74,11 @@ export default function CabecalhoUsuario() {
             </div>
             <nav className='categorias-nav'>
                 <section>
-                    <Link to='/produtos/cafe-em-po'>Café em pó</Link>
-                    <Link to='/produtos/combos'>Combos</Link>
-                    <Link to='/produtos/graos'>Grãos</Link>
-                    <Link to='/produtos/cafeteiras'>Cafeteiras</Link>
-                    <Link to='/produtos/filtros'>Filtros</Link>
-                    <Link to='/produtos/capsulas'>Cápsulas</Link>
-                    <Link to='/produtos/moedores'>Moedores</Link>
+                    {categorias.map(item => {
+                        return(
+                            <Link to={caminhos[item.id - 1]}>{item.nome}</Link>
+                        )
+                    })}
                 </section>
             </nav>
             <hr />

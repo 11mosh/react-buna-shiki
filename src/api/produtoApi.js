@@ -14,7 +14,7 @@ export async function buscarTodos(){
 export async function excluir(idProduto, idDetalhe) {
     console.log(idProduto);
     console.log(idDetalhe);
-    const resp = await api.delete(`/deletar/produto`, {
+    await api.delete(`/deletar/produto`, {
         data: {
             idDetalhe: idDetalhe,
             idProduto: idProduto
@@ -41,7 +41,7 @@ export async function buscarIdImagens(idProduto){
 }
 
 export async function excluirImagens(idFotosExcluir, idProduto){
-    const resp  = await api.put(`/${idProduto}/imagens`, {
+    await api.put(`/${idProduto}/imagens`, {
         deletar: idFotosExcluir
     })
 

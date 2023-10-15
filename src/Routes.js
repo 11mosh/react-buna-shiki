@@ -27,11 +27,12 @@ import Estatisticas from './pages/Admin/Estatísticas';
 import Pagamento from './pages/Usuario/Pagamento';
 import ConsultaAssinaturas from './pages/Admin/Assinaturas';
 import RevisaoProduto from './pages/Admin/RevisaoProduto';
-import Cartoes from './pages/Usuario/UsuarioPerfil/PerfilCartoes';
+import Cartoes from './pages/Usuario/UsuarioPerfil/Cartoes';
 import RevisaoPedido from './pages/Admin/Pedidos/Revisão'
 import AcompanharPedido from './pages/Usuario/AcompanharPedido'
 import DadosPessoais from './pages/Usuario/UsuarioPerfil/dadosPessoais'
 import ResumoPedido from './pages/Usuario/UsuarioPerfil/MeusPedidos/resumoPedido'
+import Enderecos from './pages/Usuario/UsuarioPerfil/Enderecos'
 import PerfilAssinatura from './pages/Usuario/UsuarioPerfil/PerfilAssinaturas';
 import CancelarAssinatura from './pages/Usuario/UsuarioPerfil/PerfilAssinaturas/CancelarAssinatura';
 
@@ -48,21 +49,22 @@ export default function Rotas() {
                 <Route path='/rodape' element={<UsuarioRodape />} />
                 <Route path='/login' element={<UsuarioLogin />}/>
                 <Route path='/cadastro' element={<UsuarioCadastro />} />
-                <Route path='/produtos/combos' element={<Combos />} />
                 <Route path='/acompanhar-pedido' element={<AcompanharPedido />} />
-                <Route path='/conta/meus-pedidos' element={<MeusPedidos />} />
-                <Route path='/conta/meus-pedidos/resumoPedido' element={<ResumoPedido />} />
-                <Route path='/conta/dados-pessoais' element={<DadosPessoais />} />
-                <Route path='/combos' element={<Combos />} />
                 <Route path='/descricao/:id' element={<DescricaoProduto />} />
+
+                <Route path='/conta/meus-pedidos' element={<MeusPedidos />} />
+                <Route path='/conta/dados-pessoais' element={<DadosPessoais />} />
+                <Route path='/conta/meus-pedidos/resumoPedido' element={<ResumoPedido />} />
                 <Route path='/avalie' element={<Avaliacao />} />
                 <Route path='/cancelar-assinatura' element={<CancelarAssinatura />} />
 
                 <Route path='/conta/meus-pedidos' element={<MeusPedidos />} />
                 <Route path='/conta/cartoes' element={<Cartoes />} />
                 <Route path='/conta/assinaturas' element={<PerfilAssinatura />} />
+                <Route path='/conta/enderecos' element={<Enderecos />} />
 
                 <Route path='/produtos/graos' element={<ProdutosGraos />} />
+                <Route path='/produtos/combos' element={<Combos />} />
                 <Route path='/carrinho' element={<Carrinho/>} />
                 <Route path='/assinatura' element={<Assinatura/>} />
                 <Route path='/assinatura/confirmacao' element={<Confirmacao />} />

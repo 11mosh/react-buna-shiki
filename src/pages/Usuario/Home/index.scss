@@ -75,26 +75,53 @@
             display: flex;
             align-items: center;
             flex-direction: row;
-            justify-content: space-evenly;
-            width: 100%;
             gap: 40px;
-            margin-top: 45px;
-            font-weight: 500;
-            font-size: 18px;
-
-            > div {
+            width: 100%;
+            > nav {
                 display: flex;
-                flex-direction: column;
-                gap: 5px;
-                text-align: center;
+                align-items: center;
+                flex-direction: row;
+                justify-content: space-evenly;
+
+                width: 100%;
+                gap: 40px;
+                margin-top: 45px;
+                font-weight: 500;
+                font-size: 18px;
+                > div {
+                    display: flex;
+                    flex-direction: column;
+                    gap: 5px;
+                    text-align: center;
+                    align-items: center;
+                    justify-content: center;
+    
+                    img {
+                        width: 120px;
+                        height: 120px;
+                        border-radius: 100px;
+                        cursor: pointer;
+                    }
+                }
+            }
+            .botao-categoria {
+                display: flex;
                 align-items: center;
                 justify-content: center;
-
+                width: 50px;
+                height: 50px;
                 img {
-                    width: 120px;
-                    height: 120px;
-                    border-radius: 100px;
-                    cursor: pointer;
+                    width: 20px;
+                    rotate: 180deg;
+                    height: 20px;
+                }
+            }
+        }
+        #categoriasReverse{
+            flex-direction: row-reverse !important;
+            .botao-categoria {
+                img {
+                    rotate: 0deg;
                 }
             }
         }
@@ -354,9 +381,13 @@
 @media (max-width: 784px) {
     .home {
         .categorias-carrossel {
-            img {
-                width: 100px !important;
-                height: 100px !important;
+            > nav {
+                nav {
+                    img {
+                        width: 100px !important;
+                        height: 100px !important;
+                    }
+                }
             }
         }
         .assinatura-mensal {
@@ -388,7 +419,7 @@
     }
 }
 
-@media (max-width: 618px) {
+@media (max-width: 650px) {
     .home {
         .categorias-carrossel {
             > nav {
@@ -398,10 +429,12 @@
                 .botao-categoria {
                     transform: rotate(90deg);
                 }
-            }
-            img {
-                width: 120px !important;
-                height: 120px !important;
+                > nav {
+                    img {
+                        width: 120px !important;
+                        height: 120px !important;
+                    }
+                }
             }
         }
     }

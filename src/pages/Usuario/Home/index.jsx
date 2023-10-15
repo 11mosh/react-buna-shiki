@@ -2,10 +2,36 @@ import './index.scss';
 import UsuarioRodape from '../../../components/Usuario/UsuarioRodape';
 import Cabecalho from '../../../components/Usuario/UsuarioCabecalho';
 import { Link } from 'react-router-dom';
+import { useEffect, useState } from 'react';
+import { buscarCategorias } from '../../../api/produtoApi';
+import { toast } from 'react-toastify';
 
 function Home () {
 
-    
+    const [categorias, setCategorias] = useState([]) 
+    const [categoriasAtual, setCategoriasAtual] = useState([])
+
+    async function buscarCategoriasExibicao(){
+        try{
+            const categoriasBanco = await buscarCategorias()
+            setCategorias(categoriasBanco)
+            let primeirasCategorias = []
+            for(let cont = 0; cont < 4; cont++){
+                primeirasCategorias[cont] = categoriasBanco[cont] 
+            }
+            setCategoriasAtual(primeirasCategorias)
+        }
+        catch(err){
+            toast.error(err.response.data.erro)
+        }
+    }
+
+    useEffect(() => {
+        buscarCategoriasExibicao()
+    }, [])
+
+
+
     return (
         <main className='home'>
             <Cabecalho />
@@ -16,12 +42,19 @@ function Home () {
             
             <article className='categorias-carrossel'>
                 <h1>Categorias</h1>
+                
+                
                 <nav>
-                    <div><img src="/assets/images/categorias/graosz-cat.png" alt="" /> <p>Grãos</p></div>
-                    <div><img src="/assets/images/categorias/poo-cat.png" alt="" /> <p>Café em pó</p></div>
-                    <div><img src="/assets/images/categorias/cafeteiraa-cat.png" alt="" /> <p>Cafeteiras</p></div>
-                    <div><img src="/assets/images/categorias/cat-graoss.png" alt="" /> <p>Combos</p></div>
-                    <div className='botao-categoria' style={{backgroundColor: '#F47e3C', padding: '10px 16px', borderRadius: '100px', cursor: 'pointer'}}> &gt;</div>
+                    <nav>
+                        {categoriasAtual.map(item => {
+                            return(
+                                <div key={item.id}><img src={item.img} alt="" /> <p>{item.nome}</p></div>
+                            )
+                        })}
+                    </nav>
+                    <div className='botao-categoria' style={{backgroundColor: '#F47e3C', padding: '10px 16px', borderRadius: '100px', cursor: 'pointer'}}> 
+                        <img src="/assets/images/setadropdown.png" alt="" />
+                    </div>
                 </nav>
 
             </article>

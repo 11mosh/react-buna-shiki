@@ -5,7 +5,7 @@ import { useEffect, useState} from 'react';
 import axios from 'axios'
 import { toast } from 'react-toastify';
 import storage from 'local-storage'
-import { alterar, buscarIdDetalhe, buscarIdImagens, buscarIdProduto, excluirImagens } from '../../../api/produtoApi';
+import { alterar, buscarCategorias, buscarIdDetalhe, buscarIdImagens, buscarIdProduto, excluirImagens } from '../../../api/produtoApi';
 
 function CadastroProduto () {
     const [id, setId] = useState(0)
@@ -30,6 +30,18 @@ function CadastroProduto () {
     const [fotosExcluir, setFotosExcluir]= useState([]);
     const [fotosAdicionadas, setFotosAdicionadas] = useState([]);
     const {id: idParam} = useParams();
+    const [categorias, setCategorias] = useState([])
+
+    async function buscarCategoriasExibicao(){
+        try{
+            const categoriasBanco = await buscarCategorias()
+            const categoriasSemCombo = categoriasBanco.filter((item) => item.nome !== 'Combos')
+            setCategorias(categoriasSemCombo)
+        }
+        catch(err){
+            toast.error(err.response.data.erro)
+        }
+    }
 
     function adicionarImagem () {
         const img = new Image();
@@ -195,6 +207,8 @@ function CadastroProduto () {
         }
     }
 
+
+
     function resetarCampos () {
         setFotos([]);
         setNome("");
@@ -218,6 +232,7 @@ function CadastroProduto () {
         if(idParam){
             alterarInputs()
         }
+        buscarCategoriasExibicao()
         // eslint-disable-next-line
     }, [])
 
@@ -304,35 +319,14 @@ function CadastroProduto () {
                             
                             <article className='produto-detalhes'>
                                 <section className='categorias'>
-                                    <div>
+                                    {categorias.map(item => {
+                                        return(
                                         <label htmlFor="">
-                                            <input type="radio" name="a" onClick={() => setCategoria(1)} checked={categoria === 1 ? true : false}/>
-                                            <p>Café em grão</p>
+                                            <input type="radio" name="a" onClick={() => setCategoria(item.id)} checked={categoria === item.id ? true : false}/>
+                                            <p>{item.nome}</p>
                                         </label>
-                                        <label htmlFor="">
-                                            <input type="radio" name="a" onClick={() => setCategoria(2)} checked={categoria === 2 ? true : false}/>
-                                            <p>Café em pó</p>
-                                        </label>
-                                        
-                                        <label htmlFor="">
-                                            <input type="radio" name="a" onClick={() => setCategoria(3)} checked={categoria === 3 ? true : false}/>
-                                            <p>Cafeteira</p>
-                                        </label>
-                                    </div>
-                                    <div>
-                                        <label htmlFor="">
-                                            <input type="radio" name="a" onClick={() => setCategoria(4)} checked={categoria === 4 ? true : false} />
-                                            <p>Cápsula</p>
-                                        </label>
-                                        <label htmlFor="">
-                                            <input type="radio" name="a" onClick={() => setCategoria(5)} checked={categoria === 5 ? true : false} />
-                                            <p>Moedor</p>
-                                        </label>
-                                        <label htmlFor="">
-                                            <input type="radio" name="a"  onClick={() => setCategoria(6)} checked={categoria === 6 ? true : false}/>
-                                            <p>Filtro</p>
-                                        </label>
-                                    </div>
+                                        )
+                                    })}
                                 </section>
                                 
                                 <nav className='detalhes'>
