@@ -30,8 +30,9 @@ import RevisaoProduto from './pages/Admin/RevisaoProduto';
 import Cartoes from './pages/Usuario/UsuarioPerfil/PerfilCartoes';
 import RevisaoPedido from './pages/Admin/Pedidos/Revisão'
 import AcompanharPedido from './pages/Usuario/AcompanharPedido'
-import DadosPessoais from './pages/Usuario/UsuarioPerfil/DadosPessoais'
+import DadosPessoais from './pages/Usuario/UsuarioPerfil/dadosPessoais'
 import ResumoPedido from './pages/Usuario/UsuarioPerfil/MeusPedidos/resumoPedido'
+import PerfilAssinatura from './pages/Usuario/UsuarioPerfil/Assinaturas';
 
 export default function Rotas() {
     return(
@@ -57,6 +58,7 @@ export default function Rotas() {
 
                 <Route path='/conta/meus-pedidos' element={<MeusPedidos />} />
                 <Route path='/conta/cartoes' element={<Cartoes />} />
+                <Route path='/conta/assinaturas' element={<PerfilAssinatura />} />
 
                 <Route path='/produtos/graos' element={<ProdutosGraos />} />
                 <Route path='/carrinho' element={<Carrinho/>} />

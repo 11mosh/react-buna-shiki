@@ -281,6 +281,7 @@
 }
 
 @media (max-width: 1146px) {
+    
     .perfil-cartoes {
 
         .corpo {
@@ -303,10 +304,10 @@
 
 @media (max-width: 771px) {
     .perfil-cartoes {
-        height: 290vh !important;
+        height: 163.7vh !important;
 
         .corpo {
-            height: 400vh !important;
+            // height: 400vh !important;
 
             .info-cartao {
                 width: 115% !important;
@@ -326,11 +327,18 @@
 }
 
 @media (max-width: 696px) {
+    
     .perfil-cartoes {
+        height: 290vh !important;
+
+        #comp-barra-navegacao-conta {
+            height: auto;
+        }
         .corpo {
             flex-direction: column;
             height: 90vh;
             margin-right: 0px;
+            
 
             .aba-cartoes {
                 width: 90% !important;
