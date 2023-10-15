@@ -1,0 +1,50 @@
+.cancelar-assinatura {
+    display: flex;
+    flex-direction: column;
+    // background-color: #514641;
+    background-color: #fff;
+    box-shadow: 5px 5px 10px #888888;
+    width: 600px;
+    color: black;
+    align-self: center;
+    justify-self: center;
+    border-radius: 10px;
+    align-items: center;
+    font-family: 'Inter';
+    justify-content: center;
+    height: 220px;
+    user-select: none;
+
+    h1 {
+        font-size: 23px;
+    }
+
+    h3 {
+        font-size: 17px;
+        color: rgba(0, 0, 0, 0.5);
+    }
+
+    > div {
+        display: flex;
+        flex-direction: row;
+        gap: 50px;
+
+        > div {
+            background-color: #514641;
+            color: #fff;
+            padding: 10px 40px;
+            border-radius: 5px;
+            margin-top: 30px;
+            transition: .3s;
+            font-size: 16px;
+        }
+
+        
+
+        .sim:hover {
+            background-color: #d81b1b;
+            transition: .3s;
+            transform: translateY(-2px);
+        }
+    }
+}

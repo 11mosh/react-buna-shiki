@@ -32,7 +32,8 @@ import RevisaoPedido from './pages/Admin/Pedidos/Revisão'
 import AcompanharPedido from './pages/Usuario/AcompanharPedido'
 import DadosPessoais from './pages/Usuario/UsuarioPerfil/dadosPessoais'
 import ResumoPedido from './pages/Usuario/UsuarioPerfil/MeusPedidos/resumoPedido'
-import PerfilAssinatura from './pages/Usuario/UsuarioPerfil/Assinaturas';
+import PerfilAssinatura from './pages/Usuario/UsuarioPerfil/PerfilAssinaturas';
+import CancelarAssinatura from './pages/Usuario/UsuarioPerfil/PerfilAssinaturas/CancelarAssinatura';
 
 export default function Rotas() {
     return(
@@ -55,6 +56,7 @@ export default function Rotas() {
                 <Route path='/combos' element={<Combos />} />
                 <Route path='/descricao/:id' element={<DescricaoProduto />} />
                 <Route path='/avalie' element={<Avaliacao />} />
+                <Route path='/cancelar-assinatura' element={<CancelarAssinatura />} />
 
                 <Route path='/conta/meus-pedidos' element={<MeusPedidos />} />
                 <Route path='/conta/cartoes' element={<Cartoes />} />
