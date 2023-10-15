@@ -14,18 +14,17 @@
             height: 100%;
             display: flex;
             justify-content: space-between;
-            display: flex;
+            gap: 50px;
             section {
                 width: 70%;
                 height: 100%;
                 display: flex;
                 flex-direction: column;
                 gap: 15px;
-                > div {
+                #form {
                     height: 380px;
                     border: 1px solid black;
-                    width: 723px;
-                    padding: 10px;
+                    width: 750px;
                     padding: 30px;
                     display: flex;
                     flex-direction: column;
@@ -36,8 +35,8 @@
                     > article {
                         width: 80%;
                         input {
-                            width: 93%;
-                            min-width: 250px;
+                            width: 92%;
+                            min-width: 276px;
                         }
                     }
                     input {
@@ -63,15 +62,18 @@
                         height: 65%;
                         display: flex;
                         flex-direction: column;
-                        gap: 35px;
-                        width:80%;
+                        justify-content: space-around;
+                        gap: 30px;
+                        width: 80%;
                         > div {
                             display: flex; 
+                            flex-wrap: wrap;
                             width: 50%;
                             width: 100%;
                             gap: 30px;
+
                             #email {
-                                width: 140%;
+                                width: 276px;
                             }
                         }
                     }
@@ -81,4 +83,100 @@
             
         }
     }
+}
+@media(max-width: 1200px){
+    #page-conta-dados-pessoais {
+        #conteudo {
+            main {
+                section {
+                    h2 {
+                        font-size: 23px;
+                    }
+                    #form{
+                        width: 96%;
+                        height: unset;
+                        min-height: 380px;
+                        > div {
+                            height: unset;
+                        }
+                    }
+                }
+            }
+        }
     }
+}
+@media(max-width: 900px){
+    #page-conta-dados-pessoais {
+        #conteudo {
+            main {
+                section {
+                    h2 {
+                        font-size: 21.5px;
+                    }
+                }
+            }
+        }
+    }
+}
+@media(max-width: 700px){
+    #page-conta-dados-pessoais {
+        #conteudo {
+            padding-left: 30px;
+            main {
+                flex-direction: column;
+                section {
+                    align-items: center;    
+                    width: 100%;
+                    #form{
+                        width: 100%;
+                        height: unset;
+                        min-height: 380px;
+                        > div {
+                            height: unset;
+                        }
+                    }
+                }
+            }
+        }
+    }
+}
+@media(max-width: 450px){
+    #page-conta-dados-pessoais {
+        #conteudo {
+            main {
+                section {
+                    h2 {
+                        font-size: 21px;
+                    }
+                    #form{
+                        align-items: flex-start;
+                        > article {
+                            width: 100%;
+                            input {
+                                min-width: unset;
+                            }
+                        }
+                        label {
+                            font-size: 14.5px !important;
+                        }
+                        input {
+                            width: 100% !important;
+                        }
+                        > div {
+                            width: 100%;
+                            > div {
+                                width: 100%;
+                                article {
+                                    width: 100%;
+                                }
+                                #email {
+                                    width: 100% !important;
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
+}

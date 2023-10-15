@@ -9,7 +9,7 @@ export default function Index(){
         <div id='page-conta-dados-pessoais'>
             <CabecalhoUsuario />
             <div id='conteudo'>
-                <main id='conteudo'>
+                <main>
                     <BarraNavegacao selecionar='DadosPessoais' />
                     <section>
                         <h2> Dados pessoais</h2>
@@ -26,7 +26,7 @@ export default function Index(){
                                     </article>
                                     <article>
                                         <label> E-mail </label>
-                                        <input id='email'type='email' placeholder='ex.: exemplo@gmail.com'/>
+                                        <input id='email'type='txt' placeholder='ex.: exemplo@gmail.com'/>
                                     </article>
                                 </div>
                                 <div>
