@@ -1,0 +1,114 @@
+#page-acompanhar-pedido {
+    > #conteudo {
+        font-family: 'Inter';
+        padding: 50px 30px;
+        display: flex;
+        flex-direction: column;
+        gap: 50px;
+        > #progressoPedido {
+            display: flex;
+            width: 100%;
+            flex-direction: column;
+            align-items: center;
+            gap: 30px;
+            margin-bottom: 30px;
+            #icons {
+                width: 90%;
+                display: flex;
+                gap: 30px;
+                justify-content: space-between;
+                figure {
+                    position: relative;
+                    display: flex;
+                    align-items: center;
+                    justify-content: center;
+                    width: 90px;
+                    height: 90px;
+                }
+                .icon {
+                    width: 82px;
+                    height: 82px;
+                }
+                .icon-finalizado {
+                    width: 60px;
+                    height: 60px;
+                    position: absolute;
+                    left: 40px;
+                    top: -10px;
+                }
+                #pagamento {
+                    margin-left: 30px
+                }
+            }
+            #barraProgresso {
+                position: relative;
+                width: 100%;
+                height: 100px;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                .concluido {
+                    background-color: #278B2B !important; 
+                }
+                #estagios {
+                    display: flex;
+                    justify-content: space-between;
+                    position: absolute;
+                    width: 90%;
+                    > div{
+                        width: 95px;
+                        border-radius: 50px;
+                        height: 95px;
+                        background-color: #424242
+                    }
+                }
+                #barra {
+                    background-color: #424242;
+                    display: flex;
+                    width: 85%;
+                    height: 40px;
+                    padding: 0px 8px;
+                    .concluido {
+                        height: 100%;
+                        width: 25%;
+                    }
+                    .não-concluido {
+                        height: 100%;
+                        width: 19%;
+                    }
+                }
+            }
+            #status {
+                display: flex;
+                width: 90%;
+                justify-content: space-between;
+                gap: 20px;
+                p {
+                    width: 100px;
+                    text-align: center;
+                    font-weight: 500;
+                }
+                #statusAtual {
+                    font-weight: 700;
+                    color: #661515;
+                }
+            }
+        }
+        > section {
+            width: 80%;
+            padding: 30px 0px 30px 100px;
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+            font-weight: 500;
+            button {
+                color: #0071A1;
+                border: none;
+                background-color: transparent;
+                text-align: start;
+                font-size: 16px;
+                text-decoration: underline;
+            }
+        }
+    }
+}
