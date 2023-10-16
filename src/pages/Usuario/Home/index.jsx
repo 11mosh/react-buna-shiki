@@ -26,6 +26,10 @@ function Home () {
         }
     }
 
+    function trocarCategorias () {
+        
+    }
+
     useEffect(() => {
         buscarCategoriasExibicao()
     }, [])
@@ -52,7 +56,7 @@ function Home () {
                             )
                         })}
                     </nav>
-                    <div className='botao-categoria' style={{backgroundColor: '#F47e3C', padding: '10px 16px', borderRadius: '100px', cursor: 'pointer'}}> 
+                    <div className='botao-categoria' onClick={trocarCategorias} style={{backgroundColor: '#F47e3C', padding: '10px 16px', borderRadius: '100px', cursor: 'pointer'}}> 
                         <img src="/assets/images/setadropdown.png" alt="" />
                     </div>
                 </nav>

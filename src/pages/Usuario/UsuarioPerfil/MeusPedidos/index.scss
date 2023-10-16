@@ -41,7 +41,7 @@
             border: 1px solid #7C7C7C;
             border-radius: 10px;
             width: 80%;
-            font-size: 17px;
+            font-size: 16px;
             font-family: 'Inter';
             margin-bottom: 20px;
 
@@ -75,7 +75,7 @@
                     flex-direction: column;
                     p {
                         b{
-                            font-size: 20px;
+                            font-size: 18px;
                         }
                     }
                 }
@@ -93,94 +93,88 @@
 }
 }
 
-
-@media (max-width: 1146px) {
+@media (max-width: 1157px) {
     .meusPedidos {
-
-        .corpo {
-            justify-content: space-around;
-        }
-        .aba-cartoes {
-            width: 70% !important;
-            // justify-self: flex-end !important;
+        .aba-pedidos {
+            .pedido {
+            width: 95% !important;
+            } 
         }
     }
 }
 
-@media (max-width: 931px) {
+@media (max-width: 952px) {
     .meusPedidos {
-        .aba-cartoes {
-            width: 60% !important;
-        }
-    }
-}
-
-@media (max-width: 771px) {
-    .meusPedidos {
-        height: 290vh !important;
-
-        .corpo {
-            height: 400vh !important;
-
-            .info-cartao {
-                width: 115% !important;
-                gap: 15px;
-                position: relative;
-                left: -20px;
-
-                .titulo {
-                    width: 100% !important;
+        .aba-pedidos {
+            .pedido {
+                img {
+                    width: 100px;
+                    height: 100px !important;
                 }
             }
         }
-        // .rodape {
-        //      height: 70vh !important;
-        // }
     }
 }
 
 @media (max-width: 696px) {
     .meusPedidos {
-        .corpo {
-            flex-direction: column;
-            height: 90vh;
-            margin-right: 0px;
 
-            .aba-cartoes {
-                width: 90% !important;
+        .aba-pedidos {
+            width: 100% !important;
+
+            b {
+                font-size: 15px;
             }
 
-            > nav {
-                flex-direction: column;
-                height: auto;
-                margin: 30px 5px;
-                font-size: smaller;
+            .pedido {
+                width: 97% !important;
 
-                .desaparece {
-                    display: block;
-                }
+                
+            }
 
-                .listra {
-                    transform: rotate(90deg);
-                    height: 110% !important;
-                    display: none;
-                }
+            .corpo-pedido {
 
-                > nav {
-                    flex-direction: row;
-                    text-align: center;
-                    gap: 15px;
-                    height: auto;
-                    align-items: center;
-                    flex-wrap: wrap;
-                    justify-content: center;
-
-                    a {
-                        height: auto;
-                        font-size: 16px;
-
+                .descricao-pedido {
+                    position: relative;
+                    left: -17px !important;
+                    
+                    b {
+                        font-size: 16px !important;
                     }
                 }
+                img {
+                    position: relative;
+                    left: -17px !important;
+                }
+            }
+        }
+        .corpo {
+            flex-direction: column;
+        }
+
+        #comp-barra-navegacao-conta {
+            height: auto;
+        }
+    }
+}
+
+@media (max-width: 518px) {
+    .meusPedidos {
+        #desaparece1 {
+            display: none;
+        }
+
+        #desaparece2 {
+            display: none;
+        }
+    }
+}
+
+@media (max-width: 499px) {
+    .meusPedidos {
+        .corpo-pedido{
+            img {
+                width: 95px !important;
             }
         }
     }
