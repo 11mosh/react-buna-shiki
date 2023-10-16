@@ -57,7 +57,7 @@
         
         .faixaApresentacao3 {
             > article {
-                background-color: #7A391D;
+                background-color: #31231D;
             }
             img {
                 width: 350px;
@@ -120,6 +120,7 @@
                     justify-content: center;
                     border-radius: 30px;
                     background-color: #C3937D;
+                    cursor: pointer;
                     img {
                         width: 10px;
                     }
@@ -127,19 +128,23 @@
                 h4 {
                     min-width: 114px;
                 }
+                button:active {
+                    transform: translateY(-3px);
+                    transition: 0.1s
+                }
             }
         }
         .faixaProdutos3 {
             article {
                 > div {
                     button {
-                        background-color: #7A391D;
+                        background-color: #31231D
                     }
                 }
             }
             aside {
                 button {
-                    background-color: #7A391D;
+                    background-color: #31231D;
                 }
             }
         }

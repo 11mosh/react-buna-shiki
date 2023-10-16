@@ -9,7 +9,7 @@ export default function CabecalhoUsuario() {
     const [pesquisa, setPesquisa] = useState('');
     const [mostrarInput, setMostrarInput] = useState(false)
     const [categorias, setCategorias] = useState([])
-    const [caminhos, setCaminhos] = useState(['/produtos/graos', '/produtos/cafe-em-po', '/produtos/cafeteiras', '/produtos/combos', '/produtos/filtros', '/produtos/capsulas', '/produtos/moedores', '/produtos/acessorios' ])
+    const caminhos = ['/produtos/graos', '/produtos/cafe-em-po', '/produtos/cafeteiras', '/produtos/combos', '/produtos/filtros', '/produtos/capsulas', '/produtos/moedores', '/produtos/acessorios' ]
 
     function exibirPesquisa () {
         setMostrarInput(!mostrarInput)

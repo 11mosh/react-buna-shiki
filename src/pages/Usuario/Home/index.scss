@@ -77,12 +77,12 @@
             flex-direction: row;
             gap: 40px;
             width: 100%;
+            
             > nav {
                 display: flex;
                 align-items: center;
                 flex-direction: row;
                 justify-content: space-evenly;
-
                 width: 100%;
                 gap: 40px;
                 margin-top: 45px;
@@ -117,7 +117,7 @@
                 }
             }
         }
-        #categoriasReverse{
+        #posicaoContraria{
             flex-direction: row-reverse !important;
             .botao-categoria {
                 img {
@@ -419,7 +419,7 @@
     }
 }
 
-@media (max-width: 650px) {
+@media (max-width: 670px) {
     .home {
         .categorias-carrossel {
             > nav {
@@ -430,6 +430,7 @@
                     transform: rotate(90deg);
                 }
                 > nav {
+                    flex-direction: column !important;
                     img {
                         width: 120px !important;
                         height: 120px !important;

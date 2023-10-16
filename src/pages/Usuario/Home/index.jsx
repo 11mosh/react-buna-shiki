@@ -26,6 +26,40 @@ function Home () {
         }
     }
 
+    function verificarPosicao() {
+        if(categorias.length !== 0){
+            console.log(categoriasAtual);
+            console.log(categorias);
+            if(categoriasAtual[3].id === categorias[categorias.length - 1].id)
+                return 'posicaoContraria'
+            else 
+                return ''
+        }
+    }
+    function trocarCategorias() {
+        let posicao = verificarPosicao()
+        if(posicao === 'posicaoContraria'){
+            let novasCategorias = []
+
+            for (let index = 0; index < 4; index++) {
+                novasCategorias[index] = categorias[index]
+            }
+            
+            setCategoriasAtual(novasCategorias)
+        }
+        else{
+            let novasCategorias = []
+            let cont = 4
+            for (let index = 0; index < 4; index++) {
+                novasCategorias[index] = categorias[cont]
+                cont++
+            }
+            
+            setCategoriasAtual(novasCategorias)
+        }   
+
+    }
+
     useEffect(() => {
         buscarCategoriasExibicao()
     }, [])
@@ -44,7 +78,7 @@ function Home () {
                 <h1>Categorias</h1>
                 
                 
-                <nav>
+                <nav id={verificarPosicao()}>
                     <nav>
                         {categoriasAtual.map(item => {
                             return(
@@ -52,7 +86,7 @@ function Home () {
                             )
                         })}
                     </nav>
-                    <div className='botao-categoria' style={{backgroundColor: '#F47e3C', padding: '10px 16px', borderRadius: '100px', cursor: 'pointer'}}> 
+                    <div className='botao-categoria' onClick={() => trocarCategorias()} style={{backgroundColor: '#F47e3C', padding: '10px 16px', borderRadius: '100px', cursor: 'pointer'}}> 
                         <img src="/assets/images/setadropdown.png" alt="" />
                     </div>
                 </nav>
