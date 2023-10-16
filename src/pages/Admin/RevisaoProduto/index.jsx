@@ -8,12 +8,9 @@ export default function RevisaoProduto () {
     return (
         <main className="revisao-produto">
             <CabecalhoAdm />
-            <nav style={{padding: '20px'}}>
-                <Link to={'/adm/inicio'} style={{ decoration: 'dashed', color: 0}}> Tela Inicial </Link>
-                    &gt;
-                <Link to={'/adm/produtos/'}>Visualizar produtos</Link>
-                    &gt;
-                <p>Revisão do produto</p>
+            <nav >
+                <img src="/assets/images/icon-seta-preta.svg" alt="seta preta esquerda" />
+                
             </nav>
 
             <hr />
