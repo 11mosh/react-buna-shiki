@@ -19,6 +19,7 @@
     .aba-pedidos {
         border: 2px solid rgba(146, 146, 146, 0.411);
         border-radius: 10px;
+        padding-top: 20px;
         width: 78%;
         height: 89%;
         display: flex;
@@ -40,7 +41,7 @@
             border: 1px solid #7C7C7C;
             border-radius: 10px;
             width: 80%;
-            font-size: 17px;
+            font-size: 16px;
             font-family: 'Inter';
             margin-bottom: 20px;
 
@@ -74,7 +75,7 @@
                     flex-direction: column;
                     p {
                         b{
-                            font-size: 20px;
+                            font-size: 18px;
                         }
                     }
                 }
@@ -90,4 +91,91 @@
         }
     }
 }
+}
+
+@media (max-width: 1157px) {
+    .meusPedidos {
+        .aba-pedidos {
+            .pedido {
+            width: 95% !important;
+            } 
+        }
+    }
+}
+
+@media (max-width: 952px) {
+    .meusPedidos {
+        .aba-pedidos {
+            .pedido {
+                img {
+                    width: 100px;
+                    height: 100px !important;
+                }
+            }
+        }
+    }
+}
+
+@media (max-width: 696px) {
+    .meusPedidos {
+
+        .aba-pedidos {
+            width: 100% !important;
+
+            b {
+                font-size: 15px;
+            }
+
+            .pedido {
+                width: 97% !important;
+
+                
+            }
+
+            .corpo-pedido {
+
+                .descricao-pedido {
+                    position: relative;
+                    left: -17px !important;
+                    
+                    b {
+                        font-size: 16px !important;
+                    }
+                }
+                img {
+                    position: relative;
+                    left: -17px !important;
+                }
+            }
+        }
+        .corpo {
+            flex-direction: column;
+        }
+
+        #comp-barra-navegacao-conta {
+            height: auto;
+        }
+    }
+}
+
+@media (max-width: 518px) {
+    .meusPedidos {
+        #desaparece1 {
+            display: none;
+        }
+
+        #desaparece2 {
+            display: none;
+        }
+    }
+}
+
+@media (max-width: 499px) {
+    .meusPedidos {
+        .corpo-pedido{
+            img {
+                width: 95px !important;
+            }
+        }
+    }
 }

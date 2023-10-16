@@ -30,9 +30,9 @@ export default function MeusPedidos () {
 
                 <section className="pedido">
                     <nav className='dados-pedido'>
-                        <p>Pedido realizado em: 04/06/2023</p>
+                        <p id='desaparece1'>Pedido realizado em: 04/06/2023</p>
                         <p>Status: <b>Entregue</b></p>
-                        <p>N° do pedido: 0001-0003</p>
+                        <p id='desaparece2'>N° do pedido: 0001-0003</p>
                     </nav>
 
                     <article className='corpo-pedido'>
@@ -53,9 +53,9 @@ export default function MeusPedidos () {
 
                 <section className="pedido">
                     <nav className='dados-pedido'>
-                        <p>Pedido realizado em: 04/06/2023</p>
+                        <p id='desaparece1'>Pedido realizado em: 04/06/2023</p>
                         <p>Status: <b>Entregue</b></p>
-                        <p>N° do pedido: 0001-0003</p>
+                        <p id='desaparece2'>N° do pedido: 0001-0003</p>
                     </nav>
 
                     <article className='corpo-pedido'>
@@ -69,16 +69,14 @@ export default function MeusPedidos () {
                         
                         <div className='links'>
                             <h4 style={ {color: '#0071A1', textDecoration: 'underline', cursor: 'pointer'}}>Exibir detalhes do pedido</h4>
-                            <h4 style={ {color: '#0071A1', textDecoration: 'underline', cursor: 'pointer'}}>Avalie o pedido</h4>
+                            <h4 style={ {color: '#0071A1', textDecoration: 'underline', cursor: 'pointer'}} onClick={avaliacao}>Avalie o pedido</h4>
                         </div>
                     </article>
-                </section>
-
-                <section className="pedido">
+                </section><section className="pedido">
                     <nav className='dados-pedido'>
-                        <p>Pedido realizado em: 04/06/2023</p>
+                        <p id='desaparece1'>Pedido realizado em: 04/06/2023</p>
                         <p>Status: <b>Entregue</b></p>
-                        <p>N° do pedido: 0001-0003</p>
+                        <p id='desaparece2'>N° do pedido: 0001-0003</p>
                     </nav>
 
                     <article className='corpo-pedido'>
@@ -92,30 +90,7 @@ export default function MeusPedidos () {
                         
                         <div className='links'>
                             <h4 style={ {color: '#0071A1', textDecoration: 'underline', cursor: 'pointer'}}>Exibir detalhes do pedido</h4>
-                            <h4 style={ {color: '#0071A1', textDecoration: 'underline', cursor: 'pointer'}}>Avalie o pedido</h4>
-                        </div>
-                    </article>
-                </section>
-
-                <section className="pedido">
-                    <nav className='dados-pedido'>
-                        <p>Pedido realizado em: 04/06/2023</p>
-                        <p>Status: <b>Entregue</b></p>
-                        <p>N° do pedido: 0001-0003</p>
-                    </nav>
-
-                    <article className='corpo-pedido'>
-                        <div className='agrupamento-principal'>
-                            <img src="/assets/images/cafeteiraa.png" alt="" style={{height: '160px'}}/>
-                            <div className='descricao-pedido'>
-                                <p> <b>Cafeteira Cadence Desperta</b></p>
-                                <p style={{ marginTop: '10px'}}> Total: <b style={{color: '#661515'}}>R$344,97</b></p>
-                            </div>
-                        </div>
-                        
-                        <div className='links'>
-                            <h4 style={ {color: '#0071A1', textDecoration: 'underline', cursor: 'pointer'}}>Exibir detalhes do pedido</h4>
-                            <h4 style={ {color: '#0071A1', textDecoration: 'underline', cursor: 'pointer'}}>Avalie o pedido</h4>
+                            <h4 style={ {color: '#0071A1', textDecoration: 'underline', cursor: 'pointer'}} onClick={avaliacao}>Avalie o pedido</h4>
                         </div>
                     </article>
                 </section>

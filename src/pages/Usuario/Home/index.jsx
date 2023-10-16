@@ -57,8 +57,8 @@ function Home () {
             
             setCategoriasAtual(novasCategorias)
         }   
-
     }
+    
 
     useEffect(() => {
         buscarCategoriasExibicao()

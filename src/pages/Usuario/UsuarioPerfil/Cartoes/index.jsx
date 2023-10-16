@@ -82,8 +82,7 @@ export default function Cartoes () {
                                         </div>
                                     </div>
                                     <div className="imagens">
-                                        <img src="/assets/images/formas de pagamento/empresas/.svg" alt="dfsfds" />
-                                        <img src="" alt="fdsfds" />
+                                        <img src="/assets/images/mastercard.png" alt="dfsfds" />
                                     </div>
                                 </div>
                             </section>
@@ -104,8 +103,7 @@ export default function Cartoes () {
                                         </div>
                                     </div>
                                     <div className="imagens">
-                                        <img src="/assets/images/formas de pagamento/empresas/.svg" alt="dfsfds" />
-                                        <img src="" alt="fdsfds" />
+                                        <img src="/assets/images/mastercard.png" alt="dfsfds" />
                                     </div>
                                 </div>
                             </section>
@@ -126,8 +124,7 @@ export default function Cartoes () {
                                         </div>
                                     </div>
                                     <div className="imagens">
-                                        <img src="/assets/images/formas de pagamento/empresas/.svg" alt="dfsfds" />
-                                        <img src="" alt="fdsfds" />
+                                        <img src="/assets/images/mastercard.png" alt="dfsfds" />
                                     </div>
                                 </div>
                             </section>
@@ -148,8 +145,7 @@ export default function Cartoes () {
                                         </div>
                                     </div>
                                     <div className="imagens">
-                                        <img src="/assets/images/formas de pagamento/empresas/.svg" alt="dfsfds" />
-                                        <img src="" alt="fdsfds" />
+                                        <img src="/assets/images/mastercard.png" alt="dfsfds" />
                                     </div>
                                 </div>
                             </section>
@@ -171,12 +167,10 @@ export default function Cartoes () {
                                         </div>
                                     </div>
                                     <div className="imagens">
-                                        <img src="/assets/images/formas de pagamento/empresas/.svg" alt="dfsfds" />
-                                        <img src="" alt="fdsfds" />
+                                        <img src="/assets/images/mastercard.png" alt="dfsfds" />
                                     </div>
                                 </div>
                             </section>
-
                             
                         </div>
                     </article>
