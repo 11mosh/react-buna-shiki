@@ -1,5 +1,5 @@
 import './index.scss';
-import CabecalhoAdm from '../../../components/Admin/AdmCabecalho';
+import CabecalhoAdm from '../../../../components/Admin/AdmCabecalho';
 import { Link } from 'react-router-dom';
 
 export default function RevisaoProduto () {

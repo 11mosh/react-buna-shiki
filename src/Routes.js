@@ -26,7 +26,7 @@ import Confirmacao from './pages/Usuario/Assinatura/Confirmacao';
 import Estatisticas from './pages/Admin/Estatísticas';
 import Pagamento from './pages/Usuario/Pagamento';
 import ConsultaAssinaturas from './pages/Admin/Assinaturas';
-import RevisaoProduto from './pages/Admin/RevisaoProduto';
+import RevisaoProduto from './pages/Admin/Produtos/RevisaoProduto';
 import Cartoes from './pages/Usuario/UsuarioPerfil/Cartoes';
 import RevisaoPedido from './pages/Admin/Pedidos/Revisão'
 import AcompanharPedido from './pages/Usuario/AcompanharPedido'

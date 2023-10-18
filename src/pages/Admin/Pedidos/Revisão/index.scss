@@ -1,0 +1,16 @@
+.page-adm-pedidos-revisao {
+    display: flex;
+    flex-direction: column;
+    height: 100vh;
+    #revisao {
+        height: 100%;
+        .voltar {
+            display: flex;
+            img {
+                height: 100px;
+                width: 100px;
+            }
+
+        }
+    }
+}

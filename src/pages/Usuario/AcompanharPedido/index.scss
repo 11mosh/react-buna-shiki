@@ -13,7 +13,7 @@
             gap: 30px;
             margin-bottom: 30px;
             #icons {
-                width: 90%;
+                width: 85%;
                 display: flex;
                 gap: 30px;
                 justify-content: space-between;
@@ -22,12 +22,15 @@
                     display: flex;
                     align-items: center;
                     justify-content: center;
-                    width: 90px;
-                    height: 90px;
+                    width: 80px;
+                    height: 80px;
                 }
                 .icon {
                     width: 82px;
                     height: 82px;
+                }
+                .estagioIncompleto {
+                    display: none;
                 }
                 .icon-finalizado {
                     width: 60px;
@@ -54,19 +57,20 @@
                     display: flex;
                     justify-content: space-between;
                     position: absolute;
-                    width: 90%;
+                    width: 85%;
                     > div{
-                        width: 95px;
+                        width: 80px;
                         border-radius: 50px;
-                        height: 95px;
+                        height: 80px;
                         background-color: #424242
                     }
                 }
                 #barra {
                     background-color: #424242;
                     display: flex;
-                    width: 85%;
-                    height: 40px;
+                    width: 80%;
+                    height: 35
+                    px;
                     padding: 0px 8px;
                     .concluido {
                         height: 100%;
@@ -80,11 +84,11 @@
             }
             #status {
                 display: flex;
-                width: 90%;
+                width: 85%;
                 justify-content: space-between;
                 gap: 20px;
                 p {
-                    width: 100px;
+                    width: 85px;
                     text-align: center;
                     font-weight: 500;
                 }

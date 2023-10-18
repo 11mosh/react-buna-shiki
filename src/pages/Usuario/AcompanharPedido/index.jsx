@@ -12,23 +12,23 @@ export default function Index() {
                     <section id='icons'>
                         <figure>
                             <img className='icon' src='/assets/images/pedido/icon-pedido-realizado.svg' alt='carrinho'/>
-                            <img className='icon-finalizado' src='/assets/images/pedido/icon-finalizado.svg' alt='icon visto/certo'/>
+                            <img className='icon-finalizado ' src='/assets/images/pedido/icon-finalizado.svg' alt='icon visto/certo'/>
                         </figure>
                         <figure>
                             <img className='icon' id='pagamento' src='/assets/images/pedido/icon-aguardando-pagamento.svg' alt='celular com sifrão'/>
-                            <img className='icon-finalizado' src='/assets/images/pedido/icon-finalizado.svg' alt='icon visto/certo'/>
+                            <img className='icon-finalizado estagioIncompleto' src='/assets/images/pedido/icon-finalizado.svg' alt='icon visto/certo'/>
                         </figure>
                         <figure>
                             <img className='icon' src='/assets/images/pedido/icon-pedido-em-preparo.svg' alt='relógio'/>
-                            <img className='icon-finalizado' src='/assets/images/pedido/icon-finalizado.svg' alt='icon visto/certo'/>
+                            <img className='icon-finalizado estagioIncompleto' src='/assets/images/pedido/icon-finalizado.svg' alt='icon visto/certo'/>
                         </figure>
                         <figure>
                             <img className='icon' src='/assets/images/pedido/icon-a-caminho.svg' alt='caminhão entrega'/>
-                            <img className='icon-finalizado' src='/assets/images/pedido/icon-finalizado.svg' alt='icon visto/certo'/>
+                            <img className='icon-finalizado estagioIncompleto' src='/assets/images/pedido/icon-finalizado.svg' alt='icon visto/certo'/>
                         </figure>
                         <figure>
                             <img className='icon' src='/assets/images/pedido/icon-entregue.svg' alt='caixa aberta com seta'/>
-                            <img className='icon-finalizado' src='/assets/images/pedido/icon-finalizado.svg' alt='icon visto/certo'/>
+                            <img className='icon-finalizado estagioIncompleto' src='/assets/images/pedido/icon-finalizado.svg' alt='icon visto/certo'/>
                         </figure>
                     </section>
                     <section id='barraProgresso'>
