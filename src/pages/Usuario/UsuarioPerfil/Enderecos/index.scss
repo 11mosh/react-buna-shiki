@@ -1,0 +1,306 @@
+#page-conta-enderecos {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    height: 100vh;
+    #enderecos {
+        display: flex;
+        width: 95%;
+        align-self: center;
+        main {
+            font-family: 'Inter';
+            display: flex;
+            height: 100%;
+            flex-direction: column;
+            justify-content: space-between;
+            align-items: center;
+            padding: 30px 30px 50px 50px;
+            gap: 70px;
+            width: 80%;
+            h4 {
+                font-size: 17.5px;
+                font-weight: 600;
+            }
+            section {
+                display: flex;
+                flex-direction: column;
+                align-items: center;
+                width: 100%
+            }
+            #s1 {
+                width: 100%;
+                > div {
+                    border: 1px solid black;
+                    max-width: 700px;
+                    width: 80%;
+                    padding: 15px 25px;
+                    display: flex;
+                    flex-direction: column;
+                    border-radius: 8px;
+                    gap: 20px;
+                    > div {
+                        display: flex;
+                        align-self: flex-end;
+                        align-items: center;
+                        justify-content: space-between;
+                        gap: 30px;
+                        width: 100%;
+                        display: flex;
+                        text-align: center;
+                        input {
+                            display: none;
+                        }
+                        #seta:checked ~ label img {
+                            rotate: 90deg;
+                        }
+                        label {
+                            height: 18px
+                        }
+                        img {
+                            width: 18px;
+                            height: 18px;
+                            rotate: 270deg;
+                            cursor: pointer;
+                        }
+                    }
+                    table {
+                        width: 100%;
+                        display: flex;
+                        align-items: center;
+                        justify-content: center;
+                        padding: 10px 50px 5px 50px;
+                        tbody {
+                            width: 100%;
+                            display: flex;
+                            flex-direction: column;
+                            gap: 0px;
+                            tr {
+                                display: flex;
+                                width: 100%;
+                                gap: 50px;
+                                justify-content: space-between;
+                                td {
+                                    font-size: 15px;
+                                    font-weight: 550
+                                }
+                                i {
+                                    font-size: 20px;
+                                }
+                                i:hover {
+                                    color: red
+                                }
+                            }
+                            hr {
+                                margin-top: 5px;
+                                margin-bottom: 20px;
+                            }
+                        }
+                    }
+                }
+            } 
+            #s2 {
+                display: flex;
+                flex-direction: column;
+                gap: 20px;
+                width: 100%;
+
+                #campos {
+                    display: flex;
+                    flex-direction: column;
+                    gap: 10px;
+                    max-width: 500px;
+                    width: 80%;
+                    #campoDuplo {
+                        display: flex;
+                        flex-direction: row;
+                        gap: 50px;
+                        width: 100%;
+                        > div {
+                            width: 50%;
+                            input {
+                                width: 100%;
+                                min-width: 100px;
+                            }
+                        }
+                    }
+                    div {
+                        display: flex;
+                        flex-direction: column;
+                        gap: 3px;
+                        label {
+                            font-size: 14px;
+                            font-weight: 500
+                        }
+                        input {
+                            border-radius: 5px;
+                            border: 1px solid #000;
+                            height: 30px;
+                            padding: 3px 15px;
+                            width: 100%;
+                            min-width: 150px;
+                        }
+                        input:focus {
+                            outline: none;
+                        }
+                    }
+                }
+                button {
+                    width: 200px;
+                    height: 30px;
+
+                    background-color: #f47e3c;
+                    border: none;
+                    color: white;
+                    font-weight: 551;
+                    cursor: pointer;
+                    border-radius: 20px
+                }
+                button:hover {
+                    transform: translateY(-3px);
+                    transition: 0.2s
+                }
+                button:active {
+                    background-color: #be5f2b;
+                    transition: 0.2s;
+                }
+            }
+        }
+    }
+}
+@media(max-width: 1000px){
+    #page-conta-enderecos {
+        #enderecos {
+            main {
+                h4 {
+                    font-size: 16.5px;
+                }
+                #s1 {
+                    div {
+                        table {
+                            padding: 10px 30px 5px 30px;
+                            tbody{
+                                tr {
+                                    td {
+                                        font-size: 14.2px;
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
+}
+@media(max-width: 800px){
+    #page-conta-enderecos {
+        #enderecos {
+            main {
+                h4 {
+                    font-size: 16px;
+                }
+                #s1 {
+                    div {
+                        table {
+                            padding: 10px 20px 5px 20px;
+                            tbody{
+                                tr {
+                                    td {
+                                        font-size: 13.5px;
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+                #s2 {
+                    #campos {
+                        div {
+                            label {
+                                font-size: 13px;
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
+}
+@media(max-width: 700px){
+    #page-conta-enderecos {
+        #enderecos {
+            flex-direction: column;
+            main {
+                width: 100%;
+                h4 {
+                    font-size: 16.5px;
+                }
+                #s1 {
+                    
+                    div {
+                        width: 100%;
+                        table {
+                            tbody{
+                                tr {
+                                    td {
+                                        font-size: 13px;
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+                #s2 {
+                    #campos {
+                        width: 100%;
+
+                    }
+                }
+            }
+        }
+    }
+}
+@media(max-width: 450px){
+    #page-conta-enderecos {
+        #enderecos {
+            flex-direction: column;
+            main {
+                width: 100%;
+                h4 {
+                    font-size: 15.5px;
+                }
+                #s1 {
+                    
+                    div {
+                        width: 100%;
+                        table {
+                            padding: 10px 10px 5px 10px;
+                            tbody{
+                                tr {
+                                    
+                                    gap: 30px;
+                                    td {
+                                        font-size: 12.5px;
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+                #s2 {
+                   #campos {
+                    #campoDuplo {
+                        flex-direction: column;
+                        gap: 10px;
+                        div {
+                            width: 100%;
+                        }
+                        input {
+                        }
+                    }
+                   } 
+                }
+            }
+        }
+    }
+}

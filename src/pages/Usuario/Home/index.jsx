@@ -22,7 +22,7 @@ function Home () {
             setCategoriasAtual(primeirasCategorias)
         }
         catch(err){
-            toast.error(err.response.data.erro)
+            toast.error('Erro técnico: não foi possível buscar as categorias existentes')
         }
     }
 
