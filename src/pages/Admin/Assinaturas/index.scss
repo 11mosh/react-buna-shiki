@@ -193,68 +193,68 @@
     }
 }
 
-@media(max-width: 1300px){
-    #page-adm-produtos{
-        main {
-            > #s4{
-                table{
-                    padding: 15px 0px;
-                    height: 800px;
-                    flex-direction: row;
-                    hr {
-                        display: none;
+// @media(max-width: 1300px){
+//     #page-adm-produtos{
+//         main {
+//             > #s4{
+//                 table{
+//                     padding: 15px 0px;
+//                     height: 800px;
+//                     flex-direction: row;
+//                     hr {
+//                         display: none;
                         
-                    }
-                    thead {
-                        padding: 7px 30px;
-                        height: 100%;
-                        tr {
-                            height: 90%;
-                            min-width: 120px;
-                            padding-bottom:px;
-                            display: flex;
-                            flex-direction: column;
-                            th {
-                                display: flex;
-                                justify-content: flex-start;
-                                align-items: center;
-                                height: 30px;
-                            }
-                            .img {
-                                height: 80px;
-                            }
-                        }
-                    }
-                    tbody {
-                        flex-direction: row;
-                        padding-bottom: 0px;
-                        height: 100%;
-                        tr {
-                            height: 100%;
-                            padding-right: 17px;
-                            > div {
-                                flex-direction: column;
-                                height: 90%;
-                                padding: unset;
-                                min-width: 100px;
-                                .img {
-                                    height: 80px;
-                                    img {
-                                        max-height: 80px;
-                                    }
-                                }
-                                .id {
-                                    margin: unset;
-                                }
-                            }
-                            flex-direction: column;
-                        }
-                    }
-                }
-            }
-        }
-    }
-}
+//                     }
+//                     thead {
+//                         padding: 7px 30px;
+//                         height: 100%;
+//                         tr {
+//                             height: 90%;
+//                             min-width: 120px;
+//                             padding-bottom:px;
+//                             display: flex;
+//                             flex-direction: column;
+//                             th {
+//                                 display: flex;
+//                                 justify-content: flex-start;
+//                                 align-items: center;
+//                                 height: 30px;
+//                             }
+//                             .img {
+//                                 height: 80px;
+//                             }
+//                         }
+//                     }
+//                     tbody {
+//                         flex-direction: row;
+//                         padding-bottom: 0px;
+//                         height: 100%;
+//                         tr {
+//                             height: 100%;
+//                             padding-right: 17px;
+//                             > div {
+//                                 flex-direction: column;
+//                                 height: 90%;
+//                                 padding: unset;
+//                                 min-width: 100px;
+//                                 .img {
+//                                     height: 80px;
+//                                     img {
+//                                         max-height: 80px;
+//                                     }
+//                                 }
+//                                 .id {
+//                                     margin: unset;
+//                                 }
+//                             }
+//                             flex-direction: column;
+//                         }
+//                     }
+//                 }
+//             }
+//         }
+//     }
+// }
 
 @media (max-width: 800px) {
     #page-consulta-assinaturas {

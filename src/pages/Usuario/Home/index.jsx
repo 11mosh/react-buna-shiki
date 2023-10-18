@@ -15,6 +15,7 @@ function Home () {
         try{
             const categoriasBanco = await buscarCategorias()
             setCategorias(categoriasBanco)
+            console.log(categoriasBanco);
             let primeirasCategorias = []
             for(let cont = 0; cont < 4; cont++){
                 primeirasCategorias[cont] = categoriasBanco[cont] 
@@ -28,8 +29,6 @@ function Home () {
 
     function verificarPosicao() {
         if(categorias.length !== 0){
-            console.log(categoriasAtual);
-            console.log(categorias);
             if(categoriasAtual[3].id === categorias[categorias.length - 1].id)
                 return 'posicaoContraria'
             else 

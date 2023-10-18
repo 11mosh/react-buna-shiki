@@ -57,7 +57,7 @@ export default function Index() {
                 ref.current.continuousStart()
                 storage('usuario-logado', infoCliente)
                 setTimeout(() => {
-                    navigate('/cliente')
+                    navigate('/')
                 }, 3000)
             }
             else{

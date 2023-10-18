@@ -27,6 +27,7 @@ export default function Consulta() {
           respProdutos[cont].imagem = respImagens[0].caminho
         }
         setProdutos(respProdutos)
+        console.log(respProdutos);
       }
     }
     catch(err){
@@ -112,7 +113,8 @@ export default function Consulta() {
             <div>
               <select>
                 <option> Selecionar </option>
-                <option> Estoque </option>
+                <option> Estoque (do maior para o menor) </option>
+                <option> Estoque (do menor para o maior) </option>
                 <option> ID </option>
                 <option> Preço </option>
                 <option> Promocional </option>

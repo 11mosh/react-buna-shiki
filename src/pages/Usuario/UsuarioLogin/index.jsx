@@ -28,7 +28,7 @@ export default function Index() {
             else{
                 storage('usuario-logado', resp)
                 setTimeout(() => {
-                    navigate('/cliente')
+                    navigate('/')
                 }, 3000)
             }
         }
