@@ -12,29 +12,31 @@ export default function Index() {
                     <img src='/assets/images/icon-seta-preta.svg' alt='seta-dark-esquerda' />
                     <h3>Voltar a pagina de consulta de pedidos</h3>
                 </div>
-                <h3>Resumo do pedido:</h3>
+                <div id='apresentacao'>
+                    <h3>Resumo do pedido:</h3>
+                </div>
 
-                <div className='mae'>
+                <div id='tabelas'>
                     <section>
                         <table className='detalhesProdutos'>
                             <thead>
-                            <tr>
-                                    <td>
-                                        <b>Itens</b>
-                                    </td>
-                                    <td>
-                                        <b>Quantidade</b>
-                                    </td>
-                                    <td>
-                                        <b>Valor</b>
-                                    </td>
-                            </tr>
+                                <tr>
+                                        <th>
+                                            <b>Itens</b>
+                                        </th>
+                                        <th>
+                                            <b>Quantidade</b>
+                                        </th>
+                                        <th>
+                                            <b>Valor</b>
+                                        </th>
+                                </tr>
                             </thead>
                             <tbody>
                                 <tr>
                                     <td>Café Orfeu Clássico 1kg</td>
                                     <td>1</td>
-                                    <td>R$87,99</td>
+                                    <td>R$87,999</td>
                                 </tr>
                                 <tr>
                                     <td>Café Orfeu Bourbon Amarelo 250g</td>
@@ -42,17 +44,19 @@ export default function Index() {
                                     <td>R$87,99</td>
                                 </tr>
                             </tbody>
+                        </table>
+                        <table id='continuacaoDetalhesProdutos'>
                             <tbody>
                                 <tr>
-                                    <td>Quantidade de Parcelas</td>
+                                    <td className='topico'>Quantidade de Parcelas: </td>
                                     <td>--</td>
                                 </tr>
                                 <tr>
-                                    <td>Frete</td>
-                                    <td>R$11,64</td>
+                                    <td className='topico'>Frete: </td>
+                                    <td className='valor'>R$11,64</td>
                                 </tr>
                                 <tr>
-                                    <td>Valor Total</td>
+                                    <td className='topico'>Valor Total: </td>
                                     <td>R$121,62</td>
                                 </tr>
                             </tbody>

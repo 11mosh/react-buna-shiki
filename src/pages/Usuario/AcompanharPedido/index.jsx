@@ -11,25 +11,32 @@ export default function Index() {
                 <main id='progressoPedido'>
                     <section id='icons'>
                         <figure>
-                            <img className='icon' src='/assets/images/pedido/icon-pedido-realizado.svg' alt='carrinho'/>
+                            <img className='icon' src='/assets/images/pedido/acompanhar-pedido/carrinho.png' alt='carrinho'/>
                             <img className='icon-finalizado ' src='/assets/images/pedido/icon-finalizado.svg' alt='icon visto/certo'/>
                         </figure>
                         <figure>
-                            <img className='icon' id='pagamento' src='/assets/images/pedido/icon-aguardando-pagamento.svg' alt='celular com sifrão'/>
+                            <img className='icon' id='pagamento' src='/assets/images/pedido/acompanhar-pedido/icon-pagamento.png' alt='celular com sifrão'/>
                             <img className='icon-finalizado estagioIncompleto' src='/assets/images/pedido/icon-finalizado.svg' alt='icon visto/certo'/>
                         </figure>
                         <figure>
-                            <img className='icon' src='/assets/images/pedido/icon-pedido-em-preparo.svg' alt='relógio'/>
+                            <img className='icon' src='/assets/images/pedido/acompanhar-pedido/icon-preparo.png' alt='relógio'/>
                             <img className='icon-finalizado estagioIncompleto' src='/assets/images/pedido/icon-finalizado.svg' alt='icon visto/certo'/>
                         </figure>
                         <figure>
-                            <img className='icon' src='/assets/images/pedido/icon-a-caminho.svg' alt='caminhão entrega'/>
+                            <img className='icon' src='/assets/images/pedido/acompanhar-pedido/icon-entrega.png' alt='caminhão entrega'/>
                             <img className='icon-finalizado estagioIncompleto' src='/assets/images/pedido/icon-finalizado.svg' alt='icon visto/certo'/>
                         </figure>
                         <figure>
-                            <img className='icon' src='/assets/images/pedido/icon-entregue.svg' alt='caixa aberta com seta'/>
+                            <img className='icon' src='/assets/images/pedido/acompanhar-pedido/pedido entregue.png' alt='caixa aberta com seta'/>
                             <img className='icon-finalizado estagioIncompleto' src='/assets/images/pedido/icon-finalizado.svg' alt='icon visto/certo'/>
                         </figure>
+                    </section>
+                    <section id='status'>
+                        <p> Pedido realizado</p>
+                        <p id='statusAtual'> Pagamento...</p>
+                        <p> Pedido em preparo </p>
+                        <p> À caminho </p>
+                        <p> Entregue</p>
                     </section>
                     <section id='barraProgresso'>
                         <article id='estagios'>
@@ -46,13 +53,6 @@ export default function Index() {
                             <div className='não-concluido'></div>
                             <div className='não-concluido'></div>
                         </article>
-                    </section>
-                    <section id='status'>
-                        <p> Pedido realizado</p>
-                        <p id='statusAtual'> Aguardando pagamento...</p>
-                        <p> Pedido em preparo </p>
-                        <p> À caminho </p>
-                        <p> Entregue</p>
                     </section>
                 </main>
                 <ResumoPedido />
