@@ -128,7 +128,12 @@
                     height: 650px;
                     overflow: scroll;
                     overflow-x: hidden;
+                    tr:hover {
+                        background-color: #5e3a19c7;
+                        transition: .2s;
+                    }
                     tr{
+                        transition: .2s;
                         display: flex;
                         justify-content: space-between;
                         background-color: white;
@@ -149,7 +154,7 @@
                             height: 30px;
                             padding: 0px 3px;
                             border-radius: 5px;
-                            background-color: #d9d9d9;
+                            background-color: #c2c2c2;
                             display: flex;
                             text-align: center;
                             align-items: center;
