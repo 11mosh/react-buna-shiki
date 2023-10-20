@@ -12,8 +12,6 @@ export async function buscarTodos(){
 }
 
 export async function excluir(idProduto, idDetalhe) {
-    console.log(idProduto);
-    console.log(idDetalhe);
     await api.delete(`/deletar/produto`, {
         data: {
             idDetalhe: idDetalhe,
