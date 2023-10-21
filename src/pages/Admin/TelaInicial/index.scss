@@ -5,7 +5,7 @@
         flex-direction: column;
         flex-direction: space-between;
         font-family: 'Inter';
-        padding: 80px 75px;
+        padding: 80px 75px 60px 75px;
         gap: 150px;
         width: 100%;
         #s1{
@@ -39,8 +39,10 @@
             width: 100%;
             flex-direction: row;
             align-items: center;
+            justify-content: center;
             justify-content: space-between;
             flex-wrap: wrap;
+            gap: 30px;
             a {
                 display: flex;
                 align-items: center;

@@ -17,11 +17,15 @@
     }
 
     .botao:hover {
-            transform: translateY(-5px);
-            transition: .3s;
+            transform: translateY(-3px);
+            transition: .2s;
             font-weight: bold;
             background-color: #f7945a;
             cursor: pointer;
+    }
+    .botao:active{
+        background-color: #be5f2b;
+        transition: 0.2s;
     }
 
     b {

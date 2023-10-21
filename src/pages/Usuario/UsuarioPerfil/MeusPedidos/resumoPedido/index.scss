@@ -34,8 +34,9 @@
                 }
             }
             a:hover {
-                transform: translateY(-5px);
-                transition: .3s;
+                transform: translateY(-3px);
+                transition: .2s;
+                background-color: #f7945a;
                 cursor: pointer;
             }
             a:active {

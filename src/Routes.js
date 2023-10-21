@@ -54,11 +54,9 @@ export default function Rotas() {
 
                 <Route path='/conta/meus-pedidos' element={<MeusPedidos />} />
                 <Route path='/conta/dados-pessoais' element={<DadosPessoais />} />
-                <Route path='/conta/meus-pedidos/resumoPedido' element={<ResumoPedido />} />
+                <Route path='/conta/meus-pedidos/resumo-pedido' element={<ResumoPedido />} />
                 <Route path='/avalie' element={<Avaliacao />} />
                 <Route path='/cancelar-assinatura' element={<CancelarAssinatura />} />
-
-                <Route path='/conta/meus-pedidos' element={<MeusPedidos />} />
                 <Route path='/conta/cartoes' element={<Cartoes />} />
                 <Route path='/conta/assinaturas' element={<PerfilAssinatura />} />
                 <Route path='/conta/enderecos' element={<Enderecos />} />
@@ -81,7 +79,7 @@ export default function Rotas() {
                 <Route path='/adm/estatisticas' element={<Estatisticas />} />
                 <Route path='/adm/consulta-assinaturas' element={<ConsultaAssinaturas />} />
                 <Route path='/adm/:id/revisao-produto' element={<RevisaoProduto />} />
-                <Route path='/adm/pedidos/revisao' element={<RevisaoPedido />} />
+                <Route path='/adm/pedidos/resumo-pedido' element={<RevisaoPedido />} />
             </Routes>
          </BrowserRouter>
     )

@@ -7,12 +7,13 @@
         font-family: 'Inter';
         align-items: center;
         flex-direction: column;
-        height: 100%;
         padding: 50px;
         .voltar {
             display: flex;
             width: 100%;
             align-items: center;
+            text-decoration: none;
+            color: black;
             gap: 8px;
             img {
                 height: 50px;
@@ -21,16 +22,16 @@
         }
         #apresentacao {
             display: flex;
+            padding: 50px 0px 30px 0px;
             width: 60%;
-            padding: 50px 0px 30px 0px
+            min-width: 1070px;
         }
 
         #tabelas {
             background-color: #d9d9d9;
             display: flex;
             width: 60%;
-            max-width: none;
-            min-width: none;
+            min-width: 1070px;
             gap: 30px;
             justify-content: space-between;
             padding: 40px;
@@ -38,17 +39,15 @@
             section {
                 width: 47%;
                 font-size: 15px;
-                .detalhesProdutos, th , td, tr {
-                     border: 1px solid black;
-                     border-collapse: collapse;
-                     width: 100%;
+                table {
+                    border-collapse: collapse;
+                    width: 100%;
                     thead {
-                        width: 100%;
                         tr {
                             border: 1px solid black;
                             th {
+                                border-bottom: 0px;
                                 border: 1px solid black;
-                                border-color: #2e2d2d;
                                 padding: 8px;
                                 text-align: left;
                                 b {
@@ -58,36 +57,202 @@
                         }
                     }
                     > tbody {
+                        width: 100%;
                         tr {
-                             > td {
+                            border: 1px solid black;
+                            border-bottom: none;
+                            > td {
                                 padding: 8px;
                             }
                         }
                     }
                 }
-                #continuacaoDetalhesProdutos, tr  {
-                    border: 1px solid black;
-                    border-collapse: collapse;
-                    width: 100%;
-                    border-top: none !important;
+                .detalhesProdutos {
                     tbody {
-
                         tr {
                             td {
-                                border: none !important;
-                                padding: 8px;
-                                width: 200px;
-                                text-align: end;
+                                border: 1px solid black;
+                                border-bottom: none;
                             }
+                        }
+                    }
+                }
+                .ultimaLinha {
+                    border-bottom: 1px solid black;
+                }
+                // #continuacaoDetalhesProdutos, tr  {
+                //     border: 1px solid black;
+                //     border-collapse: collapse;
+                //     width: 100%;
+                //     border-top: none !important;
+                //     tbody {
+
+                //         tr {
+                //             td {
+                //                 border: none !important;
+                //                 padding: 8px;
+                //                 width: 200px;
+                //                 text-align: end;
+                //             }
+                //             .topico {
+                //                 font-weight: 700;
+                //                 text-align: start !important
+                //             }
+                //         }
+                //     }
+                // }
+                #continuacaoDetalhesProdutos {
+                    tbody {
+                        tr {
+                            display: flex;
+                            justify-content: space-between;
+                            gap: 30px;
                             .topico {
                                 font-weight: 700;
-                                text-align: start !important
                             }
                         }
                     }
                 }
                 #detalhesPedido {
-                    border: 1px solid black;
+                    tbody {
+                        tr {
+                            select {
+                                background-color: rgba(000, 000, 000, 0);
+                                border: none;
+                                font-size: 15px;
+                            }
+                            select:focus {
+                                outline: none;
+                            }
+                        }
+                    }
+                }
+            }
+            .valor {
+                text-align: end;
+                margin-left: 30px;
+            }
+            #s2 {
+                display: flex;
+                flex-direction: column;
+                gap: 50px;
+            }
+        }
+    }
+}
+@media(max-width: 1200px) {
+    .page-adm-pedidos-revisao {
+        #revisao {
+            .voltar {
+                h3 {
+                    font-size: 18px
+                }
+                img {
+                    width: 45px;
+                    height: 45px;
+                }
+            }
+            #apresentacao {
+                font-size: 15.5px;
+                min-width: 700px !important;
+            }
+            #tabelas {
+                flex-direction: column;
+                align-items: center;
+                gap: 50px;
+                min-width: 700px !important;
+                section {
+                    width: 90%;
+                }
+            }
+        }
+    }
+}
+@media(max-width: 850px) {
+    .page-adm-pedidos-revisao {
+        #revisao {
+            #apresentacao {
+                min-width: unset !important;
+                width: 90% !important;
+            }
+            #tabelas {
+                min-width: unset !important;
+                width: 90% !important;
+                section {
+                    width: 100%;
+                }
+            }
+        }
+    }
+}
+@media(max-width: 650px) {
+    .page-adm-pedidos-revisao {
+        #revisao {
+            .voltar {
+                h3 {
+                    font-size: 17.5px
+                }
+                img {
+                    width: 42px;
+                    height: 42px;
+                }
+            }
+            #apresentacao {
+                width: 100% !important;
+                font-size: 15px;
+            }
+            #tabelas {
+                width: 100% !important;
+                section {
+                    width: 100%;
+                    font-size: 14px !important;
+                    select {
+                        font-size: 14px !important;
+
+                    }
+                }
+            }
+        }
+    }
+}
+@media(max-width: 550px) {
+    .page-adm-pedidos-revisao {
+        #revisao {
+            .voltar {
+                h3 {
+                    font-size: 17px
+                }
+                img {
+                    width: 40px;
+                    height: 40px;
+                }
+            }
+            #apresentacao {
+                width: 100% !important;
+                font-size: 14.5px;
+            }
+            // #tabelas {
+            //     width: 100% !important;
+            //     section {
+            //         width: 100%;
+            //         font-size: 13px;
+            //         select {
+            //             font-size: 13.5px !important;
+            //         }
+            //     }
+            // }
+            #tabelas {
+                section {
+                    .detalhesProdutos {
+                        display: flex;
+                        thead {
+                            tr {
+                                display: flex;
+                                flex-direction: column;
+                                height: 100px;
+                            }
+                        }
+                    }
                 }
             }
         }

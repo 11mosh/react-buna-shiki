@@ -157,7 +157,7 @@
                         }
                         #acoes{
                             background-color: unset;
-                            display: flex;
+                            display: none;
                             gap: 10px;
                             margin-bottom: 3px;
                             i{
@@ -179,6 +179,13 @@
                             }
                         }
                     }
+                    // tr:hover {
+                    
+                    //     #acoes {
+                    //         display: flex;
+                    //     }
+                    //     background-color: #f7945a;
+                    // }
                 }
                 tbody::-webkit-scrollbar {
                     scroll-behavior: smooth;

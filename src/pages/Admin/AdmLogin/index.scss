@@ -66,8 +66,12 @@
                     border-radius: 20px;
                     color: white;
                 }
+                button:hover {
+                    transform: translateY(-3px);
+                    transition: 0.2s
+                }
                 button:active {
-                    background-color:#c05d24;
+                    background-color:#be5f2b;
                 }
             }
         }
