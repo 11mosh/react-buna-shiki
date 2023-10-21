@@ -25,6 +25,7 @@ export default function Index() {
             }
             else{
                 storage('adm-logado', resp)
+                console.log(resp)
                 setTimeout(() => {
                     navigate('/adm/inicio')
                 }, 3000)

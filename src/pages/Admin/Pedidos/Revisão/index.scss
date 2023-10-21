@@ -218,9 +218,10 @@
 @media(max-width: 550px) {
     .page-adm-pedidos-revisao {
         #revisao {
+            padding: 50px 30px;
             .voltar {
                 h3 {
-                    font-size: 17px
+                    font-size: 16.5px;
                 }
                 img {
                     width: 40px;
@@ -228,32 +229,49 @@
                 }
             }
             #apresentacao {
-                width: 100% !important;
                 font-size: 14.5px;
             }
-            // #tabelas {
-            //     width: 100% !important;
-            //     section {
-            //         width: 100%;
-            //         font-size: 13px;
-            //         select {
-            //             font-size: 13.5px !important;
-            //         }
-            //     }
-            // }
             #tabelas {
                 section {
-                    .detalhesProdutos {
-                        display: flex;
-                        thead {
+                    
+                    font-size: 13px !important;
+                    .duasInformacoes {
+                        tbody {
+                            .valor {
+                                margin-left: 10px;
+                            }
                             tr {
                                 display: flex;
-                                flex-direction: column;
-                                height: 100px;
+                                flex-wrap: wrap;
+                                justify-content: space-between;
+                                padding: 0px 8px 0px 0px;
+                                gap: 0px;
                             }
                         }
                     }
                 }
+            }
+        }
+    }
+}
+@media(max-width: 400px) {
+    .page-adm-pedidos-revisao {
+        #revisao {
+            padding: 50px 30px;
+            .voltar {
+                h3 {
+                    display: none
+                }
+                img {
+                    width: 45px;
+                    height: 45px;
+                }
+            }
+            #apresentacao {
+                font-size: 14px;
+            }
+            #tabelas {
+                padding: 20px;
             }
         }
     }

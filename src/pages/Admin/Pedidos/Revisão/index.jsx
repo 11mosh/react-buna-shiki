@@ -26,7 +26,7 @@ export default function Index() {
                                             <b>Itens</b>
                                         </th>
                                         <th>
-                                            <b>Quantidade</b>
+                                            <b>Qtd</b>
                                         </th>
                                         <th>
                                             <b>Valor</b>
@@ -62,7 +62,7 @@ export default function Index() {
 
                             </tbody>
                         </table>
-                        <table id='continuacaoDetalhesProdutos'>
+                        <table className='duasInformacoes' id='continuacaoDetalhesProdutos'>
                             <tbody>
                                 <tr>
                                     <td className='topico'>Quantidade de Parcelas: </td>
@@ -80,7 +80,7 @@ export default function Index() {
                         </table>
                     </section>
                     <section id='s2'>
-                        <table id='detalhesPedido'>
+                        <table className='duasInformacoes' id='detalhesPedido'>
                             <tbody>
                                 <tr>
                                     <td> Código do pedido: </td>
@@ -108,7 +108,7 @@ export default function Index() {
                                 </tr>
                             </tbody>
                         </table>
-                        <table id='detalhesCliente'>
+                        <table className='duasInformacoes' id='detalhesCliente'>
                             <tbody>
                                 <tr>
                                     <td> Cliente: </td>
