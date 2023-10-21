@@ -17,7 +17,7 @@
     }
 
     textarea {
-        padding: 3px;
+        padding: 3px 0px 3px 7px;
         border-radius: 8px;
         border: 2px solid rgba(0, 0, 0, 0.37);
         height: 28px;
@@ -70,6 +70,7 @@
                     > form {
                         display: flex;
                         flex-direction: column;
+                        
 
                         > div {
                             display: flex;
@@ -78,6 +79,7 @@
                             
                             #peso {
                                 width: 100%;
+                                margin-right: 10px;
                             }
 
                             #estoque {

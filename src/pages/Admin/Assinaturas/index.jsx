@@ -63,6 +63,36 @@ export default function ConsultaAssinaturas () {
                       <td className='desaparece3' > PAGO </td>
                     </div>
                   </tr>
+                  <tr >
+                    <div>
+                      <td className='id desaparece5'> 1293 </td>
+                      <td className='desaparece'> Pietro Aug </td>
+                      <td className='desaparece1'> 32142-131 </td>
+                      <td className='desaparece2'> R$212,12 </td>
+                      <td className='desaparece4'> ASV23-12 </td>
+                      <td className='desaparece3' > PAGO </td>
+                    </div>
+                  </tr>
+                  <tr >
+                    <div>
+                      <td className='id desaparece5'> 1293 </td>
+                      <td className='desaparece'> Pietro Aug </td>
+                      <td className='desaparece1'> 32142-131 </td>
+                      <td className='desaparece2'> R$212,12 </td>
+                      <td className='desaparece4'> ASV23-12 </td>
+                      <td className='desaparece3' > PAGO </td>
+                    </div>
+                  </tr>
+                  <tr >
+                    <div>
+                      <td className='id desaparece5'> 1293 </td>
+                      <td className='desaparece'> Pietro Aug </td>
+                      <td className='desaparece1'> 32142-131 </td>
+                      <td className='desaparece2'> R$212,12 </td>
+                      <td className='desaparece4'> ASV23-12 </td>
+                      <td className='desaparece3' > PAGO </td>
+                    </div>
+                  </tr>
                 {/* ) */}
               {/* })} */}
             </tbody>
