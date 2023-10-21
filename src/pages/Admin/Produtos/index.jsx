@@ -1,7 +1,7 @@
 import './index.scss';
 import CabecalhoAdm from '../../../components/Admin/AdmCabecalho';
 import { Link, useNavigate } from 'react-router-dom';
-import { buscarAdms, buscarCategorias, buscarIdImagens, buscarTodos, excluir } from '../../../api/produtoApi';
+import { buscarAdms, buscarCategorias, buscarTodos, excluir } from '../../../api/produtoApi';
 import { useEffect, useState } from 'react';
 import {toast} from 'react-toastify'
 import { confirmAlert } from 'react-confirm-alert'
@@ -22,12 +22,7 @@ export default function Consulta() {
     try{
       if(buscaInput === ''){
         const respProdutos = await buscarTodos()
-        for(let cont = 0; cont < respProdutos.length; cont++){
-          const respImagens = await buscarIdImagens(respProdutos[cont].id)
-          respProdutos[cont].imagem = respImagens[0].caminho
-        }
         setProdutos(respProdutos)
-        console.log(respProdutos);
       }
     }
     catch(err){
@@ -113,11 +108,10 @@ export default function Consulta() {
             <div>
               <select>
                 <option> Selecionar </option>
-                <option> Estoque (do maior para o menor) </option>
-                <option> Estoque (do menor para o maior) </option>
-                <option> ID </option>
-                <option> Preço </option>
-                <option> Promocional </option>
+                <option value='qtd_estoque desc'> Estoque (do maior para o menor) </option>
+                <option value='qtd_estoque'> Estoque (do menor para o maior) </option>
+                <option value='vl_preco desc'> Preço </option>
+                <option value='vl_preco_promocional desc'> Promocional </option>
               </select>
             </div>
           </article>
@@ -147,14 +141,27 @@ export default function Consulta() {
               </select>
             </div>
           </article>
+          <article>
+            <h3> Disponível para assinatura:</h3>
+            <div>
+              <select>
+                <option> Selecionar </option>
+                <option value={true}> Disponível </option>
+                <option value={false}> Não disponível </option>
+                
+              </select>
+            </div>
+          </article>
         </section>
         <section id='s4'>
           <table>
             <thead>
               <tr>
-                <th className='id desaparece4'> ID </th>
+                <th className='idPai desaparece4'>
+                  <th className='id desaparece4'> ID </th>
+                </th>
                 <th className='img'> Produto </th>
-                <th className='desaparece2'> Categoria </th>
+                <th className='desaparece2 categoria'> Categoria </th>
                 <th className='desaparece'> ADM </th>
                 <th className='desaparece2'> Estoque </th>
                 <th className='desaparece3'> Preço </th>
@@ -167,11 +174,13 @@ export default function Consulta() {
                 return(
                   <tr key={item.id}>
                     <div>
-                      <td className='id desaparece4'> {item.id} </td>
+                      <td className='idPai desaparece4'>
+                        <td className='id desaparece4'> {item.id} </td>
+                      </td>
                       <td className='img'> 
                         <img src={item.imagem} alt=''/>
                       </td>
-                      <td className='desaparece2'> {item.categoria} </td>
+                      <td className='desaparece2 categoria'> {item.categoria} </td>
                       <td className='desaparece'> {item.admin} </td>
                       <td className='desaparece2'> {item.estoque} </td>
                       <td className='desaparece3'> {item.preco} </td>

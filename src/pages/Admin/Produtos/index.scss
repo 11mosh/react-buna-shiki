@@ -68,7 +68,7 @@
                     font-size: 17px;
                 }
                 > div {
-                    width: 200px;
+                    width: 230px;
                     height: 30px;
                     border-radius: 8px;
                     padding: 0px 10px;
@@ -77,8 +77,10 @@
                     align-items: center;
                     cursor: pointer;
                     select {
-                        width: 180px;
+                        width: 210px;
                         height: 20px;
+                        gap: 20px;
+                        display: flex;
                         border: none;
                         outline: none;
                         cursor: pointer;
@@ -100,7 +102,9 @@
                 padding: 30px 0px 0px 0px;
                 .id {
                     width: 50px;
-                    margin-right: 50px ;
+                }
+                .idPai {
+                    background-color: rgba(000,000,000, 0) !important;
                 }
                 thead {
                     padding: 0px 39px 0px 27px;
@@ -110,6 +114,9 @@
                         display: flex;
                         justify-content: space-between;
                         th{
+                            display: flex;
+                            align-items: center;
+                            justify-content: center;
                             width: 100px;
                         }
                     }
@@ -118,23 +125,25 @@
                     width: 98%;
                     align-self: center;
                 }
+                .categoria {
+                    width: 130px !important;
+                }
                 tbody{
-                    padding: 0px 20px 20px 10px;
+                    padding: 0px 20px 0px 10px;
                     display: flex;
                     flex-direction: column !important;
                     margin-right: 3px;
                     gap: 20px;
                     width: 99.6%;
-                    height: 650px;
+                    height: 270px;
                     overflow: scroll;
                     overflow-x: hidden;
                     tr{
                         display: flex;
                         justify-content: space-between;
                         background-color: white;
-                        border: 1px solid black;
                         border-radius: 10px;
-                        height: 170px;
+                        height: 140px;
                         padding: 7px 8px 7px 17px;
                         align-items: center;
                         > div {
@@ -147,7 +156,7 @@
                         td{
                             width: 100px;
                             min-height: 30px;
-                            padding: 5px 3px;
+                            padding: 5px 8px;
                             border-radius: 5px;
                             background-color: #d9d9d9;
                             display: flex;
@@ -157,16 +166,18 @@
                         }
                         #acoes{
                             background-color: unset;
-                            display: none;
+                            display: flex;
                             gap: 10px;
                             margin-bottom: 3px;
+
                             i{
+                                
                                 font-size: 25px;
                                 cursor: pointer;
                             }
                             i:hover {
                                 color: red;
-                                transition: 0.1s;
+                                transition: 0.2s;
                             }
                         }
                         .img {
@@ -179,13 +190,11 @@
                             }
                         }
                     }
-                    // tr:hover {
-                    
-                    //     #acoes {
-                    //         display: flex;
-                    //     }
-                    //     background-color: #f7945a;
-                    // }
+                    tr:hover {
+                        background-color: #828282;
+                        transition: 0.3s;
+                        border: unset !important;
+                    }
                 }
                 tbody::-webkit-scrollbar {
                     scroll-behavior: smooth;
@@ -205,20 +214,6 @@
         main {
             > #s4{
                 table{
-                    .desaparece{
-                        display: none;
-                    }
-                }
-            }
-        }
-    }
-}
-
-@media(max-width: 1115px){
-    #page-adm-produtos{
-        main {
-            > #s4{
-                table{
                     thead {
                         tr {
                             width: 85%;
@@ -231,13 +226,39 @@
                             }
                         }
                     }
+                    .desaparece{
+                        display: none;
+                    }
                 }
             }
         }
     }
 }
 
-@media(max-width: 850px) {
+// @media(max-width: 1115px){
+//     #page-adm-produtos{
+//         main {
+//             > #s4{
+//                 table{
+//                     thead {
+//                         tr {
+//                             width: 80%;
+//                         }
+//                     }
+//                     tbody {
+//                         tr{
+//                             > div {
+//                                 width: 80%;
+//                             }
+//                         }
+//                     }
+//                 }
+//             }
+//         }
+//     }
+// }
+
+@media(max-width: 900px) {
     #page-adm-produtos{
         main {
             > #s3 {
@@ -247,13 +268,13 @@
                 table{
                     thead {
                         tr {
-                            width: 80%;
+                            width: 75%;
                         }
                     }
                     tbody {
                         tr{
                             > div {
-                                width: 80%;
+                                width: 75%;
                             }
                         }
                     }
@@ -266,7 +287,7 @@
     }
 }
 
-@media(max-width: 620px) {
+@media(max-width: 650px) {
     #page-adm-produtos{
         main {
             > #s1 {
@@ -281,13 +302,13 @@
                 table{
                     thead {
                         tr {
-                            width: 70%;
+                            width: 65%;
                         }
                     }
                     tbody {
                         tr{
                             > div {
-                                width: 70%;
+                                width: 65%;
                             }
                         }
                     }
@@ -300,7 +321,7 @@
         }
     }
 }
-@media(max-width: 435px) {
+@media(max-width: 500px) {
     #page-adm-produtos{
         main {
             > #s1 {
@@ -318,7 +339,14 @@
                 article {
                     gap: 10px ;
                     h3 {
-                        font-size: 17px;
+                        font-size: 16px;
+                    }
+                    div {
+                        width: 205px;
+
+                        select {
+                            width: 185px;
+                        }
                     }
                 }
             }
@@ -331,16 +359,12 @@
                         tr {
                             height: 120px;
                             > div {
+                            height: 120px;
                                 .img {
                                     img {
                                         width: 80px;
                                         height: 80px;
                                     }
-                                }
-                            }
-                            #acoes {
-                                i {
-                                    font-size: 22px;
                                 }
                             }
                         }
