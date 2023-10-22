@@ -95,8 +95,8 @@ export default function CabecalhoUsuario() {
                                         <input type="text" placeholder='Pesquise por produtos aqui...' value={pesquisa}
                                         onChange={e => setPesquisa(e.target.value)} onKeyDown={zerarPesquisa} />
                                     </div>
-
                                     <div className="dropdown">
+                                        <hr />
                                         {frutas
                                             .filter((item) => {
                                             const usuPesquisa = pesquisa.toLowerCase();
@@ -118,7 +118,6 @@ export default function CabecalhoUsuario() {
                                                     <img src={item.imagem} alt="" srcset="" />
                                                     <h2>{item.nome}</h2>
                                                 </div>
-                                                <hr />
                                             </div>
                                         ))}
                                     </div>
@@ -134,6 +133,7 @@ export default function CabecalhoUsuario() {
                         <input type="text" placeholder='Pesquise por produtos aqui...' value={pesquisa} onChange={e => setPesquisa(e.target.value)} onKeyDown={zerarPesquisa} />
                         <img src='/assets/images/lupa-dark.svg' alt="Erro ao exibir imagem" onClick={exibirPesquisa}/>
                     </div>
+                    <hr />
                     <div className="dropdown">
                         {frutas
                             .filter((item) => {
@@ -156,7 +156,6 @@ export default function CabecalhoUsuario() {
                                     <img src={item.imagem} alt="" srcset="" />
                                     <h2>{item.nome}</h2>
                                 </div>
-                                <hr />
                             </div>
                         ))}
                     </div>
