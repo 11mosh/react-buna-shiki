@@ -32,11 +32,21 @@ export default function Index() {
                         </figure>
                     </section>
                     <section id='status'>
-                        <p> Pedido realizado</p>
-                        <p id='statusAtual'> Pagamento...</p>
-                        <p> Pedido em preparo </p>
-                        <p> À caminho </p>
-                        <p> Entregue</p>
+                        <div>
+                            <p> Pedido realizado</p>
+                        </div>
+                        <div>
+                            <p id='statusAtual'> Pagamento...</p>
+                        </div>
+                        <div>
+                            <p> Pedido em preparo </p>
+                        </div>
+                        <div>
+                            <p> À caminho </p>
+                        </div>
+                        <div>
+                            <p> Entregue</p>
+                        </div>
                     </section>
                     <section id='barraProgresso'>
                         <article id='estagios'>

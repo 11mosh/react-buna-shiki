@@ -1,7 +1,7 @@
 import './index.scss';
 import CabecalhoAdm from '../../../components/Admin/AdmCabecalho';
 import { Link, useNavigate } from 'react-router-dom';
-import { buscarAdms, buscarCategorias, buscarTodos, excluir } from '../../../api/produtoApi';
+import { buscarAdms, buscarCategorias, excluir, filtrarPorAdm, filtrarPorCategorias, filtrarPorAssinatura, buscarTodosProdutos } from '../../../api/produtoApi';
 import { useEffect, useState } from 'react';
 import {toast} from 'react-toastify'
 import { confirmAlert } from 'react-confirm-alert'
@@ -11,22 +11,24 @@ export default function Consulta() {
   const [buscaInput, setBuscaInput] = useState('')
   const [produtos, setProdutos] = useState([])
   const [adms, setAdms] = useState([])
-  const [categorias, setCategorias] = useState([]) 
-  const [ordenarPor, setOrdenarPor] = useState('')
-  const [filtrarAdm, setFiltrarAdm] = useState('')
-  const [FiltrarCategoria, setFiltrarCategoria] = useState('')
+  const [categorias, setCategorias] = useState([])
+  const [disponivelAssinatura, setDisponivelAssinatura] = useState(0)
+  const [filtrarPorCategoria, setFiltrarPorCategoria] = useState(0)
+  const [filtrarAdm, setFiltrarAdm] = useState(0)
+
   const navigate = useNavigate()
 
 
-  async function buscarTodosClick() { 
+
+  async function pesquisa() { 
     try{
       if(buscaInput === ''){
-        const respProdutos = await buscarTodos()
+        const respProdutos = await buscarTodosProdutos()
         setProdutos(respProdutos)
       }
     }
     catch(err){
-      toast.error(err.response.data.erro)
+      toast.warn(err.response.data.erro)
     }
   }
   
@@ -41,7 +43,8 @@ export default function Consulta() {
           try{
             await excluir(idProduto, idDetalhe)
             toast.success('Produto excluido!')
-            setProdutos([])
+            const removendoDeletado = produtos.filter(item => item.id !== idProduto)
+            setProdutos(removendoDeletado)
           }
           catch(err){
             setProdutos([])
@@ -65,7 +68,7 @@ export default function Consulta() {
       setCategorias(categoriasResp)
     }
     catch(err){
-      toast.error('Não foi possível buscar as categorias disponíveis para filtro')
+      toast.warn('Não foi possível buscar as categorias disponíveis para filtro')
     }
   }
 
@@ -76,17 +79,59 @@ export default function Consulta() {
       setAdms(admsResp)
     }
     catch(err){
-      toast.error('Não foi possível buscar os adms disponíveis para filtro')
+      toast.warn('Não foi possível buscar os adms disponíveis para filtro')
     }
   }
 
   useEffect(() => {
     buscarCategoriasFiltro()
     buscarAdmsFiltro()
+    pesquisa()
   }, [])
 
+  async function filtrarPorCategoriasClick(idCategoria){
+    try {
+      const produtosFiltrados = await filtrarPorCategorias(idCategoria)
+  
+  
+      if(produtosFiltrados.length === 0 && idCategoria !== '0')
+        toast.info('Não há produtos com essa categoria.')
+      setProdutos(produtosFiltrados)
+    }
+    catch(err){
+      toast.error(err.response.data.erro)
+    }
+  }
 
+  async function filtrarPorAdmClick(idAdm){
+    try {
+      console.log(idAdm);
+      const produtosFiltrados = await filtrarPorAdm(idAdm)
+      if(produtosFiltrados.length === 0 && idAdm !== '0')
+        toast.info('Não há produtos cadastrados por esse administrador.')
 
+      setProdutos(produtosFiltrados)
+    }
+    catch(err){
+      toast.error(err.response.data.erro)
+    }
+  }
+
+  async function filtrarPorAssinaturaClick(valor) {
+    try{
+      const produtosFiltrados = await filtrarPorAssinatura(valor)
+
+      if(produtosFiltrados.length === 0 && valor === 'true')
+        toast.info('Não há produtos disponíveis para assinatura.')
+      if(produtosFiltrados.length === 0 && valor === 'false')
+        toast.info('Não há produtos que não estejam disponíveis para assinatura.')
+
+      setProdutos(produtosFiltrados)
+    } 
+    catch(err){
+      toast.error(err.message)
+    }
+  }
   
   return (
     <div id='page-adm-produtos'>
@@ -99,7 +144,7 @@ export default function Consulta() {
         <section id='s2'>
           <input type='text' placeholder='Busque por produtos, id do produto' onChange={e => setBuscaInput(e.target.value)}/>
           <article>
-            <img src='/assets/images/lupa-dark.svg' alt='icon-busca' value={buscaInput} onClick={buscarTodosClick}/>
+            <img src='/assets/images/lupa-dark.svg' alt='icon-busca' value={buscaInput} onClick={pesquisa}/>
           </article>
         </section>
         <section id='s3'>
@@ -108,21 +153,21 @@ export default function Consulta() {
             <div>
               <select>
                 <option> Selecionar </option>
-                <option value='qtd_estoque desc'> Estoque (do maior para o menor) </option>
-                <option value='qtd_estoque'> Estoque (do menor para o maior) </option>
-                <option value='vl_preco desc'> Preço </option>
-                <option value='vl_preco_promocional desc'> Promocional </option>
+                <option value='qtd_estoque desc' > Estoque (do maior para o menor) </option>
+                <option value='qtd_estoque' > Estoque (do menor para o maior) </option>
+                <option value='vl_preco desc' > Preço </option>
+                <option value='vl_preco_promocional desc' > Promocional </option>
               </select>
             </div>
           </article>
           <article>
             <h3> Filtrar por categoria: </h3>
             <div>
-              <select>
-                <option> Selecionar </option>
+              <select value={filtrarPorCategoria} onChange={e => {filtrarPorCategoriasClick(e.target.value); setFiltrarPorCategoria(e.target.value); setDisponivelAssinatura(0); setFiltrarAdm(0)}}>
+                <option value={0}> Selecionar </option>
                 {categorias.map(item => {
                   return(
-                    <option key={item.id}> {item.nome} </option>
+                    <option key={item.id} value={item.id}> {item.nome} </option>
                   )
                 })}
               </select>
@@ -131,11 +176,11 @@ export default function Consulta() {
           <article>
             <h3> Filtrar por ADM:</h3>
             <div>
-              <select>
-                <option> Selecionar </option>
+              <select value={filtrarAdm} onChange={e => {filtrarPorAdmClick(e.target.value); setFiltrarAdm(e.target.value); setFiltrarPorCategoria(0); setDisponivelAssinatura(0)}}>
+                <option value={0}> Selecionar </option>
                 {adms.map(item => {
                   return(
-                    <option key={item.id}> {item.usuario}</option>
+                    <option key={item.id} value={item.id}> {item.usuario}</option>
                   )
                 })}
               </select>
@@ -144,11 +189,10 @@ export default function Consulta() {
           <article>
             <h3> Disponível para assinatura:</h3>
             <div>
-              <select>
-                <option> Selecionar </option>
+              <select value={disponivelAssinatura} onChange={e => {filtrarPorAssinaturaClick(e.target.value); setDisponivelAssinatura(e.target.value); setFiltrarAdm(0); setFiltrarPorCategoria(0)}}>
+                <option value={0}> Selecionar </option>
                 <option value={true}> Disponível </option>
                 <option value={false}> Não disponível </option>
-                
               </select>
             </div>
           </article>
