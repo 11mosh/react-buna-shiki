@@ -104,7 +104,7 @@ function CadastroProduto () {
                     toast.success('Produto alterado!')
                     setTimeout(() => {
                         navigate('/adm/produtos')
-                    }, 3000)
+                    }, 500)
             }}
             else{
                 if (fotos.length === 0) {
