@@ -82,6 +82,15 @@ export async function filtrarPorAssinatura(valorBoolean){
     return resp.data
 }
 
+export async function ordernarProdutosPorColuna(coluna){
+    const resp = await api.get(`/filtro/produtos/ordenar/${coluna}`)
+    console.log(coluna);
+    return resp.data
+}
 
+export async function pesquisaInput(pesquisaValor) {
+    const resp = await api.get(`/filtro/produtos/pesquisa/${pesquisaValor}`)
 
-
+    
+    return resp.data
+}

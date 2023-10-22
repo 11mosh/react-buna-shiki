@@ -1,7 +1,7 @@
 import './index.scss';
 import CabecalhoAdm from '../../../components/Admin/AdmCabecalho';
 import { Link, useNavigate } from 'react-router-dom';
-import { buscarAdms, buscarCategorias, excluir, filtrarPorAdm, filtrarPorCategorias, filtrarPorAssinatura, buscarTodosProdutos } from '../../../api/produtoApi';
+import { buscarAdms, buscarCategorias, excluir, filtrarPorAdm, filtrarPorCategorias, filtrarPorAssinatura, buscarTodosProdutos, ordernarProdutosPorColuna, pesquisaInput } from '../../../api/produtoApi';
 import { useEffect, useState } from 'react';
 import {toast} from 'react-toastify'
 import { confirmAlert } from 'react-confirm-alert'
@@ -15,6 +15,7 @@ export default function Consulta() {
   const [disponivelAssinatura, setDisponivelAssinatura] = useState(0)
   const [filtrarPorCategoria, setFiltrarPorCategoria] = useState(0)
   const [filtrarAdm, setFiltrarAdm] = useState(0)
+  const [ordenarPorColuna, setOrdenarPorColuna] = useState(0)
 
   const navigate = useNavigate()
 
@@ -26,9 +27,15 @@ export default function Consulta() {
         const respProdutos = await buscarTodosProdutos()
         setProdutos(respProdutos)
       }
+      else {
+        const produtosRetornados = await pesquisaInput(buscaInput)
+        if(produtosRetornados.length === 0)
+          toast.info('Não há produtos com esse nome ou id')
+        setProdutos(produtosRetornados)
+      }
     }
     catch(err){
-      toast.warn(err.response.data.erro)
+      toast.warn(err.message)
     }
   }
   
@@ -68,7 +75,7 @@ export default function Consulta() {
       setCategorias(categoriasResp)
     }
     catch(err){
-      toast.warn('Não foi possível buscar as categorias disponíveis para filtro')
+      toast.error('Não foi possível buscar as categorias disponíveis para filtro')
     }
   }
 
@@ -79,7 +86,7 @@ export default function Consulta() {
       setAdms(admsResp)
     }
     catch(err){
-      toast.warn('Não foi possível buscar os adms disponíveis para filtro')
+      toast.error('Não foi possível buscar os adms disponíveis para filtro')
     }
   }
 
@@ -87,6 +94,7 @@ export default function Consulta() {
     buscarCategoriasFiltro()
     buscarAdmsFiltro()
     pesquisa()
+    // eslint-disable-next-line
   }, [])
 
   async function filtrarPorCategoriasClick(idCategoria){
@@ -96,6 +104,7 @@ export default function Consulta() {
   
       if(produtosFiltrados.length === 0 && idCategoria !== '0')
         toast.info('Não há produtos com essa categoria.')
+
       setProdutos(produtosFiltrados)
     }
     catch(err){
@@ -105,7 +114,7 @@ export default function Consulta() {
 
   async function filtrarPorAdmClick(idAdm){
     try {
-      console.log(idAdm);
+
       const produtosFiltrados = await filtrarPorAdm(idAdm)
       if(produtosFiltrados.length === 0 && idAdm !== '0')
         toast.info('Não há produtos cadastrados por esse administrador.')
@@ -133,6 +142,22 @@ export default function Consulta() {
     }
   }
   
+  async function ordenarProdutos(coluna) {
+    try {
+      const produtosOrdenados = await ordernarProdutosPorColuna(coluna)
+      console.log(produtosOrdenados);
+      setProdutos(produtosOrdenados)
+    }
+    catch(err){
+      toast.error(err.response.data.erro)
+    }
+  }
+
+  function apertoEnter(e) {
+    if(e.key === 'Enter')
+      pesquisa()
+  }
+
   return (
     <div id='page-adm-produtos'>
       <CabecalhoAdm />
@@ -142,17 +167,17 @@ export default function Consulta() {
           <Link to='/adm/cadastro-produto'> Adicionar um produto </Link>
         </section>
         <section id='s2'>
-          <input type='text' placeholder='Busque por produtos, id do produto' onChange={e => setBuscaInput(e.target.value)}/>
+          <input type='text' placeholder='Busque por produtos, id do produto' value={buscaInput} onChange={e => setBuscaInput(e.target.value)} onKeyDown={apertoEnter}/>
           <article>
-            <img src='/assets/images/lupa-dark.svg' alt='icon-busca' value={buscaInput} onClick={pesquisa}/>
+            <img src='/assets/images/lupa-dark.svg' alt='icon-busca'onClick={pesquisa}/>
           </article>
         </section>
         <section id='s3'>
           <article>
             <h3> Ordenar por:</h3>
             <div>
-              <select>
-                <option> Selecionar </option>
+              <select value={ordenarPorColuna} onChange={e => {ordenarProdutos(e.target.value); setOrdenarPorColuna(e.target.value); setFiltrarPorCategoria(0); setDisponivelAssinatura(0); setFiltrarAdm(0)}}>
+                <option value={0}> Selecionar </option>
                 <option value='qtd_estoque desc' > Estoque (do maior para o menor) </option>
                 <option value='qtd_estoque' > Estoque (do menor para o maior) </option>
                 <option value='vl_preco desc' > Preço </option>
@@ -163,7 +188,7 @@ export default function Consulta() {
           <article>
             <h3> Filtrar por categoria: </h3>
             <div>
-              <select value={filtrarPorCategoria} onChange={e => {filtrarPorCategoriasClick(e.target.value); setFiltrarPorCategoria(e.target.value); setDisponivelAssinatura(0); setFiltrarAdm(0)}}>
+              <select value={filtrarPorCategoria}  onChange={e => { filtrarPorCategoriasClick(e.target.value); setOrdenarPorColuna(0); setFiltrarPorCategoria(e.target.value); setDisponivelAssinatura(0); setFiltrarAdm(0)   }}>
                 <option value={0}> Selecionar </option>
                 {categorias.map(item => {
                   return(
@@ -176,7 +201,7 @@ export default function Consulta() {
           <article>
             <h3> Filtrar por ADM:</h3>
             <div>
-              <select value={filtrarAdm} onChange={e => {filtrarPorAdmClick(e.target.value); setFiltrarAdm(e.target.value); setFiltrarPorCategoria(0); setDisponivelAssinatura(0)}}>
+              <select value={filtrarAdm} onChange={e => {filtrarPorAdmClick(e.target.value); setFiltrarAdm(e.target.value); setFiltrarPorCategoria(0); setDisponivelAssinatura(0); setOrdenarPorColuna(0)}}>
                 <option value={0}> Selecionar </option>
                 {adms.map(item => {
                   return(
@@ -189,7 +214,7 @@ export default function Consulta() {
           <article>
             <h3> Disponível para assinatura:</h3>
             <div>
-              <select value={disponivelAssinatura} onChange={e => {filtrarPorAssinaturaClick(e.target.value); setDisponivelAssinatura(e.target.value); setFiltrarAdm(0); setFiltrarPorCategoria(0)}}>
+              <select value={disponivelAssinatura} onChange={e => {filtrarPorAssinaturaClick(e.target.value); setDisponivelAssinatura(e.target.value); setFiltrarAdm(0); setFiltrarPorCategoria(0); setOrdenarPorColuna(0)}}>
                 <option value={0}> Selecionar </option>
                 <option value={true}> Disponível </option>
                 <option value={false}> Não disponível </option>
@@ -201,9 +226,7 @@ export default function Consulta() {
           <table>
             <thead>
               <tr>
-                <th className='idPai desaparece4'>
                   <th className='id desaparece4'> ID </th>
-                </th>
                 <th className='img'> Produto </th>
                 <th className='desaparece2 categoria'> Categoria </th>
                 <th className='desaparece'> ADM </th>
@@ -218,9 +241,7 @@ export default function Consulta() {
                 return(
                   <tr key={item.id}>
                     <div>
-                      <td className='idPai desaparece4'>
                         <td className='id desaparece4'> {item.id} </td>
-                      </td>
                       <td className='img'> 
                         <img src={item.imagem} alt=''/>
                       </td>

@@ -30,7 +30,7 @@ import RevisaoProduto from './pages/Admin/Produtos/RevisaoProduto';
 import Cartoes from './pages/Usuario/UsuarioPerfil/Cartoes';
 import RevisaoPedido from './pages/Admin/Pedidos/Revisão'
 import AcompanharPedido from './pages/Usuario/AcompanharPedido'
-import DadosPessoais from './pages/Usuario/UsuarioPerfil/dadosPessoais'
+import DadosPessoais from './pages/Usuario/UsuarioPerfil/DadosPessoais'
 import ResumoPedido from './pages/Usuario/UsuarioPerfil/MeusPedidos/resumoPedido'
 import Enderecos from './pages/Usuario/UsuarioPerfil/Enderecos'
 import PerfilAssinatura from './pages/Usuario/UsuarioPerfil/PerfilAssinaturas';

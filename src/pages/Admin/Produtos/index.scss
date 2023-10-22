@@ -34,6 +34,7 @@
                 height: 50px;
                 padding: 0px 15px;
                 border-radius: 8px 0px 0px 8px;
+                font-size: 16px;
                 border: 1px solid black;
                 background-color: #d9d9d9;
                 outline: none;
@@ -97,14 +98,11 @@
                 display: flex;
                 flex-direction: column;
                 max-height: 700px;
-                height: 400px;
+                height: 470px;
                 gap: 30px;
                 padding: 30px 0px 0px 0px;
                 .id {
-                    width: 50px;
-                }
-                .idPai {
-                    background-color: rgba(000,000,000, 0) !important;
+                    width: 60px;
                 }
                 thead {
                     padding: 0px 39px 0px 27px;
@@ -135,7 +133,7 @@
                     margin-right: 3px;
                     gap: 20px;
                     width: 99.6%;
-                    height: 270px;
+                    height: 330px;
                     overflow: scroll;
                     overflow-x: hidden;
                     tr{
@@ -235,28 +233,7 @@
     }
 }
 
-// @media(max-width: 1115px){
-//     #page-adm-produtos{
-//         main {
-//             > #s4{
-//                 table{
-//                     thead {
-//                         tr {
-//                             width: 80%;
-//                         }
-//                     }
-//                     tbody {
-//                         tr{
-//                             > div {
-//                                 width: 80%;
-//                             }
-//                         }
-//                     }
-//                 }
-//             }
-//         }
-//     }
-// }
+
 
 @media(max-width: 900px) {
     #page-adm-produtos{
@@ -342,10 +319,10 @@
                         font-size: 16px;
                     }
                     div {
-                        width: 205px;
+                        width: 210px;
 
                         select {
-                            width: 185px;
+                            width: 190px;
                         }
                     }
                 }

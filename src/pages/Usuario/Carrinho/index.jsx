@@ -14,7 +14,7 @@ export default function Carrinho () {
     return (    
       <div className="page-carrinho">
         <Cabecalho />
-            <main id="conteudo">
+            <main id="carrinho">
                 {produtos.length === 0
                 ?   <div id="carrinho-vazio">
                         <img src="/assets/images/carrinhoo.svg" alt="carrinho"/>
@@ -56,11 +56,105 @@ export default function Carrinho () {
                                     <i className="fa-regular fa-trash-can"></i>
                                 </article>
                             </section>
+                            <section>
+                                <article id="a1">
+                                    <div id="produto">
+                                        <img src='/assets/images/cafeteiraa.png' alt='' />
+                                    </div>
+                                    <div id="detalhes">
+                                        <p> Orfeu intenso 1kg</p>
+                                        <p> R$135,50 </p>
+                                        <div> 
+                                            <button> 
+                                                <img src='/assets/images/icon-menos.svg' alt=''/>
+                                            </button>
+                                            3
+                                            <button>
+                                                <img src='/assets/images/icon-mais.svg' alt=''/>
+                                            </button>
+                                        </div>
+                                    </div>
+                                </article>
+                                <article id="a2">
+                                    <i className="fa-regular fa-trash-can"></i>
+                                </article>
+                            </section>
+                            <section>
+                                <article id="a1">
+                                    <div id="produto">
+                                        <img src='/assets/images/cafeteiraa.png' alt='' />
+                                    </div>
+                                    <div id="detalhes">
+                                        <p> Orfeu intenso 1kg</p>
+                                        <p> R$135,50 </p>
+                                        <div> 
+                                            <button> 
+                                                <img src='/assets/images/icon-menos.svg' alt=''/>
+                                            </button>
+                                            3
+                                            <button>
+                                                <img src='/assets/images/icon-mais.svg' alt=''/>
+                                            </button>
+                                        </div>
+                                    </div>
+                                </article>
+                                <article id="a2">
+                                    <i className="fa-regular fa-trash-can"></i>
+                                </article>
+                            </section>
+
+                            <section>
+                                <article id="a1">
+                                    <div id="produto">
+                                        <img src='/assets/images/cafeteiraa.png' alt='' />
+                                    </div>
+                                    <div id="detalhes">
+                                        <p> Orfeu intenso 1kg</p>
+                                        <p> R$135,50 </p>
+                                        <div> 
+                                            <button> 
+                                                <img src='/assets/images/icon-menos.svg' alt=''/>
+                                            </button>
+                                            3
+                                            <button>
+                                                <img src='/assets/images/icon-mais.svg' alt=''/>
+                                            </button>
+                                        </div>
+                                    </div>
+                                </article>
+                                <article id="a2">
+                                    <i className="fa-regular fa-trash-can"></i>
+                                </article>
+                            </section>
+
+                            <section>
+                                <article id="a1">
+                                    <div id="produto">
+                                        <img src='/assets/images/cafeteiraa.png' alt='' />
+                                    </div>
+                                    <div id="detalhes">
+                                        <p> Orfeu intenso 1kg</p>
+                                        <p> R$135,50 </p>
+                                        <div> 
+                                            <button> 
+                                                <img src='/assets/images/icon-menos.svg' alt=''/>
+                                            </button>
+                                            3
+                                            <button>
+                                                <img src='/assets/images/icon-mais.svg' alt=''/>
+                                            </button>
+                                        </div>
+                                    </div>
+                                </article>
+                                <article id="a2">
+                                    <i className="fa-regular fa-trash-can"></i>
+                                </article>
+                            </section>
                         </main>
                         <section id="s2">
                             <hr />
                             <article>
-                                <p> Subtotal </p>
+                                <p id="subtotal"> Subtotal: </p>
                                 <p> R$ 345,00 </p>
                             </article>
                         </section>

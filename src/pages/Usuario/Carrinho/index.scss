@@ -1,8 +1,10 @@
 .page-carrinho{
     display: flex;
     flex-direction: column;
+    justify-content: space-between;
     height: 100vh;
-    > #conteudo {
+    > #carrinho {
+
         #carrinho-vazio{
             display: flex;
             justify-content: center;
@@ -120,6 +122,14 @@
                     width: 18%;
                     min-width: 180px;
                     justify-content: space-between;
+                    font-size: 20px;
+                    gap: 20px;
+                    p {
+                        min-width: 100px;
+                    }
+                    #subtotal {
+                        font-weight: 600;
+                    }
                 }
                 hr {
                     border-color: #dbdbdb;
@@ -196,6 +206,9 @@
             hr {
                 width: 504px !important;
             }
+            article {
+                font-size: 19px !important;
+            }
         }
     }
 }
@@ -219,6 +232,10 @@
         > #s2 {
             hr {
                 width: 400px !important;
+            }
+            article {
+                width: 100%;
+                font-size: 18px !important;
             }
         }
         > #s3 {

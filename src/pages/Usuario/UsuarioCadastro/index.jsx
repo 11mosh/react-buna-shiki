@@ -1,4 +1,4 @@
-import { useState, useRef } from 'react';
+import { useState, useRef, useEffect } from 'react';
 import CabecalhoLink from '../../../components/Usuario/CabecalhoLink';
 import UsuarioRodape from '../../../components/Usuario/UsuarioRodape';
 import './index.scss';
@@ -92,6 +92,11 @@ export default function Index() {
             toast.error('CEP inválido')
         }
     }
+    
+    useEffect(() => {
+        if(storage('usuario-logado'))
+            navigate('/')
+    })
 
     return(
         <div className='pag-cadastro'>
