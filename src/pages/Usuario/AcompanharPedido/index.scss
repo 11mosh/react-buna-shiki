@@ -1,7 +1,7 @@
 #page-acompanhar-pedido {
     > #conteudo {
         font-family: 'Inter';
-        padding: 80px 30px 50px 30px;
+        padding: 80px 50px 50px 50px;
         display: flex;
         flex-direction: column;
         gap: 50px;
@@ -13,7 +13,7 @@
             gap: 30px;
             margin-bottom: 30px;
             #icons {
-                width: 75%;
+                width: 1250px;
                 display: flex;
                 height: 80px;
                 gap: 30px;
@@ -55,7 +55,7 @@
                     display: flex;
                     justify-content: space-between;
                     position: absolute;
-                    width: 75%;
+                    width: 1246px;
                     > div{
                         width: 80px;
                         border-radius: 50px;
@@ -66,7 +66,7 @@
                 #barra {
                     background-color: #424242;
                     display: flex;
-                    width: 70%;
+                    width: 1170px;
                     height: 30px;
                     padding: 0px 8px;
                     .concluido {
@@ -81,7 +81,7 @@
             }
             #status {
                 display: flex;
-                width: 75%;
+                width: 1252px;
                 justify-content: space-between;
                 gap: 20px;
                 p {
@@ -110,6 +110,208 @@
                 text-align: start;
                 font-size: 16px;
                 text-decoration: underline;
+            }
+        }
+    }
+}
+@media(max-width: 1450px){
+    #page-acompanhar-pedido {
+        > #conteudo {
+            > #progressoPedido{
+                #icons {
+                    width: 93%;
+                }
+                #barraProgresso {
+                    #estagios {
+                        width: 93%;
+                    }
+                    #barra {
+                        width: 90%;
+                    }
+                }
+                #status {
+                    width: 93%;
+                }
+            }
+            > section {
+                padding: 30px 0px 30px 50px;
+                align-items: flex-start;
+            }
+        }
+    }
+}
+@media(max-width: 1100px){
+    #page-acompanhar-pedido {
+        > #conteudo {
+            > #progressoPedido{
+                #icons {
+                    width: 100% !important;
+                    .icon {
+                        width: 75px;
+                        height: 75px;
+                    }
+                }
+                #barraProgresso {
+                    #estagios {
+                        width: 100% !important;
+                        div {
+                            width: 75px;
+                            height: 75px;
+                        }
+                    }
+                    #barra {
+                        width: 95% !important;
+                    }
+                }
+                #status {
+                    width: 100% !important;
+                }
+            }
+            > section {
+                padding: 30px 0px 30px 50px;
+                align-items: flex-start;
+            }
+        }
+    }
+}
+@media(max-width: 900px){
+    #page-acompanhar-pedido {
+        > #conteudo {
+            > #progressoPedido{
+                height: 650px;
+                flex-direction: row;
+                justify-content: center;
+                gap: 50px;
+                #icons {
+                    height: 100%;
+                    width: 80px !important;
+                    flex-direction: column;
+                    figure {
+                        
+                        height: 80px
+                    }
+                    .icon {
+                        width: 80px;
+                        height:  80px;
+                    }
+                    .icon-finalizado {
+                        width: 60px;
+                        height: 60px;
+                        position: absolute;
+                        left: 35px;
+                        top: 0px;
+                    }
+                }
+                #barraProgresso {
+                    flex-direction: row;
+                    height: 100%;
+                    width: 100px;
+                    #estagios {
+                        width: 80px !important;
+                        height: 100%;
+                        flex-direction: column;
+                        div {
+                            width: 80px;
+                            height: 80px;
+                        }
+                    }
+                    #barra {
+                        width: 30px !important;
+                        height: 95%;
+                        flex-direction: column;
+                        padding: 0px 0px;
+                        .concluido {
+                            height: 25% !important;
+                            width: 30px !important;
+                        }
+                        .não-concluido {
+                            height: 19%;
+                            width: 100%;
+                        }
+                    }
+                }
+                #status {
+                    flex-direction: column;
+                    width: 100px !important;
+                    height: 100%;
+                    div {
+                        height: 80px;
+                        display: flex;
+                        align-items: center;
+                    }
+                }
+            }
+            > section {
+                padding: 30px 0px 30px 20px;
+            }
+        }
+    }
+}
+@media(max-width: 600px){
+    #page-acompanhar-pedido {
+        > #conteudo {
+            > #progressoPedido{
+                gap: 30px;
+                #icons {
+                    .icon {
+                        width: 75px;
+                        height: 75px;
+                    }
+                }
+                #barraProgresso {
+                    #estagios {
+                        align-items: center;
+                        width: 100px !important;
+                        div {
+                            width: 75px;
+                            height: 75px;
+                        }
+                    }
+                }
+            }
+            > section {
+                padding: 30px 0px 30px 10px;
+                align-items: flex-start;
+            }
+        }
+    }
+}
+@media(max-width: 450px){
+    #page-acompanhar-pedido {
+        > #conteudo {
+            padding: 80px 25px 50px 25px;
+            > #progressoPedido{
+                gap: 17px;
+                #icons {
+                    .icon {
+                        width: 65px;
+                        height: 65px;
+                    }
+                }
+                #barraProgresso {
+                    #estagios {
+                        div {
+                            width: 65px;
+                            height: 65px;
+                        }
+                    }
+                    #barra {
+                        width: 26px !important;
+                        .concluido{
+                            width: 26px !important;
+                        }
+                    }
+                }
+                #status {
+                    font-size: 15px;
+                    width: 80px !important;
+                }
+            }
+            > section {
+                padding: 30px 0px 30px 10px;
+                align-items: flex-start;
+                font-size: 15px;
+
             }
         }
     }

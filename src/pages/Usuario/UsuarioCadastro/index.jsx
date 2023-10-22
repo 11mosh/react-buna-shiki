@@ -68,7 +68,7 @@ export default function Index() {
         catch(err){ 
             setCarregando(false)
             ref.current.complete();
-            toast.error(err.response.data.erro)
+            toast.warn(err.response.data.erro)
         }
 
     }

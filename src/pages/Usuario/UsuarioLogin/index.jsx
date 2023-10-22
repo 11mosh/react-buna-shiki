@@ -2,7 +2,7 @@ import { Link, useNavigate } from 'react-router-dom';
 import CabecalhoLink from '../../../components/Usuario/CabecalhoLink';
 import UsuarioRodape from '../../../components/Usuario/UsuarioRodape';
 import './index.scss';
-import { useState, useRef } from 'react';
+import { useState, useRef, useEffect } from 'react';
 import { toast } from 'react-toastify'
 import { Login } from '../../../api/usuarioApi';
 import LoadingBar from 'react-top-loading-bar'
@@ -21,21 +21,15 @@ export default function Index() {
         setCarregando(true)
         try{
             const resp = await Login(email, senha)
-            if(!resp){
-                toast.error('Login ou e-mail inválidos')
-                ref.current.complete()
-            }
-            else{
-                storage('usuario-logado', resp)
-                setTimeout(() => {
-                    navigate('/')
-                }, 3000)
-            }
+            storage('usuario-logado', resp)
+            setTimeout(() => {
+                navigate('/')
+            }, 3000)
         }
         catch(err){
             setCarregando(false)
             ref.current.complete()
-            toast.error(err.response.data.erro)
+            toast.warn(err.response.data.erro)
         }
     }
     
@@ -43,6 +37,12 @@ export default function Index() {
         if(e.key === 'Enter')
             LoginClick()
     }
+
+    useEffect(() => {
+        if(storage('usuario-logado'))
+            navigate('/')
+    })
+
 
     return(
         <div className='pag-login'>

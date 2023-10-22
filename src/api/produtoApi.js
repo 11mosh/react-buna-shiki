@@ -5,7 +5,7 @@ const api = axios.create({
 })
 
 
-export async function buscarTodos(){
+export async function buscarTodosProdutos(){
     const resp = await api.get('/produtos')
 
     return resp.data
@@ -40,7 +40,7 @@ export async function buscarIdImagens(idProduto){
 
 export async function excluirImagens(idFotosExcluir, idProduto){
     await api.put(`/${idProduto}/imagens`, {
-        deletar: idFotosExcluir
+        deletar: idFotosExcluir,
     })
 
 }
@@ -62,5 +62,26 @@ export async function buscarAdms(){
 
     return resp.data
 }
+
+export async function filtrarPorCategorias(idCategoria){
+    const resp = await api.get(`/filtro/produtos/categorias/${idCategoria}`)
+
+    return resp.data
+}
+
+export async function filtrarPorAdm(idAdm){
+    const resp = await api.get(`/filtro/produtos/adm/${idAdm}`)
+
+    return resp.data
+}
+
+export async function filtrarPorAssinatura(valorBoolean){
+
+    const resp = await api.get(`/filtro/produtos/disponivelAssinatura/${valorBoolean}`)
+
+    return resp.data
+}
+
+
 
 
