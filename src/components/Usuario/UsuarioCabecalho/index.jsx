@@ -90,21 +90,21 @@ export default function CabecalhoUsuario() {
                     </div>
                     <div className='lupa'>
                         {mostrarInput 
-                            ? (
+                            ? (<div>
                                     <div className='input-pesquisar'>
                                         <input type="text" placeholder='Pesquise por produtos aqui...' value={pesquisa}
                                         onChange={e => setPesquisa(e.target.value)} onKeyDown={zerarPesquisa} />
                                     </div>
 
-                                    /* <div className="dropdown">
+                                    <div className="dropdown">
                                         {frutas
                                             .filter((item) => {
-                                            const searchTerm = pesquisa.toLowerCase();
+                                            const usuPesquisa = pesquisa.toLowerCase();
                                             const fullName = item.nome.toLowerCase();
 
                                             return (
-                                                searchTerm &&
-                                                fullName.startsWith(searchTerm) 
+                                                usuPesquisa &&
+                                                fullName.startsWith(usuPesquisa) 
                                             );
                                             })
                                             .slice(0, 8)
@@ -121,8 +121,8 @@ export default function CabecalhoUsuario() {
                                                 <hr />
                                             </div>
                                         ))}
-                                    </div> 
-                                     </div>*/
+                                    </div>
+                                    </div>
                                     )
                                     : (<></>)}
                                 
@@ -130,9 +130,35 @@ export default function CabecalhoUsuario() {
                     </div>
                 </section>
                 <section id='s2'>
-                    <div>
+                    <div className='campo1'>
                         <input type="text" placeholder='Pesquise por produtos aqui...' value={pesquisa} onChange={e => setPesquisa(e.target.value)} onKeyDown={zerarPesquisa} />
                         <img src='/assets/images/lupa-dark.svg' alt="Erro ao exibir imagem" onClick={exibirPesquisa}/>
+                    </div>
+                    <div className="dropdown">
+                        {frutas
+                            .filter((item) => {
+                            const usuPesquisa = pesquisa.toLowerCase();
+                            const fullName = item.nome.toLowerCase();
+
+                            return (
+                                usuPesquisa &&
+                                fullName.startsWith(usuPesquisa) 
+                            );
+                            })
+                            .slice(0, 8)
+                            .map((item) => (
+                            <div
+                                onClick={() => setPesquisa('')}
+                                className="dropdown-row"
+                                key={item.nome}
+                            >
+                                <div>
+                                    <img src={item.imagem} alt="" srcset="" />
+                                    <h2>{item.nome}</h2>
+                                </div>
+                                <hr />
+                            </div>
+                        ))}
                     </div>
                 </section>
             </div>
@@ -145,7 +171,7 @@ export default function CabecalhoUsuario() {
                     })}
                 </section>
             </nav>
-            <hr />
+            <hr id='hrsumir'/>
         </div>
     )
 }

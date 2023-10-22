@@ -141,7 +141,44 @@
         #s2 {
             display: none;
             padding: 5px 30px;
-            > div {
+            align-items: center;
+            flex-direction: column;
+            height: 26px !important;
+
+            img {
+                width: 50px;
+            }
+
+            .dropdown {
+                background-color: white;
+                display: flex;
+                flex-direction: column;
+                width: 300px;
+
+                hr {
+                    width: 100%;
+                    margin: 5px 0px 0px 0px;
+                }
+
+                .dropdown-row {
+                    display: flex;
+                    align-items: flex-start;
+                    flex-direction: column;
+                    width: 100%;
+                    cursor: pointer;
+                    justify-content: center;
+                    margin: 5px 0px;
+
+                    font-size: 13px;
+
+                    > div {
+                        display: flex;
+                        flex-direction: row;
+                    }
+                }
+            }
+
+            .campo1 {
                 width: 100%;
                 height: 30px;
                 border-radius: 8px;
@@ -221,8 +258,12 @@
     }
 }
 
-@media(max-width: 800px) {
+@media(max-width: 813px) {
     .comp-usuario-cabecalho {
+
+        #hrsumir {
+            display: none;
+        }
         > div {
             padding-bottom: 10px;
             #s1 {
