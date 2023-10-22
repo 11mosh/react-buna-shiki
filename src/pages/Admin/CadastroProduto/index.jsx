@@ -226,6 +226,12 @@ function CadastroProduto () {
         setAcidez("");
         setDocura("");
         setTorra("");
+    };
+
+    const enviarEnter = (event) => {
+        if (event === 'Enter') {
+            adicionarImagem();
+        }
     }
 
     useEffect(() => {
@@ -239,12 +245,7 @@ function CadastroProduto () {
     return ( 
         <main className='cadastro-produto'>
             <CabecalhoAdm />
-            <nav style={{padding: '20px'}}>
-                <Link to={'/adm/inicio'} style={{ decoration: 'dashed', color: 0}}> Tela Inicial </Link>
-                 &gt;
-                <p>Adicionar um Produto </p>
-            </nav>
-            <hr />
+            
 
             
 
@@ -254,7 +255,7 @@ function CadastroProduto () {
                         <article className='insercao-imagem'>
                             <p>Insira a URL da imagem</p>
                             <div>
-                                <input type="text" value={urlImagem}  onChange={e => setUrlImagem(e.target.value)}/>
+                                <input type="text" value={urlImagem}  onChange={e => setUrlImagem(e.target.value)} onKeyDown={(event) => {if (event.key === 'Enter') {adicionarImagem()}}}/>
                                 <button onClick={adicionarImagem}> Adicionar </button>
                             </div>
                         </article>
