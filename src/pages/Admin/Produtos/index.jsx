@@ -87,7 +87,7 @@ export default function Consulta() {
     buscarCategoriasFiltro()
     buscarAdmsFiltro()
     pesquisa()
-  }, [])
+  })
 
   async function filtrarPorCategoriasClick(idCategoria){
     try {

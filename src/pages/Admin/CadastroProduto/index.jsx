@@ -1,6 +1,6 @@
 import './index.scss';
 import CabecalhoAdm from '../../../components/Admin/AdmCabecalho';
-import { Link, useParams } from 'react-router-dom';
+import { Link, useNavigate, useParams } from 'react-router-dom';
 import { useEffect, useState} from 'react';
 import axios from 'axios'
 import { toast } from 'react-toastify';
@@ -31,6 +31,8 @@ function CadastroProduto () {
     const [fotosAdicionadas, setFotosAdicionadas] = useState([]);
     const {id: idParam} = useParams();
     const [categorias, setCategorias] = useState([])
+
+    const navigate = useNavigate()
 
     async function buscarCategoriasExibicao(){
         try{
@@ -100,6 +102,9 @@ function CadastroProduto () {
                     cadastrarImagens(id)
                     resetarCampos()
                     toast.success('Produto alterado!')
+                    setTimeout(() => {
+                        navigate('/adm/produtos')
+                    }, 3000)
             }}
             else{
                 if (fotos.length === 0) {
