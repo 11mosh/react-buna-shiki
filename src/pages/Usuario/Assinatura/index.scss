@@ -253,15 +253,18 @@
             margin-top: 70px;
 
             label {
-                transform: .2s;
+                transform: .5s;
                 display: flex;
                 align-items: center;
             }
             
+            #checkbox2 ~ label img{
+                transition: .5s;
+            }
             
             #checkbox2:checked ~ label img {
                 transform: rotate(90deg);
-                transform: .2s;
+                transition: .5s;
             }
 
             button {
