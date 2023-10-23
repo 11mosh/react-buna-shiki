@@ -11,17 +11,9 @@ export default function CadastroCombo () {
     return (
         <main className='cadastro-combo'>
             <CabecalhoAdm/>
-            <nav style={{padding: '20px'}}>
-                <Link to={'/adm/inicio'} style={{ decoration: 'dashed', color: 0}}> Tela Inicial </Link>
-                 &gt;
-                <p>Cadastrar um novo combo </p>
-            </nav>
-
-            <hr />
-
             
             <div className='conteudo-site'>
-            <h1>Cadastrar um novo combo</h1>
+            <h1 style={{alignSelf: 'center', textAlign: 'center', position: 'relative', left: '-15px'}}>Cadastrar um novo combo</h1>
             <article className="card-cadastro">
                 <section className='sec1'>
                     <div className="formulario">
@@ -39,7 +31,7 @@ export default function CadastroCombo () {
                         </div>
                     </div>
 
-                    <button>Finalizar cadastro</button>
+                    <button id='button1'>Finalizar cadastro</button>
                 </section>
                 
                 <section className="selecao-produtos">
@@ -84,6 +76,8 @@ export default function CadastroCombo () {
                             </div>
                         </div>
                     </article>
+
+                    <button id="button2">Finalizar Cadastro</button>
                 </section>
             </article>
             </div>
