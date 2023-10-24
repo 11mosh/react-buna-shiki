@@ -7,6 +7,12 @@ import { toast } from 'react-toastify';
 
 export default function CadastroCombo () {
 
+    const [quantidade, setQuantidade] = useState(0);
+    const [nomeCombo, setNomeCombo] = useState('');
+    const [preco, setPreco] = useState(0);
+    const [estoque, setEstoque] = useState(0);
+
+    
 
     return (
         <main className='cadastro-combo'>

@@ -129,8 +129,13 @@
                     overflow: scroll;
                     overflow-x: hidden;
                     tr:hover {
-                        background-color: #5e3a19c7;
+                        background-color: #503e39;
                         transition: .2s;
+
+                         td {
+                        transition: .2s;
+                       
+                        }
                     }
                     tr{
                         transition: .2s;
@@ -144,6 +149,7 @@
                         align-items: center;
                         > div {
                             width: 100%;
+                            transition: .2s;
                             padding-right: 8px;
                             display: flex;
                             justify-content: space-between;

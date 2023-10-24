@@ -31,7 +31,6 @@ export default function CabecalhoUsuario() {
           };
       
           sugestoes.push(sugestaoobj);
-          console.log(sugestaoobj)
         }
       
         setSugestao(sugestoes);
