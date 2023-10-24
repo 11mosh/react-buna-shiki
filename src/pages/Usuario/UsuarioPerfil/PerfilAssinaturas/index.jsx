@@ -12,7 +12,8 @@ export default function PerfilAssinatura () {
         const cancelamento = {
             customUI: () => {
                 return (
-                    <CancelarAssinatura/> // <-- enviar as funcoes sim e não (endpoints)
+                    <CancelarAssinatura
+                    /> // <-- enviar as funcoes sim e não (endpoints)
                 )
             }
         }

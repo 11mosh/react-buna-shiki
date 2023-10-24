@@ -4,6 +4,8 @@ const api = axios.create({
     baseURL: 'http://localhost:5000'
 })
 
+// Cadastrando 
+
 export async function CadastrarCliente(nome, cpf, telefone, email, senha) {
     const resp = await api.post('/cliente', {
         nome: nome,
@@ -26,11 +28,19 @@ export async function CadastrarEndereco(cep, rua, cidade, complemento, numero, i
     return resp.data
 }
 
+// Buscando
+
 export async function Login(email, senha){
     const resp = await api.post('/cliente/login', {
         email: email,
         senha: senha
     })
+
+    return resp.data
+}
+
+export async function buscarEnderecos(idCliente){
+    const resp = await api.get(`/enderecos/${idCliente}`)
 
     return resp.data
 }

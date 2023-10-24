@@ -163,7 +163,7 @@ export default function CabecalhoUsuario() {
                 <section>
                     {categorias.map(item => {
                         return(
-                            <Link to={caminhos[item.id - 1]}>{item.nome}</Link>
+                            <Link to={caminhos[item.id - 1]} key={item.id}>{item.nome}</Link>
                         )
                     })}
                 </section>

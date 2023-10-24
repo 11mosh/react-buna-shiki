@@ -2,12 +2,15 @@ import './index.scss'
 import BarraNavegacaoConta from '../../../../components/Usuario/BarraNavegacaoConta'
 import UsuarioCabecalho from '../../../../components/Usuario/UsuarioCabecalho'
 import UsuarioRodape from '../../../../components/Usuario/UsuarioRodape'
-import { useState } from 'react'
-
+import { useEffect, useState } from 'react'
+import { toast } from 'react-toastify'
+import storage from 'local-storage'
+import { buscarEnderecos } from '../../../../api/usuarioApi'
 
 export default function Index(){
     const [mostrarTabela, setMostrarTabela] = useState('none')
-    
+    const [enderecos, setEnderecos] = useState([])
+
     function mostrarTabelaClick(){
         if(mostrarTabela === 'flex'){
             setMostrarTabela('none')
@@ -16,6 +19,22 @@ export default function Index(){
             setMostrarTabela('flex')
         }
     }
+
+    async function buscarTodos(){
+        try{
+            const id = storage('usuario-logado').id
+            const enderecosResp = await buscarEnderecos(id)
+
+            setEnderecos(enderecosResp)
+        }
+        catch(err){
+            toast.error(err.response.data.erro)
+        }
+    }
+
+    useEffect(() => {
+        buscarTodos()
+    }, [])
 
     return(
         <div id='page-conta-enderecos'>
@@ -36,24 +55,24 @@ export default function Index(){
                             <hr style={{display: mostrarTabela}}/>
                             <table style={{display: mostrarTabela}}>
                                 <tbody>
-                                    <tr> 
-                                        <td>
-                                            CEP: 12345-678 | RUA LOPES TROVÂO 251 
-                                        </td>
-                                        <td>
-                                            <i className="fa-regular fa-trash-can"></i>
-                                        </td>
-                                    </tr>
-                                    <hr style={{display: mostrarTabela}}/>
-                                    <tr> 
-                                        <td>
-                                            CEP: 12345-678 | RUA LOPES TROVÂO 251 
-                                        </td>
-                                        <td>
-                                            <i className="fa-regular fa-trash-can"></i>
-                                        </td>
-                                    </tr>
-                                    <hr style={{display: mostrarTabela}}/>
+                                    {enderecos.map((item, index, array) => {
+                                        return(  
+                                        <tr> 
+                                            <tr>
+                                                <td>
+                                                    CEP: {item.cep} | {item.rua} {item.numero }
+                                                </td>
+                                                <td>
+                                                    <i className="fa-regular fa-pen-to-square"></i>
+                                                    <i className="fa-regular fa-trash-can"></i>
+                                                </td>
+                                            </tr>
+                                            { index !== array.length - 1 ? <hr style={{display: mostrarTabela}}/> : <></>} 
+
+                                            {/* <hr /> */}
+                                        </tr>
+                                        )
+                                    })}
                                 </tbody>
                             </table> 
                         </div>
