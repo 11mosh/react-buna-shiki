@@ -44,3 +44,10 @@ export async function buscarEnderecos(idCliente){
 
     return resp.data
 }
+
+
+// Deletando
+
+export async function deletarEndereco(id){
+   await api.delete(`/endereco?id=${id}`)
+}

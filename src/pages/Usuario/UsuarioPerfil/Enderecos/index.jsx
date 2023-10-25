@@ -5,17 +5,24 @@ import UsuarioRodape from '../../../../components/Usuario/UsuarioRodape'
 import { useEffect, useState } from 'react'
 import { toast } from 'react-toastify'
 import storage from 'local-storage'
-import { buscarEnderecos } from '../../../../api/usuarioApi'
+import { buscarEnderecos, deletarEndereco } from '../../../../api/usuarioApi'
+import { confirmAlert } from 'react-confirm-alert'
 
 export default function Index(){
     const [mostrarTabela, setMostrarTabela] = useState('none')
     const [enderecos, setEnderecos] = useState([])
+    const [cep, setCEP] = useState()
+    const [numero, setNumero] = useState()
+    const [rua, setRua] = useState()
+    const [complemento, setComplemento] = useState()
+
+
 
     function mostrarTabelaClick(){
         if(mostrarTabela === 'flex'){
             setMostrarTabela('none')
         }
-        else{
+        else if(enderecos.length !== 0){
             setMostrarTabela('flex')
         }
     }
@@ -30,6 +37,36 @@ export default function Index(){
         catch(err){
             toast.error(err.response.data.erro)
         }
+    }
+
+    async function deletarEnderecoClick(item) {
+        
+        console.log(item);
+        confirmAlert({
+            title: "Deletar endereço",
+            message: `Tem certeza que deseja deletar o endereço da rua "${item.rua}" ?`,
+            buttons: [
+                {
+                label: "Sim",
+                onClick: async () => {
+                    try{
+                        await deletarEndereco(item.id)
+
+                        buscarTodos()
+
+                        toast.success('Endereço deletado!')
+                    }
+                    catch(err){
+                        toast.error(err.response.data.erro)
+                    }
+                }
+            },
+            {
+                label: "Não"
+            }
+        ]
+        })
+
     }
 
     useEffect(() => {
@@ -60,16 +97,15 @@ export default function Index(){
                                         <tr> 
                                             <tr>
                                                 <td>
-                                                    CEP: {item.cep} | {item.rua} {item.numero }
+                                                    CEP: {item.cep} | {item.rua}, {item.numero }
                                                 </td>
                                                 <td>
                                                     <i className="fa-regular fa-pen-to-square"></i>
-                                                    <i className="fa-regular fa-trash-can"></i>
+                                                    <i className="fa-regular fa-trash-can" onClick={() => deletarEnderecoClick(item)}></i>
                                                 </td>
                                             </tr>
                                             { index !== array.length - 1 ? <hr style={{display: mostrarTabela}}/> : <></>} 
 
-                                            {/* <hr /> */}
                                         </tr>
                                         )
                                     })}
