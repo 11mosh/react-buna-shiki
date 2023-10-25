@@ -12,9 +12,11 @@ export default function Assinatura () {
     const [itensDisponiveis, setItensDisponiveis] = useState([]);
 
     async function chamarAssinaturas () {
-        const resposta = await axios.get('http://localhost:5000/listar-assinaturas');
-        const resp = resposta.data;
+        const produto = await axios.get('http://localhost:5000/produtos');
+        const resp = produto.data.filter((item) => item.assinatura === 1);
         setItensDisponiveis(resp);
+        console.log(resp)
+
     }
 
     useEffect(() => {
@@ -48,7 +50,9 @@ export default function Assinatura () {
                             return (
                                 <main>
                                     <div className="item">
-                                        <img src="/assets/images/cafeteiraa.png" alt="" />
+                                        <div className="imagem">
+                                            <img src={item.imagem} alt="" />
+                                        </div>
                                         <p>{item.produto}</p>
                                         <div className='quantidade-item'>
                                             <p className='adicionar'>-</p>
@@ -58,47 +62,7 @@ export default function Assinatura () {
                                     </div>
                                 </main>
                             )
-                        })}
-                         
-{/*
-                        <div className="item">
-                            <img src="/assets/images/cafeteiraa.png" alt="" />
-                            <p>Café Orfeu Clássico 1kg</p>
-                            <div className='quantidade-item'>
-                                <p className='adicionar'>-</p>
-                                <p>1</p>
-                                <p className='adicionar'>+</p>
-                            </div>
-                        </div>
-
-                        <div className="item">
-                            <img src="/assets/images/cafeteiraa.png" alt="" />
-                            <p>Café Orfeu Clássico 1kg</p>
-                            <div className='quantidade-item'>
-                                <p className='adicionar'>-</p>
-                                <p>1</p>
-                                <p className='adicionar'>+</p>
-                            </div>
-                        </div>
-                        <div className="item">
-                            <img src="/assets/images/cafeteiraa.png" alt="" />
-                            <p>Café Orfeu Clássico 1kg</p>
-                            <div className='quantidade-item'>
-                                <p className='adicionar'>-</p>
-                                <p>1</p>
-                                <p className='adicionar'>+</p>
-                            </div>
-                        </div>
-                        <div className="item">
-                            <img src="/assets/images/cafeteiraa.png" alt="" />
-                            <p>Café Orfeu Clássico 1kg</p>
-                            <div className='quantidade-item'>
-                                <p className='adicionar'>-</p>
-                                <p>1</p>
-                                <p className='adicionar'>+</p>
-                            </div>
-                        </div> */}
-                                                
+                        })}                                
                     </div>
                 </section>
 
