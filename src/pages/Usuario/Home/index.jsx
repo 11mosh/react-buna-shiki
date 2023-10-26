@@ -8,8 +8,8 @@ import { toast } from 'react-toastify';
 
 function Home () {
 
-    const [categorias, setCategorias] = useState([]) 
-    const [categoriasAtual, setCategoriasAtual] = useState([])
+    const [categorias, setCategorias] = useState([]);
+    const [categoriasAtual, setCategoriasAtual] = useState([]);
 
     async function buscarCategoriasExibicao(){
         try{
@@ -25,7 +25,7 @@ function Home () {
         catch(err){
             toast.error('Erro técnico: não foi possível buscar as categorias existentes')
         }
-    }
+    };
 
     function verificarPosicao() {
         if(categorias.length !== 0){
@@ -34,7 +34,8 @@ function Home () {
             else 
                 return ''
         }
-    }
+    };
+    
     function trocarCategorias() {
         let posicao = verificarPosicao()
         if(posicao === 'posicaoContraria'){
