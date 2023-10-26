@@ -5,7 +5,7 @@ import UsuarioRodape from '../../../../components/Usuario/UsuarioRodape'
 import { useEffect, useState } from 'react'
 import { toast } from 'react-toastify'
 import storage from 'local-storage'
-import { buscarEnderecos, deletarEndereco } from '../../../../api/usuarioApi'
+import { CadastrarEndereco, alterarEndereco, buscarCep, buscarEnderecos, deletarEndereco } from '../../../../api/usuarioApi'
 import { confirmAlert } from 'react-confirm-alert'
 
 export default function Index(){
@@ -15,9 +15,71 @@ export default function Index(){
     const [numero, setNumero] = useState()
     const [rua, setRua] = useState()
     const [complemento, setComplemento] = useState()
+    const [cidade, setCidade] = useState()
+    const [id, setId] = useState(0)
 
+    async function buscarCepClick(alteracao){
+        try {
+            setCEP(alteracao)
+            if(alteracao.length === 8){
+                const resp = await buscarCep(alteracao)
 
+                if(resp.erro){
+                    toast.error('CEP inválido')
+                    setCidade('')
+                    setRua('')
+                }
+                else{
+                    setCidade(resp.localidade)
+                    setRua(resp.logradouro)
+                }
+            }
 
+            else if(alteracao.length > 8 || alteracao.length < 8){
+                setCidade('')
+                setRua('')
+            }
+        }
+        catch(err){
+            toast.error(err.message)
+        }
+    }
+
+    async function cadastrarEnderecoClick(){
+        try{
+            if(id === 0) {
+                const id = storage('usuario-logado').id
+                const resp = await CadastrarEndereco(cep, rua, cidade, complemento, numero, id)
+                limparInputs()
+                toast.success('Endereço cadastrado!!')
+                buscarTodos()
+            }
+            else{
+                const endereco = {
+                    complemento: complemento,
+                    rua: rua,
+                    cidade: cidade,
+                    numero: numero,
+                    cep: cep
+                }
+                await alterarEndereco(endereco)
+                toast.success('Endereço alterado!')
+                limparInputs()
+            }
+        }
+        catch(err){
+            toast.error(err.response.data.erro)
+        }
+    }
+
+    function limparInputs(){
+        setCEP('')
+        setCidade('')
+        setRua('')
+        setNumero('')
+        setComplemento('')
+        setId(0)
+    }
     function mostrarTabelaClick(){
         if(mostrarTabela === 'flex'){
             setMostrarTabela('none')
@@ -39,6 +101,14 @@ export default function Index(){
         }
     }
 
+    function completarInputs(endereco) {
+        setCEP(endereco.cep)
+        setCidade(endereco.cidade)
+        setRua(endereco.rua)
+        setNumero(endereco.numero)
+        setComplemento(endereco.complemento)
+        setId(endereco.id)
+    }
     async function deletarEnderecoClick(item) {
         
         console.log(item);
@@ -100,7 +170,7 @@ export default function Index(){
                                                     CEP: {item.cep} | {item.rua}, {item.numero }
                                                 </td>
                                                 <td>
-                                                    <i className="fa-regular fa-pen-to-square"></i>
+                                                    <i className="fa-regular fa-pen-to-square" onClick={() => completarInputs(item)}></i>
                                                     <i className="fa-regular fa-trash-can" onClick={() => deletarEnderecoClick(item)}></i>
                                                 </td>
                                             </tr>
@@ -119,27 +189,27 @@ export default function Index(){
                             <div id='campoDuplo'>
                                 <div>
                                     <label> CEP </label>
-                                    <input type='txt' placeholder='Informe um cep'/>
+                                    <input type='txt' placeholder='Informe um cep' value={cep} onChange={e => buscarCepClick(e.target.value)}/>
                                 </div>
                                 <div>
                                     <label> Número </label>
-                                    <input type='txt' placeholder='Informe um número'/>
+                                    <input type='txt' placeholder='Informe um número' value={numero} onChange={e => setNumero(e.target.value)}/>
                                 </div>
                             </div>
                             <div>
                                 <label> Complemento </label>
-                                <input type='txt' placeholder='Informe um complemento se tiver'/>
+                                <input type='txt' placeholder='Informe um complemento se tiver' value={complemento} onChange={e => setComplemento(e.target.value)}/>
                             </div>
                             <div>
                                 <label> Rua </label>
-                                <input type='txt' disabled />
+                                <input type='txt' disabled value={rua}/>
                             </div>
                             <div>
                                 <label> Cidade </label>
-                                <input type='txt' disabled />
+                                <input type='txt' disabled value={cidade}/>
                             </div>
                         </div>
-                        <button> Cadastrar </button>
+                        <button onClick={cadastrarEnderecoClick}> {id === 0 ? 'Cadastrar' : 'Alterar'} </button>
                     </section>
                 </main>
             </div>
