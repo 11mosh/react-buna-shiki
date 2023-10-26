@@ -108,6 +108,10 @@
                 font-family: 'Inter';
                 font-size: 15px;
 
+                #button2{
+                    display: none;
+                }
+
                 >h6 {
                     margin: 5px 0px 10px 0px;
                     font-size: 17px;
@@ -128,6 +132,7 @@
                     flex-direction: row;
                     gap: 15px;
                     flex-wrap: wrap;
+                    justify-content: center;
                     padding: 10px;
                     height: 50%;
                     overflow: scroll;
@@ -168,4 +173,107 @@
         }
     }
     
+}
+
+@media (max-width: 1289px) {
+    .cadastro-combo {
+        .conteudo-site {
+            .card-cadastro {
+                .sec1 {
+                    button {
+                        width: 60%;
+                    }
+
+                    button:hover {
+                        width: 65%;
+                    }
+                }
+            }
+        }
+    }
+}
+
+@media (max-width: 1095px) {
+    .cadastro-combo {
+        .conteudo-site {
+            .card-cadastro {
+                .sec1 {
+                    button {
+                        width: 80%;
+                    }
+
+                    button:hover {
+                        width: 85%;
+                    }
+                }
+            }
+        }
+    }
+}
+
+@media (max-width: 876px) {
+    .cadastro-combo {
+        .conteudo-site {
+            .card-cadastro {
+                flex-direction: column;
+                height: fit-content;
+                width: 90%;
+
+                .sec1 {
+                    width: 100%;
+                    
+                    #button1 {
+                        display: none;
+                    }
+                }
+                .selecao-produtos {
+                    width: 100%;
+
+                    #button2 {
+                        display: flex;
+                        width: 90%;
+                        padding: 10px;
+                        text-align: center;
+                        align-self: center;
+                        margin-top: 40px;
+                        border: none;
+                        background-color: #F47E3C;
+                        font-size: 16px;
+                        font-family: 'Inter';
+                        cursor: pointer;
+                        border-radius: 8px;
+                        color: white;
+                        transition: .2s;
+                        justify-content: center;
+                    }
+
+                    #button2:hover {
+                        transform: translateY(-5px);
+                        font-weight: bold;
+                        transition: .2s;
+                    }
+                }
+            }
+        }
+    }
+}
+
+@media (max-width: 521px) {
+    .cadastro-combo{
+        .conteudo-site{
+            .card-cadastro{
+                padding: 20px;
+            }
+        }
+    }
+}
+
+@media (max-width: 422px) {
+    .cadastro-combo{
+        .conteudo-site{
+            .card-cadastro{
+                width: 98%;
+            }
+        }
+    }
 }

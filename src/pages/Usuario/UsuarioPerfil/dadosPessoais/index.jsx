@@ -40,6 +40,7 @@ export default function Index(){
                                     </article>
                                 </div>
                             </div>
+                            <button> Excluir conta</button>
                         </div>
                     </section>
                 </main>

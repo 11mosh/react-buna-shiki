@@ -17,7 +17,6 @@ export default function CabecalhoUsuario() {
     async function pesquisaProdutos() {
         const respostaProdutos = await axios.get('http://localhost:5000/produtos');
         const produtos = respostaProdutos.data;
-        // console.log(produtos)
       
         const sugestoes = [];
       
@@ -25,18 +24,13 @@ export default function CabecalhoUsuario() {
           const id = produto.id;
           const respostaImagem = await axios.get(`http://localhost:5000/${id}/imagens`);
           const imagem = respostaImagem.data;
-        //   for (let item of imagem) {
-        //     console.log(item.caminho)
-        //   }
-        //   console.log(imagem[0].caminho)
-      
+ 
           const sugestaoobj = {
             nome: produto.produto,
             imagem: imagem[0].caminho
           };
       
           sugestoes.push(sugestaoobj);
-          console.log(sugestaoobj)
         }
       
         setSugestao(sugestoes);
@@ -147,7 +141,7 @@ export default function CabecalhoUsuario() {
                                 );
                                 })
                                 .slice(0, 8)
-                                .map((item) => (
+                                .map((item, index, array) => (
                                 <div
                                     onClick={() => setPesquisa('')}
                                     className="dropdown-row"
@@ -157,7 +151,7 @@ export default function CabecalhoUsuario() {
                                         <img src={item.imagem} alt="" srcset="" />
                                         <h2>{item.nome}</h2>
                                     </div>
-                                    <hr />
+                                    {index !== array.length - 1 ? <hr /> : (<></>)}
                                 </div>
                             ))}
                                     
@@ -168,7 +162,7 @@ export default function CabecalhoUsuario() {
                 <section>
                     {categorias.map(item => {
                         return(
-                            <Link to={caminhos[item.id - 1]}>{item.nome}</Link>
+                            <Link to={caminhos[item.id - 1]} key={item.id}>{item.nome}</Link>
                         )
                     })}
                 </section>

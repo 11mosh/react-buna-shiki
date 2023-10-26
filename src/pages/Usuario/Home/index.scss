@@ -422,28 +422,31 @@
 @media (max-width: 670px) {
     .home {
         .categorias-carrossel {
+           
 
             #posicaoContraria{
                 flex-direction: column !important;
-                margin-bottom: -10px;
+                margin-top: 50px;
              
                
             }
             > nav {
                 flex-direction: column-reverse !important;
-                margin-top: 5px;
+                margin-top: -10px;
+                margin-bottom: 20px;
  
           
 
                 .botao-categoria {
                     transform: rotate(270deg);
-                    margin-top: 15px;
-                    margin-bottom: -10px;
+                    margin-top: 20px;
+                    margin-bottom: 10px;
                 }
                 > nav {
                     flex-direction: column !important;
-                    height: 75vh;
-                    margin-bottom: 20px;
+                    height: 80vh;
+                    margin-bottom: 30px;
+        
                     img {
                         width: 120px !important;
                         height: 120px !important;

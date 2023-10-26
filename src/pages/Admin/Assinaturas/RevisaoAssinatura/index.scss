@@ -1,0 +1,287 @@
+.revisao-assinatura-adm {
+    #revisao {
+        display: flex;
+        font-family: 'Inter';
+        align-items: center;
+        flex-direction: column;
+        padding: 50px;
+        .voltar {
+            display: flex;
+            width: 100%;
+            align-items: center;
+            text-decoration: none;
+            color: black;
+            gap: 8px;
+            img {
+                height: 50px;
+                width: 50px;
+            }
+        }
+        #apresentacao {
+            display: flex;
+            padding: 50px 0px 30px 0px;
+            width: 60%;
+            min-width: 1070px;
+        }
+
+        #tabelas {
+            background-color: #d9d9d9;
+            display: flex;
+            width: 60%;
+            min-width: 1070px;
+            gap: 30px;
+            justify-content: space-between;
+            padding: 40px;
+            box-shadow: 2px 5px 10px #2e2d2d;
+            section {
+                width: 47%;
+                font-size: 15px;
+                table {
+                    border-collapse: collapse;
+                    width: 100%;
+                    thead {
+                        tr {
+                            border: 1px solid black;
+                            th {
+                                border-bottom: 0px;
+                                border: 1px solid black;
+                                padding: 8px;
+                                text-align: left;
+                                b {
+                                    font-weight: 600
+                                }
+                            }
+                        }
+                    }
+                    > tbody {
+                        width: 100%;
+                        tr {
+                            border: 1px solid black;
+                            border-bottom: none;
+                            > td {
+                                padding: 8px;
+                            }
+                        }
+                    }
+                }
+                .detalhesProdutos {
+                    tbody {
+                        tr {
+                            td {
+                                border: 1px solid black;
+                                border-bottom: none;
+                            }
+                        }
+                    }
+                }
+                .ultimaLinha {
+                    border-bottom: 1px solid black;
+                }
+                // #continuacaoDetalhesProdutos, tr  {
+                //     border: 1px solid black;
+                //     border-collapse: collapse;
+                //     width: 100%;
+                //     border-top: none !important;
+                //     tbody {
+
+                //         tr {
+                //             td {
+                //                 border: none !important;
+                //                 padding: 8px;
+                //                 width: 200px;
+                //                 text-align: end;
+                //             }
+                //             .topico {
+                //                 font-weight: 700;
+                //                 text-align: start !important
+                //             }
+                //         }
+                //     }
+                // }
+                #continuacaoDetalhesProdutos {
+                    tbody {
+                        tr {
+                            display: flex;
+                            justify-content: space-between;
+                            gap: 30px;
+                            .topico {
+                                font-weight: 700;
+                            }
+                        }
+                    }
+                }
+                #detalhesPedido {
+                    tbody {
+                        tr {
+                            select {
+                                background-color: rgba(000, 000, 000, 0);
+                                border: none;
+                                font-size: 15px;
+                            }
+                            select:focus {
+                                outline: none;
+                            }
+                        }
+                    }
+                }
+            }
+            .valor {
+                text-align: end;
+                margin-left: 30px;
+            }
+            #s2 {
+                display: flex;
+                flex-direction: column;
+                gap: 50px;
+            }
+        }
+    }
+}
+
+@media(max-width: 1200px) {
+    .revisao-assinatura-adm {
+        #revisao {
+            .voltar {
+                h3 {
+                    font-size: 18px
+                }
+                img {
+                    width: 45px;
+                    height: 45px;
+                }
+            }
+            #apresentacao {
+                font-size: 15.5px;
+                min-width: 700px !important;
+            }
+            #tabelas {
+                flex-direction: column;
+                align-items: center;
+                gap: 50px;
+                min-width: 700px !important;
+                section {
+                    width: 90%;
+                }
+            }
+        }
+    }
+}
+@media(max-width: 850px) {
+    .revisao-assinatura-adm {
+        #revisao {
+            #apresentacao {
+                min-width: unset !important;
+                width: 90% !important;
+            }
+            #tabelas {
+                min-width: unset !important;
+                width: 90% !important;
+                section {
+                    width: 100%;
+                }
+            }
+        }
+    }
+}
+@media(max-width: 650px) {
+    .revisao-assinatura-adm {
+        #revisao {
+            .voltar {
+                h3 {
+                    font-size: 17.5px
+                }
+                img {
+                    width: 42px;
+                    height: 42px;
+                }
+            }
+            #apresentacao {
+                width: 100% !important;
+                font-size: 15px;
+            }
+            #tabelas {
+                width: 100% !important;
+                section {
+                    width: 100%;
+                    font-size: 14px !important;
+                    select {
+                        font-size: 14px !important;
+
+                    }
+                }
+            }
+        }
+    }
+}
+@media(max-width: 550px) {
+    .revisao-assinatura-adm {
+        #revisao {
+            padding: 50px 30px;
+            .voltar {
+                h3 {
+                    font-size: 16.5px;
+                }
+                img {
+                    width: 40px;
+                    height: 40px;
+                }
+            }
+            #apresentacao {
+                font-size: 14.5px;
+            }
+            #tabelas {
+                section {
+                    
+                    font-size: 13px !important;
+                    .duasInformacoes {
+                        tbody {
+                            .valor {
+                                margin-left: 10px;
+                            }
+                            tr {
+                                display: flex;
+                                flex-wrap: wrap;
+                                justify-content: space-between;
+                                padding: 0px 8px 0px 0px;
+                                gap: 0px;
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
+}
+@media(max-width: 400px) {
+    .revisao-assinatura-adm {
+        #revisao {
+            padding: 50px 30px;
+            .voltar {
+                h3 {
+                    display: none
+                }
+                img {
+                    width: 45px;
+                    height: 45px;
+                }
+            }
+            #apresentacao {
+                font-size: 14px;
+            }
+            #tabelas {
+                padding: 20px;
+            }
+        }
+    }
+}
+
+@media (max-width: 495px) {
+    .revisao-assinatura-adm {
+        #select-assinatura {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+        }
+    }
+}
