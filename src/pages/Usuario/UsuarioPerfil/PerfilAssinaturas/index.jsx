@@ -3,7 +3,6 @@ import Cabecalho from '../../../../components/Usuario/UsuarioCabecalho';
 import UsuarioRodape from '../../../../components/Usuario/UsuarioRodape';
 import BarraNavegacao from '../../../../components/Usuario/BarraNavegacaoConta';
 import CancelarAssinatura from './CancelarAssinatura';
-import { useState } from 'react';
 import { confirmAlert } from 'react-confirm-alert';
 
 export default function PerfilAssinatura () {

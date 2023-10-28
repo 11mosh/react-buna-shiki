@@ -45,7 +45,7 @@ export default function Consulta() {
     message: 'Deseja excluir esse produto ?',
     buttons:[
       {
-        label: 'sim',
+        label: 'Sim',
         onClick: async () => {
           try{
             await excluir(idProduto, idDetalhe)
@@ -60,7 +60,7 @@ export default function Consulta() {
         }
       },
       {
-        label: 'não'
+        label: 'Não'
       }
       ]})
   }

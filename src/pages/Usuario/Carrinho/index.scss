@@ -103,6 +103,7 @@
                        }
                        i:hover {
                         color: red;
+                        transition: 0.3px;
                        }
                    }
                }
@@ -181,7 +182,7 @@
     }
 }
 
-@media (max-width: 1250px) {
+@media (max-width: 1400px) {
     #carrinho-cheio{
         > h2 {
             font-size: 29px !important;
@@ -189,7 +190,7 @@
         > main{
             > section {
                 padding: 20px 25px !important;
-                min-width: 480px !important;
+                min-width: 550px !important;
                 #a1 {
                     gap: 5px !important;
                 }
@@ -217,7 +218,8 @@
         > main{
             > section {
                 padding: 20px 25px !important;
-                min-width: 360px !important;
+                width: 100% !important;
+                min-width: 430px !important;
                 #a1 {
                     gap: 5px !important;
                     #produto {
@@ -247,7 +249,7 @@
         }
     }
 }
-@media (max-width: 450px) {
+@media (max-width: 500px) {
     #carrinho-cheio{
         padding: 40px 20px !important;
         h2 {
@@ -256,7 +258,8 @@
         > main{
             > section {
                 padding: 20px 20px !important;
-                min-width: 290px !important;
+                min-width: unset !important;
+                width: 100% !important;
                 #a1 {
                     #produto {
                         img {
@@ -303,7 +306,7 @@
         }
         > main{
             > section {
-                padding: 20px 20px !important;
+                padding: 20px   15px !important;
                 min-width: 280px !important;
                 #a1 {
                     gap: 5px !important;
@@ -311,7 +314,14 @@
                         width: 60px;
                     }
                     #detalhes {
-                        gap: 13px !important;
+                        height: 100px;
+                        gap: 8px !important;
+                    }
+                    #produto {
+                        img {
+                            width: 100px !important;
+                            height: 100px !important;
+                        }
                     }
                 }
                 #a2 {

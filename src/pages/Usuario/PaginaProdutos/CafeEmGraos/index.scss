@@ -1,5 +1,6 @@
 #page-produtos-graos{
     > #conteudo {
+        font-family: 'Inter';
         .faixaApresentacao {
             width: 100%;
             display: flex;
@@ -7,7 +8,7 @@
             min-height: 350px;
             img {
                 position: absolute;
-                width: 255px;
+                width: 270px;
                 top: 4px;
                 right: 130px;
             }
@@ -24,11 +25,11 @@
                     height: 90%;
                     display: flex;
                     align-items: center;
-                    padding: 0px 5  0px;
+                    padding: 0px 50px;
                     color: white;
                     h3{
                         font-weight: 400;
-                        font-size: 24px;
+                        font-size: 26px;
                     }
                 }
             }
@@ -36,7 +37,7 @@
         .faixaApresentacao2 {
             img {
                 left: 90px;
-                width: 355px;
+                width: 350px;
                 top: 0px;
             }
             > article {
@@ -67,7 +68,7 @@
         }
         .faixaProdutos {
             display: flex;
-            padding: 40px 50px;
+            padding: 50px;
             justify-content: space-between;
             article {
                 display: flex;
@@ -83,10 +84,10 @@
                     align-items: center;
                     gap: 10px;
                     p {
-                        font-size: 15.5px;
+                        font-size: 16.5px;
                     }
                     img {
-                        width: 110px;
+                        width: 120px;
                         height: min-content;
                     }
                     button {
@@ -111,8 +112,8 @@
                 min-width: 115px;
                 width: 10%;
                 button {
-                    width: 40px;
-                    height: 40px;
+                    width: 50px;
+                    height: 50px;
                     border: none;
                     outline: none;
                     display: flex;
@@ -122,7 +123,8 @@
                     background-color: #C3937D;
                     cursor: pointer;
                     img {
-                        width: 10px;
+                        width: 25px;
+                        rotate: 90deg
                     }
                 }
                 h4 {
@@ -163,7 +165,7 @@
             }
         }
         #formasPagamento {
-            padding: 20px 30px;
+            padding: 50px 30px 30px 30px;
             h4 {
                 font-size: 17px;
             }
