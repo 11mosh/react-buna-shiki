@@ -105,11 +105,12 @@ export default function Index(){
         try{
             const id = storage('usuario-logado').id
             const enderecosResp = await buscarEnderecos(id)
-
+            if(enderecosResp.length === 0)
+                toast.info('Você não possui nenhum endereço cadastrado')
             setEnderecos(enderecosResp)
         }
         catch(err){
-            toast.error(err.response.data.erro)
+            toast.error(err.message)
         }
     }
 

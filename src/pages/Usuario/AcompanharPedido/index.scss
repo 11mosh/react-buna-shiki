@@ -184,7 +184,8 @@
                 gap: 50px;
                 #icons {
                     height: 100%;
-                    width: 80px !important;
+                    width: 130px !important;
+                    align-items: center;
                     flex-direction: column;
                     figure {
                         
@@ -205,7 +206,7 @@
                 #barraProgresso {
                     flex-direction: row;
                     height: 100%;
-                    width: 100px;
+                    width: 130px !important;
                     #estagios {
                         width: 80px !important;
                         height: 100%;
@@ -232,12 +233,13 @@
                 }
                 #status {
                     flex-direction: column;
-                    width: 100px !important;
+                    width: 130px !important;
                     height: 100%;
                     div {
                         height: 80px;
                         display: flex;
                         align-items: center;
+                        justify-content: center;
                     }
                 }
             }
@@ -253,20 +255,24 @@
             > #progressoPedido{
                 gap: 30px;
                 #icons {
+                    width: 100px !important;
                     .icon {
                         width: 75px;
                         height: 75px;
                     }
                 }
                 #barraProgresso {
+                    width: 100px !important;
                     #estagios {
                         align-items: center;
-                        width: 100px !important;
                         div {
                             width: 75px;
                             height: 75px;
                         }
                     }
+                }
+                #status {
+                    width: 100px !important;
                 }
             }
             > section {
@@ -283,12 +289,14 @@
             > #progressoPedido{
                 gap: 17px;
                 #icons {
+                    width: 33%;
                     .icon {
                         width: 65px;
                         height: 65px;
                     }
                 }
                 #barraProgresso {
+                    width: 33%;
                     #estagios {
                         div {
                             width: 65px;
@@ -304,7 +312,7 @@
                 }
                 #status {
                     font-size: 15px;
-                    width: 80px !important;
+                    width: 33%;
                 }
             }
             > section {
@@ -322,10 +330,36 @@
             > #progressoPedido{
                 gap: 25px;
                 #icons {
+                    width: 60px !important;
                     .icon {
-                        width: 60px;
-                        height: 60px;
+                        width: 55px;
+                        height: 55px;
                     }
+                }
+                #barraProgresso {
+                    width: 60px !important;
+                    #estagios {
+                        div {
+                            width: 60px;
+                            height: 60px;
+                        }
+                    }
+                    #barra {
+                        width: 23px !important;
+                        .concluido{
+                            width: 23px !important;
+                        }
+                    }
+                }
+                #status {
+                    font-size: 15px;
+                    width: 80px !important;
+                }
+            }
+            > section {
+                font-size: 14.5px;
+                button {
+                    font-size: 14.5px;
                 }
             }
         }       
