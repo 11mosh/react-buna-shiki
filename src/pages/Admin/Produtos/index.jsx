@@ -37,10 +37,10 @@ export default function Consulta() {
     }
   }
   
-  function excluirClick(idProduto, idDetalhe) {
+  function excluirClick(idProduto, idDetalhe, nome) {
     confirmAlert({
     title: 'Excluir produto',
-    message: 'Deseja excluir esse produto ?',
+    message: `Deseja mesmo excluir o produto "${nome}" ?`,
     buttons:[
       {
         label: 'Sim',
@@ -251,7 +251,7 @@ export default function Consulta() {
                     </div>
                     <td id='acoes'>
                       <i className="fa-regular fa-pen-to-square" onClick={() => alterar(item.id)}></i>
-                      <i className="fa-regular fa-trash-can" onClick={() => excluirClick(item.id, item.id_detalhe)}></i>
+                      <i className="fa-regular fa-trash-can" onClick={() => excluirClick(item.id, item.id_detalhe, item.produto)}></i>
                     </td>
                   </tr>
                 )

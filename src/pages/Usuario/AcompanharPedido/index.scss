@@ -316,3 +316,18 @@
         }
     }
 }
+@media(max-width: 350px){
+    #page-acompanhar-pedido {
+        > #conteudo {
+            > #progressoPedido{
+                gap: 25px;
+                #icons {
+                    .icon {
+                        width: 60px;
+                        height: 60px;
+                    }
+                }
+            }
+        }       
+    }
+}

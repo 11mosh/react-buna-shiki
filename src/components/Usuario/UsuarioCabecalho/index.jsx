@@ -15,26 +15,31 @@ export default function CabecalhoUsuario() {
     const caminhos = ['/produtos/graos', '/produtos/cafe-em-po', '/produtos/cafeteiras', '/produtos/combos', '/produtos/filtros', '/produtos/capsulas', '/produtos/moedores', '/produtos/acessorios' ];
 
     async function pesquisaProdutos() {
-        const respostaProdutos = await axios.get('http://localhost:5050/produtos');
-        const produtos = respostaProdutos.data;
-      
-        const sugestoes = [];
-      
-        for (const produto of produtos) {
-          const id = produto.id;
-          const respostaImagem = await axios.get(`http://localhost:5050/${id}/imagens`);
-          const imagem = respostaImagem.data;
- 
-          const sugestaoobj = {
-            nome: produto.produto,
-            imagem: imagem[0].caminho
-          };
-      
-          sugestoes.push(sugestaoobj);
+        try {
+            const respostaProdutos = await axios.get('http://localhost:5050/produtos');
+            const produtos = respostaProdutos.data;
+          
+            const sugestoes = [];
+          
+            for (const produto of produtos) {
+              const id = produto.id;
+              const respostaImagem = await axios.get(`http://localhost:5050/${id}/imagens`);
+              const imagem = respostaImagem.data;
+     
+              const sugestaoobj = {
+                nome: produto.produto,
+                imagem: imagem[0].caminho
+              };
+          
+              sugestoes.push(sugestaoobj);
+            }
+          
+            setSugestao(sugestoes);
+          }
+          catch(err){
+            toast.error(err.message)
+          }
         }
-      
-        setSugestao(sugestoes);
-      }
 
     function exibirPesquisa () {
         setMostrarInput(!mostrarInput)

@@ -21,6 +21,7 @@ export default function Index(){
     async function buscarCepClick(alteracao){
         try {
             setCEP(alteracao)
+            
             if(alteracao.length === 8){
                 const resp = await buscarCep(alteracao)
 
@@ -41,7 +42,7 @@ export default function Index(){
             }
         }
         catch(err){
-            toast.error(err.message)
+            toast.error('Erro ao buscar o cep')
         }
     }
 
@@ -60,16 +61,27 @@ export default function Index(){
                     rua: rua,
                     cidade: cidade,
                     numero: numero,
-                    cep: cep
+                    cep: cep,
+                    id: id
                 }
                 await alterarEndereco(endereco)
                 toast.success('Endereço alterado!')
                 limparInputs()
+                buscarTodos()
             }
         }
         catch(err){
             toast.error(err.response.data.erro)
         }
+    }
+
+    function completarInputs(endereco) {
+        setCEP(endereco.cep)
+        setCidade(endereco.cidade)
+        setRua(endereco.rua)
+        setNumero(endereco.numero)
+        setComplemento(endereco.complemento)
+        setId(endereco.id)
     }
 
     function limparInputs(){
@@ -101,14 +113,7 @@ export default function Index(){
         }
     }
 
-    function completarInputs(endereco) {
-        setCEP(endereco.cep)
-        setCidade(endereco.cidade)
-        setRua(endereco.rua)
-        setNumero(endereco.numero)
-        setComplemento(endereco.complemento)
-        setId(endereco.id)
-    }
+
     async function deletarEnderecoClick(item) {
         
         console.log(item);
@@ -139,6 +144,11 @@ export default function Index(){
 
     }
 
+    function verificarTecla(e){
+        if(e.key === 'Enter')
+            cadastrarEnderecoClick()
+    }
+
     useEffect(() => {
         buscarTodos()
     }, [])
@@ -164,7 +174,7 @@ export default function Index(){
                                 <tbody>
                                     {enderecos.map((item, index, array) => {
                                         return(  
-                                        <tr> 
+                                        <tr key={item.id}> 
                                             <tr>
                                                 <td>
                                                     CEP: {item.cep} | {item.rua}, {item.numero }
@@ -189,16 +199,16 @@ export default function Index(){
                             <div id='campoDuplo'>
                                 <div>
                                     <label> CEP </label>
-                                    <input type='txt' placeholder='Informe um cep' value={cep} onChange={e => buscarCepClick(e.target.value)}/>
+                                    <input type='txt' placeholder='Informe um cep' value={cep} onChange={e => buscarCepClick(e.target.value)} onKeyDown={(e) => verificarTecla(e)}/>
                                 </div>
                                 <div>
                                     <label> Número </label>
-                                    <input type='txt' placeholder='Informe um número' value={numero} onChange={e => setNumero(e.target.value)}/>
+                                    <input type='txt' placeholder='Informe um número' value={numero} onChange={e => setNumero(e.target.value)} onKeyDown={(e) => verificarTecla(e)}/>
                                 </div>
                             </div>
                             <div>
                                 <label> Complemento </label>
-                                <input type='txt' placeholder='Informe um complemento se tiver' value={complemento} onChange={e => setComplemento(e.target.value)}/>
+                                <input type='txt' placeholder='Informe um complemento se tiver' value={complemento} onChange={e => setComplemento(e.target.value)} onKeyDown={(e) => verificarTecla(e)}/>
                             </div>
                             <div>
                                 <label> Rua </label>
