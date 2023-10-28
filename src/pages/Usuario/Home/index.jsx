@@ -19,6 +19,7 @@ function Home () {
             for(let cont = 0; cont < 4; cont++){
                 primeirasCategorias[cont] = categoriasBanco[cont] 
             }
+            setCategorias(categoriasBanco)
             setCategoriasAtual(primeirasCategorias)
         }
         catch(err){
@@ -36,13 +37,14 @@ function Home () {
     }
     function trocarCategorias() {
         let posicao = verificarPosicao()
+
         if(posicao === 'posicaoContraria'){
             let novasCategorias = []
 
             for (let index = 0; index < 4; index++) {
                 novasCategorias[index] = categorias[index]
             }
-            
+            console.log('novasCategorias');
             setCategoriasAtual(novasCategorias)
         }
         else{
@@ -52,7 +54,7 @@ function Home () {
                 novasCategorias[index] = categorias[cont]
                 cont++
             }
-            
+            console.log('novasCategorias2');
             setCategoriasAtual(novasCategorias)
         }   
     }

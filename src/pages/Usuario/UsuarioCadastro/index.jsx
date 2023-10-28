@@ -4,7 +4,6 @@ import UsuarioRodape from '../../../components/Usuario/UsuarioRodape';
 import './index.scss';
 import { toast } from 'react-toastify'
 import {CadastrarCliente, CadastrarEndereco, buscarCep } from '../../../api/usuarioApi';
-import axios from 'axios';
 import LoadingBar from 'react-top-loading-bar';
 import { useNavigate, Link } from 'react-router-dom';
 import storage from 'local-storage'
@@ -22,7 +21,6 @@ export default function Index() {
     const [complemento, setComplemento] = useState('')
     const [nrEndereco, setNrEndereco] = useState('')
     const [carregando, setCarregando] = useState(false)
-    const [buscaCepRepetido, setBuscaCepRepetido] = useState('')
 
     const ref = useRef()
     const navigate = useNavigate()

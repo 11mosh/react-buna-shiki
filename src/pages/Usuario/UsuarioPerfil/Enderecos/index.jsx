@@ -50,7 +50,7 @@ export default function Index(){
         try{
             if(id === 0) {
                 const id = storage('usuario-logado').id
-                const resp = await CadastrarEndereco(cep, rua, cidade, complemento, numero, id)
+                await CadastrarEndereco(cep, rua, cidade, complemento, numero, id)
                 limparInputs()
                 toast.success('Endereço cadastrado!!')
                 buscarTodos()
