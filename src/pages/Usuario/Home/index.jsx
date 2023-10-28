@@ -14,8 +14,7 @@ function Home () {
     async function buscarCategoriasExibicao(){
         try{
             const categoriasBanco = await buscarCategorias()
-            setCategorias(categoriasBanco)
-            console.log(categoriasBanco);
+            
             let primeirasCategorias = []
             for(let cont = 0; cont < 4; cont++){
                 primeirasCategorias[cont] = categoriasBanco[cont] 
