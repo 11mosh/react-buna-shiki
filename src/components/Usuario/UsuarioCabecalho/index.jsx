@@ -3,42 +3,38 @@ import './index.scss'
 import { useEffect, useState } from 'react'
 import { buscarCategorias } from '../../../api/produtoApi';
 import { toast } from 'react-toastify';
+import axios from 'axios';
 
 export default function CabecalhoUsuario() {
 
     const [pesquisa, setPesquisa] = useState('');
     const [mostrarInput, setMostrarInput] = useState(false)
     const [categorias, setCategorias] = useState([]);
-    const [exibirSugestao, setExibirSugestao] = useState(false);
+    const [sugestao, setSugestao] = useState([]);
+
     const caminhos = ['/produtos/graos', '/produtos/cafe-em-po', '/produtos/cafeteiras', '/produtos/combos', '/produtos/filtros', '/produtos/capsulas', '/produtos/moedores', '/produtos/acessorios' ];
 
-    const frutas = [
-        { nome: 'Maçã', imagem: '/assets/images/cafeteiraa.png' },
-        { nome: 'Banana', imagem: '/assets/images/cafeteiraa.png' },
-        { nome: 'Morango', imagem: '/assets/images/cafeteiraa.png' },
-        { nome: 'Pêra', imagem: '/assets/images/cafeteiraa.png' },
-        { nome: 'Uva', imagem: '/assets/images/cafeteiraa.png' },
-        { nome: 'Abacaxi', imagem: '/assets/images/cafeteiraa.png' },
-        { nome: 'Laranja', imagem: '/assets/images/cafeteiraa.png' },
-        { nome: 'Melancia', imagem: '/assets/images/cafeteiraa.png' },
-        { nome: 'Cereja', imagem: '/assets/images/cafeteiraa.png' },
-        { nome: 'Kiwi', imagem: '/assets/images/cafeteiraa.png' },
-        { nome: 'Kiwi', imagem: '/assets/images/cafeteiraa.png' },
-        { nome: 'Kiwi', imagem: '/assets/images/cafeteiraa.png' },
-        { nome: 'Kiwi', imagem: '/assets/images/cafeteiraa.png' },
-        { nome: 'Kiwi', imagem: '/assets/images/cafeteiraa.png' },
-        { nome: 'Kiwi', imagem: '/assets/images/cafeteiraa.png' },
-        { nome: 'Kiwi', imagem: '/assets/images/cafeteiraa.png' },
-        { nome: 'Kiwi', imagem: '/assets/images/cafeteiraa.png' },
-        { nome: 'Kiwi', imagem: '/assets/images/cafeteiraa.png' },
-        { nome: 'Kiwi', imagem: '/assets/images/cafeteiraa.png' },
-        { nome: 'Kiwi', imagem: '/assets/images/cafeteiraa.png' },
-        { nome: 'Kiwi', imagem: '/assets/images/cafeteiraa.png' },
-        { nome: 'Kiwi', imagem: '/assets/images/cafeteiraa.png' },
-        { nome: 'Kiwi', imagem: '/assets/images/cafeteiraa.png' },
-        { nome: 'Kiwi', imagem: '/assets/images/cafeteiraa.png' }
-      ];
+    async function pesquisaProdutos() {
+        const respostaProdutos = await axios.get('http://localhost:5000/produtos');
+        const produtos = respostaProdutos.data;
       
+        const sugestoes = [];
+      
+        for (const produto of produtos) {
+          const id = produto.id;
+          const respostaImagem = await axios.get(`http://localhost:5000/${id}/imagens`);
+          const imagem = respostaImagem.data;
+ 
+          const sugestaoobj = {
+            nome: produto.produto,
+            imagem: imagem[0].caminho
+          };
+      
+          sugestoes.push(sugestaoobj);
+        }
+      
+        setSugestao(sugestoes);
+      }
 
     function exibirPesquisa () {
         setMostrarInput(!mostrarInput)
@@ -52,7 +48,6 @@ export default function CabecalhoUsuario() {
         }
     }
 
-
     async function buscarCategoriasExibicao(){
         try{
             const categoriasBanco = await buscarCategorias()
@@ -63,9 +58,9 @@ export default function CabecalhoUsuario() {
         }
     };
 
-
     useEffect(() => {
-        buscarCategoriasExibicao()
+        buscarCategoriasExibicao();
+        pesquisaProdutos();
     }, [])
 
     return(
@@ -96,8 +91,7 @@ export default function CabecalhoUsuario() {
                                         onChange={e => setPesquisa(e.target.value)} onKeyDown={zerarPesquisa} />
                                     </div>
                                     <div className="dropdown">
-                                        <hr />
-                                        {frutas
+                                        {sugestao
                                             .filter((item) => {
                                             const usuPesquisa = pesquisa.toLowerCase();
                                             const fullName = item.nome.toLowerCase();
@@ -108,7 +102,7 @@ export default function CabecalhoUsuario() {
                                             );
                                             })
                                             .slice(0, 8)
-                                            .map((item) => (
+                                            .map((item, index, array) => (
                                             <div
                                                 onClick={() => setPesquisa('')}
                                                 className="dropdown-row"
@@ -118,6 +112,7 @@ export default function CabecalhoUsuario() {
                                                     <img src={item.imagem} alt="" srcset="" />
                                                     <h2>{item.nome}</h2>
                                                 </div>
+                                                {index !== array.length - 1 ? <hr /> : (<></>)}
                                             </div>
                                         ))}
                                     </div>
@@ -135,29 +130,31 @@ export default function CabecalhoUsuario() {
                     </div>
                     <hr />
                     <div className="dropdown">
-                        {frutas
+                        {sugestao
                             .filter((item) => {
-                            const usuPesquisa = pesquisa.toLowerCase();
-                            const fullName = item.nome.toLowerCase();
+                                const usuPesquisa = pesquisa.toLowerCase();
+                                const fullName = item.nome.toLowerCase();
 
-                            return (
-                                usuPesquisa &&
-                                fullName.startsWith(usuPesquisa) 
-                            );
-                            })
-                            .slice(0, 8)
-                            .map((item) => (
-                            <div
-                                onClick={() => setPesquisa('')}
-                                className="dropdown-row"
-                                key={item.nome}
-                            >
-                                <div>
-                                    <img src={item.imagem} alt="" srcset="" />
-                                    <h2>{item.nome}</h2>
+                                return (
+                                    usuPesquisa &&
+                                    fullName.startsWith(usuPesquisa) 
+                                );
+                                })
+                                .slice(0, 8)
+                                .map((item, index, array) => (
+                                <div
+                                    onClick={() => setPesquisa('')}
+                                    className="dropdown-row"
+                                    key={item.nome}
+                                >
+                                    <div>
+                                        <img src={item.imagem} alt="" srcset="" />
+                                        <h2>{item.nome}</h2>
+                                    </div>
+                                    {index !== array.length - 1 ? <hr /> : (<></>)}
                                 </div>
-                            </div>
-                        ))}
+                            ))}
+                                    
                     </div>
                 </section>
             </div>
@@ -165,7 +162,7 @@ export default function CabecalhoUsuario() {
                 <section>
                     {categorias.map(item => {
                         return(
-                            <Link to={caminhos[item.id - 1]}>{item.nome}</Link>
+                            <Link to={caminhos[item.id - 1]} key={item.id}>{item.nome}</Link>
                         )
                     })}
                 </section>

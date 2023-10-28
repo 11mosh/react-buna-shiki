@@ -98,6 +98,11 @@ export default function Index() {
             navigate('/')
     })
 
+    function verificarTecla(e){
+        if(e.key === 'Enter')
+            Cadastrar()
+    }
+
     return(
         <div className='pag-cadastro'>
             <CabecalhoLink />
@@ -129,7 +134,7 @@ export default function Index() {
                                 <div className='input enderecoPreenchido'>{rua}</div>
                                 <div className='input enderecoPreenchido'>{cidade}</div>
                                 <input className='input inputResidenciais' type='text' placeholder='Número da casa' value={nrEndereco} onChange={e => {setNrEndereco(e.target.value); BuscarCep() }} />
-                                <input className='input inputResidenciais' type='text' placeholder='Complemento' value={complemento} onChange={e => setComplemento(e.target.value)} />
+                                <input className='input inputResidenciais' type='text' placeholder='Complemento' value={complemento} onChange={e => setComplemento(e.target.value)} onKeyDown={verificarTecla} />
                             </article>
                         </form>
                         <div id='cadastrar'>
@@ -148,5 +153,5 @@ export default function Index() {
                 </section>
             <UsuarioRodape />
         </div>
-    )
+    ) 
 }

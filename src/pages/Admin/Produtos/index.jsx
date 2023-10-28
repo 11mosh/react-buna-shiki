@@ -19,8 +19,6 @@ export default function Consulta() {
 
   const navigate = useNavigate()
 
-
-
   async function pesquisa() { 
     try{
       if(buscaInput === ''){

@@ -30,11 +30,12 @@ import RevisaoProduto from './pages/Admin/Produtos/RevisaoProduto';
 import Cartoes from './pages/Usuario/UsuarioPerfil/Cartoes';
 import RevisaoPedido from './pages/Admin/Pedidos/Revisão'
 import AcompanharPedido from './pages/Usuario/AcompanharPedido'
-import DadosPessoais from './pages/Usuario/UsuarioPerfil/DadosPessoais'
+import DadosPessoais from './pages/Usuario/UsuarioPerfil/dadosPessoais'
 import ResumoPedido from './pages/Usuario/UsuarioPerfil/MeusPedidos/resumoPedido'
 import Enderecos from './pages/Usuario/UsuarioPerfil/Enderecos'
 import PerfilAssinatura from './pages/Usuario/UsuarioPerfil/PerfilAssinaturas';
 import CancelarAssinatura from './pages/Usuario/UsuarioPerfil/PerfilAssinaturas/CancelarAssinatura';
+import RevisaoAssinaturaADM from './pages/Admin/Assinaturas/RevisaoAssinatura';
 
 export default function Rotas() {
     return(
@@ -78,6 +79,8 @@ export default function Rotas() {
                 <Route path='/adm/cadastro-combo' element={<CadastroCombo />} />
                 <Route path='/adm/estatisticas' element={<Estatisticas />} />
                 <Route path='/adm/consulta-assinaturas' element={<ConsultaAssinaturas />} />
+                <Route path='/adm/consulta-assinaturas/:id' element={<RevisaoAssinaturaADM />} />
+
                 <Route path='/adm/:id/revisao-produto' element={<RevisaoProduto />} />
                 <Route path='/adm/pedidos/resumo-pedido' element={<RevisaoPedido />} />
             </Routes>

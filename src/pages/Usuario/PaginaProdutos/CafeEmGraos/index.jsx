@@ -13,7 +13,7 @@ export default function Index(){
                         <div>
                             <h3> Café 3 Corações: Edição Gourmet</h3>
                         </div>
-                    </article>
+                    </article> 
                     <img src='/assets/images/produtos/graos/cafe3coracoes.svg' alt='imagem-suporte-cafe3coracoes' />
                 </section>
                 <section className='faixaProdutos faixaProdutos1'>
