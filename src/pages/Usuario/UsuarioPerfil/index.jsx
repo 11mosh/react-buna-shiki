@@ -1,7 +1,7 @@
-import CabecalhoUsuario from '../../../../components/Usuario/UsuarioCabecalho';
-import UsuarioRodape from '../../../../components/Usuario/UsuarioRodape';
+import CabecalhoUsuario from '../../../components/Usuario/UsuarioCabecalho';
+import UsuarioRodape from '../../../components/Usuario/UsuarioRodape';
 import './index.scss';
-import BarraNavegacao from '../../../../components/Usuario/BarraNavegacaoConta'
+import BarraNavegacao from '../../../components/Usuario/BarraNavegacaoConta'
 
 
 export default function Index(){
