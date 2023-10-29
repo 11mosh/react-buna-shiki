@@ -1,8 +1,8 @@
 import axios from 'axios';
-import { local } from '../constants';
+import { nuvem } from '../constants';
 
 const api = axios.create({
-    baseURL: local
+    baseURL: nuvem
 })
 
 // Cadastrando 
