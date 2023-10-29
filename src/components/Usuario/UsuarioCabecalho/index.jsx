@@ -4,6 +4,7 @@ import { useEffect, useState } from 'react'
 import { buscarCategorias } from '../../../api/produtoApi';
 import { toast } from 'react-toastify';
 import axios from 'axios';
+import { local } from '../../../constants';
 
 export default function CabecalhoUsuario() {
 
@@ -16,14 +17,14 @@ export default function CabecalhoUsuario() {
 
     async function pesquisaProdutos() {
         try {
-            const respostaProdutos = await axios.get('http://localhost:5050/produtos');
+            const respostaProdutos = await axios.get(local + '/produtos');
             const produtos = respostaProdutos.data;
           
             const sugestoes = [];
           
             for (const produto of produtos) {
               const id = produto.id;
-              const respostaImagem = await axios.get(`http://localhost:5050/${id}/imagens`);
+              const respostaImagem = await axios.get( local + `/${id}/imagens`);
               const imagem = respostaImagem.data;
      
               const sugestaoobj = {
