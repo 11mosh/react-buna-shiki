@@ -15,8 +15,9 @@ export default function Assinatura () {
         const produto = await axios.get('http://localhost:5000/produtos');
         const resp = produto.data.filter((item) => item.assinatura === 1);
         setItensDisponiveis(resp);
-        console.log(resp)
+        console.log(resp);
 
+    
     }
 
     useEffect(() => {
