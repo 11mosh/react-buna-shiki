@@ -1,8 +1,8 @@
 import axios from 'axios'
-import { nuvem } from '../constants'
+import { URL } from '../constants'
 
 const api = axios.create({
-    baseURL: nuvem
+    baseURL: URL
 })
 
 
