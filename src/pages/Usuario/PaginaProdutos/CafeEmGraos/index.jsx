@@ -41,7 +41,7 @@ export default function Index(){
                     </article>
                     <aside>
                         <button>
-                            <img src='/assets/images/icon-seta-direita.svg' alt='' />
+                            <img src='/assets/images/divisa-branca-direita.png' alt='' />
                         </button>
                         <h4> Visualizar mais produtos</h4>
                     </aside>
@@ -81,7 +81,7 @@ export default function Index(){
                     </article>
                     <aside>
                         <button>
-                            <img src='/assets/images/icon-seta-direita.svg' alt='' />
+                            <img src='/assets/images/divisa-branca-direita.png' alt='' />
                         </button>
                         <h4> Visualizar mais produtos</h4>
                     </aside>
@@ -119,7 +119,7 @@ export default function Index(){
                     </article>
                     <aside>
                         <button>
-                            <img src='/assets/images/icon-seta-direita.svg' alt='' />
+                            <img src='/assets/images/divisa-branca-direita.png' alt='' />
                         </button>
                         <h4> Visualizar mais produtos</h4>
                     </aside>

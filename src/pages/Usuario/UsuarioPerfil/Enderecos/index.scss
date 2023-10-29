@@ -6,6 +6,7 @@
     #enderecos {
         display: flex;
         width: 95%;
+        height: 100%;
         align-self: center;
         main {
             font-family: 'Inter';
@@ -14,7 +15,7 @@
             flex-direction: column;
             justify-content: space-between;
             align-items: center;
-            padding: 30px 30px 50px 50px;
+            padding: 45px 30px 50px 50px;
             gap: 70px;
             width: 80%;
             h4 {

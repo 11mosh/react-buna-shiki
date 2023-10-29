@@ -4,24 +4,64 @@ import CabecalhoUsuario from '../../../components/Usuario/UsuarioCabecalho';
 import UsuarioRodape from '../../../components/Usuario/UsuarioRodape';
 import { Link } from 'react-router-dom';
 import axios from 'axios';
+import storage from 'local-storage';
+import ItemDisponivel from './Item';
+import { filtrarPorCategorias } from '../../../api/produtoApi';
+import {toast} from 'react-toastify';
 
 export default function Assinatura () {
 
     const [exibirCartao, setExibirCartao] = useState(false);
     const [exibirEndereco, setExibirEndereco] = useState(false);
     const [itensDisponiveis, setItensDisponiveis] = useState([]);
+    const [cartoes, setCartoes] = useState([]);
+    const [categorias, setCategorias] = useState([]);
+    const [filtrarPorCategoria, setFiltrarPorCategoria] = useState(0);
 
     async function chamarAssinaturas () {
         const produto = await axios.get('http://localhost:5000/produtos');
         const resp = produto.data.filter((item) => item.assinatura === 1);
         setItensDisponiveis(resp);
-        console.log(resp);
+    }
 
+    async function chamarCategorias () {
+        const categoriass = await axios.get('http://localhost:5000/categorias');
+        const resposta = categoriass.data;
+        setCategorias(resposta);
+    }
+
+    async function chamarCartoes () {
+        const idUsuario = storage('usuario-logado').id
+        const cartoes = await axios.get('http://localhost:5000/cartoes/' + idUsuario);
+        console.log(cartoes.data);
+    }
+
+    const id = storage('usuario-logado').id
+
+    async function filtrarPorCategoriasClick(idCategoria){
+        try {
+            const produtosCategoria = await filtrarPorCategorias(idCategoria)
+            const produtosFiltrados = produtosCategoria.filter((item) => item.assinatura === 1);
+      
+          if(produtosFiltrados.length === 0 && idCategoria !== '0' && filtrarPorCategoria !== 0)
+            toast.info('Não há produtos com essa categoria.')
     
+          setItensDisponiveis(produtosFiltrados)
+        }
+        catch(err){
+          toast.error(err.response.data.erro)
+        }
+      }
+
+    async function a () {
+
     }
 
     useEffect(() => {
-        chamarAssinaturas()
+        chamarAssinaturas();
+        chamarCategorias();
+        filtrarPorCategoriasClick();
+        chamarCartoes();
     }, [])
     
     return (
@@ -41,27 +81,20 @@ export default function Assinatura () {
                 <section className='selecionar-itens'>
                     <nav className='titulo'>
                         <h1>1 - Escolha entre os principais sabores disponíveis e quantidade:</h1>
-                        <select name="" id="">
-                        <option value="">Café em grão</option>
+                        <select name="" id="" value={filtrarPorCategoria} onChange={e => { filtrarPorCategoriasClick(e.target.value); setFiltrarPorCategoria(e.target.value);}}>
+                            <option value={0}>Selecionar</option>
+                            {categorias.map((item) => {
+                                return (
+                                    <option key={item.id} value={item.id}> {item.nome} </option>
+                                )
+                            })}
                         </select>
                     </nav>
 
-                    <div className="itens-cafe">
+                    <div className="itens-cafe" >
                         {itensDisponiveis.map((item) => {
                             return (
-                                <main>
-                                    <div className="item">
-                                        <div className="imagem">
-                                            <img src={item.imagem} alt="" />
-                                        </div>
-                                        <p>{item.produto}</p>
-                                        <div className='quantidade-item'>
-                                            <p className='adicionar'>-</p>
-                                            <p>1</p>
-                                            <p className='adicionar'>+</p>
-                                        </div>
-                                    </div>
-                                </main>
+                                <ItemDisponivel itemm={item}/>           
                             )
                         })}                                
                     </div>
@@ -113,6 +146,13 @@ export default function Assinatura () {
                         </article>
                     <select name="" id="">
                         <option value="">Selecionar cartão</option>
+                        {cartoes.map((item) => {
+                            return (
+                                <main>
+
+                                </main>
+                            )
+                        })}
                     </select>
                     </div>
                 </section>

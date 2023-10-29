@@ -4,6 +4,7 @@ import { useEffect, useState } from 'react'
 import { buscarCategorias } from '../../../api/produtoApi';
 import { toast } from 'react-toastify';
 import axios from 'axios';
+import { URL } from '../../../constants';
 
 export default function CabecalhoUsuario() {
 
@@ -15,26 +16,31 @@ export default function CabecalhoUsuario() {
     const caminhos = ['/produtos/graos', '/produtos/cafe-em-po', '/produtos/cafeteiras', '/produtos/combos', '/produtos/filtros', '/produtos/capsulas', '/produtos/moedores', '/produtos/acessorios' ];
 
     async function pesquisaProdutos() {
-        const respostaProdutos = await axios.get('http://localhost:5000/produtos');
-        const produtos = respostaProdutos.data;
-      
-        const sugestoes = [];
-      
-        for (const produto of produtos) {
-          const id = produto.id;
-          const respostaImagem = await axios.get(`http://localhost:5000/${id}/imagens`);
-          const imagem = respostaImagem.data;
- 
-          const sugestaoobj = {
-            nome: produto.produto,
-            imagem: imagem[0].caminho
-          };
-      
-          sugestoes.push(sugestaoobj);
+        try {
+            const respostaProdutos = await axios.get(URL + '/produtos');
+            const produtos = respostaProdutos.data;
+          
+            const sugestoes = [];
+          
+            for (const produto of produtos) {
+              const id = produto.id;
+              const respostaImagem = await axios.get( URL + `/${id}/imagens`);
+              const imagem = respostaImagem.data;
+     
+              const sugestaoobj = {
+                nome: produto.produto,
+                imagem: imagem[0].caminho
+              };
+          
+              sugestoes.push(sugestaoobj);
+            }
+          
+            setSugestao(sugestoes);
+          }
+          catch(err){
+            toast.error(err.message)
+          }
         }
-      
-        setSugestao(sugestoes);
-      }
 
     function exibirPesquisa () {
         setMostrarInput(!mostrarInput)

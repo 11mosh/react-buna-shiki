@@ -6,6 +6,7 @@ import axios from 'axios'
 import { toast } from 'react-toastify';
 import storage from 'local-storage'
 import { alterar, buscarCategorias, buscarIdDetalhe, buscarIdImagens, buscarIdProduto, excluirImagens } from '../../../api/produtoApi';
+import { URL } from '../../../constants';
 
 function CadastroProduto () {
     const [id, setId] = useState(0)
@@ -130,7 +131,7 @@ function CadastroProduto () {
                         estoque: estoque
                     };
         
-                    let urlProduto = "http://localhost:5000/produto";
+                    let urlProduto = URL + "/produto";
                     let respostaProduto = await axios.post(urlProduto, produto);
         
                     cadastrarImagens(respostaProduto.data.idProduto)
@@ -151,12 +152,12 @@ function CadastroProduto () {
                 console.log(fotosAdicionadas);
                 if(fotosAdicionadas) {
                     for (let item of fotosAdicionadas) {
-                        let url = "http://localhost:5000/imagemproduto";
+                        let url = URL + "/imagemproduto";
                         const imagem = {
                             idProduto: idProduto,
                             caminho: item
                         }
-                        await axios.post(url, imagem)
+                        await axios.post(URL, imagem)
                     }
                 }
                 if(fotosExcluir) {
@@ -165,7 +166,7 @@ function CadastroProduto () {
             }
             else{
                 for (let item of fotos) {
-                    let url = "http://localhost:5000/imagemproduto";
+                    let url = url + "/imagemproduto";
                     const imagem = {
                         idProduto: idProduto,
                         caminho: item

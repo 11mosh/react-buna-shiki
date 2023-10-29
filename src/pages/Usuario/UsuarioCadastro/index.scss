@@ -33,8 +33,8 @@
             display: flex;
             flex-direction: column;
             height: 100%;
-            gap: 30px;
-            justify-content: space-between;
+            gap: 60px;
+            
             align-items: center;
             h1 {
                 color: #96391C;
@@ -169,7 +169,7 @@
     .pag-cadastro {
         > section {
             > article {
-                width: 295px;
+                width: 270px;
                 h1 {
                     font-size: 23px;
                 }
@@ -177,26 +177,29 @@
                     flex-direction: column;
                     gap: 30px;
                     > article > div {
-                        width: 100%;
-                        gap: 50px;
+                        width: 90%;
+                        gap: 10px;
                         h3 {
-                            font-size: 16px !important;
-                            width: 200px;
+                            font-size: 15px !important;
+                            width: 230px;
                         }
                     }
                     > article > #residencial {
-                        gap: 30px;
+                        gap: 5px;
                         h3 {
-                            width: 220px;
+                            width: 220px !important;
                         }
                     }
                     .input {
-                        width: 250px;
+                        width: 210px;
                     }
                 }
                 #cadastrar {
                     display: flex;
                     align-items: center;
+                    > div {
+                        flex-direction: column;
+                    }
                     button {
                         width: 200px;
                         height: 31px;

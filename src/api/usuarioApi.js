@@ -1,7 +1,8 @@
 import axios from 'axios';
+import { URL } from '../constants'
 
 const api = axios.create({
-    baseURL: 'http://localhost:5000'
+    baseURL: URL
 })
 
 // Cadastrando 
@@ -28,6 +29,7 @@ export async function CadastrarEndereco(cep, rua, cidade, complemento, numero, i
     return resp.data
 }
 
+
 // Buscando
 
 export async function Login(email, senha){
@@ -45,6 +47,23 @@ export async function buscarEnderecos(idCliente){
     return resp.data
 }
 
+export async function buscarCep(cep){
+    const resp = await axios.get(`https://viacep.com.br/ws/${cep}/json/`)
+
+    return resp.data
+}
+
+// Alterando
+
+export async function alterarEndereco(endereco){
+    await api.put(`/endereco/${endereco.id}`, {
+        rua: endereco.rua,
+        cidade: endereco.cidade,
+        complemento: endereco.complemento,
+        cep: endereco.cep,
+        numero: endereco.numero
+    })
+}
 
 // Deletando
 
