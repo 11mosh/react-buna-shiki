@@ -93,7 +93,7 @@ function Home () {
 
             </article>
             <article className="banner-ambiental">
-                <h1>Compromisso-Ambiental</h1>
+                <h1>Compromisso Ambiental</h1>
                 <div className='conteudo'>
                     <div>
                         <h3>Cada produto que você adquire não apenas traz qualidade, mas também contribui para um planeta mais sustentável. Junte-se a nós e faça parte dessa mudança positiva. Juntos, podemos construir um futuro melhor para todos. <br></br> <br></br> Descubra uma nova forma de fazer a diferença. Na nossa empresa, parte dos nossos lucros é destinada à causa ambiental. </h3>
