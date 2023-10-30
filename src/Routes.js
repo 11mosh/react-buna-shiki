@@ -13,7 +13,7 @@ import AdmInicio from './pages/Admin/TelaInicial';
 import CadastroProduto from './pages/Admin/CadastroProduto';
 import Produtos from './pages/Admin/Produtos';
 import CadastroCombo from './pages/Admin/CadastroCombo';
-import ProdutosGraos from './pages/Usuario/PaginaProdutos/Graos'
+import ProdutosGraos from './pages/Usuario/PaginaProdutos/CafeEmGraos'
 import MeusPedidos from './pages/Usuario/UsuarioPerfil/MeusPedidos';
 import Pedidos from './pages/Admin/Pedidos';
 import Combos from './pages/Usuario/PaginaProdutos/Combos';
@@ -30,7 +30,7 @@ import RevisaoProduto from './pages/Admin/Produtos/RevisaoProduto';
 import Cartoes from './pages/Usuario/UsuarioPerfil/Cartoes';
 import RevisaoPedido from './pages/Admin/Pedidos/Revisão'
 import AcompanharPedido from './pages/Usuario/AcompanharPedido'
-import DadosPessoais from './pages/Usuario/UsuarioPerfil/dadosPessoais'
+import DadosPessoais from './pages/Usuario/UsuarioPerfil/DadosPessoais'
 import ResumoPedido from './pages/Usuario/UsuarioPerfil/MeusPedidos/resumoPedido'
 import Enderecos from './pages/Usuario/UsuarioPerfil/Enderecos'
 import PerfilAssinatura from './pages/Usuario/UsuarioPerfil/PerfilAssinaturas';

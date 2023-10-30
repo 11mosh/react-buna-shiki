@@ -2,6 +2,7 @@
     display: flex;
     flex-direction: column;
     justify-content: space-between;
+    height: 100vh;
     > #conteudo {
         padding: 30px 30px 30px 0px;
         height: 100%;
@@ -24,8 +25,8 @@
                 #form {
                     border: 1px solid black;
                     width: 750px;
-                    height: 100%;
-                    padding: 30px;
+                    height: 80%;
+                    padding: 50px 100px;
                     display: flex;
                     flex-direction: column;
                     justify-content: space-between;
@@ -33,15 +34,15 @@
                     border-radius: 30px;
                     gap: 30px;
                     > article {
-                        width: 80%;
+                        width: 100%;
                         input {
-                            width: 92%;
+                            width: 99%;
                             min-width: 276px;
                         }
                     }
                     > button {
                         width: 150px;
-                        height: 30px;
+                        min-height: 30px ;
                         font-size: 14.5px;
                         margin-top: 30px;
                         font-weight: 600;
@@ -56,6 +57,8 @@
                         border-radius: 10px;
                         padding: 5px 15px;
                         border: none;
+                        width: 100%;
+                        min-width: 100px;
                     }
                     input:focus {
                         outline: none;
@@ -75,17 +78,17 @@
                         flex-direction: column;
                         justify-content: space-around;
                         gap: 30px;
-                        width: 80%;
+                        width: 100%;
                         > div {
                             display: flex; 
                             flex-wrap: wrap;
                             width: 50%;
                             width: 100%;
                             gap: 30px;
-
-                            #email {
-                                width: 276px;
+                            article {
+                                width: 47%;
                             }
+
                         }
                     }
                 }
@@ -104,11 +107,43 @@
                         font-size: 23px;
                     }
                     #form{
-                        width: 96%;
-                        height: unset;
+                        width: 100%;
                         min-height: 380px;
+                        > article {
+                            input {
+                                width: 100%;
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
+}
+@media(max-width: 1115px){
+    #page-conta-dados-pessoais {
+        height: 120vh;
+        #conteudo {
+            main {
+                section {
+                    h2 {
+                        font-size: 23px;
+                    }
+                    #form{
+                        width: 100%;
+                        min-height: 380px;
+                        padding: 30px 80px;
+                        > article {
+                            input {
+                                width: 100%;
+                            }
+                        }
                         > div {
-                            height: unset;
+                            > div {
+                                article {
+                                    width: 100%;
+                                }
+                            }
                         }
                     }
                 }
@@ -124,13 +159,22 @@
                     h2 {
                         font-size: 21.5px;
                     }
+                    #form {
+                        padding: 30px 50px;
+                    }
                 }
             }
         }
     }
 }
+@media(max-width: 770px){
+    #page-conta-dados-pessoais {
+        height: 153vh;
+    }
+}
 @media(max-width: 700px){
     #page-conta-dados-pessoais {
+        height: unset;
         #conteudo {
             padding-left: 30px;
             main {
@@ -139,8 +183,8 @@
                     align-items: center;    
                     width: 100%;
                     #form{
+                        padding: 40px 40px 40px 40px;
                         width: 100%;
-                        // min-height: 380px;
                         > div {
                             height: unset;
                         }
@@ -159,30 +203,14 @@
                         font-size: 21px;
                     }
                     #form{
-                        
+                        padding: 30px 30px;
                         > article {
-                            width: 100%;
                             input {
-                                min-width: unset;
+                                min-width: unset !important;
                             }
                         }
                         label {
                             font-size: 14.5px !important;
-                        }
-                        input {
-                            width: 100% !important;
-                        }
-                        > div {
-                            width: 100%;
-                            > div {
-                                width: 100%;
-                                article {
-                                    width: 100%;
-                                }
-                                #email {
-                                    width: 100% !important;
-                                }
-                            }
                         }
                     }
                 }

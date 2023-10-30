@@ -26,7 +26,7 @@ export default function Index(){
                                     </article>
                                     <article>
                                         <label> E-mail </label>
-                                        <input id='email'type='txt' placeholder='ex.: exemplo@gmail.com'/>
+                                        <input type='txt' placeholder='ex.: exemplo@gmail.com'/>
                                     </article>
                                 </div>
                                 <div>

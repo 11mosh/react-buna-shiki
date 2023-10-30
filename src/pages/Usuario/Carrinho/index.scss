@@ -11,9 +11,10 @@
             align-items: center;
             flex-direction: column;
             width: 100%;
+            padding: 70px;
             img{
                 height: 150px;
-                margin-left: -32px;
+                margin-right: 32px;
                 margin-bottom: 40px;
     
             }
@@ -26,10 +27,11 @@
                 margin-bottom: 15px;
                 width: 300px;
                 text-align: center;
+                min-width: none;
             }
             button{
                 border-radius: 20px;
-                width: 150px;
+                width: 180px;
                 height: 35px;
                 border: none;
                 background-color: #661515;
@@ -103,6 +105,7 @@
                        }
                        i:hover {
                         color: red;
+                        transition: 0.3px;
                        }
                    }
                }
@@ -181,7 +184,7 @@
     }
 }
 
-@media (max-width: 1250px) {
+@media (max-width: 1400px) {
     #carrinho-cheio{
         > h2 {
             font-size: 29px !important;
@@ -189,11 +192,22 @@
         > main{
             > section {
                 padding: 20px 25px !important;
-                min-width: 480px !important;
+                min-width: 550px !important;
                 #a1 {
                     gap: 5px !important;
                 }
             }
+        }
+    }
+}
+
+@media(max-width: 1200px){
+    #carrinho-vazio{
+        img{
+            height: 130px !important;
+        }
+        #textoMaior{
+            font-size: 35px !important;
         }
     }
 }
@@ -211,13 +225,31 @@
             }
         }
     }
+    #carrinho-vazio{
+        img{
+            height: 120px !important;
+            margin-right: 25px !important;
+        }
+        #textoMaior{
+            font-size: 33px !important;
+        }
+    }
 }
 @media (max-width: 700px) {
+    #carrinho-vazio{
+        img{
+            height: 115px !important;
+        }
+        #textoMaior{
+            font-size: 30px !important;
+        }
+    }
     #carrinho-cheio{
         > main{
             > section {
                 padding: 20px 25px !important;
-                min-width: 360px !important;
+                width: 100% !important;
+                min-width: 430px !important;
                 #a1 {
                     gap: 5px !important;
                     #produto {
@@ -247,16 +279,27 @@
         }
     }
 }
-@media (max-width: 450px) {
+@media (max-width: 500px) {
+    #carrinho-vazio{
+        img{
+            height: 105px !important;
+            margin-right: 20px !important;
+        }
+        p {
+            font-size: 15px;
+        }
+    }
     #carrinho-cheio{
         padding: 40px 20px !important;
         h2 {
             font-size: 27px !important;
         }
         > main{
+            margin: 10px !important;
             > section {
-                padding: 20px 20px !important;
-                min-width: 290px !important;
+                padding: 20px 15px !important;
+                min-width: 280px !important;
+                width: 100% !important;
                 #a1 {
                     #produto {
                         img {
@@ -283,6 +326,9 @@
             hr {
                 width: 100% !important;
             }
+            article {
+                font-size: 16px !important;
+            }
         }
         > #s3 {
             align-items: center;
@@ -297,13 +343,25 @@
     }
 }
 @media (max-width: 350px) {
+    #carrinho-vazio{
+        img{
+            height: 100px !important;
+            margin-right: 20px !important;
+        }
+        #textoMaior {
+            font-size: 27px !important;
+        }
+        p {
+            font-size: 14.5px;
+            width: 250px !important;
+        }
+    }
     #carrinho-cheio{
         > h2 {
             font-size: 26.5px !important;
         }
         > main{
             > section {
-                padding: 20px 20px !important;
                 min-width: 280px !important;
                 #a1 {
                     gap: 5px !important;
@@ -311,7 +369,14 @@
                         width: 60px;
                     }
                     #detalhes {
-                        gap: 13px !important;
+                        height: 100px;
+                        gap: 8px !important;
+                    }
+                    #produto {
+                        img {
+                            width: 100px !important;
+                            height: 100px !important;
+                        }
                     }
                 }
                 #a2 {
@@ -320,6 +385,12 @@
                     }
                 }
             }
+            #s2 {
+                article {
+                    font-size: 15px !important;
+                }
+            }
+
         }
     }
 }

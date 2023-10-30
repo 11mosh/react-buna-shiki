@@ -1,7 +1,8 @@
 import axios from 'axios'
+import { URL } from '../constants'
 
 const api = axios.create({
-    baseURL: 'http://localhost:5000'
+    baseURL: URL
 })
 
 
