@@ -2,14 +2,25 @@ import './index.scss';
 import { useEffect, useState } from 'react';
 import CabecalhoUsuario from '../../../components/Usuario/UsuarioCabecalho';
 import UsuarioRodape from '../../../components/Usuario/UsuarioRodape';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import axios from 'axios';
 import storage from 'local-storage';
 import ItemDisponivel from './Item';
 import { filtrarPorCategorias } from '../../../api/produtoApi';
 import {toast} from 'react-toastify';
+import { URL } from '../../../constants';
 
 export default function Assinatura () {
+
+    const [numeroCartao, setNumeroCartao] = useState();
+    const [validade, setValidade] = useState();
+    const [cvv, setCvv] = useState();
+    const [nomeTitular, setNomeTitular] = useState('');
+    const [cpf, setCpf] = useState('');
+
+    const [cep, setCep] = useState('');
+    const [numero, setNumero] = useState(0);
+    const [complemento, setComplemento] = useState('');
 
     const [exibirCartao, setExibirCartao] = useState(false);
     const [exibirEndereco, setExibirEndereco] = useState(false);
@@ -17,26 +28,26 @@ export default function Assinatura () {
     const [cartoes, setCartoes] = useState([]);
     const [categorias, setCategorias] = useState([]);
     const [filtrarPorCategoria, setFiltrarPorCategoria] = useState(0);
+    const redir = useNavigate()
 
     async function chamarAssinaturas () {
-        const produto = await axios.get('http://localhost:5000/produtos');
+        const produto = await axios.get(URL + '/produtos');
         const resp = produto.data.filter((item) => item.assinatura === 1);
         setItensDisponiveis(resp);
     }
 
     async function chamarCategorias () {
-        const categoriass = await axios.get('http://localhost:5000/categorias');
+        const categoriass = await axios.get(URL + '/categorias');
         const resposta = categoriass.data;
         setCategorias(resposta);
     }
 
     async function chamarCartoes () {
         const idUsuario = storage('usuario-logado').id
-        const cartoes = await axios.get('http://localhost:5000/cartoes/' + idUsuario);
-        console.log(cartoes.data);
+        const cartoess = await axios.get(URL + '/cartoes/' + idUsuario);
+        setCartoes(cartoess.data)
+        console.log(cartoess.data);
     }
-
-    const id = storage('usuario-logado').id
 
     async function filtrarPorCategoriasClick(idCategoria){
         try {
@@ -53,15 +64,18 @@ export default function Assinatura () {
         }
       }
 
-    async function a () {
-
-    }
-
     useEffect(() => {
-        chamarAssinaturas();
-        chamarCategorias();
-        filtrarPorCategoriasClick();
-        chamarCartoes();
+        if (storage('usuario-logado')) {
+            const id = storage('usuario-logado').id
+            chamarAssinaturas();
+            chamarCategorias();
+            filtrarPorCategoriasClick();
+            chamarCartoes();
+            // let a = "BACAXI A";
+            // console.log(a.search(' '));
+        } else {
+            redir('/cadastro');
+        }
     }, [])
     
     return (
@@ -116,25 +130,25 @@ export default function Assinatura () {
                             ? <div className='campo-inputs'>
                             <div>
                                 <label htmlFor="">Número do cartão *</label>
-                                <input type="text" />
+                                <input type="number" value={numeroCartao} onChange={e => setNumeroCartao(e.target.value)}/>
                             </div>
                             <article className='secao2'>
                                 <div>
                                     <label htmlFor="">Validade *</label>
-                                    <input type="text" name="" id="" />
+                                    <input type="text" name="" id="" value={validade} onChange={e => setValidade(e.target.value)}/>
                                 </div>
                                 <div>
                                     <label htmlFor="">CVV *</label>
-                                    <input type="text" />
+                                    <input type="number" value={cvv} onChange={e => setCvv(e.target.value)}/>
                                 </div>
                             </article>
                             <div>
                                 <label htmlFor="">Nome do títular *</label>
-                                <input type="text" />
+                                <input type="text" value={nomeTitular} onChange={e => setNomeTitular(e.target.value)}/>
                             </div>
                             <div>
                                 <label htmlFor="">CPF/CNPJ do títular *</label>
-                                <input type="text" />
+                                <input type="number" value={cpf} onChange={e => setCpf(e.target.value)}/>
                             </div>
                         <button>Cadastrar</button>
 
@@ -148,9 +162,7 @@ export default function Assinatura () {
                         <option value="">Selecionar cartão</option>
                         {cartoes.map((item) => {
                             return (
-                                <main>
-
-                                </main>
+                                <option value="">Final: {item.numero.substring(3, 7)}</option>                                
                             )
                         })}
                     </select>
@@ -174,17 +186,17 @@ export default function Assinatura () {
                         <div className="campo1">
                             <div>
                                 <label htmlFor="">Informe o CEP  *</label>
-                                <input type="text" name="" id="" />
+                                <input type="text" name="" id="" value={cep} onChange={e => setCep(e.target.value)}/>
                             </div>
                             <div>
                                 <label htmlFor="">Informe o número *</label>
-                                <input type="text" />
+                                <input type="number" value={numero} onChange={e => setNumero(e.target.value)}/>
                             </div>
                         </div>
 
                         <div className="campo2">
                             <label htmlFor="">Complemento</label>
-                            <input type="text" />
+                            <input type="text" value={complemento} onChange={e => setComplemento(e.target.value)}/>
                             <input type="text" disabled className='endereco-usuario'/>
                             <input type="text" disabled className='endereco-usuario' placeholder='oi'/>
                         </div>
