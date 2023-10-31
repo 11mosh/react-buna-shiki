@@ -157,7 +157,7 @@ function CadastroProduto () {
                             idProduto: idProduto,
                             caminho: item
                         }
-                        await axios.post(URL, imagem)
+                        await axios.post(url, imagem)
                     }
                 }
                 if(fotosExcluir) {
@@ -166,7 +166,7 @@ function CadastroProduto () {
             }
             else{
                 for (let item of fotos) {
-                    let url = url + "/imagemproduto";
+                    let url = URL + "/imagemproduto";
                     const imagem = {
                         idProduto: idProduto,
                         caminho: item
