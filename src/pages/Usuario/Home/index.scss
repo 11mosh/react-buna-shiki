@@ -88,14 +88,15 @@
                 margin-top: 45px;
                 font-weight: 500;
                 font-size: 18px;
-                > div {
+                > a {
                     display: flex;
                     flex-direction: column;
                     gap: 5px;
                     text-align: center;
                     align-items: center;
                     justify-content: center;
-    
+                    text-decoration: none;
+                    color: black;
                     img {
                         width: 120px;
                         height: 120px;

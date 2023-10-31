@@ -82,7 +82,7 @@ function Home () {
                     <nav>
                         {categoriasAtual.map(item => {
                             return(
-                                <div key={item.id}><img src={item.img} alt="" /> <p>{item.nome}</p></div>
+                                <Link key={item.id}><img src={item.img} alt="" /> <p>{item.nome}</p></Link>
                             )
                         })}
                     </nav>

@@ -1,20 +1,37 @@
 import './index.scss';
-import Cabecalho from '../../../../components/Usuario/UsuarioCabecalho';
-import UsuarioRodape from '../../../../components/Usuario/UsuarioRodape';
+import Cabecalho from '../../../components/Usuario/UsuarioCabecalho';
+import UsuarioRodape from '../../../components/Usuario/UsuarioRodape';
+import { useEffect, useState } from 'react';
+import { useParams } from 'react-router';
 
 
 export default function Index(){
+    const categorias = [{categoria: 'cafeemgraos', secoes: [{marca: '3 Corações: Edição Gourmet', imagemSuporte: '/assets/images/produtos/graos/cafe3coracoes.svg'}, {marca: 'Orfeu: 100% arábica', imagemSuporte: '/assets/images/produtos/graos/cafeOrfeu.png'}, {marca: 'Santa Mônica', imagemSuporte: '/assets/images/produtos/graos/cafeSantaMonica.png'}]}, {categoria: 'filtros', secoes: [{marca: 'Hario V60', imagemSuporte: ''}, {marca: 'Chemex: Bonded Filters', imagemSuporte: ''}, {marca: '3 corações', imagemSuporte: ''}]}, {categoria: 'moedores', secoes: [{marca: 'Hario', imagemSuporte: ''}, {marca: 'Tramontina ', imagemSuporte: ''}, {marca: 'Hamilton Beach', imagemSuporte: ''}]}, {categoria: 'cafeteiras', secoes: [{marca: 'Nespresso', imagemSuporte: ''}, {marca: 'Oster', imagemSuporte: ''}, {marca: 'DeLonghi', imagemSuporte: ''}]}, {categoria: 'capsulas', secoes: [{marca: 'Orfeu Cafés Especiais', imagemSuporte: ''}, {marca: 'Baggio Café', imagemSuporte: ''}, {marca: `L'or Expresso`, imagemSuporte: ''}]}, {categoria: 'cafeempo', secoes: [{marca: 'Baggio Café', imagemSuporte: ''}, {marca: 'Starbucks', imagemSuporte: ''}, {marca: 'Melitta', imagemSuporte: ''}]}, {categoria: 'acessorios', secoes: [{marca: 'Garrafas térmicas Stanley', imagemSuporte: ''}, {marca: 'Bules Electrolux', imagemSuporte: ''}, {marca: 'Coadores Hario', imagemSuporte: ''}]}]
+    const [categoriaAtual, setCategoriaAtual] = useState([{marca: '', imagemSuporte: ''}, {marca: '', imagemSuporte: ''}, {marca: '', imagemSuporte: ''}])
+    const { categoria } = useParams()
+
+    
+    
+    useEffect(() => {
+        for(let item of categorias){
+            console.log(item.categoria);
+            if(item.categoria === categoria){
+                setCategoriaAtual(item.secoes)
+            }
+        }
+    }, [])
+    
     return(
-        <div id='page-produtos-graos'>
+        <div id='page-produtos'>
             <Cabecalho />
             <main id='conteudo'>
                 <section className='faixaApresentacao'>
                     <article>
                         <div>
-                            <h3> Café 3 Corações: Edição Gourmet</h3>
+                            <h3> {categoriaAtual[0].marca} </h3>
                         </div>
                     </article> 
-                    <img src='/assets/images/produtos/graos/cafe3coracoes.svg' alt='imagem-suporte-cafe3coracoes' />
+                    <img src={categoriaAtual[0].imagemSuporte} alt='imagem-suporte-cafe3coracoes' />
                 </section>
                 <section className='faixaProdutos faixaProdutos1'>
                     <article >
@@ -47,11 +64,11 @@ export default function Index(){
                     </aside>
                 </section>
                 <section className='faixaApresentacao faixaApresentacao2'>
-                    <img src='/assets/images/produtos/graos/cafeOrfeu.png' alt='imagem-suporte-cafeOrfeu' />
+                    <img src={categoriaAtual[1].imagemSuporte} alt='imagem-suporte-cafeOrfeu' />
                     <article>
                         <article>
                             <div>
-                                <h3> Café Orfeu: 100% arábica</h3>
+                                <h3> {categoriaAtual[1].marca}</h3>
                             </div>
                         </article>
                     </article>
@@ -89,10 +106,10 @@ export default function Index(){
                 <section className='faixaApresentacao faixaApresentacao3'>
                     <article>
                         <div>
-                            <h3> Café Santa Mônica</h3>
+                            <h3> {categoriaAtual[2].marca}</h3>
                         </div>
                     </article>
-                    <img src='/assets/images/produtos/graos/cafeSantaMonica.png' alt='imagem-suporte-cafeSantaMonica' />
+                    <img src={categoriaAtual[2].imagemSuporte} alt='imagem-suporte-cafeSantaMonica' />
                 </section>
                 <section className='faixaProdutos faixaProdutos3'>
                     <article>
