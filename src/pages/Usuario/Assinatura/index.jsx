@@ -8,7 +8,7 @@ import storage from 'local-storage';
 import ItemDisponivel from './Item';
 import { filtrarPorCategorias } from '../../../api/produtoApi';
 import {toast} from 'react-toastify';
-import { URL } from '../../../constants';
+import { URL } from '../../../constants.js';
 
 export default function Assinatura () {
 
@@ -64,6 +64,33 @@ export default function Assinatura () {
         }
       }
 
+    async function novoCartao (idUsuario) {
+        try {
+            const urlCartao = URL + '/cartao/' + idUsuario;
+            const infoCartao = {
+                idCliente: idUsuario,
+                numeroCartao: numeroCartao,
+                validade: validade,
+                cvv: cvv,
+                titular: nomeTitular,
+                identidade: cpf
+            };
+
+            const resposta = await axios.post(urlCartao, infoCartao);
+            toast.success('Novo cartão cadastrado!');
+
+            // if (numeroCartao || validade || cvv || nomeTitular || cpf === null) toast.error('Preencha todos os campos corretamente!')
+
+            // setNumeroCartao();
+            // setValidade();
+            // setCvv();
+            // setNomeTitular();
+            // setCpf();
+        } catch(err){
+            toast.error(err.response.data.erro)
+        }
+    }
+
     useEffect(() => {
         if (storage('usuario-logado')) {
             const id = storage('usuario-logado').id
@@ -94,7 +121,7 @@ export default function Assinatura () {
 
                 <section className='selecionar-itens'>
                     <nav className='titulo'>
-                        <h1>1 - Escolha entre os principais sabores disponíveis e quantidade:</h1>
+                        <h1 >Escolha entre os principais sabores disponíveis e quantidade:</h1>
                         <select name="" id="" value={filtrarPorCategoria} onChange={e => { filtrarPorCategoriasClick(e.target.value); setFiltrarPorCategoria(e.target.value);}}>
                             <option value={0}>Selecionar</option>
                             {categorias.map((item) => {
@@ -115,7 +142,7 @@ export default function Assinatura () {
                 </section>
 
                 <section className="selecionar-cartao">
-                <h2>2 - Cadastre ou escolha um cartão de crédito:</h2>
+                <h2 style={{marginBottom: '8px'}}> Cadastre ou escolha um cartão de crédito:</h2>
 
                     <div className="agrupamento">
                         <article className='info-cartao'>
@@ -150,7 +177,7 @@ export default function Assinatura () {
                                 <label htmlFor="">CPF/CNPJ do títular *</label>
                                 <input type="number" value={cpf} onChange={e => setCpf(e.target.value)}/>
                             </div>
-                        <button>Cadastrar</button>
+                        <button onClick={(id) => novoCartao(id)}>Cadastrar</button>
 
                         </div>
 
@@ -171,7 +198,7 @@ export default function Assinatura () {
                 
 
                 <section className='selecionar-endereco'>
-                    <h2>3 - Cadastre ou escolha um endereço de entrega:</h2>
+                    <h2 style={{marginBottom: '8px'}}>Cadastre ou escolha um endereço de entrega:</h2>
                     <div className="agrupamento">
                     <article className='info-endereco'>
                         <div className='titulo'>
