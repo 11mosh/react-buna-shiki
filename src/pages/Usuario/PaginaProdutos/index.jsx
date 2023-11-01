@@ -3,20 +3,44 @@ import Cabecalho from '../../../components/Usuario/UsuarioCabecalho';
 import UsuarioRodape from '../../../components/Usuario/UsuarioRodape';
 import { useEffect, useState } from 'react';
 import { useParams } from 'react-router';
+import { buscarProdutosPorMarca } from '../../../api/produtoApi';
+import { toast } from 'react-toastify';
 
 
 export default function Index(){
     const categorias = [{categoria: 'cafeemgraos', secoes: [{marca: '3 Corações: Edição Gourmet', imagemSuporte: '/assets/images/produtos/graos/cafe3coracoes.svg'}, {marca: 'Orfeu: 100% arábica', imagemSuporte: '/assets/images/produtos/graos/cafeOrfeu.png'}, {marca: 'Santa Mônica', imagemSuporte: '/assets/images/produtos/graos/cafeSantaMonica.png'}]}, {categoria: 'filtros', secoes: [{marca: 'Hario V60', imagemSuporte: ''}, {marca: 'Chemex: Bonded Filters', imagemSuporte: ''}, {marca: '3 corações', imagemSuporte: ''}]}, {categoria: 'moedores', secoes: [{marca: 'Hario', imagemSuporte: ''}, {marca: 'Tramontina ', imagemSuporte: ''}, {marca: 'Hamilton Beach', imagemSuporte: ''}]}, {categoria: 'cafeteiras', secoes: [{marca: 'Nespresso', imagemSuporte: ''}, {marca: 'Oster', imagemSuporte: ''}, {marca: 'DeLonghi', imagemSuporte: ''}]}, {categoria: 'capsulas', secoes: [{marca: 'Orfeu Cafés Especiais', imagemSuporte: ''}, {marca: 'Baggio Café', imagemSuporte: ''}, {marca: `L'or Expresso`, imagemSuporte: ''}]}, {categoria: 'cafeempo', secoes: [{marca: 'Baggio Café', imagemSuporte: ''}, {marca: 'Starbucks', imagemSuporte: ''}, {marca: 'Melitta', imagemSuporte: ''}]}, {categoria: 'acessorios', secoes: [{marca: 'Garrafas térmicas Stanley', imagemSuporte: ''}, {marca: 'Bules Electrolux', imagemSuporte: ''}, {marca: 'Coadores Hario', imagemSuporte: ''}]}]
     const [categoriaAtual, setCategoriaAtual] = useState([{marca: '', imagemSuporte: ''}, {marca: '', imagemSuporte: ''}, {marca: '', imagemSuporte: ''}])
     const { categoria } = useParams()
+    const [produtos, setProdutos] = useState([])
+    
+    async function buscarProdutos() {
+        try {
+            let produtosBanco = []
+            // console.log(categoriaAtual);
+            if(categoriaAtual[0].marca !== ''){
+                console.log('oi');
+                for(let cont = 0; cont < 3; cont++){
+                    produtosBanco[cont] = await buscarProdutosPorMarca(categoriaAtual[cont].marca)
+                }
+            }
+            setProdutos(produtosBanco)
+        }
+        catch(err){
+            if(err.response)
+                toast.error(err.response.data.erro)
+            else
+                toast.error(err.message)
+        }
+    }
 
-    
-    
+
+
     useEffect(() => {
         for(let item of categorias){
-            console.log(item.categoria);
             if(item.categoria === categoria){
                 setCategoriaAtual(item.secoes)
+                console.log(categoriaAtual);
+                buscarProdutos()
             }
         }
     }, [])
