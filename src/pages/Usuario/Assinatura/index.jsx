@@ -53,9 +53,7 @@ export default function Assinatura () {
         }
       }
 
-    async function a () {
-
-    }
+    
 
     useEffect(() => {
         chamarAssinaturas();
