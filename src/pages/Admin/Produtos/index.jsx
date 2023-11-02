@@ -33,7 +33,10 @@ export default function Consulta() {
       }
     }
     catch(err){
-      toast.warn(err.message)
+      if(err.response)
+                toast.warn(err.response.data.erro)
+            else
+                toast.warn(err.message)
     }
   }
   
@@ -53,7 +56,10 @@ export default function Consulta() {
           }
           catch(err){
             setProdutos([])
-            toast.error(err.response.data.erro)
+            if(err.response)
+                toast.error(err.response.data.erro)
+            else
+                toast.error(err.message)
           }
         }
       },

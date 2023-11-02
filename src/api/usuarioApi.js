@@ -65,6 +65,17 @@ export async function alterarEndereco(endereco){
     })
 }
 
+export async function alterarCliente(id, dados){
+    await api.put(`/cliente/${id}`, {
+        telefone: dados.telefone,
+        email: dados.email,
+        nome: dados.nome,
+        nascimento: dados.nascimento,
+        cpf: dados.cpf
+    })
+}
+
+
 // Deletando
 
 export async function deletarEndereco(id){

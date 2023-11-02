@@ -29,7 +29,10 @@ export default function Index() {
         catch(err){
             setCarregando(false)
             ref.current.complete()
-            toast.warn(err.response.data.erro)
+            if(err.response)
+                toast.warn(err.response.data.erro)
+            else
+                toast.warn(err.message)
         }
     }
     
