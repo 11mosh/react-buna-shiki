@@ -1,4 +1,4 @@
-#page-produtos-graos{
+#page-produtos{
     > #conteudo {
         font-family: 'Inter';
         .faixaApresentacao {
@@ -193,7 +193,7 @@
 }
 
 @media(max-width: 1500px) {
-    #page-produtos-graos {
+    #page-produtos {
         #conteudo {
             .faixaProdutos {
                 article {
@@ -233,7 +233,7 @@
     }
 }
 @media(max-width: 1100px) {
-    #page-produtos-graos {
+    #page-produtos {
         #conteudo {
             .faixaProdutos {
                 article {
@@ -278,7 +278,7 @@
     }
 }
 @media(max-width: 900px) {
-    #page-produtos-graos {
+    #page-produtos {
         #conteudo {
             .faixaProdutos {
                 padding: 10px 50px 50px 50px;
@@ -334,7 +334,7 @@
     }
 }
 @media(max-width: 800px) {
-    #page-produtos-graos {
+    #page-produtos {
         #conteudo {
             .faixaProdutos {
                 padding: 10px 50px 50px 50px;
@@ -406,7 +406,7 @@
     }
 }
 @media(max-width: 650px) {
-    #page-produtos-graos {
+    #page-produtos {
         #conteudo {
             .faixaProdutos {
                 flex-direction: column;
@@ -476,7 +476,7 @@
     }
 }
 @media(max-width: 550px) {
-    #page-produtos-graos {
+    #page-produtos {
         #conteudo {
             #formasPagamento {
                 #empresas {
@@ -527,7 +527,7 @@
     }
 }
 @media(max-width: 400px) {
-    #page-produtos-graos {
+    #page-produtos {
         #conteudo {
             #formasPagamento {
                 article {

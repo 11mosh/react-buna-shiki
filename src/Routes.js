@@ -13,7 +13,7 @@ import AdmInicio from './pages/Admin/TelaInicial';
 import CadastroProduto from './pages/Admin/CadastroProduto';
 import Produtos from './pages/Admin/Produtos';
 import CadastroCombo from './pages/Admin/CadastroCombo';
-import ProdutosGraos from './pages/Usuario/PaginaProdutos/CafeEmGraos'
+import PaginaProdutos from './pages/Usuario/PaginaProdutos'
 import MeusPedidos from './pages/Usuario/UsuarioPerfil/MeusPedidos';
 import Pedidos from './pages/Admin/Pedidos';
 import Combos from './pages/Usuario/PaginaProdutos/Combos';
@@ -62,8 +62,8 @@ export default function Rotas() {
                 <Route path='/conta/assinaturas' element={<PerfilAssinatura />} />
                 <Route path='/conta/enderecos' element={<Enderecos />} />
 
-                <Route path='/produtos/graos' element={<ProdutosGraos />} />
-                <Route path='/produtos/combos' element={<Combos />} />
+                <Route path='/produtos/:categoria' element={<PaginaProdutos />} />
+                <Route path='/combos' element={<Combos />} />
                 <Route path='/carrinho' element={<Carrinho/>} />
                 <Route path='/assinatura' element={<Assinatura/>} />
                 <Route path='/assinatura/confirmacao' element={<Confirmacao />} />

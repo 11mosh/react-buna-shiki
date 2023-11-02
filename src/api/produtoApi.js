@@ -92,6 +92,11 @@ export async function ordernarProdutosPorColuna(coluna){
 export async function pesquisaInput(pesquisaValor) {
     const resp = await api.get(`/filtro/produtos/pesquisa/${pesquisaValor}`)
 
-    
+    return resp.data
+}
+
+export async function buscarProdutosPorMarca(marca){
+    const resp = api.get(`/produtos/${marca}`)
+
     return resp.data
 }
