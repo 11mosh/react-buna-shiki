@@ -13,25 +13,26 @@ export default function Index(){
     const { categoria } = useParams()
     const [produtos, setProdutos] = useState([])
     
-    async function buscarProdutos() {
-        try {
-            let produtosBanco = []
-            // console.log(categoriaAtual);
-            if(categoriaAtual[0].marca !== ''){
-                console.log('oi');
-                for(let cont = 0; cont < 3; cont++){
-                    produtosBanco[cont] = await buscarProdutosPorMarca(categoriaAtual[cont].marca)
-                }
-            }
-            setProdutos(produtosBanco)
-        }
-        catch(err){
-            if(err.response)
-                toast.error(err.response.data.erro)
-            else
-                toast.error(err.message)
-        }
-    }
+    // async function buscarProdutos(secoes) {
+    //     try {
+    //         let produtosBanco = []
+            
+    //         // buscando produtos por cada marca dessa categoria e armazenando na variavek produtosBanco
+
+    //         for(let cont = 0; cont < 3; cont++){
+    //             produtosBanco[cont] = await buscarProdutosPorMarca(secoes[cont].marca)
+    //         }
+            
+    //         setProdutos(produtosBanco)
+    //         console.log(produtosBanco);
+    //     }
+    //     catch(err){
+    //         if(err.response)
+    //             toast.error(err.response.data.erro)
+    //         else
+    //             toast.error(err.message)
+    //     }
+    // }
 
 
 
@@ -39,8 +40,7 @@ export default function Index(){
         for(let item of categorias){
             if(item.categoria === categoria){
                 setCategoriaAtual(item.secoes)
-                console.log(categoriaAtual);
-                buscarProdutos()
+                // buscarProdutos(item.secoes)
             }
         }
     }, [])

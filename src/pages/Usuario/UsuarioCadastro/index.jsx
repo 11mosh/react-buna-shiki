@@ -40,7 +40,7 @@ export default function Index() {
                 const infoCliente = await CadastrarCliente(nome, cpf, telefone, email, senha)
                 await CadastrarEndereco(cep, rua, cidade, complemento, nrEndereco, infoCliente.id)
                 
-                toast.success('Cadastro finalizado!')
+                toast.dark('Bem-Vindo à Buna Shiki')
                 ref.current.continuousStart()
                 storage('usuario-logado', infoCliente)
                 

@@ -25,31 +25,41 @@
                 #form {
                     border: 1px solid black;
                     width: 750px;
-                    height: 80%;
-                    padding: 50px 100px;
+                    min-height: 80%;
+                    padding: 40px 100px;
                     display: flex;
                     flex-direction: column;
                     justify-content: space-between;
                     align-items: center;
                     border-radius: 30px;
                     gap: 30px;
-                    > article {
+                    #a1 {
                         width: 100%;
                         input {
                             width: 99%;
                             min-width: 276px;
                         }
                     }
-                    > button {
-                        width: 150px;
-                        min-height: 30px ;
-                        font-size: 14.5px;
+                    #botoes {
                         margin-top: 30px;
-                        font-weight: 600;
-                        border: none;
-                        border-radius: 20px;
-                        color: white;
-                        background-color: #ff0000;
+                        display: flex;
+                        flex-direction: column;
+                        gap: 25px;
+                        button {
+                            width: 170px;
+                            min-height: 32px ;
+                            font-size: 14.5px;
+                            font-weight: 600;
+                            border: none;
+                            border-radius: 20px;
+                            color: white;
+                            background-color: #ff0000;
+                        }
+                        #alteracoes {
+                            background-color: #f47f3c !important;
+                            align-items: center;
+                            justify-content: center;
+                        }
                     }
                     input {
                         height: 30px;
@@ -76,7 +86,7 @@
                         height: 65%;
                         display: flex;
                         flex-direction: column;
-                        justify-content: space-around;
+                        justify-content: space-evenly;
                         gap: 30px;
                         width: 100%;
                         > div {
@@ -109,7 +119,7 @@
                     #form{
                         width: 100%;
                         min-height: 380px;
-                        > article {
+                        #a1 {
                             input {
                                 width: 100%;
                             }
@@ -133,7 +143,7 @@
                         width: 100%;
                         min-height: 380px;
                         padding: 30px 80px;
-                        > article {
+                        #a1 {
                             input {
                                 width: 100%;
                             }
@@ -188,6 +198,11 @@
                         > div {
                             height: unset;
                         }
+                        #botoes {
+                            button {
+                                font-size: 14px;
+                            }
+                        }
                     }
                 }
             }
@@ -204,7 +219,7 @@
                     }
                     #form{
                         padding: 30px 30px;
-                        > article {
+                        #a1 {
                             input {
                                 min-width: unset !important;
                             }
