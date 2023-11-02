@@ -149,7 +149,7 @@ function CadastroProduto () {
     async function cadastrarImagens(idProduto) {
         try {
             if(id !== 0){
-                console.log(fotosAdicionadas);
+                
                 if(fotosAdicionadas) {
                     for (let item of fotosAdicionadas) {
                         let url = URL + "/imagemproduto";
@@ -157,7 +157,7 @@ function CadastroProduto () {
                             idProduto: idProduto,
                             caminho: item
                         }
-                        await axios.post(URL, imagem)
+                        await axios.post(url, imagem)
                     }
                 }
                 if(fotosExcluir) {
@@ -166,12 +166,12 @@ function CadastroProduto () {
             }
             else{
                 for (let item of fotos) {
-                    let url = url + "/imagemproduto";
+                    let urlFormando = URL + "/imagemproduto";
                     const imagem = {
                         idProduto: idProduto,
                         caminho: item
                     }
-                    await axios.post(url, imagem)
+                    await axios.post(urlFormando, imagem)
                 }
             }
 
