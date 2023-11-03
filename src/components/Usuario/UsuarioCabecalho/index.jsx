@@ -13,7 +13,7 @@ export default function CabecalhoUsuario() {
     const [categorias, setCategorias] = useState([]);
     const [sugestao, setSugestao] = useState([]);
 
-    const caminhos = ['/produtos/cafemgraos', '/produtos/cafeempo', '/produtos/cafeteiras', '/combos', '/produtos/filtros', '/produtos/capsulas', '/produtos/moedores', '/produtos/acessorios' ];
+    const caminhos = ['/produtos/cafeemgraos', '/produtos/cafeempo', '/produtos/cafeteiras', '/combos', '/produtos/filtros', '/produtos/capsulas', '/produtos/moedores', '/produtos/acessorios' ];
 
     async function pesquisaProdutos() {
         try {

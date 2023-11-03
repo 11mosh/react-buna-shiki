@@ -77,9 +77,9 @@ export async function pesquisaInput(pesquisaValor) {
     return resp.data
 }
 
-export async function buscarProdutosPorMarca(marca){
-    const resp = api.get(`/produtos/${marca}`)
-    
+export async function buscarProdutosPorMarca(marca, categoria){
+    const resp = await api.get(`/produtos/marca?marca=${marca}&categoria=${categoria}`)
+
     return resp.data
 }
 
