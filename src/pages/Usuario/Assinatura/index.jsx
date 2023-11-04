@@ -6,21 +6,25 @@ import { Link, useNavigate } from 'react-router-dom';
 import axios from 'axios';
 import storage from 'local-storage';
 import ItemDisponivel from './Item';
-import { filtrarPorCategorias } from '../../../api/produtoApi';
+import { filtrarPorCategorias } from '../../../api/produtoApi.js';
+import { CadastrarEndereco, buscarCep } from '../../../api/usuarioApi';
 import {toast} from 'react-toastify';
 import { URL } from '../../../constants.js';
 
 export default function Assinatura () {
 
-    const [numeroCartao, setNumeroCartao] = useState();
-    const [validade, setValidade] = useState();
-    const [cvv, setCvv] = useState();
+    const [numeroCartao, setNumeroCartao] = useState(0);
+    const [validade, setValidade] = useState('');
+    const [cvv, setCvv] = useState('');
     const [nomeTitular, setNomeTitular] = useState('');
     const [cpf, setCpf] = useState('');
 
     const [cep, setCep] = useState('');
-    const [numero, setNumero] = useState(0);
+    const [numero, setNumero] = useState('');
     const [complemento, setComplemento] = useState('');
+
+    const [rua, setRua] = useState('Rua')
+    const [cidade, setCidade] = useState('Cidade')
 
     const [exibirCartao, setExibirCartao] = useState(false);
     const [exibirEndereco, setExibirEndereco] = useState(false);
@@ -28,6 +32,12 @@ export default function Assinatura () {
     const [cartoes, setCartoes] = useState([]);
     const [categorias, setCategorias] = useState([]);
     const [filtrarPorCategoria, setFiltrarPorCategoria] = useState(0);
+    const [enderecos, setEnderecos] = useState([]);
+
+    const [opcaoCartao, setOpcaoCartao] = useState(0);
+    const [opcaoEndereco, setOpcaoEndereco] = useState(0);
+    // const [infos, setInfos] = useState({});
+
     const redir = useNavigate()
 
     async function chamarAssinaturas () {
@@ -46,7 +56,12 @@ export default function Assinatura () {
         const idUsuario = storage('usuario-logado').id
         const cartoess = await axios.get(URL + '/cartoes/' + idUsuario);
         setCartoes(cartoess.data)
-        console.log(cartoess.data);
+    }
+
+    async function chamarEnderecos () {
+        const idUsuario = storage('usuario-logado').id
+        const enderecoss = await axios.get(URL + '/enderecos/' + idUsuario);
+        setEnderecos(enderecoss.data)
     }
 
     async function filtrarPorCategoriasClick(idCategoria){
@@ -64,8 +79,9 @@ export default function Assinatura () {
         }
       }
 
-    async function novoCartao (idUsuario) {
-        try {
+    async function novoCartao () {
+        try {     
+            const idUsuario = storage('usuario-logado').id
             const urlCartao = URL + '/cartao/' + idUsuario;
             const infoCartao = {
                 idCliente: idUsuario,
@@ -79,15 +95,80 @@ export default function Assinatura () {
             const resposta = await axios.post(urlCartao, infoCartao);
             toast.success('Novo cartão cadastrado!');
 
-            // if (numeroCartao || validade || cvv || nomeTitular || cpf === null) toast.error('Preencha todos os campos corretamente!')
+            setNumeroCartao('');
+            setValidade('');
+            setCvv('');
+            setNomeTitular('');
+            setCpf('');
+            chamarCartoes();
 
-            // setNumeroCartao();
-            // setValidade();
-            // setCvv();
-            // setNomeTitular();
-            // setCpf();
         } catch(err){
             toast.error(err.response.data.erro)
+        }
+    };
+
+    function nomeNoCartao (item) {
+        const nome = item.nome
+        const espaco = nome.indexOf(' ');
+
+        return (nome.substring(0, (espaco + 2)) + '.').toUpperCase();
+    }
+
+    async function BuscarCep(alteracao) {
+        try{
+            if(alteracao.length === 8){
+                const resp = await buscarCep(alteracao)
+
+                if(resp.erro){
+                    toast.error('CEP inválido')
+                    setCidade('')
+                    setRua('')
+                }
+                else{
+                    setCidade(resp.localidade)
+                    setRua(resp.logradouro)
+                }
+            }
+
+            else if(alteracao.length > 8 || alteracao.length < 8){
+                setCidade('')
+                setRua('')
+            }
+        }
+        catch(err){
+            toast.error('CEP inválido')
+        }
+    }
+
+    
+
+    async function cadastrarEndereco () {
+        try{
+            const id = storage('usuario-logado').id
+            if(!cep)
+                toast.warn('CEP obrigatório')
+            else if(!cidade)
+                toast.warn('CEP incorreto')
+            else if(!rua)
+                toast.warn('CEP incorreto')
+            else if(!numero)
+                toast.warn('Número da casa obrigatório')
+            else{
+                await CadastrarEndereco(cep, rua, cidade, complemento, numero, id)
+                
+                toast.success('Cadastro finalizado!')
+
+                setCep('');
+                setNumero('');
+                setComplemento('');
+                setRua('Rua');
+                setCidade('Cidade');
+
+                chamarEnderecos();
+            }
+        }
+        catch(err){ 
+            toast.warn(err.response.data.erro)
         }
     }
 
@@ -98,12 +179,28 @@ export default function Assinatura () {
             chamarCategorias();
             filtrarPorCategoriasClick();
             chamarCartoes();
-            // let a = "BACAXI A";
-            // console.log(a.search(' '));
+            chamarEnderecos();
+
         } else {
             redir('/cadastro');
         }
-    }, [])
+    }, []);
+
+    useEffect(() => {
+        // setInfos({
+        //     enderecoId: opcaoEndereco,
+        //     cartaoId: opcaoCartao
+        // })
+    }, [opcaoCartao]);
+
+    useEffect(() => {
+        // setInfos({
+        //     enderecoId: opcaoEndereco,
+        //     cartaoId: opcaoCartao
+        // })
+    }, [opcaoEndereco]);
+
+    const botaoDisponivel = opcaoCartao !== 0 && opcaoEndereco !== 0;
     
     return (
         <main className="assinatura">
@@ -157,7 +254,7 @@ export default function Assinatura () {
                             ? <div className='campo-inputs'>
                             <div>
                                 <label htmlFor="">Número do cartão *</label>
-                                <input type="number" value={numeroCartao} onChange={e => setNumeroCartao(e.target.value)}/>
+                                <input type="text" value={numeroCartao} onChange={e => setNumeroCartao(e.target.value)}/>
                             </div>
                             <article className='secao2'>
                                 <div>
@@ -177,7 +274,7 @@ export default function Assinatura () {
                                 <label htmlFor="">CPF/CNPJ do títular *</label>
                                 <input type="number" value={cpf} onChange={e => setCpf(e.target.value)}/>
                             </div>
-                        <button onClick={(id) => novoCartao(id)}>Cadastrar</button>
+                        <button onClick={() => novoCartao()}>Cadastrar</button>
 
                         </div>
 
@@ -185,13 +282,13 @@ export default function Assinatura () {
                             }
                             
                         </article>
-                    <select name="" id="">
-                        <option value="">Selecionar cartão</option>
-                        {cartoes.map((item) => {
-                            return (
-                                <option value="">Final: {item.numero.substring(3, 7)}</option>                                
-                            )
-                        })}
+                        <select name="" value={opcaoCartao} id="" onChange={e => {setOpcaoCartao(e.target.value);}}>/   
+                            <option value={0}>Selecionar cartão</option>
+                            {cartoes.map((item) => {
+                                return (
+                                    <option key={item.id} value={item.id}>Final: {item.numero.substring(12, 16)} - {nomeNoCartao(item)}</option>                                
+                                )
+                            })}
                     </select>
                     </div>
                 </section>
@@ -213,7 +310,13 @@ export default function Assinatura () {
                         <div className="campo1">
                             <div>
                                 <label htmlFor="">Informe o CEP  *</label>
-                                <input type="text" name="" id="" value={cep} onChange={e => setCep(e.target.value)}/>
+                                <input type="number" id="" value={cep} onChange={e => {
+                                                                                        const valor = e.target.value;
+                                                                                        if (valor.length <= 8) {
+                                                                                            setCep(valor);
+                                                                                            BuscarCep(valor);
+                                                                                        }
+                                                                                    }} />
                             </div>
                             <div>
                                 <label htmlFor="">Informe o número *</label>
@@ -224,29 +327,44 @@ export default function Assinatura () {
                         <div className="campo2">
                             <label htmlFor="">Complemento</label>
                             <input type="text" value={complemento} onChange={e => setComplemento(e.target.value)}/>
-                            <input type="text" disabled className='endereco-usuario'/>
-                            <input type="text" disabled className='endereco-usuario' placeholder='oi'/>
+                            <input type="text" disabled className='endereco-usuario' placeholder={rua}/>
+                            <input type="text" disabled className='endereco-usuario' placeholder={cidade}/>
                         </div>
 
-                        <button>Cadastrar</button>
+                        <button onClick={cadastrarEndereco}>Cadastrar</button>
                         </div>
                         : <></>
                         }
                         
                     </article>
-                    <select name="sssssssss" id="">
-                        <option value="">Selecionar endereço</option>
+                    <select name="" value={opcaoEndereco} id="" onChange={e => {setOpcaoEndereco(e.target.value);}}>/
+                        <option value={0}>Selecionar endereço</option>
+                        {enderecos.map((item) => {
+                            return (
+                                <option key={item.id} value={item.id}>CEP: {item.cep} - {item.rua}, {item.numero}</option>                                
+                            )
+                        })}
                     </select>
                     </div>
                     
                 </section>
-
-                <button>
-                    <Link to={'/assinatura/confirmacao'}>
-                        <img src="/assets/images/icon-s.png" alt="" id='imagem-fantasma' />
-                        <p>Continuar</p>
-                        <img src="/assets/images/icon-seta-longa-esquerda.png" alt="" style={{transform: 'rotate(180deg)', width: '50px'}}/>
-                    </Link>
+                
+                
+                     
+                <button style={{ backgroundColor: botaoDisponivel ? '#F47E3C' : 'gray' }}>
+                    {botaoDisponivel
+                    ?   <Link to={'/assinatura/confirmacao'}>
+                            <img src="/assets/images/icon-s.png" alt="" id='imagem-fantasma' />
+                            <p>Continuar</p>
+                            <img src="/assets/images/icon-seta-longa-esquerda.png" alt="" style={{transform: 'rotate(180deg)', width: '50px'}}/>
+                        </Link>
+                    :   <a>
+                            <img src="/assets/images/icon-s.png" alt="" id='imagem-fantasma' />
+                            <p>Continuar</p>
+                            <img src="/assets/images/icon-seta-longa-esquerda.png" alt="" style={{transform: 'rotate(180deg)', width: '50px'}}/>
+                        </a>
+                    }
+                    
                 </button>
 
                 <section className="texto-ajuda">

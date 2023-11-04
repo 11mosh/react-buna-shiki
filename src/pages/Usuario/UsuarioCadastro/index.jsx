@@ -57,7 +57,6 @@ export default function Index() {
             else
                 toast.warn(err.message)
         }
-
     }
 
     async function BuscarCep(alteracao) {
