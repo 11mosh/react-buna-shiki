@@ -53,6 +53,13 @@ export async function buscarCep(cep){
     return resp.data
 }
 
+export async function buscarCartoes(id){
+    const resp = await api.get('/cartoes/' + id);
+
+    return resp.data
+}
+
+
 // Alterando
 
 export async function alterarEndereco(endereco){

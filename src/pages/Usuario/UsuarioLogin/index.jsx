@@ -62,7 +62,6 @@ export default function Index() {
                             </article>
                             <button onClick={LoginClick} disabled={carregando}> Logar </button>
                             <article>
-                                <Link>Esqueceu a senha?</Link>
                                 <div id='ajuda'>
                                     <div>
                                         <p> Não tem um conta? </p>
