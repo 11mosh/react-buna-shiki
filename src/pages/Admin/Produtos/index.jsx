@@ -23,7 +23,14 @@ export default function Consulta() {
     try{
       if(buscaInput === ''){
         const respProdutos = await buscarTodosProdutos()
-        setProdutos(respProdutos)
+
+        if(respProdutos.length === 0){
+          toast.info('Não há produtos cadastrados')
+          setProdutos([])
+        }
+        else{
+          setProdutos(respProdutos)
+        }
       }
       else {
         const produtosRetornados = await pesquisaInput(buscaInput)

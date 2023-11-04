@@ -13,22 +13,19 @@ export default function Index(){
     const { categoria } = useParams()
     const [produtos, setProdutos] = useState([[], [], []])
     const [produtosAtuais, setProdutosAtuais] = useState([[], [], []])
+    const [posicoes, setPosicoes] = useState(['', '', ''])
 
     async function buscarProdutos(secoes) {
         try {
-            let produtosBanco = []
+            let todosProdutosBanco = []
             
             // buscando produtos por cada marca dessa categoria e armazenando na variavel produtosBanco
-            
             for(let cont = 0; cont < 3; cont++){
-                produtosBanco[cont] = await buscarProdutosPorMarca(secoes[cont].marcaBusca, categoria)
+                todosProdutosBanco[cont] = await buscarProdutosPorMarca(secoes[cont].marcaBusca, categoria)
             }
             
-            console.log(produtosBanco);
-            setProdutos(produtosBanco)
-            trocarProdutosAtuais(0, true, produtosBanco)
-            trocarProdutosAtuais(1, true, produtosBanco)
-            trocarProdutosAtuais(2, true, produtosBanco)
+            setProdutos(todosProdutosBanco)
+            trocarProdutosAtuais(0, true, todosProdutosBanco)
         }
         catch(err){
             if(err.response)
@@ -38,53 +35,149 @@ export default function Index(){
         }
     }
 
+    function verificarPosicao(secao) {
+        if(produtos[secao].length !== 0){
+            if(produtos[secao].length > 4){
+                let produtosSecao = produtosAtuais[secao]
+                let novoArray = []
+                console.log(posicoes);
+                if(posicoes[secao] === 'contraria'){
+                    // console.log(produtos);
+                    if(produtosSecao[0].id === produtos[secao][0].id){
+                        if(secao === 0)
+                            novoArray = ['', posicoes[1], posicoes[2]]
+                        if(secao === 1)
+                            novoArray = [posicoes[0], '', posicoes[2]]
+                        if(secao === 2)
+                            novoArray = [posicoes[0], posicoes[1], '']
+                            
+                        setPosicoes(novoArray)
+                        return ''
+                    }
+                    else{
+                        return 'faixaAoContrario'
+                        
+                    }
+                }
+                
+                else if(posicoes[secao] === ''){
+                    // console.log(produtos);
+                    if(produtosSecao[produtosSecao.length - 1].id === produtos[secao][produtos[secao].length - 1].id){
+                        if(secao === 0)
+                            novoArray = ['contraria', posicoes[1], posicoes[2]]
+                        if(secao === 1)
+                            novoArray = [posicoes[0], 'contraria', posicoes[2]]
+                        if(secao === 2)
+                            novoArray = [posicoes[0], posicoes[1], 'contraria']
+                        console.log('oi1');
+                        setPosicoes(novoArray)
+                        // console.log(posicoes);
+                        console.log(novoArray);
+                        return 'faixaAoContrario'
+                    }
+                    else {
+                    // console.log('oi2'); 
+                        
+                        return ''
+                    }
+                }
+            }
+        }
+    } 
+
     function trocarProdutosAtuais(secao, primeiraVez, produtosBanco){
         if(!primeiraVez){
-            console.log('oi1');
-            let produtosSecao = produtosAtuais[secao]
-            let ultimaPosicaoProdutosSecao 
-            if(produtosSecao.length === 1)
-                ultimaPosicaoProdutosSecao = 0
-            else
-                ultimaPosicaoProdutosSecao = produtos[secao].indexOf(produtosSecao[produtosSecao.length - 1 ].id)
 
-            if(produtos[secao][ultimaPosicaoProdutosSecao + 4]){
-                let proximosProdutos = produtos[secao].slice(ultimaPosicaoProdutosSecao + 1, ultimaPosicaoProdutosSecao + 5 )
-                let produtosAtuaisTroca = produtosAtuais
-                produtosAtuaisTroca[secao] = proximosProdutos
-                setProdutosAtuais(produtosAtuaisTroca)
-            }
-            else{
-                let ultimaPosicao = produtos[secao].length - 1
-                if(produtos[secao].lenght === 1)
-                    ultimaPosicao = 1
-                let produtosRestantes = produtos[secao].slice([ultimaPosicaoProdutosSecao + 1, ultimaPosicao])
-                let produtosAtuaisTroca = produtosAtuais
-                produtosAtuaisTroca[secao] = produtosRestantes
-                setProdutosAtuais(produtosAtuaisTroca)
+            if(produtos[secao].length > 4){
+                let posicao = verificarPosicao(secao)
+                if(posicao === ''){
+                    console.log('normal');
+                    let produtosSecao = produtosAtuais[secao]
+                    let ultimaPosicaoProdutosSecao = produtos[secao].indexOf(produtosSecao[produtosSecao.length - 1])
+                    // console.log(ultimaPosicaoProdutosSecao);
+                    let proximosProdutos = produtos[secao].slice(ultimaPosicaoProdutosSecao + 1, ultimaPosicaoProdutosSecao + 5 )
+                    // console.log(proximosProdutos);
+                    let novoArray = []
+                    if(secao === 0)
+                        novoArray = [proximosProdutos, produtosAtuais[1], produtosAtuais[2]]
+                    if(secao === 1)
+                        novoArray = [produtosAtuais[0], proximosProdutos, produtosAtuais[2]]
+                    if(secao === 2)
+                        novoArray = [produtosAtuais[0], produtosAtuais[1], proximosProdutos]
+                    console.log(novoArray);
+                    setProdutosAtuais(novoArray)
+                }
+                else if(posicao === 'faixaAoContrario'){
+                    if(produtosAtuais[secao][0].id !== produtos[secao][0].id){
+                        console.log('reverse');
+                        let produtosSecao = produtosAtuais[secao]
+                        let ultimaPosicaoProdutosSecao = produtos[secao].indexOf(produtosSecao[0])
+                        // console.log(ultimaPosicaoProdutosSecao);
+
+                        let produtosAnteriores = ''
+                        if(ultimaPosicaoProdutosSecao === 4){
+                            trocarProdutosAtuais(0, true, produtos)
+                        }
+                        else{
+                            produtosAnteriores = produtos[secao].slice(ultimaPosicaoProdutosSecao - 4, ultimaPosicaoProdutosSecao)
+        
+                            let novoArray = []
+                            if(secao === 0)
+                                novoArray = [produtosAnteriores, produtosAtuais[1], produtosAtuais[2]]
+                            else if(secao === 1)
+                                novoArray = [produtosAtuais[0], produtosAnteriores, produtosAtuais[2]]
+                            else if(secao === 2)
+                                novoArray = [produtosAtuais[0], produtosAtuais[1], produtosAnteriores]
+                            console.log(novoArray);
+                            setProdutosAtuais(novoArray)
+                        }   
+                    }
+                }
+                // console.log('oi1');
+                // let produtosSecao = produtosAtuais[secao]
+                // let ultimaPosicaoProdutosSecao = produtos[secao].indexOf(produtosSecao[produtosSecao.length - 1 ].id)
+    
+                // console.log(produtos);
+                // if(produtos[secao][ultimaPosicaoProdutosSecao + 4]){
+                //     let proximosProdutos = produtos[secao].slice(ultimaPosicaoProdutosSecao + 1, ultimaPosicaoProdutosSecao + 5 )
+                //     let produtosAtuaisTroca = produtosAtuais
+                //     produtosAtuaisTroca[secao] = proximosProdutos
+                //     setProdutosAtuais(produtosAtuaisTroca)
+                //     console.log('tem mais');
+                // }
+                // else{
+                //     let ultimaPosicao = produtos[secao].length - 1
+                //     // if(produtos[secao].lenght === 1)
+                //     //     ultimaPosicao = 0
+                //     let produtosRestantes = produtos[secao].slice([ultimaPosicaoProdutosSecao + 1, ultimaPosicao])
+                //     let produtosAtuaisTroca = produtosAtuais
+                //     produtosAtuaisTroca[secao] = produtosRestantes
+                //     setProdutosAtuais(produtosAtuaisTroca)
+                //     console.log('não tem mais');
+                // }
             }
         }
         else{
-            console.log('oi2');
+            let novoArray = []
 
-            let produtosSecao = produtosBanco[secao]
-            // console.log(produtosSecao);
-            if(produtosSecao.length < 4){
-                // console.log(produtosBanco);
-                let produtosAtuaisTroca = produtosBanco
-                let ultimaPosicao = produtosSecao.length - 1;
-                if(produtosSecao.length === 1)
-                    ultimaPosicao = 1
-                produtosAtuaisTroca[secao] = produtosBanco[secao].slice(0, ultimaPosicao)
-                setProdutosAtuais(produtosAtuaisTroca)
+            for(let cont = 0; cont < 3; cont++){
+                let primeirosProdutos = produtosBanco[cont].slice(0, 4)
+                
+                if(cont === 0){
+                    novoArray = [primeirosProdutos]
+                }
+                else if(cont === 1){
+                    novoArray = [novoArray[0], primeirosProdutos]
+                }
+                else if(cont === 2){
+                    novoArray = [novoArray[0], novoArray[1], primeirosProdutos]
+                }
             }
-            else{
-                let produtosAtuaisTroca = produtosBanco
-                produtosAtuaisTroca[secao] = produtosSecao.slice(0, 4)
-                setProdutosAtuais(produtosAtuaisTroca)
-            }
+
+            setProdutosAtuais(novoArray)
         }
     }
+
 
     useEffect(() => {
         for(let item of categorias){
@@ -109,7 +202,7 @@ export default function Index(){
                     </article> 
                     <img src={categoriaAtual[0].imagemSuporte} alt='imagem-suporte-cafe3coracoes' />
                 </section>
-                <section className='faixaProdutos faixaProdutos1'>
+                <section id={verificarPosicao(0)} className='faixaProdutos faixaProdutos1' >
                     <article>
                         {produtosAtuais[0].map(item => {
                             return(
@@ -128,7 +221,7 @@ export default function Index(){
                         <h4> Visualizar mais produtos</h4>
                     </aside>
                 </section>
-                <section className='faixaApresentacao faixaApresentacao2'>
+                <section className='faixaApresentacao faixaApresentacao2' >
                     <img src={categoriaAtual[1].imagemSuporte} alt='imagem-suporte-cafeOrfeu' />
                     <article>
                         <article>
@@ -138,7 +231,7 @@ export default function Index(){
                         </article>
                     </article>
                 </section>
-                <section className='faixaProdutos faixaProdutos2'>
+                <section id={verificarPosicao(1)} className='faixaProdutos faixaProdutos2'>
                     <article>
                         {produtosAtuais[1].map(item => {
                             return(
@@ -151,7 +244,7 @@ export default function Index(){
                         })}
                     </article>
                     <aside>
-                        <button onClick={() => trocarProdutosAtuais(0, false)}>
+                        <button onClick={() => trocarProdutosAtuais(1, false)}>
                             <img src='/assets/images/divisa-branca-direita.png' alt='' />
                         </button>
                         <h4> Visualizar mais produtos</h4>
@@ -165,7 +258,7 @@ export default function Index(){
                     </article>
                     <img src={categoriaAtual[2].imagemSuporte} alt='imagem-suporte-cafeSantaMonica' />
                 </section>
-                <section className='faixaProdutos faixaProdutos3'>
+                <section id={verificarPosicao(2)} className='faixaProdutos faixaProdutos3'>
                     <article>
                         {produtosAtuais[2].map(item => {
                             return(
@@ -178,7 +271,7 @@ export default function Index(){
                         })}
                     </article>
                     <aside>
-                        <button onClick={() => trocarProdutosAtuais(0, false)}>
+                        <button onClick={() => trocarProdutosAtuais(2, false)}>
                             <img src='/assets/images/divisa-branca-direita.png' alt='' />
                         </button>
                         <h4> Visualizar mais produtos</h4>
