@@ -13,7 +13,7 @@ export default function CabecalhoUsuario() {
     const [categorias, setCategorias] = useState([]);
     const [sugestao, setSugestao] = useState([]);
 
-    const caminhos = ['/produtos/cafemgraos', '/produtos/cafeempo', '/produtos/cafeteiras', '/combos', '/produtos/filtros', '/produtos/capsulas', '/produtos/moedores', '/produtos/acessorios' ];
+    const caminhos = ['/produtos/cafeemgraos', '/produtos/cafeempo', '/produtos/cafeteiras', '/combos', '/produtos/filtros', '/produtos/capsulas', '/produtos/moedores', '/produtos/acessorios' ];
 
     async function pesquisaProdutos() {
         try {
@@ -78,7 +78,7 @@ export default function CabecalhoUsuario() {
                             <img src='/assets/images/icon-carrinho.svg' alt='carrinho'/>
                             <p> Carrinho </p>
                         </Link>
-                        <Link to='/conta/cartoes'>
+                        <Link to='/conta/dados-pessoais'>
                             <img src='/assets/images/icon-conta.svg' alt='conta'/>
                             <p>Conta</p>
                         </Link>

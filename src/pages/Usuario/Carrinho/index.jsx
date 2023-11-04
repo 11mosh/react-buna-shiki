@@ -9,7 +9,7 @@ import { Link } from "react-router-dom";
 export default function Carrinho () {
 
     // eslint-disable-next-line
-    const [produtos, setProdutos] = useState([])
+    const [produtos, setProdutos] = useState([0])
     
     return (    
       <div className="page-carrinho">
@@ -28,7 +28,7 @@ export default function Carrinho () {
                             Navegue pelo site para adicionar 
                             produtos ao seu carrinho.
                         </p>
-                        <button>Adicionar produtos</button>
+                        <Link to='/produtos/cafeemgraos'> Adicionar produtos </Link>
                     </div>
                 :   <div id="carrinho-cheio">   
                         <h2> MEU CARRINHO </h2>

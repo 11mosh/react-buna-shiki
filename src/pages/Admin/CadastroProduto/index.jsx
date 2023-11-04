@@ -140,8 +140,11 @@ function CadastroProduto () {
                 }
             }
         } 
-        catch (error) {
-            toast.error( error.response.data.erro)
+        catch (err) {
+            if(err.response)
+                toast.warn(err.response.data.erro)
+            else
+                toast.warn(err.message)
         }
     }
 
@@ -175,8 +178,11 @@ function CadastroProduto () {
                 }
             }
 
-        } catch (error) {
-            toast.error( error.response.data.erro)
+        } catch (err) {
+            if(err.response)
+                toast.warn(err.response.data.erro)
+            else
+                toast.warn(err.message)
         }
     }
 
@@ -209,7 +215,10 @@ function CadastroProduto () {
             setId(produto.id)
         }
         catch(err){
-            toast.error(err.response.data.erro)
+            if(err.response)
+                toast.error(err.response.data.erro)
+            else
+                toast.error(err.message)
         }
     }
 

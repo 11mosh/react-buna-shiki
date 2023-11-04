@@ -12,11 +12,7 @@ export default function Combos(){
                         <h2> Combo iniciante </h2>
                         <div>
                             <section>
-                                <div>
-                                    <img id='combo-esquerda' src='/assets/images/cafe3coracoes.svg' alt='' />
-                                    <img  src='/assets/images/cafe3coracoes.svg' alt='' />
-                                    <img id='combo-direita' src='/assets/images/cafe3coracoes.svg' alt='' />    
-                                </div>
+                                <img  src='/assets/images/cafe3coracoes.svg' alt='' />
                                 <p> Orfeu orgânico 250g </p>
                                 <h5 className='precoMarrom'> R$20,00 x 3</h5>
                             </section>

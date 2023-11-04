@@ -59,6 +59,33 @@ function Home () {
             setCategoriasAtual(novasCategorias)
         }   
     }
+
+    function verificarLinkCategoria(categoria){
+        if(categoria === 'Café em grãos'){
+            return '/produtos/cafeemgraos'
+        }
+        else if(categoria === 'Café em pó'){
+            return '/produtos/cafeempo'
+        }
+        else if(categoria === 'Cafeteiras'){
+            return '/produtos/cafeteiras'
+        }
+        else if(categoria === 'Combos'){
+            return '/combos'
+        }
+        else if(categoria === 'Filtros'){
+            return '/produtos/filtros'
+        }
+        else if(categoria === 'Moedores'){
+            return '/produtos/moedores'
+        }
+        else if(categoria === 'Acessórios'){
+            return '/produtos/acessorios'
+        }
+        else if(categoria === 'Cápsulas'){
+            return '/produtos/capsulas'
+        }
+    }
     
 
     useEffect(() => {
@@ -83,12 +110,12 @@ function Home () {
                     <nav>
                         {categoriasAtual.map(item => {
                             return(
-                                <Link key={item.id}><img src={item.img} alt="" /> <p>{item.nome}</p></Link>
+                                <Link to={verificarLinkCategoria(item.nome)} key={item.id}><img src={item.img} alt="" /> <p>{item.nome}</p></Link>
                             )
                         })}
                     </nav>
                     <div className='botao-categoria' onClick={() => trocarCategorias()} style={{backgroundColor: '#F47e3C', padding: '10px 16px', borderRadius: '100px', cursor: 'pointer'}}> 
-                        <img src="/assets/images/setadropdown.png" alt="" />
+                        <img src='/assets/images/divisa-branca-direita.png' alt="" />
                     </div>
                 </nav>
 
@@ -111,19 +138,18 @@ function Home () {
                 <div className='agrupamento-principal'>
                     <div className='agrupamento-itens-combo'>
                         <div className="divisoria1">
-                        <div className='item-combo'>
-                            <img src="/assets/images/cafee3.png" alt="" />
-                            <p>Café 3 Corações Orgânico</p>
-                            <b><p>R$20,00 x 3</p></b>
-                        </div>
-                        <p id='separacao-moedor'> + </p>
-                        <div className='item-combo'>
-                            <img src="/assets/images/moedorr.png" alt="" />
-                            <p>Moedor de café Hamilton </p>
-                            <b><p>R$369,45</p></b>
-                        </div>
-                        <p id='separacao-meio'> + </p>
-
+                            <div className='item-combo'>
+                                <img src="/assets/images/cafee3.png" alt="" />
+                                <p>Café 3 Corações Orgânico</p>
+                                <b><p>R$20,00 x 3</p></b>
+                            </div>
+                            <p id='separacao-moedor'> + </p>
+                            <div className='item-combo'>
+                                <img src="/assets/images/moedorr.png" alt="" />
+                                <p>Moedor de café Hamilton </p>
+                                <b><p>R$369,45</p></b>
+                            </div>
+                            <p id='separacao-meio'> + </p>
                         </div>
                         <div className="divisoria2">
                             <div className='item-combo' id='filtro'>

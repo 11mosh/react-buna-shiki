@@ -29,19 +29,28 @@
                 text-align: center;
                 min-width: none;
             }
-            button{
+            a{
                 border-radius: 20px;
                 width: 180px;
                 height: 35px;
                 border: none;
                 background-color: #661515;
+                cursor: pointer;
                 color: white;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                text-decoration: none;
+                font-size: 14.5px;
                 font-family: 'Inter';
                 margin-top: 20px;
             }
-    
-            button:active{
-                background-color: #be5f2b;
+            a:hover {
+                background-color: #8a1c1c;
+                transform: translateY(-3px)
+            }
+            a:active{
+                background-color: #380c0c;
                 transition: 0.1s;
             }
     

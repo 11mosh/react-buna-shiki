@@ -53,6 +53,13 @@ export async function buscarCep(cep){
     return resp.data
 }
 
+export async function buscarCartoes(id){
+    const resp = await api.get('/cartoes/' + id);
+
+    return resp.data
+}
+
+
 // Alterando
 
 export async function alterarEndereco(endereco){
@@ -64,6 +71,17 @@ export async function alterarEndereco(endereco){
         numero: endereco.numero
     })
 }
+
+export async function alterarCliente(id, dados){
+    await api.put(`/cliente/${id}`, {
+        telefone: dados.telefone,
+        email: dados.email,
+        nome: dados.nome,
+        nascimento: dados.nascimento,
+        cpf: dados.cpf
+    })
+}
+
 
 // Deletando
 

@@ -29,7 +29,10 @@ export default function Index() {
         catch(err){
             setCarregando(false)
             ref.current.complete()
-            toast.warn(err.response.data.erro)
+            if(err.response)
+                toast.warn(err.response.data.erro)
+            else
+                toast.warn(err.message)
         }
     }
     
@@ -59,7 +62,6 @@ export default function Index() {
                             </article>
                             <button onClick={LoginClick} disabled={carregando}> Logar </button>
                             <article>
-                                <Link>Esqueceu a senha?</Link>
                                 <div id='ajuda'>
                                     <div>
                                         <p> Não tem um conta? </p>

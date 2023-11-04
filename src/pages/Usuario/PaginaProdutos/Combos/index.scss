@@ -14,7 +14,7 @@
         }
         > section {
             display: flex;
-            padding: 30px;
+            padding: 30px 50px ;
             border-radius: 10px;
             gap: 50px;
             > #a1 {
@@ -38,15 +38,12 @@
                         flex-direction: column;
                         align-items: center;
                         gap: 5px;
-                        > div {
-                            display: flex;
-                            flex-direction: column;
-                            align-items: center;
-                            gap: 5px;
-                            h5 {
-                                font-family: 'Inter';
-                                font-size: 15px;
-                            }
+                        h5 {
+                            font-family: 'Inter';
+                            font-size: 15px;
+                        }
+                        img {
+                            width: 115px ;
                         }
                     }
                 }
@@ -91,31 +88,7 @@
         }
 
         #s1 {
-            border: 4px solid #C3937D;
-            > #a1 {
-                > div {
-                    > section {
-                        div {
-                            position: relative;
-                            #combo-esquerda {
-                                position: absolute;
-                                bottom: 0px;
-                                margin: 0px 5px;
-                                right: 60px;
-                                width: 50px;
-                            }
-                            #combo-direita {
-                                position: absolute;
-                                bottom: 0px;
-                                margin: 0px 5px;
-                                left: 50px;
-                                width: 50px;
-                            }
-                        }
-                    }
-
-                }
-            }
+            border: 4px solid #C3937D;           
         }
         #s2 {
             border: 4px solid #883715;
@@ -145,6 +118,13 @@
                 width: 90%;
                 #a1 {
                     align-items: flex-start;
+                    > div {
+                        > section {
+                            img {
+                                width: 110px;
+                            }
+                        }
+                    }
                 }
                 #a2 {
                     gap: 30px !important;
@@ -171,6 +151,11 @@
                         gap: 25px;
                         > section {
                             margin-top: 15px;
+                            > section {
+                                img {
+                                    width: 105px;
+                                }
+                            }
                         } 
                         .some {
                             display: none;
@@ -198,18 +183,7 @@
                         min-width: none;
                         section {
                             img {
-                                height: 129px !important;
-                                width: 70px !important;
-                            }
-                            #combo-esquerda {
-                                height: 75px !important;
-                                width: 45px !important;
-                                right: 35px !important;
-                            }
-                            #combo-direita {
-                                height: 75px !important;
-                                width: 45px !important;
-                                left: 35px !important;
+                                width: 100px !important;
                             }
                         }
                     }
@@ -235,18 +209,7 @@
                         gap: 0px;
                         section {
                             img {
-                                height: 109px !important;
-                                width: 62px !important;
-                            }
-                            #combo-esquerda {
-                                height: 70px !important;
-                                width: 43px !important;
-                                right: 35px !important;
-                            }
-                            #combo-direita {
-                                height: 70px !important;
-                                width: 43px !important;
-                                left: 35px !important;
+                                width: 95px !important;
                             }
                         }
                     }
@@ -270,7 +233,7 @@
     #page-combos{
         > #conteudo {
             > section {
-                width: 261px !important;
+                width: 285px !important;
                 #a1 {
                     > div {
                         width: 100%;
@@ -278,6 +241,9 @@
                         gap: 20px;
                         section {
                             margin-top: 0px;
+                            img {
+                                width: 90px
+                            }
                         }
                         .some  {
                             display:flex;
