@@ -104,7 +104,7 @@ export default function Index() {
     }
 
     function mudarCPF(alteracao){
-        if(alteracao.length === 3 && alteracao.length > cpf.length || alteracao.length === 7 && alteracao.length > cpf.length){
+        if((alteracao.length === 3 && alteracao.length > cpf.length) || (alteracao.length === 7 && alteracao.length > cpf.length)){
             setCPF(`${alteracao}.`)
         }
         else if(alteracao.length === 11 && alteracao.length > cpf.length){
@@ -116,7 +116,7 @@ export default function Index() {
     }
     function mudarTelefone(alteracao) {
         if(telefone.startsWith('+')){
-            if(alteracao.length === 3 && alteracao.length > telefone.length || alteracao.length === 6 && alteracao.length > telefone.length) {
+            if((alteracao.length === 3 && alteracao.length > telefone.length) || (alteracao.length === 6 && alteracao.length > telefone.length)) {
                 setTelefone(`${alteracao} `)
             }
             else if(alteracao.length === 12 && alteracao.length > telefone.length){
