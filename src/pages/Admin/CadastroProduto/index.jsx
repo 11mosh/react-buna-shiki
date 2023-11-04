@@ -245,7 +245,6 @@ function CadastroProduto () {
             alterarInputs()
         }
         buscarCategoriasExibicao()
-        // eslint-disable-next-line
     }, [])
 
     return ( 

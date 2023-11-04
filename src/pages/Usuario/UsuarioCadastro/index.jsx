@@ -54,7 +54,6 @@ export default function Index() {
             ref.current.complete();
             toast.warn(err.response.data.erro)
         }
-
     }
 
     async function BuscarCep(alteracao) {
