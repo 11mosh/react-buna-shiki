@@ -54,7 +54,7 @@ export default function index() {
                     <article>
                         <h3> Data do pedido:</h3>
                         <div>
-                            <input type="datetime-local" />
+                            <input type="date" />
                         </div>
                     </article>
                 </section>
