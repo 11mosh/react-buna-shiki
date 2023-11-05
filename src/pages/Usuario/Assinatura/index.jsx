@@ -9,7 +9,7 @@ import ItemDisponivel from './Item';
 import { filtrarPorCategorias } from '../../../api/produtoApi.js';
 import { CadastrarEndereco, buscarCep } from '../../../api/usuarioApi';
 import {toast} from 'react-toastify';
-import { URL } from '../../../constants.js';
+import { URLRota } from '../../../constants.js';
 
 export default function Assinatura () {
 
@@ -41,26 +41,26 @@ export default function Assinatura () {
     const redir = useNavigate()
 
     async function chamarAssinaturas () {
-        const produto = await axios.get(URL + '/produtos');
+        const produto = await axios.get(URLRota + '/produtos');
         const resp = produto.data.filter((item) => item.assinatura === 1);
         setItensDisponiveis(resp);
     }
 
     async function chamarCategorias () {
-        const categoriass = await axios.get(URL + '/categorias');
+        const categoriass = await axios.get(URLRota + '/categorias');
         const resposta = categoriass.data;
         setCategorias(resposta);
     }
 
     async function chamarCartoes () {
         const idUsuario = storage('usuario-logado').id
-        const cartoess = await axios.get(URL + '/cartoes/' + idUsuario);
+        const cartoess = await axios.get(URLRota + '/cartoes/' + idUsuario);
         setCartoes(cartoess.data)
     }
 
     async function chamarEnderecos () {
         const idUsuario = storage('usuario-logado').id
-        const enderecoss = await axios.get(URL + '/enderecos/' + idUsuario);
+        const enderecoss = await axios.get(URLRota + '/enderecos/' + idUsuario);
         setEnderecos(enderecoss.data)
     }
 
@@ -82,7 +82,7 @@ export default function Assinatura () {
     async function novoCartao () {
         try {     
             const idUsuario = storage('usuario-logado').id
-            const urlCartao = URL + '/cartao/' + idUsuario;
+            const urlCartao = URLRota + '/cartao/' + idUsuario;
             const infoCartao = {
                 idCliente: idUsuario,
                 numeroCartao: numeroCartao,

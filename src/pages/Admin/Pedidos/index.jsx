@@ -1,9 +1,20 @@
+import { useEffect, useState } from 'react';
 import CabecalhoAdm from '../../../components/Admin/AdmCabecalho';
 import './index.scss';
 
-export default function index() {
+export default function Index() {
+    const [ordenar, setOrdenar] = useState('')
+    const [statusPedido, setStatusPedido] = useState('')
+    const [tpPagamento, setTpPagamento] = useState('')
+    const [dataPedido, setDataPedido] = useState('')
+    const [pesquisa, setPesquisa] = useState('')
+    const [pedidos, setPedidos] = useState('')
 
-    return (
+    async function buscarTodosPedidos(){
+        
+    }
+    
+    return ( 
         <div id='page-adm-pedidos'>
             <CabecalhoAdm />
             <main>
@@ -15,7 +26,7 @@ export default function index() {
                     </article>
                 </section>
                 <section id='s2'>
-                    <article>
+                    <article> 
                         <h3> Ordenar por:</h3>
                         <div>
                             <select>
