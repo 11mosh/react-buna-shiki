@@ -65,10 +65,6 @@ export default function Index() {
                         <table className='duasInformacoes' id='continuacaoDetalhesProdutos'>
                             <tbody>
                                 <tr>
-                                    <td className='topico'>Quantidade de Parcelas: </td>
-                                    <td>--</td>
-                                </tr>
-                                <tr>
                                     <td className='topico'>Frete: </td>
                                     <td className='valor'>R$11,64</td>
                                 </tr>
