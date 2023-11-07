@@ -34,6 +34,9 @@ export default function Assinatura () {
     const [filtrarPorCategoria, setFiltrarPorCategoria] = useState(0);
     const [enderecos, setEnderecos] = useState([]);
 
+    const [itensSelecionados, setItensSelecionados] = useState([]);
+    const [qtdSelecionado, setQtdSelecionado] = useState(0);
+
     const [isBotaoDisponivel, setIsBotaoDisponivel] = useState(false);
 
     const [opcaoCartao, setOpcaoCartao] = useState(0);
@@ -78,7 +81,7 @@ export default function Assinatura () {
             }
         }
         setItensDisponiveis(novoArray);
-        console.log(itensDisponiveis)
+        // console.log(itensDisponiveis)
     }
 
     async function chamarCategorias () {
@@ -220,19 +223,35 @@ export default function Assinatura () {
             filtrarPorCategoriasClick();
             chamarCartoes();
             chamarEnderecos();
-            setIsBotaoDisponivel(opcaoCartao !== 0 && opcaoEndereco !== 0);
         } else {
             redir('/cadastro');
         }
     }, []);
 
+    function verificarQtd () {
+        const a = itensDisponiveis.filter((item) => item.quantidade > 0);
+        let qtd = 0;
+        for (let item of itensSelecionados){
+            qtd = item.quantidade + qtd; 
+        }
+
+        // console.log(qtd)
+        console.log(itensSelecionados);
+        setQtdSelecionado(qtd);
+        setItensSelecionados(a);
+    };
+
+    function enviarStorage () {
+        storage('itens-selecionados', itensSelecionados);
+    };
+
     useEffect(() => {
-        if (opcaoCartao == 0 || opcaoEndereco == 0) {
+        if (opcaoCartao == 0 || opcaoEndereco == 0 || qtdSelecionado < 3) {
             setIsBotaoDisponivel(false);
-        } else if (opcaoCartao != 0 && opcaoEndereco != 0) {
+        } else if (opcaoCartao != 0 && opcaoEndereco != 0 && qtdSelecionado >= 3) {
             setIsBotaoDisponivel(true)
         }
-    }, [opcaoCartao, opcaoEndereco]);
+    }, [opcaoCartao, opcaoEndereco, qtdSelecionado]);
 
     return (
         <main className="assinatura">
@@ -271,9 +290,9 @@ export default function Assinatura () {
                                         </div>
                                         <p>{item.produto}</p>
                                         <div className='quantidade-item'>
-                                            <p className='adicionar' onClick={() => diminuirItens(item.quantidade, index)}>-</p>
+                                            <p className='adicionar' onClick={() => {diminuirItens(item.quantidade, index); verificarQtd();}}>-</p>
                                             <p>{item.quantidade}</p>
-                                            <p className='adicionar' onClick={() => aumentarItens(item.quantidade, index)}>+</p>
+                                            <p className='adicionar' onClick={() => {aumentarItens(item.quantidade, index); verificarQtd();}}>+</p>
                                         </div>
                                     </div>
                                 </main>           
@@ -397,7 +416,7 @@ export default function Assinatura () {
                      
                 <button style={{ backgroundColor: isBotaoDisponivel ? '#F47E3C' : 'gray' }}>
                     {isBotaoDisponivel
-                    ?   <Link to={'/assinatura/confirmacao'}>
+                    ?   <Link to={{pathname: '/assinatura/confirmacao'}} onClick={() => enviarStorage()}>
                             <img src="/assets/images/icon-s.png" alt="" id='imagem-fantasma' />
                             <p>Continuar</p>
                             <img src="/assets/images/icon-seta-longa-esquerda.png" alt="" style={{transform: 'rotate(180deg)', width: '50px'}}/>
@@ -416,7 +435,7 @@ export default function Assinatura () {
                     <h2>Como funciona a assinatura mensal?</h2>
                     <div>
                         <p>Nosso método de pagamento nessa modalidade aceita apenas <b>cartão de crédito</b>.</p>
-                        <p>1 - Você escolhe quais produtos deseja levar;</p>
+                        <p>1 - Você escolhe quais produtos deseja levar (mínimo de 3 itens);</p>
                         <p>2 - Cadastra o cartão de crédito e efetua o primeiro pagamento;</p>
                         <p>3 - Todos os meses, no mesmo dia em que o primeiro pagamento foi confirmado, uma nova cobrança chegará no cartão cadastrado e nós separaremos os produtos <b>selecionados por você</b>.</p>
                     </div>

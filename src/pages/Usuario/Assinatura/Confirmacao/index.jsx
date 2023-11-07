@@ -1,12 +1,22 @@
 import './index.scss';
 import CabecalhoUsuario from '../../../../components/Usuario/UsuarioCabecalho';
 import UsuarioRodape from '../../../../components/Usuario/UsuarioRodape';
+import { useState, useEffect } from 'react';
 import { toast } from 'react-toastify';
+import storage from 'local-storage'
 import { Link } from 'react-router-dom';
+import axios from 'axios';
 import 'react-toastify/dist/ReactToastify.css';
+import { useNavigate } from 'react-router-dom';
 
 export default function Confirmacao () {
 
+    const [preco, setPreco] = useState(0);
+    const [precoFinal, setPrecoFinal] = useState(0);
+    const [desconto, setDesconto] = useState(0);
+    const [itensSelecionados, setItensSelecionados] = useState(storage('itens-selecionados'));
+    const redir = useNavigate();
+    
     const notificacao = () => {
         toast('Seja bem-vindo à nossa assinatura! :)', {
             icon: (
@@ -19,10 +29,30 @@ export default function Confirmacao () {
         })
     }
 
+    function calcularPreco () {
+        let precos = 0;
+        for (let item of itensSelecionados) {
+            precos = (Number(item.preco) * item.quantidade) + precos;
+            console.log(precos);
+        }
+        setPreco(precos);
+        setDesconto(precos * 0.05);
+        setPrecoFinal(precos - desconto);
+        console.log('');
+    }
+
+    useEffect(() => {
+        calcularPreco();
+    }, [])
+
+    function finalizar () {
+        
+    }
+
     return (
         <main className='confirmacao-assinatura'>
             <CabecalhoUsuario/>
-            <nav className='navegador'>
+            <nav className='navegador' onClick={() => storage.remove('itens-selecionados')}>
                 <Link to={'/assinatura'}><img src="/assets/images/icon-seta-preta.png" alt="" />
                 <h1>Voltar à etapa anterior</h1></Link>
             </nav>
@@ -43,29 +73,35 @@ export default function Confirmacao () {
                             </tr>
                         </thead>
                         <tbody>
+                            {itensSelecionados.map((item) => {
+                                return (
+                                        <tr>
+                                            <td>{item.produto}</td>
+                                            <td>{item.quantidade}</td>
+                                            <td>R${item.preco}</td>
+                                        </tr>
+                                )
+                            })}
                             <tr>
-                                <td>Café Orfeu Clássico 1kg</td>
-                                <td>1</td>
-                                <td>R$87,99</td>
-                            </tr>
-                            <tr>
-                                <td>Café Orfeu Bourbon Amarelo 250g</td>
-                                <td>1</td>
-                                <td>R$87,99</td>
+                                <td>
+                                    Total
+                                </td>
+                                <td></td>
+                                <td>R${preco}</td>
                             </tr>
                             <tr>
                                 <td>
                                     Desconto de 5%
                                 </td>
                                 <td></td>
-                                <td>-R$8,82</td>
+                                <td>-R${desconto}</td>
                             </tr>
                             <tr>
                                 <td>
-                                    Valor Total
+                                    Valor Final
                                 </td>
                                 <td></td>
-                                <td>R$174,54</td>
+                                <td>R${precoFinal}</td>
                             </tr>
                         </tbody>
                     </table>
@@ -82,7 +118,7 @@ export default function Confirmacao () {
                     Ao assinar este plano você concorda com o tempo mínimo de manutenção e permanência de 3 meses. As solicitações de cancelamento não serão acatadas antes da permanência mínima.
                 </div>
 
-                <button onClick={notificacao}>Confirmar o pagamento</button>
+                <button onClick={finalizar}>Confirmar o pagamento</button>
                 </section>
             </section>
 
