@@ -34,21 +34,57 @@ export default function Assinatura () {
     const [filtrarPorCategoria, setFiltrarPorCategoria] = useState(0);
     const [enderecos, setEnderecos] = useState([]);
 
+    const [isBotaoDisponivel, setIsBotaoDisponivel] = useState(false);
+
     const [opcaoCartao, setOpcaoCartao] = useState(0);
     const [opcaoEndereco, setOpcaoEndereco] = useState(0);
-    // const [infos, setInfos] = useState({});
 
     const redir = useNavigate()
 
     async function chamarAssinaturas () {
         const produto = await axios.get(URLRota + '/produtos');
         const resp = produto.data.filter((item) => item.assinatura === 1);
+        for (let item of resp) {
+            item.quantidade = 0;
+        };
+
         setItensDisponiveis(resp);
+    }
+
+    function diminuirItens (qtd, index) {
+        if (qtd > 0) {
+            let qtdItem = qtd 
+            qtdItem--
+            let novoArray = []
+            for(let cont = 0; cont < itensDisponiveis.length; cont++){
+                novoArray[cont] = itensDisponiveis[cont]
+                if(cont === index){
+                    novoArray[cont].quantidade = qtdItem
+                }
+            }
+            setItensDisponiveis(novoArray);
+        }
+    };
+
+    function aumentarItens (qtd, index) {
+        let qtdItem = qtd 
+        qtdItem++
+        let novoArray = []
+        for(let cont = 0; cont < itensDisponiveis.length; cont++){
+            novoArray[cont] = itensDisponiveis[cont];
+
+            if(cont === index){
+                novoArray[cont].quantidade = qtdItem
+            }
+        }
+        setItensDisponiveis(novoArray);
+        console.log(itensDisponiveis)
     }
 
     async function chamarCategorias () {
         const categoriass = await axios.get(URLRota + '/categorias');
         const resposta = categoriass.data;
+
         setCategorias(resposta);
     }
 
@@ -69,6 +105,10 @@ export default function Assinatura () {
             const produtosCategoria = await filtrarPorCategorias(idCategoria)
             const produtosFiltrados = produtosCategoria.filter((item) => item.assinatura === 1);
       
+            for (let item of produtosFiltrados) {
+                item.quantidade = 0;
+            };
+
           if(produtosFiltrados.length === 0 && idCategoria !== '0' && filtrarPorCategoria !== 0)
             toast.info('Não há produtos com essa categoria.')
     
@@ -180,28 +220,20 @@ export default function Assinatura () {
             filtrarPorCategoriasClick();
             chamarCartoes();
             chamarEnderecos();
-
+            setIsBotaoDisponivel(opcaoCartao !== 0 && opcaoEndereco !== 0);
         } else {
             redir('/cadastro');
         }
     }, []);
 
     useEffect(() => {
-        // setInfos({
-        //     enderecoId: opcaoEndereco,
-        //     cartaoId: opcaoCartao
-        // })
-    }, [opcaoCartao]);
+        if (opcaoCartao == 0 || opcaoEndereco == 0) {
+            setIsBotaoDisponivel(false);
+        } else if (opcaoCartao != 0 && opcaoEndereco != 0) {
+            setIsBotaoDisponivel(true)
+        }
+    }, [opcaoCartao, opcaoEndereco]);
 
-    useEffect(() => {
-        // setInfos({
-        //     enderecoId: opcaoEndereco,
-        //     cartaoId: opcaoCartao
-        // })
-    }, [opcaoEndereco]);
-
-    const botaoDisponivel = opcaoCartao !== 0 && opcaoEndereco !== 0;
-    
     return (
         <main className="assinatura">
             <CabecalhoUsuario/>
@@ -219,7 +251,7 @@ export default function Assinatura () {
                 <section className='selecionar-itens'>
                     <nav className='titulo'>
                         <h1 >Escolha entre os principais sabores disponíveis e quantidade:</h1>
-                        <select name="" id="" value={filtrarPorCategoria} onChange={e => { filtrarPorCategoriasClick(e.target.value); setFiltrarPorCategoria(e.target.value);}}>
+                        <select name="" id="" value={filtrarPorCategoria} onChange={e => { filtrarPorCategoriasClick(e.target.value); setFiltrarPorCategoria(e.target.value); }}>
                             <option value={0}>Selecionar</option>
                             {categorias.map((item) => {
                                 return (
@@ -230,9 +262,21 @@ export default function Assinatura () {
                     </nav>
 
                     <div className="itens-cafe" >
-                        {itensDisponiveis.map((item) => {
+                        {itensDisponiveis.map((item, index) => {
                             return (
-                                <ItemDisponivel itemm={item}/>           
+                                <main>
+                                    <div className="item">
+                                        <div className="imagem">
+                                            <img src={item.imagem} alt="" />
+                                        </div>
+                                        <p>{item.produto}</p>
+                                        <div className='quantidade-item'>
+                                            <p className='adicionar' onClick={() => diminuirItens(item.quantidade, index)}>-</p>
+                                            <p>{item.quantidade}</p>
+                                            <p className='adicionar' onClick={() => aumentarItens(item.quantidade, index)}>+</p>
+                                        </div>
+                                    </div>
+                                </main>           
                             )
                         })}                                
                     </div>
@@ -351,8 +395,8 @@ export default function Assinatura () {
                 
                 
                      
-                <button style={{ backgroundColor: botaoDisponivel ? '#F47E3C' : 'gray' }}>
-                    {botaoDisponivel
+                <button style={{ backgroundColor: isBotaoDisponivel ? '#F47E3C' : 'gray' }}>
+                    {isBotaoDisponivel
                     ?   <Link to={'/assinatura/confirmacao'}>
                             <img src="/assets/images/icon-s.png" alt="" id='imagem-fantasma' />
                             <p>Continuar</p>
