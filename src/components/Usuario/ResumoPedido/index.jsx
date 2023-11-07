@@ -1,6 +1,21 @@
+import { useEffect, useState } from 'react';
+import { buscarPedidoPorId } from '../../../api/pedidoApi'
 import './index.scss'
 
-export default function Index() {
+export default function Index(props) {
+
+    const [pedido, setPedido] = useState({dt_entrega: ''})
+
+    async function buscarPedido(){
+        let pedidoResp = await buscarPedidoPorId(props.idPedido)
+        console.log(pedidoResp);
+        setPedido(pedidoResp)
+    }
+    
+    useEffect(() => {
+        buscarPedido()
+    }, [])
+    
     return(
         <div id='comp-resumo-pedido'>
             <div id='conteudo'>
@@ -10,21 +25,21 @@ export default function Index() {
                         <article>
                             <div>
                                 <p> Status do pedido: </p>
-                                <span className='valor'> Aguardando pagamento...</span>
+                                <span className='valor'> {pedido.situacao}...</span>
                             </div>
                             <div>
                                 <p> Data de envio:</p>
-                                <p className='valor detalheComprido'> <span> Entrega Express </span> prevista para o dia 06/06/2023 </p>
+                                <p className='valor detalheComprido'> <span> {pedido.tp_entrega} </span> prevista para o dia {pedido.dt_entrega.substr(0,10)} </p>
                             </div>
                         </article>
                         <article>
                             <div>
                                 <p> Codigo do pedido:</p>
-                                <p className='valor'>0001-0003</p>
+                                <p className='valor'>{pedido.codigo}</p>
                             </div>
                             <div>
                                 <p> Data do pedido:</p>
-                                <p className='valor'>04/06/2023 20:15:06</p>
+                                <p className='valor'>{pedido.dt_pedido}</p>
                             </div>
                             <div>
                                 <p id='endereco'> Endereço de envio: </p>
