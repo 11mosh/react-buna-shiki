@@ -102,7 +102,9 @@ export async function buscarProdutosPorMarca(marca, categoria){
 
 export async function excluirImagens(idFotosExcluir, idProduto){
     await api.delete(`/${idProduto}/imagens`, {
-        deletar: idFotosExcluir,
+        data:{
+            deletar: idFotosExcluir,
+        }
     })
 
 }

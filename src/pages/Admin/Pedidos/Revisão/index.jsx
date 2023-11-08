@@ -95,6 +95,10 @@ export default function Index() {
                                     <td className='valor'> 04/06/2023 21:30:65</td>
                                 </tr>
                                 <tr>
+                                    <td> Data de entrega: </td>
+                                    <td className='valor'> 04/06/2023 </td>
+                                </tr>
+                                <tr>
                                     <td> Tipo de entrega: </td>
                                     <td className='valor'> Entrega Express</td>
                                 </tr>

@@ -1,6 +1,22 @@
+import { useEffect, useState } from 'react'
 import './index.scss'
+import { buscarPedidoPorId } from '../../../api/pedidoApi'
 
-export default function Index() {
+export default function Index(props) {
+    
+    const [pedido, setPedido] = useState({dt_entrega: '', dt_pedido: '', itens: []})
+
+    async function buscarPedido(){
+        const respPedido = await buscarPedidoPorId(props.idPedido)
+        setPedido(respPedido)
+        console.log(respPedido);
+    }
+
+    useEffect(() => {
+        buscarPedido()
+    }, [])
+    
+    
     return(
         <div id='comp-resumo-pedido'>
             <div id='conteudo'>
@@ -10,113 +26,61 @@ export default function Index() {
                         <article>
                             <div>
                                 <p> Status do pedido: </p>
-                                <span className='valor'> Aguardando pagamento...</span>
+                                <span className='valor'> {pedido.situacao}...</span>
                             </div>
                             <div>
                                 <p> Data de envio:</p>
-                                <p className='valor detalheComprido'> <span> Entrega Express </span> prevista para o dia 06/06/2023 </p>
+                                <p className='valor detalheComprido'> <span> {pedido.tp_entrega} </span> prevista para o dia {pedido.dt_entrega.substr(0, 10)} </p>
                             </div>
                         </article>
                         <article>
                             <div>
                                 <p> Codigo do pedido:</p>
-                                <p className='valor'>0001-0003</p>
+                                <p className='valor'>{pedido.codigo}</p>
                             </div>
                             <div>
                                 <p> Data do pedido:</p>
-                                <p className='valor'>04/06/2023 20:15:06</p>
+                                <p className='valor'>{pedido.dt_pedido.substr(0, 10)} {pedido.dt_pedido.substr(11, 8)}</p>
                             </div>
                             <div>
                                 <p id='endereco'> Endereço de envio: </p>
-                                <p className='valor detalheComprido'> Rua lopes trovão 251, Sâo Paulo, 05326-442</p>
+                                <p className='valor detalheComprido'> Rua {pedido.endereco.rua} {pedido.endereco.numero}, {pedido.endereco.cidade}, {pedido.endereco.cep}</p>
                             </div>
                         </article>
                         <article id='detalhesPagamento'>
                             <div>
                                 <p>Subtotal:</p>
                                 <div >
-                                    <p className='valor'> R$ 344, 97</p>
+                                    <p className='valor'> R$ {pedido.subtotal}</p>
                                 </div>
                             </div>
                             <div>
                                 <p> Frete:</p>
                                 <div>
-                                    <p className='valor'>R$ 20,00</p>
+                                    <p className='valor'>R$ {pedido.frete}</p>
                                 </div>
                             </div>
                             <div>
                                 <p> Total:</p> 
                                 <div>
-                                    <p className='valor'> R$366, 97</p>
+                                    <p className='valor'> R$ {pedido.total}</p>
                                 </div>
                             </div>
                         </article>
                     </section>
                     <section id='produtos'>
-                        <article>
-                            <div>
-                                <img src="/assets/images/cafe3coracoes.svg" alt="produto" />
-                                <div id='qtd'> 3 </div>
-                            </div>
-                            <h4> Orfeu Intenso 1kg</h4>
-                            <span> R$ 366, 97 </span>
-                        </article>
-                        <article>
-                            <div>
-                                <img src="/assets/images/cafe3coracoes.svg" alt="produto" />
-                                <div id='qtd'> 3 </div>
-                            </div>
-                            <h4> Orfeu Intenso 1kg</h4>
-                            <span> R$ 366, 97 </span>
-                        </article>
-                        <article>
-                            <div>
-                                <img src="/assets/images/cafe3coracoes.svg" alt="produto" />
-                                <div id='qtd'> 3 </div>
-                            </div>
-                            <h4> Orfeu Intenso 1kg</h4>
-                            <span> R$ 366, 97 </span>
-                        </article>
-                        <article>
-                            <div>
-                                <img src="/assets/images/cafe3coracoes.svg" alt="produto" />
-                                <div id='qtd'> 3 </div>
-                            </div>
-                            <h4> Orfeu Intenso 1kg</h4>
-                            <span> R$ 366, 97 </span>
-                        </article>
-                        <article>
-                            <div>
-                                <img src="/assets/images/cafe3coracoes.svg" alt="produto" />
-                                <div id='qtd'> 3 </div>
-                            </div>
-                            <h4> Orfeu Intenso 1kg</h4>
-                            <span> R$ 366, 97 </span>
-                        </article>
-                        <article>
-                            <div>
-                                <img src="/assets/images/cafe3coracoes.svg" alt="produto" />
-                                <div id='qtd'> 3 </div>
-                            </div>
-                            <h4> Orfeu Intenso 1kg</h4>
-                            <span> R$ 366, 97 </span>
-                        </article>
-                        <article>
-                            <div>
-                                <img src="/assets/images/cafe3coracoes.svg" alt="produto" />
-                                <div id='qtd'> 3 </div>
-                            </div>
-                            <h4> Orfeu Intenso 1kg</h4>
-                            <span> R$ 366, 97 </span>
-                        </article>
-                        <article>
-                            <div>
-                                <img src="/assets/images/cafe3coracoes.svg" alt="produto" />
-                                <div id='qtd'> 3 </div>
-                            </div>
-                            <h4> Orfeu Intenso 1kg</h4>
-                            <span> R$ 366, 97 </span>
-                        </article>
+                        {pedido.itens.map(item => {
+                            return(
+                                <article>
+                                    <div>
+                                        <img src={item.produto.imagem} alt="produto" />
+                                        <div id='qtd'> {item.qtd} </div>
+                                    </div>
+                                    <h4> {item.produto.produto} {item.produto.detalhes.peso}</h4>
+                                    <span> R$ {item.produto.preco} </span>
+                                </article>
+                            )
+                        })}
                     </section>
                 </main>
             </div>

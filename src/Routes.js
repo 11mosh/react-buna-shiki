@@ -67,7 +67,7 @@ export default function Rotas() {
                 <Route path='/carrinho' element={<Carrinho/>} />
                 <Route path='/assinatura' element={<Assinatura/>} />
                 <Route path='/assinatura/confirmacao' element={<Confirmacao />} />
-                <Route path='/pedido-finalizado' element={<PedidoFinalizado />} />
+                <Route path='/pedido-finalizado/:id' element={<PedidoFinalizado />} />
                 <Route path='/pagamento' element={<Pagamento />} />
 
                 <Route path='/adm' element={<AdmLogin />} />
