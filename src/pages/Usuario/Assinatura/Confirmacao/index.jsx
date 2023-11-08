@@ -14,6 +14,7 @@ export default function Confirmacao () {
     const [preco, setPreco] = useState(0);
     const [precoFinal, setPrecoFinal] = useState(0);
     const [desconto, setDesconto] = useState(0);
+    const [dataAtual, setDataAtual] = useState((new Date().toISOString()).substring(0, 10))
     const [itensSelecionados, setItensSelecionados] = useState(storage('itens-selecionados'));
     const redir = useNavigate();
     
@@ -33,20 +34,19 @@ export default function Confirmacao () {
         let precos = 0;
         for (let item of itensSelecionados) {
             precos = (Number(item.preco) * item.quantidade) + precos;
-            console.log(precos);
         }
         setPreco(precos);
         setDesconto(precos * 0.05);
-        setPrecoFinal(precos - desconto);
-        console.log('');
+        setPrecoFinal(preco - desconto);
     }
 
     useEffect(() => {
         calcularPreco();
+        
     }, [])
 
     function finalizar () {
-        
+        console.log(dataAtual);
     }
 
     return (
@@ -110,15 +110,15 @@ export default function Confirmacao () {
 
                 <div className="detalhes-assinatura">
                     <p>Código da assinatura: 123-A-123: 123-A-123</p>
-                    <p>Primeiro pagamento: 08/09/2023</p>
-                    <p>Próximo pagamento: 08/10/2023</p>
+                    <p>Primeiro pagamento: {dataAtual}</p>
+                    <p>Próximo pagamento: {}</p>
                 </div>
 
                 <div className="permanencia">
                     Ao assinar este plano você concorda com o tempo mínimo de manutenção e permanência de 3 meses. As solicitações de cancelamento não serão acatadas antes da permanência mínima.
                 </div>
 
-                <button onClick={finalizar}>Confirmar o pagamento</button>
+                <button onClick={() => {finalizar();}}>Confirmar o pagamento</button>
                 </section>
             </section>
 

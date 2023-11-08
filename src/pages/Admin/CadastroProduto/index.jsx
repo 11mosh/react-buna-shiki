@@ -53,7 +53,7 @@ function CadastroProduto () {
         img.onload = () => {
             if(id !== 0) {
                 setFotosAdicionadas([...fotosAdicionadas, urlImagem])
-                let object = { caminho: urlImagem }
+                let object = { caminho: urlImagem } 
                 setFotos([...fotos, object])
                 setUrlImagem('');
             }
@@ -81,7 +81,7 @@ function CadastroProduto () {
                 if (fotos.length === 0) {
                     toast.error('Insira ao menos uma imagem!')
                 } else {
-                    const idAdm = storage('adm-logado').adm_id
+                    const idAdm = storage('adm-logado').id
                     const alteracoes = {
                         idAdm: idAdm,
                         intensidade: intensidade,
@@ -112,7 +112,7 @@ function CadastroProduto () {
                 if (fotos.length === 0) {
                     toast.error('Insira ao menos uma imagem!')
                 } else {
-                    const idAdm = storage('adm-logado').adm_id
+                    const idAdm = storage('adm-logado').id
                     const produto = {
                         idAdm: idAdm,
                         intensidade: intensidade,

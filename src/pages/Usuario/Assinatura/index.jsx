@@ -236,7 +236,7 @@ export default function Assinatura () {
         }
 
         // console.log(qtd)
-        console.log(itensSelecionados);
+        // console.log(itensSelecionados);
         setQtdSelecionado(qtd);
         setItensSelecionados(a);
     };
