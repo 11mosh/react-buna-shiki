@@ -50,7 +50,7 @@ export default function Rotas() {
                 <Route path='/rodape' element={<UsuarioRodape />} />
                 <Route path='/login' element={<UsuarioLogin />}/>
                 <Route path='/cadastro' element={<UsuarioCadastro />} />
-                <Route path='/acompanhar-pedido' element={<AcompanharPedido />} />
+                <Route path='/acompanhar-pedido/:id' element={<AcompanharPedido />} />
                 <Route path='/descricao/:id' element={<DescricaoProduto />} />
 
                 <Route path='/conta/meus-pedidos' element={<MeusPedidos />} />

@@ -1,10 +1,12 @@
 import { useEffect, useState } from 'react'
 import './index.scss'
 import { buscarPedidoPorId } from '../../../api/pedidoApi'
+import { useNavigate } from 'react-router'
+import storage from 'local-storage'
 
 export default function Index(props) {
-    
-    const [pedido, setPedido] = useState({dt_entrega: '', dt_pedido: '', itens: []})
+    const navigate = useNavigate()
+    const [pedido, setPedido] = useState({dt_entrega: '', dt_pedido: '', itens: [], endereco: {}})
 
     async function buscarPedido(){
         const respPedido = await buscarPedidoPorId(props.idPedido)
@@ -13,7 +15,12 @@ export default function Index(props) {
     }
 
     useEffect(() => {
-        buscarPedido()
+        if(!storage('usuario-logado')){
+            navigate('/login')
+        }
+        else{
+            buscarPedido()
+        }
     }, [])
     
     

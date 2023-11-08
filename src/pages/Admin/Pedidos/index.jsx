@@ -47,6 +47,7 @@ export default function Index() {
     }
 
     async function ordenarPedidosClick(){
+        
         try{
             const resp = await ordenarPedidos(ordenar)
 
@@ -115,12 +116,12 @@ export default function Index() {
         }
     }
 
-    async function trocarStatus(novoStatus, id, codigoPedido, index){
+    async function trocarStatus(novoStatus, id, index){
         let antigoStatus = pedidos[index].situacao
          
         confirmAlert({
             title: 'Trocar status',
-            message: `Tem certeza que deseja trocar o status do pedido com código ${codigoPedido}, de "${antigoStatus}" para "${novoStatus}" ?`,
+            message: `Tem certeza que deseja trocar o status do pedido com id ${id}, de "${antigoStatus}" para "${novoStatus}" ?`,
             buttons: [
                 {
                     label: 'Sim',
@@ -274,7 +275,7 @@ export default function Index() {
                                     <td className='pequeno'> {item.codigo} </td>
                                     <td className='desaparece4 grande'> {verificarNomeCliente(item.cliente)} </td>
                                     <td className='grande'> 
-                                        <select value={item.situacao} onChange={ e => trocarStatus(e.target.value, item.id, item.codigo, index)}>
+                                        <select value={item.situacao} onChange={ e => trocarStatus(e.target.value, item.id, index)}>
                                             <option value='Pedido realizado'> Pedido realizado </option>
                                             <option value='Aguardando pagamento'> Aguardando pagamento</option>
                                             <option value='Pedido em preparo'> Pedido em preparo </option>
