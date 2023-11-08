@@ -46,7 +46,7 @@ export async function trocarStatusPedido(status, id){
     await api.put(`/pedido/status?status=${status}&id=${id}`)
 }
 
-export async function buscarPedidoPorId(id){
+export async function buscarPedidoPorId(id) {
     const resp = await api.get(`/pedido/${id}`)
 
     return resp.data

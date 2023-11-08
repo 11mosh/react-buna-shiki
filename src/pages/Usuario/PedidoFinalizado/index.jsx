@@ -5,8 +5,8 @@ import ResumoPedido from '../../../components/Usuario/ResumoPedido'
 import { Link, useParams } from 'react-router-dom'
 
 export default function Index(){
-    const {id} = useParams()
     
+    const {id} = useParams()
     
     
     return(

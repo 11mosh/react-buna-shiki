@@ -68,6 +68,7 @@ function CadastroProduto () {
     }
 
     function removerImagem(indice) {
+        setFotosExcluir([...fotosExcluir, fotos[indice].id])
         const novasFotos = fotos.filter((imagem, i) => i !== indice);
         setFotos(novasFotos);
     }
@@ -80,7 +81,7 @@ function CadastroProduto () {
                 if (fotos.length === 0) {
                     toast.error('Insira ao menos uma imagem!')
                 } else {
-                    const idAdm = storage('adm-logado').id
+                    const idAdm = storage('adm-logado').adm_id
                     const alteracoes = {
                         idAdm: idAdm,
                         intensidade: intensidade,
@@ -111,7 +112,7 @@ function CadastroProduto () {
                 if (fotos.length === 0) {
                     toast.error('Insira ao menos uma imagem!')
                 } else {
-                    const idAdm = storage('adm-logado').id
+                    const idAdm = storage('adm-logado').adm_id
                     const produto = {
                         idAdm: idAdm,
                         intensidade: intensidade,
