@@ -26,7 +26,7 @@ export default function Index(){
             setProdutos(produtosBanco)
         }
         catch(err){
-            if(err.response)
+            if(err.response) 
                 toast.error(err.response.data.erro)
             else
                 toast.error(err.message)
