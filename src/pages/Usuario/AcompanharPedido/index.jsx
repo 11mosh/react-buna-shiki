@@ -13,15 +13,15 @@ export default function Index() {
     
     async function buscarPedido(){
         const pedidoResp = await buscarPedidoPorId(id)
-        if(pedidoResp.situacao === 'Entregue'){
-            toast.info('Pedido já entregue')
-        }
-        else if(pedidoResp.situacao === 'Cancelado'){
-            toast.info('Pedido cancelado')
-        }
-        else{
+        // if(pedidoResp.situacao === 'Entregue'){
+        //     toast.info('Pedido já entregue')
+        // }
+        // else if(pedidoResp.situacao === 'Cancelado'){
+        //     toast.info('Pedido cancelado')
+        // }
+        // else{
             setPedido(pedidoResp)
-        }
+        // }
         
     }
 
@@ -53,7 +53,61 @@ export default function Index() {
         }
     }
 
-    function verificarBarraProgresso() {}
+    function verificarEstagio(nEstagio) {
+        if(nEstagio === 2 ){
+            if(pedido.situacao == 'Pedido em preparo' || pedido.situacao == 'À caminho' || pedido.situacao == 'Entregue') {
+                return 'concluido'
+            }
+            else{
+                return ''
+            }
+        }
+        else if(nEstagio === 3){
+            if(pedido.situacao == 'À caminho' || pedido.situacao == 'Entregue'){
+                return 'concluido'
+            }
+            else{
+                return ''
+            }
+        }
+        else if(nEstagio === 4){
+            if(pedido.situacao == 'Entregue'){
+                return 'concluido'
+            }
+            else{
+                return ''
+            }
+        }
+
+
+    }
+
+    function verificarBarraProgresso(linha) {
+        if(linha == 2){
+            if(pedido.situacao === 'Pedido em preparo' || pedido.situacao === 'À caminho' || pedido.situacao === 'Entregue'){
+                return 'concluido'
+            }
+            else{
+                return ''
+            }
+        }
+        if(linha == 3){
+            if(pedido.situacao === 'À caminho' || pedido.situacao === 'Entregue'){
+                return 'concluido'
+            }
+            else{
+                return ''
+            }
+        }
+        if(linha == 4){
+            if(pedido.situacao === 'Entregue'){
+                return 'concluido'
+            }
+            else{
+                return ''
+            }
+        }
+    }
 
     useEffect(() => {
         buscarPedido()
@@ -109,17 +163,16 @@ export default function Index() {
                         <section id='barraProgresso'>
                             <article id='estagios'>
                                 <div className='concluido'></div>
-                                <div></div>
-                                <div></div>
-                                <div></div>
-                                <div></div>
+                                <div className={verificarEstagio(2)}></div>
+                                <div className={verificarEstagio(3)}></div>
+                                <div className={verificarEstagio(4)}></div>
+                                <div className={verificarEstagio(5)}></div>
                             </article>
                             <article id='barra'>
                                 <div className='concluido'></div>
-                                <div className='concluido'></div>
-                                <div className='concluido'></div>
-                                <div className='não-concluido'></div>
-                        
+                                <div className={verificarBarraProgresso(2)}></div>
+                                <div className={verificarBarraProgresso(3)}></div>
+                                <div className={verificarBarraProgresso(4)}></div>
                             </article>
                         </section>
                     </main>

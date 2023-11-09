@@ -11,7 +11,6 @@ export default function Index(props) {
     async function buscarPedido(){
         const respPedido = await buscarPedidoPorId(props.idPedido)
         setPedido(respPedido)
-        console.log(respPedido);
     }
 
     useEffect(() => {

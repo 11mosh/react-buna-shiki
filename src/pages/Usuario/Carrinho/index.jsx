@@ -159,8 +159,8 @@ export default function Carrinho () {
                             </article>
                         </section>
                         <section id="s3">
-                            <Link id="marrom"> Adicionar mais produtos</Link>
-                            <Link id="laranja"> Ir para o pagamento </Link>
+                            <Link id="marrom" to='/produtos/cafeemgraos'> Adicionar mais produtos</Link>
+                            <Link id="laranja" to='/pagamento'> Ir para o pagamento </Link>
                         </section>
                     </div>
                 }
