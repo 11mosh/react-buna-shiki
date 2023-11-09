@@ -23,7 +23,14 @@ export default function Consulta() {
     try{
       if(buscaInput === ''){
         const respProdutos = await buscarTodosProdutos()
-        setProdutos(respProdutos)
+
+        if(respProdutos.length === 0){
+          toast.info('Não há produtos cadastrados')
+          setProdutos([])
+        }
+        else{
+          setProdutos(respProdutos)
+        }
       }
       else {
         const produtosRetornados = await pesquisaInput(buscaInput)
@@ -33,7 +40,10 @@ export default function Consulta() {
       }
     }
     catch(err){
-      toast.warn(err.message)
+      if(err.response)
+                toast.warn(err.response.data.erro)
+            else
+                toast.warn(err.message)
     }
   }
   
@@ -53,7 +63,10 @@ export default function Consulta() {
           }
           catch(err){
             setProdutos([])
-            toast.error(err.response.data.erro)
+            if(err.response)
+                toast.error(err.response.data.erro)
+            else
+                toast.error(err.message)
           }
         }
       },

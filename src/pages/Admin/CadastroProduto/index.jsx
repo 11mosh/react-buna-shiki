@@ -6,7 +6,7 @@ import axios from 'axios'
 import { toast } from 'react-toastify';
 import storage from 'local-storage'
 import { alterar, buscarCategorias, buscarIdDetalhe, buscarIdImagens, buscarIdProduto, excluirImagens } from '../../../api/produtoApi';
-import { URL } from '../../../constants';
+import { URLRota } from '../../../constants';
 
 function CadastroProduto () {
     const [id, setId] = useState(0)
@@ -53,7 +53,7 @@ function CadastroProduto () {
         img.onload = () => {
             if(id !== 0) {
                 setFotosAdicionadas([...fotosAdicionadas, urlImagem])
-                let object = { caminho: urlImagem }
+                let object = { caminho: urlImagem } 
                 setFotos([...fotos, object])
                 setUrlImagem('');
             }
@@ -68,6 +68,7 @@ function CadastroProduto () {
     }
 
     function removerImagem(indice) {
+        setFotosExcluir([...fotosExcluir, fotos[indice].id])
         const novasFotos = fotos.filter((imagem, i) => i !== indice);
         setFotos(novasFotos);
     }
@@ -131,7 +132,7 @@ function CadastroProduto () {
                         estoque: estoque
                     };
         
-                    let urlProduto = URL + "/produto";
+                    let urlProduto = URLRota + "/produto";
                     let respostaProduto = await axios.post(urlProduto, produto);
         
                     cadastrarImagens(respostaProduto.data.idProduto)
@@ -140,8 +141,11 @@ function CadastroProduto () {
                 }
             }
         } 
-        catch (error) {
-            toast.error( error.response.data.erro)
+        catch (err) {
+            if(err.response)
+                toast.warn(err.response.data.erro)
+            else
+                toast.warn(err.message)
         }
     }
 
@@ -152,7 +156,7 @@ function CadastroProduto () {
                 
                 if(fotosAdicionadas) {
                     for (let item of fotosAdicionadas) {
-                        let url = URL + "/imagemproduto";
+                        let url = URLRota + "/imagemproduto";
                         const imagem = {
                             idProduto: idProduto,
                             caminho: item
@@ -166,7 +170,7 @@ function CadastroProduto () {
             }
             else{
                 for (let item of fotos) {
-                    let urlFormando = URL + "/imagemproduto";
+                    let urlFormando = URLRota + "/imagemproduto";
                     const imagem = {
                         idProduto: idProduto,
                         caminho: item
@@ -175,8 +179,11 @@ function CadastroProduto () {
                 }
             }
 
-        } catch (error) {
-            toast.error( error.response.data.erro)
+        } catch (err) {
+            if(err.response)
+                toast.warn(err.response.data.erro)
+            else
+                toast.warn(err.message)
         }
     }
 
@@ -209,7 +216,10 @@ function CadastroProduto () {
             setId(produto.id)
         }
         catch(err){
-            toast.error(err.response.data.erro)
+            if(err.response)
+                toast.error(err.response.data.erro)
+            else
+                toast.error(err.message)
         }
     }
 
@@ -245,7 +255,6 @@ function CadastroProduto () {
             alterarInputs()
         }
         buscarCategoriasExibicao()
-        // eslint-disable-next-line
     }, [])
 
     return ( 

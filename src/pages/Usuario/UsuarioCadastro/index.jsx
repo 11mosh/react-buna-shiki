@@ -40,7 +40,7 @@ export default function Index() {
                 const infoCliente = await CadastrarCliente(nome, cpf, telefone, email, senha)
                 await CadastrarEndereco(cep, rua, cidade, complemento, nrEndereco, infoCliente.id)
                 
-                toast.success('Cadastro finalizado!')
+                toast.dark('Bem-Vindo à Buna Shiki')
                 ref.current.continuousStart()
                 storage('usuario-logado', infoCliente)
                 
@@ -52,17 +52,24 @@ export default function Index() {
         catch(err){ 
             setCarregando(false)
             ref.current.complete();
-            toast.warn(err.response.data.erro)
+            if(err.response)
+                toast.warn(err.response.data.erro)
+            else
+                toast.warn(err.message)
         }
-
     }
 
     async function BuscarCep(alteracao) {
         try{
+            if(alteracao.length === 5 && alteracao.length > cep.length){
+                setCEP(`${alteracao}-`)
+            }
+            else if(alteracao.length <= 9){
+                setCEP(alteracao)
+            }
 
-            setCEP(alteracao)
 
-            if(alteracao.length === 8){
+            if(alteracao.length === 9){
                 const resp = await buscarCep(alteracao)
 
                 if(resp.erro){
@@ -76,13 +83,13 @@ export default function Index() {
                 }
             }
 
-            else if(alteracao.length > 8 || alteracao.length < 8){
+            else if(alteracao.length > 9){
                 setCidade('')
                 setRua('')
             }
         }
         catch(err){
-            toast.error('CEP inválido')
+            toast.error(err.message)
         }
     }
     
@@ -94,6 +101,42 @@ export default function Index() {
     function verificarTecla(e){
         if(e.key === 'Enter')
             Cadastrar()
+    }
+
+    function mudarCPF(alteracao){
+        if((alteracao.length === 3 && alteracao.length > cpf.length) || (alteracao.length === 7 && alteracao.length > cpf.length)){
+            setCPF(`${alteracao}.`)
+        }
+        else if(alteracao.length === 11 && alteracao.length > cpf.length){
+            setCPF(`${alteracao}-`)
+        }
+        else if(alteracao.length <= 14){
+            setCPF(alteracao)
+        }
+    }
+    function mudarTelefone(alteracao) {
+        if(telefone.startsWith('+')){
+            if((alteracao.length === 3 && alteracao.length > telefone.length) || (alteracao.length === 6 && alteracao.length > telefone.length)) {
+                setTelefone(`${alteracao} `)
+            }
+            else if(alteracao.length === 12 && alteracao.length > telefone.length){
+                setTelefone(`${alteracao}-`)
+            }
+            else if(alteracao.length <= 17){
+                setTelefone(alteracao)
+            }
+        }
+        else{
+            if(alteracao.length === 2 && alteracao.length > telefone.length) {
+                setTelefone(`${alteracao} `)
+            }
+            else if(alteracao.length === 8 && alteracao.length > telefone.length){
+                setTelefone(`${alteracao}-`)
+            }
+            else if(alteracao.length <= 13){
+                setTelefone(alteracao)
+            }
+        }
     }
 
     return(
@@ -113,8 +156,8 @@ export default function Index() {
                                     <img src='/assets/images/asterisco.svg' alt='asterisco'/>
                                 </div>
                                 <input className='input' type='text' placeholder='Nome Completo' value={nome} onChange={e => setNome(e.target.value)} onKeyDown={verificarTecla}/>
-                                <input className='input' type='text' placeholder='CPF' value={cpf} onChange={e => setCPF(e.target.value)} onKeyDown={verificarTecla}/>
-                                <input className='input' type='text' placeholder='Telefone' value={telefone} onChange={e => setTelefone(e.target.value)} onKeyDown={verificarTecla}/>
+                                <input className='input' type='text' placeholder='CPF' value={cpf} onChange={e => mudarCPF(e.target.value)} onKeyDown={verificarTecla}/>
+                                <input className='input' type='text' placeholder='Telefone' value={telefone} onChange={e => mudarTelefone(e.target.value)} onKeyDown={verificarTecla}/>
                                 <input className='input' type='text' placeholder='E-mail' value={email} onChange={e => setEmail(e.target.value)} onKeyDown={verificarTecla}/>
                                 <input className='input' type='password' placeholder='Senha' value={senha} onChange={e => setSenha(e.target.value)} onKeyDown={verificarTecla}/>
                             </article>

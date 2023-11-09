@@ -1,10 +1,12 @@
 import axios from 'axios'
-import { URL } from '../constants'
+import { URLRota } from '../constants'
 
 const api = axios.create({
-    baseURL: URL
+    baseURL: URLRota
 })
 
+
+// Buscando 
 
 export async function buscarTodosProdutos(){
     const resp = await api.get('/produtos')
@@ -12,14 +14,6 @@ export async function buscarTodosProdutos(){
     return resp.data
 }
 
-export async function excluir(idProduto, idDetalhe) {
-    await api.delete(`/deletar/produto`, {
-        data: {
-            idDetalhe: idDetalhe,
-            idProduto: idProduto
-        }
-    })
-}
 
 export async function buscarIdProduto(id) {
     const resp = await api.get(`/produto/${id}`)
@@ -39,18 +33,6 @@ export async function buscarIdImagens(idProduto){
     return resp.data
 }
 
-export async function excluirImagens(idFotosExcluir, idProduto){
-    await api.put(`/${idProduto}/imagens`, {
-        deletar: idFotosExcluir,
-    })
-
-}
-
-export async function alterar(alteracoes, idDetalhe, idProduto){
-    const resp = await api.put(`/produto/${idProduto}/detalhes/${idDetalhe}`, alteracoes)
-
-    return resp;
-}
 
 export async function buscarCategorias(){
     const resp = await api.get('/categorias')
@@ -95,8 +77,59 @@ export async function pesquisaInput(pesquisaValor) {
     return resp.data
 }
 
-export async function buscarProdutosPorMarca(marca){
-    const resp = api.get(`/produtos/${marca}`)
+export async function buscarProdutosPorMarca(marca, categoria){
+    const resp = await api.get(`/produtos/marca?marca=${marca}&categoria=${categoria}`)
 
     return resp.data
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+// Deletando
+
+export async function excluirImagens(idFotosExcluir, idProduto){
+    await api.delete(`/${idProduto}/imagens`, {
+        data:{
+            deletar: idFotosExcluir,
+        }
+    })
+
+}
+
+export async function excluir(idProduto, idDetalhe) {
+    await api.delete(`/deletar/produto`, {
+        data: {
+            idDetalhe: idDetalhe,
+            idProduto: idProduto
+        }
+    })
+}
+
+
+
+
+
+
+
+
+
+
+
+// Alterando
+
+export async function alterar(alteracoes, idDetalhe, idProduto){
+    await api.put(`/produto/${idProduto}/detalhes/${idDetalhe}`, alteracoes)
 }

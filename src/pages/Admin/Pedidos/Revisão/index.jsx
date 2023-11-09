@@ -65,10 +65,6 @@ export default function Index() {
                         <table className='duasInformacoes' id='continuacaoDetalhesProdutos'>
                             <tbody>
                                 <tr>
-                                    <td className='topico'>Quantidade de Parcelas: </td>
-                                    <td>--</td>
-                                </tr>
-                                <tr>
                                     <td className='topico'>Frete: </td>
                                     <td className='valor'>R$11,64</td>
                                 </tr>
@@ -97,6 +93,10 @@ export default function Index() {
                                 <tr>
                                     <td> Data do pedido: </td>
                                     <td className='valor'> 04/06/2023 21:30:65</td>
+                                </tr>
+                                <tr>
+                                    <td> Data de entrega: </td>
+                                    <td className='valor'> 04/06/2023 </td>
                                 </tr>
                                 <tr>
                                     <td> Tipo de entrega: </td>

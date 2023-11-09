@@ -4,7 +4,7 @@ import { useEffect, useState } from 'react'
 import { buscarCategorias } from '../../../api/produtoApi';
 import { toast } from 'react-toastify';
 import axios from 'axios';
-import { URL } from '../../../constants';
+import { URLRota } from '../../../constants';
 
 export default function CabecalhoUsuario() {
 
@@ -13,18 +13,18 @@ export default function CabecalhoUsuario() {
     const [categorias, setCategorias] = useState([]);
     const [sugestao, setSugestao] = useState([]);
 
-    const caminhos = ['/produtos/cafemgraos', '/produtos/cafeempo', '/produtos/cafeteiras', '/combos', '/produtos/filtros', '/produtos/capsulas', '/produtos/moedores', '/produtos/acessorios' ];
+    const caminhos = ['/produtos/cafeemgraos', '/produtos/cafeempo', '/produtos/cafeteiras', '/combos', '/produtos/filtros', '/produtos/capsulas', '/produtos/moedores', '/produtos/acessorios' ];
 
     async function pesquisaProdutos() {
         try {
-            const respostaProdutos = await axios.get(URL + '/produtos');
+            const respostaProdutos = await axios.get(URLRota + '/produtos');
             const produtos = respostaProdutos.data;
           
             const sugestoes = [];
           
             for (const produto of produtos) {
               const id = produto.id;
-              const respostaImagem = await axios.get( URL + `/${id}/imagens`);
+              const respostaImagem = await axios.get( URLRota + `/${id}/imagens`);
               const imagem = respostaImagem.data;
      
               const sugestaoobj = {
@@ -78,7 +78,7 @@ export default function CabecalhoUsuario() {
                             <img src='/assets/images/icon-carrinho.svg' alt='carrinho'/>
                             <p> Carrinho </p>
                         </Link>
-                        <Link to='/conta/cartoes'>
+                        <Link to='/conta/dados-pessoais'>
                             <img src='/assets/images/icon-conta.svg' alt='conta'/>
                             <p>Conta</p>
                         </Link>

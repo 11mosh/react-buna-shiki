@@ -66,16 +66,18 @@
                 #barra {
                     background-color: #424242;
                     display: flex;
-                    width: 1170px;
+                    width: 1200px;
                     height: 30px;
                     padding: 0px 8px;
                     .concluido {
                         height: 100%;
                         width: 25%;
                     }
+                    // #barra3 {
+                    //     width: 30%
+                    // }
                     .não-concluido {
                         height: 100%;
-                        width: 19%;
                     }
                 }
             }

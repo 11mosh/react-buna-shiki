@@ -20,9 +20,14 @@ export default function Index(){
 
     async function buscarCepClick(alteracao){
         try {
-            setCEP(alteracao)
+            if(alteracao.length === 5 && alteracao.length > cep.length){
+                setCEP(`${alteracao}-`)
+            }
+            else if(alteracao.length <= 9){
+                setCEP(alteracao)
+            }
             
-            if(alteracao.length === 8){
+            if(alteracao.length === 9){
                 const resp = await buscarCep(alteracao)
 
                 if(resp.erro){
@@ -36,7 +41,7 @@ export default function Index(){
                 }
             }
 
-            else if(alteracao.length > 8 || alteracao.length < 8){
+            else if(alteracao.length < 9){
                 setCidade('')
                 setRua('')
             }

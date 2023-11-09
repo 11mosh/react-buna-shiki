@@ -50,7 +50,7 @@ export default function Rotas() {
                 <Route path='/rodape' element={<UsuarioRodape />} />
                 <Route path='/login' element={<UsuarioLogin />}/>
                 <Route path='/cadastro' element={<UsuarioCadastro />} />
-                <Route path='/acompanhar-pedido' element={<AcompanharPedido />} />
+                <Route path='/acompanhar-pedido/:id' element={<AcompanharPedido />} />
                 <Route path='/descricao/:id' element={<DescricaoProduto />} />
 
                 <Route path='/conta/meus-pedidos' element={<MeusPedidos />} />
@@ -67,7 +67,7 @@ export default function Rotas() {
                 <Route path='/carrinho' element={<Carrinho/>} />
                 <Route path='/assinatura' element={<Assinatura/>} />
                 <Route path='/assinatura/confirmacao' element={<Confirmacao />} />
-                <Route path='/pedido-finalizado' element={<PedidoFinalizado />} />
+                <Route path='/pedido-finalizado/:id' element={<PedidoFinalizado />} />
                 <Route path='/pagamento' element={<Pagamento />} />
 
                 <Route path='/adm' element={<AdmLogin />} />
