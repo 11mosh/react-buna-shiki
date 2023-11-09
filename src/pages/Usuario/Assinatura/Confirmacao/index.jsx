@@ -14,7 +14,8 @@ export default function Confirmacao () {
     const [preco, setPreco] = useState(0);
     const [precoFinal, setPrecoFinal] = useState(0);
     const [desconto, setDesconto] = useState(0);
-    const [dataAtual, setDataAtual] = useState((new Date().toISOString()).substring(0, 10))
+    const [dataAtual, setDataAtual] = useState((new Date().toISOString()).substring(0, 10));
+    const [proximaData, setProximaData] = useState([]);
     const [itensSelecionados, setItensSelecionados] = useState(storage('itens-selecionados'));
     const redir = useNavigate();
     
@@ -35,18 +36,26 @@ export default function Confirmacao () {
         for (let item of itensSelecionados) {
             precos = (Number(item.preco) * item.quantidade) + precos;
         }
+
         setPreco(precos);
-        setDesconto(precos * 0.05);
-        setPrecoFinal(preco - desconto);
+        let descontoCalc = precos * 0.05;
+        let ponto = (descontoCalc.toString().indexOf('.'));
+        const desconto = (descontoCalc.toString().substring(0, (ponto + 3)));
+        setDesconto(desconto);
+        let total = precos - descontoCalc;
+        setPrecoFinal(total);
     }
 
     useEffect(() => {
         calcularPreco();
         
+        const datta = new Date();
+        datta.setDate(datta.getDate() + 30);
+        setProximaData((datta.toISOString()).substring(0, 10));
     }, [])
 
     function finalizar () {
-        console.log(dataAtual);
+        
     }
 
     return (
@@ -111,7 +120,7 @@ export default function Confirmacao () {
                 <div className="detalhes-assinatura">
                     <p>Código da assinatura: 123-A-123: 123-A-123</p>
                     <p>Primeiro pagamento: {dataAtual}</p>
-                    <p>Próximo pagamento: {}</p>
+                    <p>Próximo pagamento: {proximaData}</p>
                 </div>
 
                 <div className="permanencia">
