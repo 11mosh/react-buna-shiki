@@ -8,6 +8,7 @@ import { Link } from 'react-router-dom';
 import axios from 'axios';
 import 'react-toastify/dist/ReactToastify.css';
 import { useNavigate } from 'react-router-dom';
+import { URLRota } from '../../../../constants.js';
 
 export default function Confirmacao () {
 
@@ -55,7 +56,14 @@ export default function Confirmacao () {
     }, [])
 
     function finalizar () {
-        
+        const assinatura = {
+            idCliente: storage('usuario-logado').id,
+            idEndereco: storage('usuario-logado')
+        }
+        const resposta = axios.post((URLRota + '/concluir-assinatura/'), );
+        const dados = resposta.data;
+        console.log(dados);
+        // console.log(dados.id);
     }
 
     return (
