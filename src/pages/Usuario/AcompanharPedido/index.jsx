@@ -4,8 +4,9 @@ import './index.scss';
 import ResumoPedido from '../../../components/Usuario/ResumoPedido'
 import { useParams } from 'react-router';
 import { useEffect, useState } from 'react';
-import { buscarPedidoPorId } from '../../../api/pedidoApi';
+import { buscarPedidoPorId, trocarStatusPedido } from '../../../api/pedidoApi';
 import { toast } from 'react-toastify';
+import { confirmAlert } from 'react-confirm-alert';
 
 export default function Index() {
     const [pedido, setPedido] = useState({situacao: ''})
@@ -13,28 +14,54 @@ export default function Index() {
     
     async function buscarPedido(){
         const pedidoResp = await buscarPedidoPorId(id)
-        // if(pedidoResp.situacao === 'Entregue'){
-        //     toast.info('Pedido já entregue')
-        // }
-        // else if(pedidoResp.situacao === 'Cancelado'){
-        //     toast.info('Pedido cancelado')
-        // }
-        // else{
+
+        if(pedidoResp.situacao === 'Entregue'){
+            toast.info('Pedido já entregue')
+        }
+        else if(pedidoResp.situacao === 'Cancelado'){
+            toast.info('Pedido cancelado')
+        }
+        else{
             setPedido(pedidoResp)
-        // }
+        }
         
     }
 
+    async function cancelarPedido(){
+        confirmAlert({
+            title: 'Cancelar pedido',
+            message: 'Tem certeza que deseja cancelar o pedido ? Devolveremos o dinheiro recebido em até 24 horas.',
+            buttons: [{
+                label: 'Sim',
+                onClick: async () => {
+                    await trocarStatusPedido('Cancelado', id)
+                    toast.info('Pedido cancelado, retornaremos o dinheiro')
+                }
+            }, 
+            {
+                label: 'Não'
+            }]
+        })
+    }
+
     function verificarIconFinalizado(icon){
-        if(icon === 'pagamento'){
-            if(pedido.situacao === 'Pedido em preparo' || pedido.situacao === 'À caminho' || pedido.situacao === 'Entregue')
+        if(icon === 'pedido realizado'){
+            if(pedido.situacao === 'Pedido realizado' || pedido.situacao === 'Pedido em preparo' || pedido.situacao === 'À caminho' || pedido.situacao === 'Entregue' || pedido.situacao === 'Pagamento'){
+                return ''
+            }
+            else {
+                return 'none'
+            }
+        }
+        else if(icon === 'pagamento'){
+            if( pedido.situacao === 'Pagamento'||pedido.situacao === 'Pedido em preparo' || pedido.situacao === 'À caminho' || pedido.situacao === 'Entregue')
                 return ''
             else{
                 return 'none'
             }
         }
         else if(icon === 'pedido em preparo'){
-            if(pedido.situacao === 'À caminho' || pedido.situacao === 'Entregue'){
+            if( pedido.situacao === 'Pedido em preparo' || pedido.situacao === 'À caminho' || pedido.situacao === 'Entregue'){
                 return ''
             }
             else {
@@ -42,20 +69,32 @@ export default function Index() {
             }
         }
         else if(icon === 'a caminho'){
-            if(pedido.situacao === 'À caminho')
+            if(pedido.situacao === 'À caminho' || pedido.situacao === 'Entregue')
                 return ''
             else{
                 return 'none'
             }
         }
         else if(icon === 'entregue'){
-            return 'none'
+            if(pedido.situacao === 'Entregue')
+                return ''
+            else {
+                return 'none'
+            }
         }
     }
 
     function verificarEstagio(nEstagio) {
-        if(nEstagio === 2 ){
-            if(pedido.situacao == 'Pedido em preparo' || pedido.situacao == 'À caminho' || pedido.situacao == 'Entregue') {
+        if(nEstagio === 1){
+            if(pedido.situacao == 'Pedido em preparo' || pedido.situacao == 'À caminho' || pedido.situacao == 'Entregue' || pedido.situacao === 'Pagamento' || pedido.situacao === 'Pedido realizado'){
+                return 'concluido'
+            }
+            else{
+                return ''
+            }
+        }
+        else if(nEstagio === 2 ){
+            if( pedido.situacao === 'Pagamento' ||pedido.situacao == 'Pedido em preparo' || pedido.situacao == 'À caminho' || pedido.situacao == 'Entregue') {
                 return 'concluido'
             }
             else{
@@ -63,7 +102,7 @@ export default function Index() {
             }
         }
         else if(nEstagio === 3){
-            if(pedido.situacao == 'À caminho' || pedido.situacao == 'Entregue'){
+            if(pedido.situacao === 'Pedido em preparo' ||pedido.situacao == 'À caminho' || pedido.situacao == 'Entregue'){
                 return 'concluido'
             }
             else{
@@ -71,6 +110,14 @@ export default function Index() {
             }
         }
         else if(nEstagio === 4){
+            if(pedido.situacao == 'À caminho' || pedido.situacao == 'Entregue'){
+                return 'concluido'
+            }
+            else{
+                return ''
+            }
+        }
+        else if(nEstagio === 5){
             if(pedido.situacao == 'Entregue'){
                 return 'concluido'
             }
@@ -78,13 +125,14 @@ export default function Index() {
                 return ''
             }
         }
-
-
     }
 
     function verificarBarraProgresso(linha) {
+        if(linha == 1){
+            return 'concluido'
+        }
         if(linha == 2){
-            if(pedido.situacao === 'Pedido em preparo' || pedido.situacao === 'À caminho' || pedido.situacao === 'Entregue'){
+            if(pedido.situacao === 'Pagamento' || pedido.situacao === 'Pedido em preparo' || pedido.situacao === 'À caminho' || pedido.situacao === 'Entregue'){
                 return 'concluido'
             }
             else{
@@ -92,7 +140,7 @@ export default function Index() {
             }
         }
         if(linha == 3){
-            if(pedido.situacao === 'À caminho' || pedido.situacao === 'Entregue'){
+            if(pedido.situacao === 'Pedido em preparo' || pedido.situacao === 'À caminho' || pedido.situacao === 'Entregue'){
                 return 'concluido'
             }
             else{
@@ -100,7 +148,7 @@ export default function Index() {
             }
         }
         if(linha == 4){
-            if(pedido.situacao === 'Entregue'){
+            if(pedido.situacao === 'À caminho'){
                 return 'concluido'
             }
             else{
@@ -124,7 +172,7 @@ export default function Index() {
                         <section id='icons'>
                             <figure>
                                 <img className='icon' src='/assets/images/pedido/acompanhar-pedido/carrinho.png' alt='carrinho'/>
-                                <img className='icon-finalizado' src='/assets/images/pedido/icon-finalizado.svg' alt='icon visto/certo'/>
+                                <img className='icon-finalizado' style={{display: verificarIconFinalizado('pedido realizado')}} src='/assets/images/pedido/icon-finalizado.svg' alt='icon visto/certo'/>
                             </figure>
                             <figure>
                                 <img className='icon' src='/assets/images/pedido/acompanhar-pedido/icon-pagamento.png' alt='celular com sifrão'/>
@@ -162,14 +210,14 @@ export default function Index() {
                         </section>
                         <section id='barraProgresso'>
                             <article id='estagios'>
-                                <div className='concluido'></div>
+                                <div className={verificarEstagio(1)}></div>
                                 <div className={verificarEstagio(2)}></div>
                                 <div className={verificarEstagio(3)}></div>
                                 <div className={verificarEstagio(4)}></div>
                                 <div className={verificarEstagio(5)}></div>
                             </article>
                             <article id='barra'>
-                                <div className='concluido'></div>
+                                <div className={verificarBarraProgresso(1)}></div>
                                 <div className={verificarBarraProgresso(2)}></div>
                                 <div className={verificarBarraProgresso(3)}></div>
                                 <div className={verificarBarraProgresso(4)}></div>

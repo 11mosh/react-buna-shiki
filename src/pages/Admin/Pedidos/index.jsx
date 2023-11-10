@@ -278,7 +278,7 @@ export default function Index() {
                                     <td className='grande'> 
                                         <select value={item.situacao} onChange={ e => trocarStatus(e.target.value, item.id, index)}>
                                             <option value='Pedido realizado'> Pedido realizado </option>
-                                            <option value='Aguardando pagamento'> Aguardando pagamento</option>
+                                            <option value='Pagamento'> Pagamento</option>
                                             <option value='Pedido em preparo'> Pedido em preparo </option>
                                             <option value='À caminho'> À caminho </option>
                                             <option value='Entregue'> Entregue </option>
