@@ -235,8 +235,6 @@ export default function Assinatura () {
             qtd = item.quantidade + qtd; 
         }
 
-        // console.log(qtd)
-        // console.log(itensSelecionados);
         setQtdSelecionado(qtd);
         setItensSelecionados(a);
     };
@@ -269,7 +267,7 @@ export default function Assinatura () {
 
                 <section className='selecionar-itens'>
                     <nav className='titulo'>
-                        <h1 >Escolha entre os principais sabores disponíveis e quantidade:</h1>
+                        <h1>Escolha entre os principais sabores disponíveis e quantidade:</h1>
                         <select name="" id="" value={filtrarPorCategoria} onChange={e => { filtrarPorCategoriasClick(e.target.value); setFiltrarPorCategoria(e.target.value); }}>
                             <option value={0}>Selecionar</option>
                             {categorias.map((item) => {
