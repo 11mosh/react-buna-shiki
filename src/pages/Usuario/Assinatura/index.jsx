@@ -13,6 +13,9 @@ import { URL } from '../../../constants.js';
 
 export default function Assinatura () {
 
+
+    /// resolver a questão do botao ficar disponível
+
     const [numeroCartao, setNumeroCartao] = useState(0);
     const [validade, setValidade] = useState('');
     const [cvv, setCvv] = useState('');
@@ -23,8 +26,14 @@ export default function Assinatura () {
     const [numero, setNumero] = useState('');
     const [complemento, setComplemento] = useState('');
 
-    const [rua, setRua] = useState('Rua')
-    const [cidade, setCidade] = useState('Cidade')
+    const [canProced, setCanProced] = useState(false)
+
+    // const [isBotaoDisponivel, setIsBotaoDisponivel] = useState(false)
+
+    const [rua, setRua] = useState('Rua');
+    const [cidade, setCidade] = useState('Cidade');
+
+    const [itensSelecionados, setItensSelecionados] = useState([]);
 
     const [exibirCartao, setExibirCartao] = useState(false);
     const [exibirEndereco, setExibirEndereco] = useState(false);
@@ -36,13 +45,16 @@ export default function Assinatura () {
 
     const [opcaoCartao, setOpcaoCartao] = useState(0);
     const [opcaoEndereco, setOpcaoEndereco] = useState(0);
-    // const [infos, setInfos] = useState({});
 
     const redir = useNavigate()
 
     async function chamarAssinaturas () {
         const produto = await axios.get(URL + '/produtos');
         const resp = produto.data.filter((item) => item.assinatura === 1);
+        // console.log(resp)
+        for (let item of resp) {
+            item.quantidade = 0;
+        }
         setItensDisponiveis(resp);
     }
 
@@ -174,33 +186,21 @@ export default function Assinatura () {
 
     useEffect(() => {
         if (storage('usuario-logado')) {
-            const id = storage('usuario-logado').id
             chamarAssinaturas();
             chamarCategorias();
             filtrarPorCategoriasClick();
             chamarCartoes();
             chamarEnderecos();
-
+            console.log(itensDisponiveis);
         } else {
             redir('/cadastro');
         }
     }, []);
 
-    useEffect(() => {
-        // setInfos({
-        //     enderecoId: opcaoEndereco,
-        //     cartaoId: opcaoCartao
-        // })
-    }, [opcaoCartao]);
 
-    useEffect(() => {
-        // setInfos({
-        //     enderecoId: opcaoEndereco,
-        //     cartaoId: opcaoCartao
-        // })
-    }, [opcaoEndereco]);
 
-    const botaoDisponivel = opcaoCartao !== 0 && opcaoEndereco !== 0;
+    const botaoo = opcaoCartao !== 0 && opcaoEndereco !== 0;
+
     
     return (
         <main className="assinatura">
@@ -232,9 +232,9 @@ export default function Assinatura () {
                     <div className="itens-cafe" >
                         {itensDisponiveis.map((item) => {
                             return (
-                                <ItemDisponivel itemm={item}/>           
+                                <ItemDisponivel itemm={item} />           
                             )
-                        })}                                
+                        })}
                     </div>
                 </section>
 
@@ -282,7 +282,7 @@ export default function Assinatura () {
                             }
                             
                         </article>
-                        <select name="" value={opcaoCartao} id="" onChange={e => {setOpcaoCartao(e.target.value);}}>/   
+                        <select name="" value={opcaoCartao} id="" onChange={e => {setOpcaoCartao(e.target.value); setCanProced(opcaoEndereco != 0 && opcaoCartao != 0)}}>/   
                             <option value={0}>Selecionar cartão</option>
                             {cartoes.map((item) => {
                                 return (
@@ -337,7 +337,7 @@ export default function Assinatura () {
                         }
                         
                     </article>
-                    <select name="" value={opcaoEndereco} id="" onChange={e => {setOpcaoEndereco(e.target.value);}}>/
+                    <select name="" value={opcaoEndereco} id="" onChange={e => {setOpcaoEndereco(e.target.value); setCanProced(opcaoEndereco != 0 && opcaoCartao != 0)}}>/
                         <option value={0}>Selecionar endereço</option>
                         {enderecos.map((item) => {
                             return (
@@ -351,9 +351,9 @@ export default function Assinatura () {
                 
                 
                      
-                <button style={{ backgroundColor: botaoDisponivel ? '#F47E3C' : 'gray' }}>
-                    {botaoDisponivel
-                    ?   <Link to={'/assinatura/confirmacao'}>
+                <button style={{ backgroundColor: canProced ? '#F47E3C' : 'gray' }}>
+                    {canProced
+                    ?   <Link to={'/assinatura/confirmacao'} state={itensSelecionados}>
                             <img src="/assets/images/icon-s.png" alt="" id='imagem-fantasma' />
                             <p>Continuar</p>
                             <img src="/assets/images/icon-seta-longa-esquerda.png" alt="" style={{transform: 'rotate(180deg)', width: '50px'}}/>

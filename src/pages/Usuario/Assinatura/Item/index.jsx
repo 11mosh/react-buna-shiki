@@ -1,17 +1,21 @@
 import './index.scss';
 import { useState, useEffect } from 'react';
+import storage from 'local-storage';
 
 export default function ItemDisponivel (props) {
 
     const [contador, setContador] = useState(0);
 
     function diminuir () {
-        if (contador == 0) {
-
-        } else if (contador > 0) {
+        if (contador > 0) {
             setContador(contador - 1);
-        }
-    }
+            
+        } 
+    };
+
+    function aumentar () {
+        setContador(contador + 1);
+    };
 
     return (
         <main>
@@ -23,7 +27,7 @@ export default function ItemDisponivel (props) {
                 <div className='quantidade-item'>
                     <p className='adicionar' onClick={diminuir}>-</p>
                     <p>{contador}</p>
-                    <p className='adicionar' onClick={() => {setContador(contador + 1)}}>+</p>
+                    <p className='adicionar' onClick={aumentar}>+</p>
                 </div>
             </div>
         </main>
