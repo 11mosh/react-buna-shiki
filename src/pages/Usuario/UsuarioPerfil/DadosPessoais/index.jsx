@@ -53,7 +53,6 @@ export default function Index(){
             }
         }
         else if(campo === 'cpf'){
-            console.log(valor);
             if(valor !== cliente.cpf){
                 alterou = 'sim'
             }
@@ -133,25 +132,25 @@ export default function Index(){
     }
     
     function mudarCPF(alteracao){
-        if(alteracao.length === 3 && alteracao.length > cpf.length || alteracao.length === 7 && alteracao.length > cpf.length){
+        if((alteracao.length === 3 && alteracao.length > cpf.length) || (alteracao.length === 7 && alteracao.length > cpf.length)){
             setCPF(`${alteracao}.`)
         }
         else if(alteracao.length === 11 && alteracao.length > cpf.length){
             setCPF(`${alteracao}-`)
         }
-        else{
+        else if(alteracao.length <= 14){
             setCPF(alteracao)
         }
     }
     function mudarTelefone(alteracao){
         if(telefone.startsWith('+')){
-            if(alteracao.length === 3 && alteracao.length > telefone.length || alteracao.length === 6 && alteracao.length > telefone.length){
+            if((alteracao.length === 3 && alteracao.length > telefone.length) || (alteracao.length === 6 && alteracao.length > telefone.length)){
                 setTelefone(`${alteracao} `)
             }
             else if(alteracao.length === 12 && alteracao.length > telefone.length){
                 setTelefone(`${alteracao}-`)
             }
-            else{
+            else if(alteracao.length <= 17){
                 setTelefone(alteracao)
             }
         }
@@ -162,7 +161,7 @@ export default function Index(){
             else if(alteracao.length === 8 && alteracao.length > telefone.length){
                 setTelefone(`${alteracao}-`)
             }
-            else{
+            else if(alteracao.length <= 13){
                 setTelefone(alteracao)
             }
         }
@@ -174,6 +173,7 @@ export default function Index(){
         else{
             completandoInputs()
         }
+        // eslint-disable-next-line
     }, [])
     
     

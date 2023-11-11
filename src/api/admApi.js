@@ -1,8 +1,8 @@
 import axios from 'axios'
-import { URL } from '../constants'
+import {URLRota } from '../constants'
 
 const api = axios.create({
-    baseURL: URL
+    baseURL: URLRota
 })
 
 export async function login(email, senha) {

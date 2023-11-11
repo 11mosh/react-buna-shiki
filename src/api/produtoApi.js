@@ -1,8 +1,8 @@
 import axios from 'axios'
-import { URL } from '../constants'
+import { URLRota } from '../constants'
 
 const api = axios.create({
-    baseURL: URL
+    baseURL: URLRota
 })
 
 
@@ -102,7 +102,9 @@ export async function buscarProdutosPorMarca(marca, categoria){
 
 export async function excluirImagens(idFotosExcluir, idProduto){
     await api.delete(`/${idProduto}/imagens`, {
-        deletar: idFotosExcluir,
+        data:{
+            deletar: idFotosExcluir,
+        }
     })
 
 }

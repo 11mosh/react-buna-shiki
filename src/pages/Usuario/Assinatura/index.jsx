@@ -9,7 +9,7 @@ import ItemDisponivel from './Item';
 import { filtrarPorCategorias } from '../../../api/produtoApi.js';
 import { CadastrarEndereco, buscarCep } from '../../../api/usuarioApi';
 import {toast} from 'react-toastify';
-import { URL } from '../../../constants.js';
+import { URLRota } from '../../../constants.js';
 
 export default function Assinatura () {
 
@@ -33,7 +33,6 @@ export default function Assinatura () {
     const [rua, setRua] = useState('Rua');
     const [cidade, setCidade] = useState('Cidade');
 
-    const [itensSelecionados, setItensSelecionados] = useState([]);
 
     const [exibirCartao, setExibirCartao] = useState(false);
     const [exibirEndereco, setExibirEndereco] = useState(false);
@@ -43,36 +42,72 @@ export default function Assinatura () {
     const [filtrarPorCategoria, setFiltrarPorCategoria] = useState(0);
     const [enderecos, setEnderecos] = useState([]);
 
+    const [itensSelecionados, setItensSelecionados] = useState([]);
+    const [qtdSelecionado, setQtdSelecionado] = useState(0);
+
+    const [isBotaoDisponivel, setIsBotaoDisponivel] = useState(false);
+
     const [opcaoCartao, setOpcaoCartao] = useState(0);
     const [opcaoEndereco, setOpcaoEndereco] = useState(0);
 
     const redir = useNavigate()
 
     async function chamarAssinaturas () {
-        const produto = await axios.get(URL + '/produtos');
+        const produto = await axios.get(URLRota + '/produtos');
         const resp = produto.data.filter((item) => item.assinatura === 1);
-        // console.log(resp)
         for (let item of resp) {
             item.quantidade = 0;
-        }
+        };
+
         setItensDisponiveis(resp);
     }
 
+    function diminuirItens (qtd, index) {
+        if (qtd > 0) {
+            let qtdItem = qtd 
+            qtdItem--
+            let novoArray = []
+            for(let cont = 0; cont < itensDisponiveis.length; cont++){
+                novoArray[cont] = itensDisponiveis[cont]
+                if(cont === index){
+                    novoArray[cont].quantidade = qtdItem
+                }
+            }
+            setItensDisponiveis(novoArray);
+        }
+    };
+
+    function aumentarItens (qtd, index) {
+        let qtdItem = qtd 
+        qtdItem++
+        let novoArray = []
+        for(let cont = 0; cont < itensDisponiveis.length; cont++){
+            novoArray[cont] = itensDisponiveis[cont];
+
+            if(cont === index){
+                novoArray[cont].quantidade = qtdItem
+            }
+        }
+        setItensDisponiveis(novoArray);
+        // console.log(itensDisponiveis)
+    }
+
     async function chamarCategorias () {
-        const categoriass = await axios.get(URL + '/categorias');
+        const categoriass = await axios.get(URLRota + '/categorias');
         const resposta = categoriass.data;
+
         setCategorias(resposta);
     }
 
     async function chamarCartoes () {
         const idUsuario = storage('usuario-logado').id
-        const cartoess = await axios.get(URL + '/cartoes/' + idUsuario);
+        const cartoess = await axios.get(URLRota + '/cartoes/' + idUsuario);
         setCartoes(cartoess.data)
     }
 
     async function chamarEnderecos () {
         const idUsuario = storage('usuario-logado').id
-        const enderecoss = await axios.get(URL + '/enderecos/' + idUsuario);
+        const enderecoss = await axios.get(URLRota + '/enderecos/' + idUsuario);
         setEnderecos(enderecoss.data)
     }
 
@@ -81,6 +116,10 @@ export default function Assinatura () {
             const produtosCategoria = await filtrarPorCategorias(idCategoria)
             const produtosFiltrados = produtosCategoria.filter((item) => item.assinatura === 1);
       
+            for (let item of produtosFiltrados) {
+                item.quantidade = 0;
+            };
+
           if(produtosFiltrados.length === 0 && idCategoria !== '0' && filtrarPorCategoria !== 0)
             toast.info('Não há produtos com essa categoria.')
     
@@ -94,7 +133,7 @@ export default function Assinatura () {
     async function novoCartao () {
         try {     
             const idUsuario = storage('usuario-logado').id
-            const urlCartao = URL + '/cartao/' + idUsuario;
+            const urlCartao = URLRota + '/cartao/' + idUsuario;
             const infoCartao = {
                 idCliente: idUsuario,
                 numeroCartao: numeroCartao,
@@ -191,17 +230,34 @@ export default function Assinatura () {
             filtrarPorCategoriasClick();
             chamarCartoes();
             chamarEnderecos();
-            console.log(itensDisponiveis);
         } else {
             redir('/cadastro');
         }
     }, []);
 
+    function verificarQtd () {
+        const a = itensDisponiveis.filter((item) => item.quantidade > 0);
+        let qtd = 0;
+        for (let item of itensSelecionados){
+            qtd = item.quantidade + qtd; 
+        }
 
+        setQtdSelecionado(qtd);
+        setItensSelecionados(a);
+    };
 
-    const botaoo = opcaoCartao !== 0 && opcaoEndereco !== 0;
+    function enviarStorage () {
+        storage('itens-selecionados', itensSelecionados);
+    };
 
-    
+    useEffect(() => {
+        if (opcaoCartao == 0 || opcaoEndereco == 0 || qtdSelecionado < 3) {
+            setIsBotaoDisponivel(false);
+        } else if (opcaoCartao != 0 && opcaoEndereco != 0 && qtdSelecionado >= 3) {
+            setIsBotaoDisponivel(true)
+        }
+    }, [opcaoCartao, opcaoEndereco, qtdSelecionado]);
+
     return (
         <main className="assinatura">
             <CabecalhoUsuario/>
@@ -218,8 +274,8 @@ export default function Assinatura () {
 
                 <section className='selecionar-itens'>
                     <nav className='titulo'>
-                        <h1 >Escolha entre os principais sabores disponíveis e quantidade:</h1>
-                        <select name="" id="" value={filtrarPorCategoria} onChange={e => { filtrarPorCategoriasClick(e.target.value); setFiltrarPorCategoria(e.target.value);}}>
+                        <h1>Escolha entre os principais sabores disponíveis e quantidade:</h1>
+                        <select name="" id="" value={filtrarPorCategoria} onChange={e => { filtrarPorCategoriasClick(e.target.value); setFiltrarPorCategoria(e.target.value); }}>
                             <option value={0}>Selecionar</option>
                             {categorias.map((item) => {
                                 return (
@@ -230,9 +286,21 @@ export default function Assinatura () {
                     </nav>
 
                     <div className="itens-cafe" >
-                        {itensDisponiveis.map((item) => {
+                        {itensDisponiveis.map((item, index) => {
                             return (
-                                <ItemDisponivel itemm={item} />           
+                                <main>
+                                    <div className="item">
+                                        <div className="imagem">
+                                            <img src={item.imagem} alt="" />
+                                        </div>
+                                        <p>{item.produto}</p>
+                                        <div className='quantidade-item'>
+                                            <p className='adicionar' onClick={() => {diminuirItens(item.quantidade, index); verificarQtd();}}>-</p>
+                                            <p>{item.quantidade}</p>
+                                            <p className='adicionar' onClick={() => {aumentarItens(item.quantidade, index); verificarQtd();}}>+</p>
+                                        </div>
+                                    </div>
+                                </main>           
                             )
                         })}
                     </div>
@@ -351,9 +419,9 @@ export default function Assinatura () {
                 
                 
                      
-                <button style={{ backgroundColor: canProced ? '#F47E3C' : 'gray' }}>
-                    {canProced
-                    ?   <Link to={'/assinatura/confirmacao'} state={itensSelecionados}>
+                <button style={{ backgroundColor: isBotaoDisponivel ? '#F47E3C' : 'gray' }}>
+                    {isBotaoDisponivel
+                    ?   <Link to={{pathname: '/assinatura/confirmacao'}} onClick={() => enviarStorage()}>
                             <img src="/assets/images/icon-s.png" alt="" id='imagem-fantasma' />
                             <p>Continuar</p>
                             <img src="/assets/images/icon-seta-longa-esquerda.png" alt="" style={{transform: 'rotate(180deg)', width: '50px'}}/>
@@ -372,7 +440,7 @@ export default function Assinatura () {
                     <h2>Como funciona a assinatura mensal?</h2>
                     <div>
                         <p>Nosso método de pagamento nessa modalidade aceita apenas <b>cartão de crédito</b>.</p>
-                        <p>1 - Você escolhe quais produtos deseja levar;</p>
+                        <p>1 - Você escolhe quais produtos deseja levar (mínimo de 3 itens);</p>
                         <p>2 - Cadastra o cartão de crédito e efetua o primeiro pagamento;</p>
                         <p>3 - Todos os meses, no mesmo dia em que o primeiro pagamento foi confirmado, uma nova cobrança chegará no cartão cadastrado e nós separaremos os produtos <b>selecionados por você</b>.</p>
                     </div>

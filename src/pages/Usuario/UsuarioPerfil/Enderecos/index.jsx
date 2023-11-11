@@ -23,7 +23,7 @@ export default function Index(){
             if(alteracao.length === 5 && alteracao.length > cep.length){
                 setCEP(`${alteracao}-`)
             }
-            else{
+            else if(alteracao.length <= 9){
                 setCEP(alteracao)
             }
             
@@ -41,7 +41,7 @@ export default function Index(){
                 }
             }
 
-            else if(alteracao.length > 8 || alteracao.length < 8){
+            else if(alteracao.length < 9){
                 setCidade('')
                 setRua('')
             }
