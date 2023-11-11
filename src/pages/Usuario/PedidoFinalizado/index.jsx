@@ -29,7 +29,7 @@ export default function Index(){
                             <img src="/assets/images/icon-esquerda-curto.png" alt="" />
                             Voltar
                         </Link>
-                        <Link id='acompanhar'>
+                        <Link id='acompanhar' to={{pathname: `/acompanhar-pedido/${id}`}}>
                             Acompanhar pedido
                         </Link>
                     </article>

@@ -10,8 +10,10 @@ import { Link } from 'react-router-dom';
 export default function Index() {
     const [entregaExpress, setEntregaExpress] = useState(false)
     const [entregaEconomica, setEntregaEconomica] = useState(false)
+    const [enderecoEscolhido, setEnderecoEscolhido] = useState(0)
     const [enderecos, setEnderecos] = useState([])
     const [cartoes, setCartoes] = useState([])
+    const [cartaoEscolhido, setCartaoEscolhido] = useState(0)
     const [tipoEntregaEscolhido, setTipoEntregaEscolhido] = useState({tipo: '', valor: 0})
     const [pagamentoPix, setPagamentoPix] = useState(false)
     const navigate = useNavigate()
@@ -33,6 +35,11 @@ export default function Index() {
             return ''
     }
 
+    function escolherEndereco(idEndereco){
+
+    }
+
+
     async function buscarEnderecosClick() {
         const id = storage('usuario-logado').id
         const resp = await buscarEnderecos(id)
@@ -44,7 +51,6 @@ export default function Index() {
         const id = storage('usuario-logado').id
         const resp = await buscarCartoes(id)
 
-        console.log(resp);
         setCartoes(resp)
     }
 
@@ -125,11 +131,11 @@ export default function Index() {
                             <h3> Entrega </h3>
                         </div>
                         <div id='entrega-conteudo'>
-                            <select required autoFocus>
-                                <option> Selecionar endereço </option>
+                            <select value={enderecoEscolhido} onChange={e => escolherEndereco(e.target.value)}>
+                                <option value={0}> Selecionar endereço </option>
                                 {enderecos.map(item => {
                                     return(
-                                        <option> <b>CEP:</b> {item.cep} - {item.rua}, {item.numero} </option>
+                                        <option value={item.id} key={item.id}> <b>CEP:</b> {item.cep} - {item.rua}, {item.numero} </option>
                                     )
                                 })}
                             </select>

@@ -2,7 +2,7 @@ import CabecalhoUsuario from '../../../components/Usuario/UsuarioCabecalho';
 import UsuarioRodape from '../../../components/Usuario/UsuarioRodape';
 import './index.scss';
 import ResumoPedido from '../../../components/Usuario/ResumoPedido'
-import { useParams } from 'react-router';
+import { useNavigate, useParams } from 'react-router';
 import { useEffect, useState } from 'react';
 import { buscarPedidoPorId, trocarStatusPedido } from '../../../api/pedidoApi';
 import { toast } from 'react-toastify';
@@ -11,15 +11,18 @@ import { confirmAlert } from 'react-confirm-alert';
 export default function Index() {
     const [pedido, setPedido] = useState({situacao: ''})
     const {id} = useParams()
-    
+    const navigate = useNavigate()
+
     async function buscarPedido(){
         const pedidoResp = await buscarPedidoPorId(id)
 
         if(pedidoResp.situacao === 'Entregue'){
             toast.info('Pedido já entregue')
+            navigate('/')
         }
         else if(pedidoResp.situacao === 'Cancelado'){
             toast.info('Pedido cancelado')
+            navigate('/')
         }
         else{
             setPedido(pedidoResp)
@@ -35,7 +38,10 @@ export default function Index() {
                 label: 'Sim',
                 onClick: async () => {
                     await trocarStatusPedido('Cancelado', id)
-                    toast.info('Pedido cancelado, retornaremos o dinheiro')
+                    toast.info('Pedido cancelado, retornaremos o dinheiro.')
+                    setTimeout(() => {
+                        navigate('/')
+                    }, 3000)
                 }
             }, 
             {
@@ -226,7 +232,7 @@ export default function Index() {
                     </main>
                     <ResumoPedido idPedido={id}/>
                     <section>
-                        <button> Cancelamento do pedido :(</button>
+                        <button onClick={cancelarPedido}> Cancelamento do pedido :(</button>
                         <p> Algo de errado no pedido ? Ligue-nos ou mande uma mensagem</p>
                         <p> Seu pedido não chegou ? Ligue-nos ou mande uma mensagem</p>
                     </section>

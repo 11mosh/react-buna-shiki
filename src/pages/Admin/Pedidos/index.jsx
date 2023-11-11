@@ -233,7 +233,6 @@ export default function Index() {
                                 <option value='Pedido em preparo'> Pedido em preparo </option>
                                 <option value='À caminho'> À caminho </option>
                                 <option value='Entregue'> Entregue </option>
-                                <option value='Entregue/Finalizado'> Entregue/Finalizado </option>
                                 <option value='Cancelado'> Cancelado </option>
                             </select>
                         </div>

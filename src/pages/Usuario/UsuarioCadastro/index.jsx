@@ -43,6 +43,7 @@ export default function Index() {
                 toast.dark('Bem-Vindo à Buna Shiki')
                 ref.current.continuousStart()
                 storage('usuario-logado', infoCliente)
+                storage('usuario-pedido', {})
                 
                 setTimeout(() => {
                     navigate('/')
