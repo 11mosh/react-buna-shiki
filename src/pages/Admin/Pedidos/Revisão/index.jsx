@@ -102,6 +102,10 @@ export default function Index() {
                                     <td> Tipo de entrega: </td>
                                     <td className='valor'> Entrega Express</td>
                                 </tr>
+                                <tr>
+                                    <td> Final do cartão: </td>
+                                    <td className='valor'> 0000 </td>
+                                </tr>
                                 <tr className='ultimaLinha'>
                                     <td> Forma de pagamento: </td>
                                     <td className='valor'> Cartão de crédito </td>

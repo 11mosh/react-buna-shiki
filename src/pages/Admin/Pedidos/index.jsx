@@ -259,12 +259,12 @@ export default function Index() {
                     <table>
                     <thead>
                         <tr>
-                        <th className='pequeno'> Código </th>
+                        <th className='pequeno'> ID </th>
                         <th className='desaparece4 grande'> Cliente </th>
                         <th className='grande'> Status </th>
                         <th className='desaparece2 medio'> Data </th>
                         <th className='desaparece3 medio'> Faturamento </th>
-                        <th className='desaparece grande'> Pagamento </th>
+                        <th className='desaparece medio'> Pagamento </th>
                         </tr>
                     </thead>
                     <hr />
@@ -272,7 +272,7 @@ export default function Index() {
                         {pedidos.map((item, index) => {
                             return(
                                 <tr key={item.id}>
-                                    <td className='pequeno'> {item.codigo} </td>
+                                    <td className='pequeno'> {item.id} </td>
                                     <td className='desaparece4 grande'> {verificarNomeCliente(item.cliente)} </td>
                                     <td className='grande'> 
                                         <select value={item.situacao} onChange={ e => trocarStatus(e.target.value, item.id, index)}>
@@ -286,7 +286,7 @@ export default function Index() {
                                     </td>
                                     <td className='desaparece2 medio'> {item.dt_pedido.substr(0,10)} </td>
                                     <td className='desaparece3 medio'> R$ {item.total} </td>
-                                    <td className='desaparece grande' > {item.forma_pagamento} </td>
+                                    <td className='desaparece medio' > {item.forma_pagamento} </td>
                                 </tr>
                             )
                         })}     

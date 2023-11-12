@@ -5,6 +5,7 @@ import 'react-confirm-alert/src/react-confirm-alert.css';
 import { confirmAlert } from 'react-confirm-alert';
 import Avaliacao from './avaliacao/telaAvaliacao';
 import BarraNavegacao from '../../../../components/Usuario/BarraNavegacaoConta'
+import { Link } from 'react-router-dom';
 
 export default function MeusPedidos () {
 
@@ -45,7 +46,7 @@ export default function MeusPedidos () {
                         </div>
                         
                         <div className='links'>
-                            <h4 style={ {color: '#0071A1', textDecoration: 'underline', cursor: 'pointer'}}>Exibir detalhes do pedido</h4>
+                            <Link style={ {fontWeight: 700, color: '#0071A1', textDecoration: 'underline', cursor: 'pointer'}}>Exibir detalhes do pedido</Link>
                             <h4 style={ {color: '#0071A1', textDecoration: 'underline', cursor: 'pointer'}} onClick={avaliacao}>Avalie o pedido</h4>
                         </div>
                     </article>
@@ -68,7 +69,7 @@ export default function MeusPedidos () {
                         </div>
                         
                         <div className='links'>
-                            <h4 style={ {color: '#0071A1', textDecoration: 'underline', cursor: 'pointer'}}>Exibir detalhes do pedido</h4>
+                            <Link style={ { fontWeight: 700,color: '#0071A1', textDecoration: 'underline', cursor: 'pointer'}}>Exibir detalhes do pedido</Link>
                             <h4 style={ {color: '#0071A1', textDecoration: 'underline', cursor: 'pointer'}} onClick={avaliacao}>Avalie o pedido</h4>
                         </div>
                     </article>
@@ -89,7 +90,7 @@ export default function MeusPedidos () {
                         </div>
                         
                         <div className='links'>
-                            <h4 style={ {color: '#0071A1', textDecoration: 'underline', cursor: 'pointer'}}>Exibir detalhes do pedido</h4>
+                            <Link style={ { fontWeight: 700, color: '#0071A1', textDecoration: 'underline', cursor: 'pointer'}} >Exibir detalhes do pedido</Link>
                             <h4 style={ {color: '#0071A1', textDecoration: 'underline', cursor: 'pointer'}} onClick={avaliacao}>Avalie o pedido</h4>
                         </div>
                     </article>

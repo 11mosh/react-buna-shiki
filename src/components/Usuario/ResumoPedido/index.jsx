@@ -10,7 +10,12 @@ export default function Index(props) {
 
     async function buscarPedido(){
         const respPedido = await buscarPedidoPorId(props.idPedido)
-        setPedido(respPedido)
+        
+        if(respPedido.id_cliente !== storage('usuario-logado').id)
+            navigate('/conta/meus-pedidos')
+        else{
+            setPedido(respPedido)
+        }
     }
 
     useEffect(() => {
