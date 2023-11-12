@@ -4,6 +4,7 @@ import './index.scss';
 import {toast} from 'react-toastify'
 import { buscarPedidosPorData, buscarPesquisa, buscarPorFormaPagamento, buscarPorStatus, buscarTodosPedidos, ordenarPedidos, trocarStatusPedido } from '../../../api/pedidoApi';
 import { confirmAlert } from 'react-confirm-alert'
+import { useNavigate } from 'react-router';
 
 export default function Index() {
     const [ordenar, setOrdenar] = useState('')
@@ -12,6 +13,7 @@ export default function Index() {
     const [dataPedido, setDataPedido] = useState('')
     const [pesquisa, setPesquisa] = useState('')
     const [pedidos, setPedidos] = useState([])
+    const navigate = useNavigate()
 
     async function buscarPedidosClick(){
         try{
@@ -164,6 +166,10 @@ export default function Index() {
             return nome
     }
 
+    function verResumo(id) {
+        navigate(`/adm/pedidos/resumo/${id}`)
+    }
+
     function verificarTecla(e){
         if(e.key === 'Enter')
             buscarPesquisaClick()
@@ -235,7 +241,7 @@ export default function Index() {
                                 <option value='Entregue'> Entregue </option>
                                 <option value='Cancelado'> Cancelado </option>
                             </select>
-                        </div>
+                        </div> 
                     </article>
                     <article>
                         <h3> Tipo de pagamento:</h3>
@@ -271,7 +277,7 @@ export default function Index() {
                     <tbody>
                         {pedidos.map((item, index) => {
                             return(
-                                <tr key={item.id}>
+                                <tr key={item.id} onClick={() => verResumo(item.id)}>
                                     <td className='pequeno'> {item.id} </td>
                                     <td className='desaparece4 grande'> {verificarNomeCliente(item.cliente)} </td>
                                     <td className='grande'> 

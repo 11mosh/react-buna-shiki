@@ -3,18 +3,27 @@ import './index.scss'
 import { buscarPedidoPorId } from '../../../api/pedidoApi'
 import { useNavigate } from 'react-router'
 import storage from 'local-storage'
+import { toast } from 'react-toastify'
 
 export default function Index(props) {
     const navigate = useNavigate()
     const [pedido, setPedido] = useState({dt_entrega: '', dt_pedido: '', itens: [], endereco: {}})
 
     async function buscarPedido(){
-        const respPedido = await buscarPedidoPorId(props.idPedido)
-        
-        if(respPedido.id_cliente !== storage('usuario-logado').id)
-            navigate('/conta/meus-pedidos')
-        else{
-            setPedido(respPedido)
+        try{
+            const respPedido = await buscarPedidoPorId(props.idPedido)
+    
+            if(respPedido.id_cliente !== storage('usuario-logado').id)
+                navigate('/conta/meus-pedidos')
+            else{
+                setPedido(respPedido)
+            }
+        }
+        catch(err){
+            if(err.response)
+                toast.error(err.response.data.erro)
+            else
+                toast.error(err.message)
         }
     }
 

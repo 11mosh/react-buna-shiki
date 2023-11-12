@@ -1,10 +1,80 @@
-import { Link } from 'react-router-dom'
+import { Link, useParams } from 'react-router-dom'
 import CabecalhoAdm from '../../../../components/Admin/AdmCabecalho'
 import './index.scss'
-
+import { useEffect, useState } from 'react'
+import { toast } from 'react-toastify'
+import { buscarPedidoPorId, trocarStatusPedido } from '../../../../api/pedidoApi'
+import { confirmAlert } from 'react-confirm-alert'
 
 
 export default function Index() {
+    const {id} = useParams()
+    const [pedido, setPedido] = useState({dt_pedido: '', dt_entrega: '', cartao: { numero: ''}, cliente: {}, itens: []})
+    const [status, setStatus] = useState('')
+
+    async function buscarPedido() {
+        try{
+            const pedidoResp = await buscarPedidoPorId(id)
+            console.log(pedidoResp);
+            setPedido(pedidoResp)
+            setStatus(pedidoResp.situacao)
+        }
+        catch(err){
+            if(err.response)
+                toast.error(err.response.data.erro)
+            else
+                toast.error(err.response)
+        }
+    }
+
+
+    async function trocarStatus(novoStatus) {
+        confirmAlert({
+            title: 'Trocar status',
+            message: `Tem certeza que deseja trocar o status do pedido com id ${pedido.id}, de "${pedido.situacao}" para "${novoStatus}" ?`,
+            buttons: [{
+                label: 'Sim',
+                onClick: async () => {
+                    try{
+                        await trocarStatusPedido(novoStatus, id)
+                        setStatus(novoStatus)
+                    }
+                    catch(err){
+                        if(err.response)
+                            toast.error(err.response.data.erro)
+                        else
+                            toast.error(err.message)
+                    }
+                }
+            },
+            {
+                label: 'Não'
+            }
+        ]
+        })
+    }
+
+    function verificarCodigo() {
+        if(pedido.id){
+            let codigo = `BS - 000${pedido.id}`
+            
+            return codigo
+        }
+    }
+
+    function verificarCartao(){
+        if(pedido.forma_pagamento === 'Cartão'){
+            return pedido.cartao.numero.substring(12, 16)
+        }
+        else{
+            return '-'
+        }
+    }
+ 
+    useEffect(() => {
+        buscarPedido()
+    }, [])
+    
     return(
         <main className='page-adm-pedidos-revisao'>
             <CabecalhoAdm />
@@ -34,43 +104,26 @@ export default function Index() {
                                 </tr>
                             </thead>
                             <tbody>
-                                <tr>
-                                    <td>Café Orfeu Clássico 1kg</td>
-                                    <td>1</td>
-                                    <td>R$87,999</td>
-                                </tr>
-                                <tr>
-                                    <td>Café Orfeu Bourbon Amarelo 250g</td>
-                                    <td>1</td>
-                                    <td>R$87,99</td>
-                                </tr>
-                                <tr>
-                                    <td>Café Orfeu Clássico 1kg</td>
-                                    <td>1</td>
-                                    <td>R$87,999</td>
-                                </tr>
-                                <tr>
-                                    <td>Café Orfeu Clássico 1kg</td>
-                                    <td>1</td>
-                                    <td>R$87,999</td>
-                                </tr>
-                                <tr>
-                                    <td>Café Orfeu Clássico 1kg</td>
-                                    <td>1</td>
-                                    <td>R$118,99</td>
-                                </tr>
-
+                                {pedido.itens.map(item => {
+                                    return(
+                                        <tr>
+                                            <td>{item.produto.produto} {item.produto.detalhes.peso}</td>
+                                            <td>{item.qtd}</td>
+                                            <td>R${item.produto.preco}</td>
+                                        </tr>
+                                    )
+                                })}
                             </tbody>
                         </table>
                         <table className='duasInformacoes' id='continuacaoDetalhesProdutos'>
                             <tbody>
                                 <tr>
                                     <td className='topico'>Frete: </td>
-                                    <td className='valor'>R$11,64</td>
+                                    <td className='valor'>R$ {pedido.frete}</td>
                                 </tr>
-                                <tr className='ultimaLinha'>
+                                <tr className='ultimaLinha'> 
                                     <td className='topico'>Valor Total: </td>
-                                    <td >R$121,62</td>
+                                    <td >R$ {pedido.total}</td>
                                 </tr>
                             </tbody>
                         </table>
@@ -80,35 +133,40 @@ export default function Index() {
                             <tbody>
                                 <tr>
                                     <td> Código do pedido: </td>
-                                    <td className='valor'> 0000001-00</td>
+                                    <td className='valor'> {verificarCodigo()}</td>
                                 </tr>
                                 <tr>
                                     <td> Status do pedido: </td>
                                     <td className='valor'>
-                                        <select name="" id="">
-                                            <option>Aguardando pagamento</option>
+                                        <select value={status} onChange={e => trocarStatus(e.target.value)}>
+                                            <option value='Pedido realizado'> Pedido realizado </option>
+                                            <option value='Pagamento'> Pagamento</option>
+                                            <option value='Pedido em preparo'> Pedido em preparo </option>
+                                            <option value='À caminho'> À caminho </option>
+                                            <option value='Entregue'> Entregue </option>
+                                            <option value='Cancelado'> Cancelado </option>
                                         </select>
                                     </td>
                                 </tr>
                                 <tr>
                                     <td> Data do pedido: </td>
-                                    <td className='valor'> 04/06/2023 21:30:65</td>
+                                    <td className='valor'> {pedido.dt_pedido.substring(0, 10)} {pedido.dt_pedido.substring(11, 19)}</td>
                                 </tr>
                                 <tr>
                                     <td> Data de entrega: </td>
-                                    <td className='valor'> 04/06/2023 </td>
+                                    <td className='valor'> {pedido.dt_entrega.substring(0, 10)} </td>
                                 </tr>
                                 <tr>
                                     <td> Tipo de entrega: </td>
-                                    <td className='valor'> Entrega Express</td>
+                                    <td className='valor'> {pedido.tp_entrega}</td>
                                 </tr>
                                 <tr>
                                     <td> Final do cartão: </td>
-                                    <td className='valor'> 0000 </td>
+                                    <td className='valor'> {verificarCartao()} </td>
                                 </tr>
                                 <tr className='ultimaLinha'>
                                     <td> Forma de pagamento: </td>
-                                    <td className='valor'> Cartão de crédito </td>
+                                    <td className='valor'> {pedido.forma_pagamento} </td>
                                 </tr>
                             </tbody>
                         </table>
@@ -116,19 +174,19 @@ export default function Index() {
                             <tbody>
                                 <tr>
                                     <td> Cliente: </td>
-                                    <td className='valor'> Josadac Mesquita</td>
+                                    <td className='valor'> {pedido.cliente.nome}</td>
                                 </tr>
                                 <tr>
                                     <td> CPF: </td>
-                                    <td className='valor'>999.999.999-99</td>
+                                    <td className='valor'>{pedido.cliente.cpf}</td>
                                 </tr>
                                 <tr>
                                     <td> Telefone: </td>
-                                    <td className='valor'> 99999-9999</td>
+                                    <td className='valor'> {pedido.cliente.telefone}</td>
                                 </tr>
                                 <tr className='ultimaLinha'>
                                     <td> Email: </td>
-                                    <td className='valor'> pietroteste@gmail.com</td>
+                                    <td className='valor'> {pedido.cliente.email}</td>
                                 </tr>
                             </tbody>
                         </table>
