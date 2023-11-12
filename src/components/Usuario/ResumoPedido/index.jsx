@@ -12,7 +12,8 @@ export default function Index(props) {
     async function buscarPedido(){
         try{
             const respPedido = await buscarPedidoPorId(props.idPedido)
-    
+            
+            console.log(respPedido);
             if(respPedido.id_cliente !== storage('usuario-logado').id)
                 navigate('/conta/meus-pedidos')
             else{
@@ -34,6 +35,8 @@ export default function Index(props) {
         else{
             buscarPedido()
         }
+
+        // eslint-disable-next-line
     }, [])
     
     
@@ -96,13 +99,13 @@ export default function Index(props) {
                                         <img src={item.produto.imagem} alt="produto" />
                                         <div id='qtd'> {item.qtd} </div>
                                     </div>
-                                    <h4> {item.produto.produto} {item.produto.detalhes.peso}</h4>
+                                    <h4> {item.produto.produto} {item.produto.categoria === 'Café em grãos' || item.produto.categoria === 'Café em pó' ? item.produto.detalhes.peso : ''}</h4>
                                     <span> R$ {item.produto.preco} </span>
                                 </article>
                             )
                         })}
                     </section>
-                </main>
+                </main> 
             </div>
         </div>
     )

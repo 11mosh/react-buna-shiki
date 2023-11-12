@@ -184,7 +184,7 @@ export default function Index() {
                                         <img src={item.imagem} alt='cafeteira' />
                                     </figure>
                                     <aside> 
-                                        <h5> {item.produto} </h5>
+                                        <h5> {item.produto} {item.categoria === 'Café em grãos' || item.categoria === 'Café em pó' ? item.detalhes.peso : ''} </h5>
                                         <b> R${item.preco} </b>
                                         <div>
                                             {item.qtd}

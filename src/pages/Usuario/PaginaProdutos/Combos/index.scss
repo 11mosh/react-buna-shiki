@@ -1,4 +1,8 @@
 #page-combos{
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    height: 100vh;
     > #conteudo {
         display: flex;
         align-items:center;
@@ -16,11 +20,12 @@
             display: flex;
             padding: 30px 50px ;
             border-radius: 10px;
-            gap: 50px;
+            gap: 80px;
+            border: 2px solid black;
             > #a1 {
                 display: flex;
                 flex-direction: column;
-                gap: 30px;
+                gap: 50px;
                 h2 {    
                     margin-left: 35px;
                 }
@@ -29,21 +34,28 @@
                     display: flex;
                     align-items: center;
                     justify-content: center;
-                    > img {
-                        width: 30px;
-                        margin-bottom: 20px;
-                    }
-                    > section {
+                    gap: 10px;
+                    > div {
                         display: flex;
-                        flex-direction: column;
                         align-items: center;
-                        gap: 5px;
-                        h5 {
-                            font-family: 'Inter';
-                            font-size: 15px;
+                        gap: 10px;
+                        > img {
+                            width: 37px;
+                            height: 37px;
+                            margin-bottom: 20px;
                         }
-                        img {
-                            width: 115px ;
+                        > section {
+                            display: flex;
+                            flex-direction: column;
+                            align-items: center;
+                            gap: 5px;
+                            h5 {
+                                font-family: 'Inter';
+                                font-size: 15px;
+                            }
+                            img {
+                                width: 115px ;
+                            }
                         }
                     }
                 }
@@ -65,13 +77,6 @@
                     font-size: 14.5px;
                     font-weight: 500;
                 }
-                .btMarrom {
-                    background-color:#661515;
-                }
-                .btMarrom:active {
-                    background-color:#331111;
-                    transition: 0.2s;
-                }
                 .btLaranja {
                     background-color: #F47E3C;
                 }
@@ -87,24 +92,6 @@
             display: flex;
         }
 
-        #s1 {
-            border: 4px solid #C3937D;           
-        }
-        #s2 {
-            border: 4px solid #883715;
-            > #a2 {
-                justify-content: center;
-                gap: 50px;
-                #buttons {
-                    display: flex;
-                    flex-direction: column;
-                    gap: 10px;
-                }
-            }
-        }
-        #s3 {
-            border: 4px solid #3D1010;
-        }
     }
 }
 
@@ -119,9 +106,11 @@
                 #a1 {
                     align-items: flex-start;
                     > div {
-                        > section {
-                            img {
-                                width: 110px;
+                        > div {
+                            > section {
+                                img {
+                                    width: 110px;
+                                }
                             }
                         }
                     }
@@ -147,19 +136,21 @@
                     }
                     > div {
                         flex-wrap: wrap;
-                        width: 490px;
+                        width: 470px;
                         gap: 25px;
-                        > section {
-                            margin-top: 15px;
+                        > div {
                             > section {
-                                img {
-                                    width: 105px;
+                                margin-top: 15px;
+                                > section {
+                                    img {
+                                        width: 105px;
+                                    }
                                 }
+                            } 
+                            .some {
+                                display: none;
                             }
                         } 
-                        .some {
-                            display: none;
-                        }
                     }
                 }
             }
@@ -179,11 +170,13 @@
                     }
                     > div {
                         flex-wrap: wrap;
-                        width: 480px;
+                        width: 440px;
                         min-width: none;
-                        section {
-                            img {
-                                width: 100px !important;
+                        div {
+                            section {
+                                img {
+                                    width: 100px !important;
+                                }
                             }
                         }
                     }
@@ -205,18 +198,20 @@
                         text-align: center;
                     }
                     > div {
-                        width: 100%;
+                        width: 80%;
                         gap: 0px;
-                        section {
-                            img {
-                                width: 95px !important;
+                        div {
+                            section {
+                                img {
+                                    width: 95px !important;
+                                }
                             }
                         }
                     }
                 }
                 #a2 {
                     h2 {
-                        font-size: 22px;
+                        font-size: 21px;
                     }
                     button {
                         height: 33px;
@@ -239,18 +234,26 @@
                         width: 100%;
                         flex-direction: column;
                         gap: 20px;
-                        section {
-                            margin-top: 0px;
-                            img {
-                                width: 90px
+                        div {
+                            flex-direction: column;
+                            section {
+                                margin-top: 0px;
+                                img {
+                                    width: 90px
+                                }
+                            }
+                            .some  {
+                                display:flex;
+                            }
+                            > img {
+                                margin-bottom: 0px !important;
                             }
                         }
-                        .some  {
-                            display:flex;
-                        }
-                        > img {
-                            margin-bottom: 0px !important;
-                        }
+                    }
+                }
+                #a2 {
+                    h2 {
+                        font-size: 20px;
                     }
                 }
             }

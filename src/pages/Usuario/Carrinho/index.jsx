@@ -67,13 +67,38 @@ export default function Carrinho () {
         setSubtotal(subtotalCalc)
     }
 
-    useEffect(() => {
-        const pedido = storage('usuario-pedido')
-        setProdutos(storage('usuario-pedido').produtos)
-        // { imagem: '/assets/images/cafeteiraa.png', produto: 'Orfeu intenso', detalhes: { peso: ' 1kg ' }, qtd: 0, preco: 135.50}
-        pedido.produtos = [{ imagem: '/assets/images/cafeteiraa.png', estoque: 5, id: 1, produto: 'Orfeu intenso', detalhes: { peso: ' 1kg ' }, qtd: 3, preco: 135.50}, { id: 2, estoque: 5, imagem: '/assets/images/cafeteiraa.png', produto: 'Orfeu intenso', detalhes: { peso: ' 1kg ' }, qtd: 3, preco: 135.50}, { id: 3, estoque: 5, imagem: '/assets/images/cafeteiraa.png', produto: 'Orfeu intenso', detalhes: { peso: ' 1kg ' }, qtd: 3, preco: 135.50}, {  id: 4, estoque: 5, imagem: '/assets/images/cafeteiraa.png', produto: 'Orfeu intenso', detalhes: { peso: ' 1kg ' }, qtd: 3, preco: 135.50}]
+    function atribuirProdutos() {
+        const produtosStorage = storage('usuario-pedido').produtos
+        let produtos = []
+        
+        for(let cont = 0; cont < produtosStorage.length; cont++){
+            let repetidoPosicao = ''
+            for(let conta = 0; conta < produtos.length; conta++){
+                if(produtos[conta].id === produtosStorage[cont].id){
+                    repetidoPosicao = conta
+                    break
+                }
+            }
+            if(repetidoPosicao === ''){
+                produtos[cont] = produtosStorage[cont]
+                console.log('inseriu');
+            }
+            else{
+                produtos[repetidoPosicao].qtd = ++produtos[repetidoPosicao].qtd
+                console.log('inseriuRepetido');
+            }
+        }
 
+        let pedido = storage('usuario-pedido')
+        pedido.produtos = produtos
         storage('usuario-pedido', pedido)
+
+        setProdutos(produtos)
+    }
+
+    useEffect(() => {
+        atribuirProdutos()
+
     }, [])
 
     useEffect(() => {
@@ -110,7 +135,7 @@ export default function Carrinho () {
                                                 <img src={item.imagem} alt='' />
                                             </div>
                                             <div id="detalhes">
-                                                <p> {item.produto} {item.detalhes.peso}</p>
+                                                <p> {item.produto} {item.categoria === 'Café em grãos' || item.categoria === 'Café em pó' ? item.detalhes.peso : ''}</p>
                                                 <p> R${item.preco} </p>
                                                 <div> 
                                                     <button onClick={() => diminuirQtd(item.id, index, item.qtd)}> 

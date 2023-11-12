@@ -73,6 +73,8 @@ export default function Index() {
  
     useEffect(() => {
         buscarPedido()
+        
+        // eslint-disable-next-line
     }, [])
     
     return(

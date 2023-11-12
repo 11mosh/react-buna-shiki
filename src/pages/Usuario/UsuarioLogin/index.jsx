@@ -22,7 +22,7 @@ export default function Index() {
         try{
             const resp = await Login(email, senha)
             storage('usuario-logado', resp)
-            storage('usuario-pedido', {})
+            storage('usuario-pedido', {produtos: []})
             setTimeout(() => {
                 navigate('/')
             }, 3000)

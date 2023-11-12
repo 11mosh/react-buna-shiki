@@ -1,127 +1,110 @@
 import './index.scss';
 import CabecalhoUsuario from '../../../../components/Usuario/UsuarioCabecalho';
 import UsuarioRodape from '../../../../components/Usuario/UsuarioRodape'
+import { useEffect, useState } from 'react';
+import { toast } from 'react-toastify';
+import { buscarCombos } from '../../../../api/comboApi';
+import storage from 'local-storage'
 
 export default function Combos(){
+    const [combos, setCombos] = useState([])
+
+
+
+    function adicionarCarrinho(indexCombo) {
+        let pedido = storage('usuario-pedido')
+        
+        for(let cont = 0; cont < combos[indexCombo].produtos.length; cont++){
+            let extraindoProdutos = combos[indexCombo].produtos[cont].produto
+            extraindoProdutos.qtd = 1
+            console.log(extraindoProdutos);
+            pedido.produtos = [...pedido.produtos, extraindoProdutos ]
+        }
+
+        storage('usuario-pedido', pedido)
+    }       
+
+
+    async function buscarCombosExibir() {
+        try{
+            const resp = await buscarCombos()
+            console.log(resp);
+            setCombos(resp)
+        }
+        catch(err){
+            if(err.response)
+                toast.error(err.response.data.erro)
+            else
+                toast.error(err.message)
+        }
+    }
+
+    function verificarAparicao(id, index, array){
+        if(combos.length !== 0){
+            
+            if(id === array[array.length - 1].id){
+                return 'none'
+            }
+            else
+                return ''
+        }
+    }
+
+    function verificarClasse(index){
+        if(index === 1)
+            return 'some'
+        else
+            return ''
+    }
+
+    useEffect(() => {
+        buscarCombosExibir()
+
+        // eslint-disable-next-line
+    }, [])
+    
+    
+    
+    
+    
+    
+    
     return(
         <div id='page-combos'>
             <CabecalhoUsuario />
             <main id='conteudo'>
-                <section id='s1'>
-                    <article id='a1'>
-                        <h2> Combo iniciante </h2>
-                        <div>
-                            <section>
-                                <img  src='/assets/images/cafe3coracoes.svg' alt='' />
-                                <p> Orfeu orgânico 250g </p>
-                                <h5 className='precoMarrom'> R$20,00 x 3</h5>
-                            </section>
-                            <img src='/assets/images/icon-mais.png' alt='' />
-                            <section>
-                                <img src='/assets/images/cafe3coracoes.svg' alt='' />
-                                <p> Orfeu orgânico 250g </p>
-                                <h5 className='precoMarrom'> R$20,00</h5>
-                            </section>
-                            <img className='some' src='/assets/images/icon-mais.png' alt='' />
-                            <section>
-                                <img src='/assets/images/cafe3coracoes.svg' alt='' />
-                                <p> Orfeu orgânico 250g </p>
-                                <h5 className='precoMarrom'> R$20,00</h5>
-                            </section>
-                            <img src='/assets/images/icon-mais.png' alt='' />
-                            <section>
-                                <img src='/assets/images/cafe3coracoes.svg' alt='' />
-                                <p> Orfeu orgânico 250g </p>
-                                <h5 className='precoMarrom'> R$20,00</h5>
-                            </section>
-                        </div>
-                    </article>
-                    <article id='a2'>
-                        <div>
-                            <h2> Por apenas </h2>
-                            <h2 className='precoMarrom'> R$ 430,00 </h2>
-                        </div>
-                        <button className='btLaranja'> Adicionar no carrinho</button>
-                    </article>
-                </section>
-                <section id='s2'>
-                    <article id='a1'>
-                        <h2> Combo 4 cafés variado </h2>
-                        <div>
-                            <section>
-                                <img src='/assets/images/cafe3coracoes.svg' alt='' />
-                                <p> Orfeu orgânico 250g </p>
-                                <h5 className='precoMarrom'> R$20,00</h5>
-                            </section>
-                            <img src='/assets/images/icon-mais.png' alt='' />
-                            <section>
-                                <img src='/assets/images/cafe3coracoes.svg' alt='' />
-                                <p> Orfeu orgânico 250g </p>
-                                <h5 className='precoMarrom'> R$20,00</h5>
-                            </section>
-                            <img className='some' src='/assets/images/icon-mais.png' alt='' />
-                            <section>
-                                <img src='/assets/images/cafe3coracoes.svg' alt='' />
-                                <p> Orfeu orgânico 250g </p>
-                                <h5 className='precoMarrom'> R$20,00</h5>
-                            </section>
-                            <img src='/assets/images/icon-mais.png' alt='' />
-                            <section>
-                                <img src='/assets/images/cafe3coracoes.svg' alt='' />
-                                <p> Orfeu orgânico 250g </p>
-                                <h5 className='precoMarrom'> R$20,00</h5>
-                            </section>
-                        </div>
-                    </article>
-                    <article id='a2'>
-                        <div id='text'>
-                            <h2> Por apenas </h2>
-                            <h2 className='precoMarrom'> R$ 430,00 </h2>
-                        </div>
-                        <div id='buttons'>
-                            <button className='btMarrom' > Combo Santa Mônica</button>
-                            <button className='btMarrom' > Combo 3 corações </button>
-                            <button className='btLaranja'> Adicionar no carrinho</button>
-                        </div>
-                    </article>
-                </section>
-                <section id='s3'>
-                    <article id='a1'>
-                        <h2> Combo diversificado </h2>
-                        <div>
-                            <section>
-                                <img src='/assets/images/cafe3coracoes.svg' alt='' />
-                                <p> Orfeu orgânico 250g </p>
-                                <h5 className='precoMarrom'> R$20,00</h5>
-                            </section>
-                            <img src='/assets/images/icon-mais.png' alt='' />
-                            <section>
-                                <img src='/assets/images/cafe3coracoes.svg' alt='' />
-                                <p> Orfeu orgânico 250g </p>
-                                <h5 className='precoMarrom'> R$20,00</h5>
-                            </section>
-                            <img className='some'src='/assets/images/icon-mais.png' alt='' />
-                            <section>
-                                <img src='/assets/images/cafe3coracoes.svg' alt='' />
-                                <p> Orfeu orgânico 250g </p>
-                                <h5 className='precoMarrom'> R$20,00</h5>
-                            </section>
-                            <img src='/assets/images/icon-mais.png' alt='' />
-                            <section>
-                                <img src='/assets/images/cafe3coracoes.svg' alt='' />
-                                <p> Orfeu orgânico 250g </p>
-                                <h5 className='precoMarrom'> R$20,00</h5>
-                            </section>
-                        </div>
-                    </article>
-                    <article id='a2'>
-                        <div>
-                            <h2> Por apenas </h2>
-                            <h2 className='precoMarrom'> R$ 430,00 </h2>
-                        </div>
-                        <button className='btLaranja'> Adicionar no carrinho</button>
-                    </article>
-                </section>
+                {combos.map((combo, indexCombo) => {
+                    
+                    return(
+                        <section id='s1'>
+                            <article id='a1'>
+                                <h2> {combo.nome} </h2>
+                                <div>
+                                    {combo.produtos.map((item, indexProdutos, array) => {
+                                        
+                                        return(
+                                            <div>
+                                                <section>
+                                                    <img  src={item.produto.imagem} alt='' />
+                                                    <p> {item.produto.produto} {item.produto.categoria === 'Café em grãos' || item.produto.categoria === 'Café em pó' ? item.produto.detalhes.peso : ''} </p>
+                                                    <h5 className='precoMarrom'> R${item.produto.preco}</h5>
+                                                </section>
+                                                <img className={verificarClasse(indexProdutos)} style={{display: verificarAparicao(item.id, indexProdutos, array)}} src='/assets/images/icon-mais.png' alt='' />
+                                            </div>
+                                        )
+                                    })}
+                                </div>
+                            </article>
+                            <article id='a2'>
+                                <div>
+                                    <h2> Por apenas </h2>
+                                    <h2 className='precoMarrom'> R$ {combo.preco} </h2>
+                                </div>
+                                <button className='btLaranja' onClick={() => adicionarCarrinho(indexCombo)}> Adicionar no carrinho</button>
+                            </article>
+                        </section>
+                    )
+                })}
             </main>
             <UsuarioRodape />
         </div>

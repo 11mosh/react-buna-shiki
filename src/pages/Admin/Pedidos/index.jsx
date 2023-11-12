@@ -180,24 +180,29 @@ export default function Index() {
         if(ordenar !== '')
             ordenarPedidosClick()
 
+        // eslint-disable-next-line
     }, [ordenar])
 
     useEffect(() => {
         if(dataPedido !== '')
             buscarPorData()
 
+        // eslint-disable-next-line
     }, [dataPedido])
 
     useEffect(() => {
         if(statusPedido !== '')
             buscarPorStatusClick()
 
+        // eslint-disable-next-line
     }, [statusPedido])
 
     useEffect(() => {
-        if(tpPagamento !== '') 
+        if(tpPagamento !== '') {
             buscarPorFormaPagamentoClick()
-
+        }
+        
+        // eslint-disable-next-line
     }, [tpPagamento])
 
 
