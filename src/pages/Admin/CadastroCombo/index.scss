@@ -1,7 +1,7 @@
 .cadastro-combo {
     display: flex;
     flex-direction: column;
-    
+    font-family: 'Inter';
     
     img {
         width: 85px;
@@ -76,15 +76,15 @@
                     display: flex;
                     flex-direction: column;
                     width: 100%;
-                
+                    gap: 10px;
                     > div {
                         display: flex;
                         flex-direction: column;
                         font-family: 'Inter';
                         width: 100%;
-
+                        gap: 5px;
                         input {
-                            padding: 3px;
+                            padding: 3px 10px;
                             border-radius: 8px;
                             border: 2px solid rgba(0, 0, 0, 0.37);
                             height: 28px;
@@ -130,7 +130,7 @@
                     background-color: #D9D9D9;
                     display: flex;
                     flex-direction: row;
-                    gap: 15px;
+                    gap: 50px;
                     flex-wrap: wrap;
                     justify-content: center;
                     padding: 10px;
@@ -144,11 +144,11 @@
                         flex-direction: column;
                         align-items: center;
                         justify-content: center;
+                        gap: 10px;
 
                         > div {
                             display: flex;
                             flex-direction: row;
-                            gap: 10px;
 
                             > h2 {
                                 width: 25px;
@@ -218,7 +218,7 @@
                 flex-direction: column;
                 height: fit-content;
                 width: 90%;
-
+                gap: 50px;
                 .sec1 {
                     width: 100%;
                     
@@ -228,7 +228,7 @@
                 }
                 .selecao-produtos {
                     width: 100%;
-
+                    
                     #button2 {
                         display: flex;
                         width: 90%;
@@ -246,7 +246,9 @@
                         transition: .2s;
                         justify-content: center;
                     }
-
+                    .visualizacao {
+                        margin-top: 30px;
+                    }
                     #button2:hover {
                         transform: translateY(-5px);
                         font-weight: bold;

@@ -10,6 +10,7 @@ export default function Index(props) {
 
     function logout() {
         storage.remove('usuario-logado')
+        storage.remove('usuario-pedido')
         navigate('/')
     }
     function selecionarLink(Nomelink){

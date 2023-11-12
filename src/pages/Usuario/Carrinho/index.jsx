@@ -95,7 +95,7 @@ export default function Carrinho () {
 
         setProdutos(produtos)
     }
-
+ 
     useEffect(() => {
         atribuirProdutos()
 
