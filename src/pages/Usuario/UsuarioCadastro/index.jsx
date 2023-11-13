@@ -43,6 +43,7 @@ export default function Index() {
                 toast.success('Cadastro finalizado com sucesso, aproveite as compras.')
                 ref.current.continuousStart()
                 storage('usuario-logado', infoCliente)
+                storage('id-assinatura', {idAssinatura: 0});
                 storage('usuario-pedido', {produtos: []})
                 
                 setTimeout(() => {

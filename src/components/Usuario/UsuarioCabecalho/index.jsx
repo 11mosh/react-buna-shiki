@@ -64,6 +64,10 @@ export default function CabecalhoUsuario() {
         }
     };
 
+    async function assinatura () {
+        
+    }
+
     useEffect(() => {
         buscarCategoriasExibicao();
         pesquisaProdutos();
@@ -78,7 +82,7 @@ export default function CabecalhoUsuario() {
                             <img src='/assets/images/icon-carrinho.svg' alt='carrinho'/>
                             <p> Carrinho </p>
                         </Link>
-                        <Link to='/conta/dados-pessoais'>
+                        <Link to='/conta/dados-pessoais' onClick={() => assinatura()}>
                             <img src='/assets/images/icon-conta.svg' alt='conta'/>
                             <p>Conta</p>
                         </Link>

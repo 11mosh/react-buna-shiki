@@ -4,15 +4,29 @@ import UsuarioRodape from '../../../../components/Usuario/UsuarioRodape';
 import BarraNavegacao from '../../../../components/Usuario/BarraNavegacaoConta';
 import CancelarAssinatura from './CancelarAssinatura';
 import { confirmAlert } from 'react-confirm-alert';
+import { useEffect, useState } from 'react';
+import { URLRota } from '../../../../constants.js';
+import { Link } from 'react-router-dom';
+import axios from 'axios';
+import storage from 'local-storage';
 
 export default function PerfilAssinatura () {
 
     function cancelarAssinatura () {
         const cancelamento = {
-            customUI: () => {
+            customUI: ({onClose}) => {
                 return (
                     <CancelarAssinatura
-                    /> // <-- enviar as funcoes sim e não (endpoints)
+                    sim={async () => {
+                        const url = URLRota + '/cancelar-assinatura/' + idAssinatura;
+                        const resposta = await axios.delete(url);
+                        setAssinante(false);
+                        onClose();
+                    }}
+                    nao={() =>{
+                        onClose();
+                    }}
+                    /> 
                 )
             }
         }
@@ -20,14 +34,85 @@ export default function PerfilAssinatura () {
         confirmAlert(cancelamento);
     }
 
+    const [infoAssinatura, setInfoAssinatura] = useState([]);
+    // const [exibirConfirm, setExibirConfirm] = useState(false);
+    const [idAssinatura, setIdAssinatura] = useState('');
+    const [mensalidade, setMensalidade] = useState();
+    const [assinante, setAssinante] = useState(false);
+    const [proximaData, setProximaData] = useState();
+    const [codigo, setCodigo] = useState('');
+
+    async function verificarAssinatura (id) {
+        const url = URLRota + '/verificar-assinatura/' + id;
+        const resposta = await axios.get(url);
+        const dados = resposta.data;
+        
+        if (dados.length > 0) {
+            setAssinante(true);
+        } else if (dados.length == 0) {
+            setAssinante(false)
+        }
+    }
+    
+    async function chamarAssinatura (id) {
+        if (assinante == true) {
+            const url = URLRota + '/procurar-assinatura/' + id;
+            const resposta = await axios.get(url);
+            const dados = resposta.data;
+
+            setInfoAssinatura(dados);
+            const mensalidadee = dados[0].vl_mensalidade;
+            setMensalidade(mensalidadee);
+            const fim = dados[0].dt_fim;
+            const fimFormatado = fim.toString().substring(0, 10)
+            setProximaData(fimFormatado);
+            const codigoFormatado = (storage('id-assinatura').idAssinatura).toString().padStart(4, '0');
+            setCodigo(codigoFormatado);
+        }
+       
+    }
+
+    useEffect(() => {
+        if (storage('usuario-logado')) {
+            const idCliente = storage('usuario-logado').id;
+            verificarAssinatura(idCliente);
+
+            if(storage('id-assinatura')) {
+                const idAssinaturaa = storage('id-assinatura').idAssinatura;
+                setIdAssinatura(idAssinaturaa);
+                chamarAssinatura(idAssinaturaa);
+            }
+        }
+
+       
+    }, [assinante])
+
+    useEffect(() => {
+        if (storage('usuario-logado')) {
+            const idCliente = storage('usuario-logado').id;
+            verificarAssinatura(idCliente);
+            console.log(assinante)
+            
+            if(storage('id-assinatura')) {
+                const idAssinaturaa = storage('id-assinatura').idAssinatura;
+                setIdAssinatura(idAssinaturaa);
+                chamarAssinatura(idAssinaturaa);
+            } 
+        }        
+    }, [])
+
+
     return (
         <main className="perfil-assinatura">
             <Cabecalho/>
             <main className="corpo">
 
                 <BarraNavegacao selecionar='Assinaturas' />
+
                 <main className="aba-assinatura">
-                <section className='cartao-principal'>
+                
+                {assinante
+                ? <section className='cartao-principal'>
                 <div className="imagem-tabela">
                     <img src="/assets/images/bunashikiSetaCinza.png" alt="" />
                     
@@ -40,29 +125,21 @@ export default function PerfilAssinatura () {
                             </tr>
                         </thead>
                         <tbody>
-                            <tr>
-                                <td>Café Orfeu Clássico 1kg</td>
-                                <td>1</td>
-                                <td>R$87,99</td>
-                            </tr>
-                            <tr>
-                                <td>Café Orfeu Bourbon Amarelo 250g</td>
-                                <td>1</td>
-                                <td>R$87,99</td>
-                            </tr>
-                            <tr>
-                                <td>
-                                    Desconto de 5%
-                                </td>
-                                <td></td>
-                                <td>-R$8,82</td>
-                            </tr>
+                            {infoAssinatura.map((item) => {
+                                return (
+                                    <tr>
+                                        <td>{item.nm_produto}</td>
+                                        <td>{item.qtd_itens}</td>
+                                        <td>R${item.vl_preco}</td>
+                                    </tr>
+                                )
+                            })}
                             <tr>
                                 <td>
                                     Valor Total
                                 </td>
                                 <td></td>
-                                <td>R$174,54</td>
+                                <td>R${mensalidade}</td>
                             </tr>
                         </tbody>
                     </table>
@@ -70,8 +147,8 @@ export default function PerfilAssinatura () {
                 </div>
 
                 <div className="detalhes-assinatura">
-                    <p>Código da assinatura: 123-A-123: 123-A-123</p>
-                    <p>Próximo pagamento: 08/10/2023</p>
+                    <p>Código da assinatura: #BSA-{codigo}</p>
+                    <p>Próximo pagamento: {proximaData}</p>
                 </div>
 
                 <div className="permanencia" style={{marginTop: '70px', alignSelf: 'center'}}>
@@ -82,8 +159,30 @@ export default function PerfilAssinatura () {
                 3: Mesmo após um possível cancelamento, esperamos ainda tê-lo como parte de nossa comunidade de apreciadores de café.
                 <br></br>
                 </div>
-                <button onClick={cancelarAssinatura}>CANCELAR ASSINATURA</button>
+                <button onClick={() => {cancelarAssinatura(); }}>CANCELAR ASSINATURA</button> 
                 </section>
+
+                : <section className='cartao-principal' style={{display: 'flex', alignItems: 'center'}}>
+                    <h1 style={{margin: '10px 0px  20px 0px'}}>Aparentemente você não possui nenhuma assinatura... </h1>
+                    <p style={{marginBottom: '40px'}}>Faça parte do nosso clube de assinatura mensal!
+                    <br />
+                    Você pode escolher quais produtos deseja receber mensalmente no conforto de sua casa.
+                    <br />
+                    - Mais comodidade;
+                    <br />
+                    - Novas chances de descobrir novos sabores;
+                    <br />
+                    - Preço mais econômico
+                    </p >
+                    <Link to={'/assinatura'} style={{textDecoration: 'none', color: 'white', fontWeight: '700', backgroundColor: '#F47E3C', padding: '10px', borderRadius: '10px', alignSelf: 'center'}}>
+                        Clique aqui e desfrute de todas as vantagens!
+                    </Link>
+
+                    <img src="/assets/images/pedidosAcabam.png" alt="" style={{height: '80px', opacity: 0.5, marginTop: '40px'}}/>
+                 </section>
+                  
+            }
+                
                 </main>
             </main>
             <UsuarioRodape/>

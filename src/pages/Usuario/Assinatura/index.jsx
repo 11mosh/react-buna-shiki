@@ -13,6 +13,9 @@ import { URLRota } from '../../../constants.js';
 
 export default function Assinatura () {
 
+
+    /// resolver a questão do botao ficar disponível
+
     const [numeroCartao, setNumeroCartao] = useState(0);
     const [validade, setValidade] = useState('');
     const [cvv, setCvv] = useState('');
@@ -23,8 +26,13 @@ export default function Assinatura () {
     const [numero, setNumero] = useState('');
     const [complemento, setComplemento] = useState('');
 
-    const [rua, setRua] = useState('Rua')
-    const [cidade, setCidade] = useState('Cidade')
+    const [canProced, setCanProced] = useState(false)
+
+    // const [isBotaoDisponivel, setIsBotaoDisponivel] = useState(false)
+
+    const [rua, setRua] = useState('Rua');
+    const [cidade, setCidade] = useState('Cidade');
+
 
     const [exibirCartao, setExibirCartao] = useState(false);
     const [exibirEndereco, setExibirEndereco] = useState(false);
@@ -217,7 +225,6 @@ export default function Assinatura () {
 
     useEffect(() => {
         if (storage('usuario-logado')) {
-            const id = storage('usuario-logado').id
             chamarAssinaturas();
             chamarCategorias();
             filtrarPorCategoriasClick();
@@ -241,6 +248,7 @@ export default function Assinatura () {
 
     function enviarStorage () {
         storage('itens-selecionados', itensSelecionados);
+        storage('endereco-selecionado', {idEndereco: opcaoEndereco});
     };
 
     useEffect(() => {
@@ -295,7 +303,7 @@ export default function Assinatura () {
                                     </div>
                                 </main>           
                             )
-                        })}                                
+                        })}
                     </div>
                 </section>
 
@@ -343,7 +351,7 @@ export default function Assinatura () {
                             }
                             
                         </article>
-                        <select name="" value={opcaoCartao} id="" onChange={e => {setOpcaoCartao(e.target.value);}}>/   
+                        <select name="" value={opcaoCartao} id="" onChange={e => {setOpcaoCartao(e.target.value); setCanProced(opcaoEndereco != 0 && opcaoCartao != 0)}}>/   
                             <option value={0}>Selecionar cartão</option>
                             {cartoes.map((item) => {
                                 return (
@@ -398,7 +406,7 @@ export default function Assinatura () {
                         }
                         
                     </article>
-                    <select name="" value={opcaoEndereco} id="" onChange={e => {setOpcaoEndereco(e.target.value);}}>/
+                    <select name="" value={opcaoEndereco} id="" onChange={e => {setOpcaoEndereco(e.target.value); }}>/
                         <option value={0}>Selecionar endereço</option>
                         {enderecos.map((item) => {
                             return (
@@ -407,9 +415,7 @@ export default function Assinatura () {
                         })}
                     </select>
                     </div>
-                    
                 </section>
-                
                 
                      
                 <button style={{ backgroundColor: isBotaoDisponivel ? '#F47E3C' : 'gray' }}>

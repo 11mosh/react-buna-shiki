@@ -7,12 +7,15 @@ import { useEffect } from 'react'
 export default function Index(props) {
     const navigate = useNavigate()
 
-
     function logout() {
-        storage.remove('usuario-logado')
+        storage.remove('usuario-logado');
+        storage.remove('id-assinatura');
+        storage.remove('itens-selecionados');
+        storage.remove('endereco-selecionado');
         storage.remove('usuario-pedido')
         navigate('/')
     }
+    
     function selecionarLink(Nomelink){
         if(props.selecionar === Nomelink)
             return 'selecionado'
