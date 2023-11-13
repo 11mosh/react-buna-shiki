@@ -8,7 +8,7 @@ import { useState, useEffect } from 'react';
 import Avaliacao from './avaliacao/telaAvaliacao';
 import BarraNavegacao from '../../../../components/Usuario/BarraNavegacaoConta';
 import storage from 'local-storage';
-import { URLRota } from '../../../../constants';
+import { URLRota } from '../../../../constants.js';
 import { Link } from 'react-router-dom';
 
 export default function MeusPedidos () {
@@ -17,7 +17,13 @@ export default function MeusPedidos () {
         const opcoes = {
             customUI: () => {
                 return (
-                    <Avaliacao/>
+                    <Avaliacao
+                    avaliar={async (numero, idPedido) => {
+                        const url = URLRota + '/pedido/' + idPedido + '/avaliacao/' + numero;
+                        const inserirAvaliacao = await axios.put(url);
+                    }}
+                    />
+
                 )
             }
         }
