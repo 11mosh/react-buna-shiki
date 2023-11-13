@@ -9,6 +9,7 @@ import Avaliacao from './avaliacao/telaAvaliacao';
 import BarraNavegacao from '../../../../components/Usuario/BarraNavegacaoConta';
 import storage from 'local-storage';
 import { URLRota } from '../../../../constants';
+import { Link } from 'react-router-dom';
 
 export default function MeusPedidos () {
 

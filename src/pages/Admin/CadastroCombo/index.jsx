@@ -19,7 +19,7 @@ export default function CadastroCombo () {
             <CabecalhoAdm/>
             
             <div className='conteudo-site'>
-            <h1 style={{alignSelf: 'center', textAlign: 'center', position: 'relative', left: '-15px'}}>Cadastrar um novo combo</h1>
+            <h1 style={{alignSelf: 'center', textAlign: 'center', position: 'relative', left: '-15px', marginTop: '30px', marginBottom: '50px'}}>Cadastrar um novo combo</h1>
             <article className="card-cadastro">
                 <section className='sec1'>
                     <div className="formulario">
@@ -31,54 +31,34 @@ export default function CadastroCombo () {
                             <label htmlFor="">Preço de venda</label>
                             <input type="text" />
                         </div>
-                        <div>
-                            <label htmlFor="">Estoque</label>
-                            <input type="text" />
-                        </div>
                     </div>
 
                     <button id='button1'>Finalizar cadastro</button>
                 </section>
                 
                 <section className="selecao-produtos">
-                    <p style={{fontFamily: 'Inter'}}>Produtos disponíveis para montar combos</p>
+                    <p style={{fontFamily: 'Inter', marginBottom: '10px', fontWeight: 600, fontSize: '17px'}}>Produtos para montar combos: </p>
                     <article className='produtos-disponiveis'>
                         <div className="item">
                             <img src="/assets/images/cafeteiraa.png" alt="" />
                             <p>Café Orfeu Clássico 1kg</p>
-                            <div className='quantidade-item'>
-                                <p>-</p>
-                                <h2>1</h2>
-                                <p>+</p>
-                            </div>
                         </div>
                         <div className="item">
                             <img src="/assets/images/cafeteiraa.png" alt="" />
                             <p>Café Orfeu Clássico 1kg</p>
-                            <div className='quantidade-item'>
-                                <p>-</p>
-                                <h2>1</h2>
-                                <p>+</p>
-                            </div>
                         </div>
                         <div className="item">
                             <img src="/assets/images/cafeteiraa.png" alt="" />
                             <p>Café Orfeu Clássico 1kg</p>
-                            <div className='quantidade-item'>
-                                <p>-</p>
-                                <h2>1</h2>
-                                <p>+</p>
-                            </div>
                         </div>
                     </article>
-                    <h6>Preço sugerido: <b>R$169,39</b></h6>
+                    <h6 style={{marginTop: '10px'}}>Preço sugerido: <b>R$169,39</b></h6>
                     <article className='visualizacao'>
-                        <p style={{fontFamily: 'Inter'}}>Pré-visualização do combo:</p>
+                        <p style={{fontFamily: 'Inter',marginBottom: '10px', fontWeight: 600, fontSize: '17px'}}>Pré-visualização do combo:</p>
                         <div className='produtos-disponiveis' id='produtos-visualizacao'>
                             <div className="item">
                                 <img src="/assets/images/cafeteiraa.png" alt="" />
                                 <p>Café Orfeu Clássico 1kg</p>
-                                <div style={{color: 'black', borderRadius: '100px', padding: '5px', backgroundColor: '#F47E3C', width: '20px', height: '20px', display: 'flex', alignItems: 'center', justifyContent: 'center'}}>1</div>
                             </div>
                         </div>
                     </article>

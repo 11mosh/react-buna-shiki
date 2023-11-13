@@ -4,6 +4,7 @@ import './index.scss';
 import {toast} from 'react-toastify'
 import { buscarPedidosPorData, buscarPesquisa, buscarPorFormaPagamento, buscarPorStatus, buscarTodosPedidos, ordenarPedidos, trocarStatusPedido } from '../../../api/pedidoApi';
 import { confirmAlert } from 'react-confirm-alert'
+import { useNavigate } from 'react-router';
 
 export default function Index() {
     const [ordenar, setOrdenar] = useState('')
@@ -12,6 +13,7 @@ export default function Index() {
     const [dataPedido, setDataPedido] = useState('')
     const [pesquisa, setPesquisa] = useState('')
     const [pedidos, setPedidos] = useState([])
+    const navigate = useNavigate()
 
     async function buscarPedidosClick(){
         try{
@@ -164,6 +166,10 @@ export default function Index() {
             return nome
     }
 
+    function verResumo(id) {
+        navigate(`/adm/pedidos/resumo/${id}`)
+    }
+
     function verificarTecla(e){
         if(e.key === 'Enter')
             buscarPesquisaClick()
@@ -174,24 +180,29 @@ export default function Index() {
         if(ordenar !== '')
             ordenarPedidosClick()
 
+        // eslint-disable-next-line
     }, [ordenar])
 
     useEffect(() => {
         if(dataPedido !== '')
             buscarPorData()
 
+        // eslint-disable-next-line
     }, [dataPedido])
 
     useEffect(() => {
         if(statusPedido !== '')
             buscarPorStatusClick()
 
+        // eslint-disable-next-line
     }, [statusPedido])
 
     useEffect(() => {
-        if(tpPagamento !== '') 
+        if(tpPagamento !== '') {
             buscarPorFormaPagamentoClick()
-
+        }
+        
+        // eslint-disable-next-line
     }, [tpPagamento])
 
 
@@ -233,10 +244,9 @@ export default function Index() {
                                 <option value='Pedido em preparo'> Pedido em preparo </option>
                                 <option value='À caminho'> À caminho </option>
                                 <option value='Entregue'> Entregue </option>
-                                <option value='Entregue/Finalizado'> Entregue/Finalizado </option>
                                 <option value='Cancelado'> Cancelado </option>
                             </select>
-                        </div>
+                        </div> 
                     </article>
                     <article>
                         <h3> Tipo de pagamento:</h3>
@@ -260,20 +270,20 @@ export default function Index() {
                     <table>
                     <thead>
                         <tr>
-                        <th className='pequeno'> Código </th>
+                        <th className='pequeno'> ID </th>
                         <th className='desaparece4 grande'> Cliente </th>
                         <th className='grande'> Status </th>
                         <th className='desaparece2 medio'> Data </th>
                         <th className='desaparece3 medio'> Faturamento </th>
-                        <th className='desaparece grande'> Pagamento </th>
+                        <th className='desaparece medio'> Pagamento </th>
                         </tr>
                     </thead>
                     <hr />
                     <tbody>
                         {pedidos.map((item, index) => {
                             return(
-                                <tr key={item.id}>
-                                    <td className='pequeno'> {item.codigo} </td>
+                                <tr key={item.id} onClick={() => verResumo(item.id)}>
+                                    <td className='pequeno'> {item.id} </td>
                                     <td className='desaparece4 grande'> {verificarNomeCliente(item.cliente)} </td>
                                     <td className='grande'> 
                                         <select value={item.situacao} onChange={ e => trocarStatus(e.target.value, item.id, index)}>
@@ -287,7 +297,7 @@ export default function Index() {
                                     </td>
                                     <td className='desaparece2 medio'> {item.dt_pedido.substr(0,10)} </td>
                                     <td className='desaparece3 medio'> R$ {item.total} </td>
-                                    <td className='desaparece grande' > {item.forma_pagamento} </td>
+                                    <td className='desaparece medio' > {item.forma_pagamento} </td>
                                 </tr>
                             )
                         })}     

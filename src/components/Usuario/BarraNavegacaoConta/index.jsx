@@ -12,6 +12,7 @@ export default function Index(props) {
         storage.remove('id-assinatura');
         storage.remove('itens-selecionados');
         storage.remove('endereco-selecionado');
+        storage.remove('usuario-pedido')
         navigate('/')
     }
     

@@ -133,28 +133,6 @@ export default function Index(){
                         }   
                     }
                 }
-                // console.log('oi1');
-                // let produtosSecao = produtosAtuais[secao]
-                // let ultimaPosicaoProdutosSecao = produtos[secao].indexOf(produtosSecao[produtosSecao.length - 1 ].id)
-    
-                // console.log(produtos);
-                // if(produtos[secao][ultimaPosicaoProdutosSecao + 4]){
-                //     let proximosProdutos = produtos[secao].slice(ultimaPosicaoProdutosSecao + 1, ultimaPosicaoProdutosSecao + 5 )
-                //     let produtosAtuaisTroca = produtosAtuais
-                //     produtosAtuaisTroca[secao] = proximosProdutos
-                //     setProdutosAtuais(produtosAtuaisTroca)
-                //     console.log('tem mais');
-                // }
-                // else{
-                //     let ultimaPosicao = produtos[secao].length - 1
-                //     // if(produtos[secao].lenght === 1)
-                //     //     ultimaPosicao = 0
-                //     let produtosRestantes = produtos[secao].slice([ultimaPosicaoProdutosSecao + 1, ultimaPosicao])
-                //     let produtosAtuaisTroca = produtosAtuais
-                //     produtosAtuaisTroca[secao] = produtosRestantes
-                //     setProdutosAtuais(produtosAtuaisTroca)
-                //     console.log('não tem mais');
-                // }
             }
         }
         else{
@@ -208,7 +186,7 @@ export default function Index(){
                             return(
                                 <div>
                                     <img src={item.imagem}alt='' />
-                                    <p> {item.produto} {item.detalhes.peso}</p>
+                                    <p> {item.produto} {item.categoria === 'Café em grãos' || item.categoria === 'Café em pó' ? item.detalhes.peso : ''}</p>
                                     <button> Mais detalhes </button>
                                 </div>
                             )
@@ -237,7 +215,7 @@ export default function Index(){
                             return(
                                 <div>
                                     <img src={item.imagem}alt='' />
-                                    <p> {item.produto} {item.detalhes.peso}</p>
+                                    <p> {item.produto} {item.categoria === 'Café em grãos' || item.categoria === 'Café em pó' ? item.detalhes.peso : ''}</p>
                                     <button> Mais detalhes </button>
                                 </div>
                             )
@@ -264,7 +242,7 @@ export default function Index(){
                             return(
                                 <div>
                                     <img src={item.imagem}alt='' />
-                                    <p> {item.produto} {item.detalhes.peso}</p>
+                                    <p> {item.produto} {item.categoria === 'Café em grãos' || item.categoria === 'Café em pó' ? item.detalhes.peso : ''}</p>
                                     <button> Mais detalhes </button>
                                 </div>
                             )

@@ -82,7 +82,7 @@ export default function Rotas() {
                 <Route path='/adm/consulta-assinaturas/:id' element={<RevisaoAssinaturaADM />} />
 
                 <Route path='/adm/:id/revisao-produto' element={<RevisaoProduto />} />
-                <Route path='/adm/pedidos/resumo-pedido' element={<RevisaoPedido />} />
+                <Route path='/adm/pedidos/resumo/:id' element={<RevisaoPedido />} />
             </Routes>
          </BrowserRouter>
     )

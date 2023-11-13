@@ -6,14 +6,22 @@ import { buscarCartoes, buscarEnderecos } from '../../../api/usuarioApi';
 import storage from 'local-storage'
 import { useNavigate } from 'react-router';
 import { Link } from 'react-router-dom';
+import { cadastrarItensPedido, cadastrarPedido } from '../../../api/pedidoApi';
+import { toast } from 'react-toastify';
 
 export default function Index() {
     const [entregaExpress, setEntregaExpress] = useState(false)
     const [entregaEconomica, setEntregaEconomica] = useState(false)
+    const [enderecoEscolhido, setEnderecoEscolhido] = useState(0)
     const [enderecos, setEnderecos] = useState([])
     const [cartoes, setCartoes] = useState([])
+    const [cartaoEscolhido, setCartaoEscolhido] = useState(0)
     const [tipoEntregaEscolhido, setTipoEntregaEscolhido] = useState({tipo: '', valor: 0})
     const [pagamentoPix, setPagamentoPix] = useState(false)
+    const [formaPagamento, setFormaPagamento] = useState('')
+    const [total, setTotal] = useState(0)
+    const [produtos, setProdutos] = useState([])
+    const [subtotal, setSubtotal] = useState(0)
     const navigate = useNavigate()
 
     function mudarTipoEntrega(tipo){
@@ -33,6 +41,39 @@ export default function Index() {
             return ''
     }
 
+    async function finalizarPedido() {
+        try{
+            const pedido = {
+                id_cartao: cartaoEscolhido,
+                id_endereco: enderecoEscolhido,
+                total: total,
+                frete: tipoEntregaEscolhido.valor,
+                tp_entrega: tipoEntregaEscolhido.tipo,
+                subtotal: subtotal,
+                forma_pagamento: formaPagamento,
+                id_cliente: storage('usuario-logado').id,
+                dt_entrega: '2023-06-05'
+            }
+    
+            const resp = await cadastrarPedido(pedido)
+            const respItens = await cadastrarItensPedido(produtos, resp.id)
+
+            storage('usuario-pedido', { produtos: [] })
+            setTimeout(() => {
+                navigate(`/pedido-finalizado/${resp.id}`)
+            }, 1000)
+            
+        }
+        catch(err){
+            if(err.response)
+                toast.warn(err.response.data.erro)
+            else
+                toast.warn(err.message)
+        }
+
+        
+    }
+
     async function buscarEnderecosClick() {
         const id = storage('usuario-logado').id
         const resp = await buscarEnderecos(id)
@@ -44,33 +85,89 @@ export default function Index() {
         const id = storage('usuario-logado').id
         const resp = await buscarCartoes(id)
 
-        console.log(resp);
         setCartoes(resp)
     }
 
     function verificarNome(nome){
         let posicaoEspaco = nome.indexOf(' ')
-        // console.log(posicaoEspaco);
         let primeiroNome = nome.substring(0, posicaoEspaco)
-        // console.log(primeiroNome);
         let segundaNome = nome.substring(posicaoEspaco + 1, posicaoEspaco + 2)
-        console.log(segundaNome);
         let nomeFormado = `${primeiroNome} ${segundaNome}.`
 
         return nomeFormado
     }
 
+    function completarCampos() {
+        if(storage('usuario-pedido').id_cartao)
+            setCartaoEscolhido(storage('usuario-pedido').id_cartao)
+
+        if(storage('usuario-pedido').forma_pagamento)
+            setFormaPagamento(storage('usuario-pedido').forma_pagamento)
+
+        if(storage('usuario-pedido').id_endereco)
+            setEnderecoEscolhido(storage('usuario-pedido').id_endereco)
+
+        setProdutos(storage('usuario-pedido').produtos)
+        setSubtotal(storage('usuario-pedido').subtotal)
+        
+        if(storage('usuario-pedido').tp_entrega && storage('usuario-pedido').frete){
+            setTipoEntregaEscolhido({tipo: storage('usuario-pedido').tp_entrega, valor: storage('usuario-pedido').frete})
+            if(storage('usuario-pedido').tp_entrega === 'Entrega Econômica')
+                setEntregaEconomica(true)
+            else if(storage('usuario-pedido').tp_entrega === 'Entrega Express')
+                setEntregaExpress(true)
+    
+            if(storage('usuario-pedido').forma_pagamento === 'Pix')
+                setPagamentoPix(true)
+        }
+    }
+
+    function trocarValoresStorage(campo, valor){
+        if(campo === 'pagamento'){
+            let pedido = storage('usuario-pedido')
+            pedido.id_cartao = valor.id
+            pedido.forma_pagamento = valor.forma
+            storage('usuario-pedido', pedido)
+        }
+        else if(campo === 'endereco'){
+            let pedido = storage('usuario-pedido')
+            pedido.id_endereco = valor
+    
+            storage('usuario-pedido', pedido)
+        }
+        else if(campo === 'entrega') {
+            let pedido = storage('usuario-pedido')
+            pedido.tp_entrega = valor.tipo
+            pedido.frete = valor.valor
+            storage('usuario-pedido', pedido)
+        }
+    }
+    
+    useEffect(() => {
+        if(storage('usuario-logado').subtotal) {
+            let totalCalc = storage('usuario-pedido').subtotal + tipoEntregaEscolhido.valor 
+            setTotal(totalCalc)
+        }
+
+    }, [tipoEntregaEscolhido])
+
     useEffect(() => {
         if(storage('usuario-logado')){
-            buscarEnderecosClick()
-            buscarCartoesClick()
+            if(storage('usuario-pedido').produtos.length !== 0){
+                buscarEnderecosClick()
+                buscarCartoesClick()
+                completarCampos()
+            }
+            else{
+                navigate('/carrinho')
+            }
         }
         else
             navigate('/login')
         
     }, [])
 
-    
+
     return(
         <div id='page-pagamento'>
             <CabecalhoUsuario />
@@ -80,43 +177,22 @@ export default function Index() {
                         <h3>Resumo do pedido</h3>
                     </div>
                     <article>
-                         <div id='produto'>
-                            <figure>
-                                <img src='/assets/images/cafeteiraa.png' alt='cafeteira' />
-                            </figure>
-                            <aside> 
-                                <h5> Cafeteira </h5>
-                                <b> R$150,00</b>
-                                <div>
-                                    3
+                        {produtos.map(item => {
+                            return(
+                                <div id='produto'>
+                                    <figure>
+                                        <img src={item.imagem} alt='cafeteira' />
+                                    </figure>
+                                    <aside> 
+                                        <h5> {item.produto} {item.categoria === 'Café em grãos' || item.categoria === 'Café em pó' ? item.detalhes.peso : ''} </h5>
+                                        <b> R${item.preco} </b>
+                                        <div>
+                                            {item.qtd}
+                                        </div>
+                                    </aside>
                                 </div>
-                            </aside>
-                        </div>
-                        <div id='produto'>
-                            <figure>
-                                <img src='/assets/images/cafeteiraa.png' alt='cafeteira' />
-                            </figure>
-                            <aside> 
-                                <h5> Cafeteira </h5>
-                                <b> R$150,00</b>
-                                <div>
-                                    3
-                                </div>
-                            </aside>
-                        </div>
-                        
-                        <div id='produto'>
-                            <figure>
-                                <img src='/assets/images/cafeteiraa.png' alt='cafeteira' />
-                            </figure>
-                            <aside> 
-                                <h5> Cafeteira </h5>
-                                <b> R$150,00</b>
-                                <div>
-                                    3
-                                </div>
-                            </aside>
-                        </div>
+                            )
+                        })}
                     </article>
                 </section>
                 <div id='s2'>
@@ -125,18 +201,18 @@ export default function Index() {
                             <h3> Entrega </h3>
                         </div>
                         <div id='entrega-conteudo'>
-                            <select required autoFocus>
-                                <option> Selecionar endereço </option>
+                            <select value={enderecoEscolhido} onChange={e => {setEnderecoEscolhido(e.target.value); trocarValoresStorage('endereco', e.target.value)}}>
+                                <option value={0}> Selecionar endereço </option>
                                 {enderecos.map(item => {
                                     return(
-                                        <option> <b>CEP:</b> {item.cep} - {item.rua}, {item.numero} </option>
+                                        <option value={item.id} key={item.id}> <b>CEP:</b> {item.cep} - {item.rua}, {item.numero} </option>
                                     )
                                 })}
                             </select>
                             <section>
                                 <h5> Selecione o tipo de pagamento: </h5>
                                 <div>
-                                    <article onClick={() => {setEntregaEconomica(!entregaEconomica); setEntregaExpress(false); mudarTipoEntrega('Entrega Econômica')}}>
+                                    <article onClick={() => {setEntregaEconomica(!entregaEconomica); setEntregaExpress(false); mudarTipoEntrega('Entrega Econômica'); trocarValoresStorage('entrega', {tipo: 'Entrega Econômica', valor: 6.00})}}>
                                         <div id={entregaEconomica === true ? 'tipoEntregaSelecionado' : ''}>
                                             <p> Entrega Econômica </p>
                                         </div>
@@ -145,7 +221,7 @@ export default function Index() {
                                         </figure>
                                         <p> Receba em até <b> 4 dias </b> por R$6,00 </p>
                                     </article>
-                                    <article onClick={() => {setEntregaExpress(!entregaExpress); setEntregaEconomica(false); mudarTipoEntrega('Entrega Express')}}>
+                                    <article onClick={() => {setEntregaExpress(!entregaExpress); setEntregaEconomica(false); mudarTipoEntrega('Entrega Express'); trocarValoresStorage('entrega', {tipo: 'Entrega Express', valor: 11.00 })}}>
                                         <div id={entregaExpress === true ? 'tipoEntregaSelecionado' : ''}>
                                             <p> Entrega Express</p>
                                         </div>
@@ -165,7 +241,7 @@ export default function Index() {
                         <div id='total'>
                             <div>
                                 <p>Subtotal</p>
-                                <p className='preco'> R$ 344, 97</p>
+                                <p className='preco'> R$ {subtotal}</p>
                             </div>
                             <div>
                                 <p>Frete</p>
@@ -173,26 +249,26 @@ export default function Index() {
                             </div>
                             <div>
                                 <strong>Total</strong>
-                                <strong className='preco'> R$ 355, 97</strong>
+                                <strong className='preco'> R$ {total}</strong>
                             </div>
                         </div>
-                        <select>
-                            <option> Selecionar cartão </option>
+                        <select value={cartaoEscolhido} onChange={e => {setCartaoEscolhido(e.target.value); setFormaPagamento('Cartão'); setPagamentoPix(false); trocarValoresStorage('pagamento', {id: e.target.value, forma: 'Cartão'})}}>
+                            <option value={0}> Selecionar cartão </option>
                             {cartoes.map(item => {
                                 return(
-                                    <option> Final: {item.numero.substr(12,16)} - {verificarNome(item.nome)}</option>
+                                    <option value={item.id} key={item.id}> Final: {item.numero.substr(12,16)} - {verificarNome(item.nome)}</option>
                                 )
                             })}
                         </select>
-                        <div className='pagamentoPix' id={verificarPagamentoPix()} onClick={() => setPagamentoPix(!pagamentoPix)} >
+                        <div className='pagamentoPix' id={verificarPagamentoPix()} onClick={() => {setPagamentoPix(!pagamentoPix); setFormaPagamento('Pix'); trocarValoresStorage('pagamento', {id: 0, forma: 'Pix'}); setCartaoEscolhido(0)}} >
                             <div>
                                 <img src='/assets/images/formas de pagamento/pix.svg' alt='simbolo do pix' />
                                 <p> Pix </p>
                             </div>
-                            <p> Chave aleatória: 00000000000000 </p>
+                            <p> Chave CNPJ: xx.xxx.xxx/0001-xx </p>
                         </div>
                         <div id='alinharButton'>
-                            <Link> Finalizar pedido </Link>
+                            <button onClick={finalizarPedido}> Finalizar pedido </button>
                         </div>
                     </section>
                 </div>

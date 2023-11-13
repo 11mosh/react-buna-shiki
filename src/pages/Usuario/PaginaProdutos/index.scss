@@ -70,6 +70,7 @@
             display: flex;
             padding: 50px;
             justify-content: space-between;
+            gap: 20px;
             article {
                 display: flex;
                 width: 90%;
@@ -478,6 +479,16 @@
                     }
                 }
 
+            }
+            #faixaAoContrario {
+                flex-direction: column-reverse;
+                > aside {
+                    button {
+                        img {
+                            rotate: 270deg;
+                        }
+                    }
+                }
             }
             .faixaApresentacao {
                 min-height: 250px;
