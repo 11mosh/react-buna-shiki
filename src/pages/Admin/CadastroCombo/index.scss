@@ -37,7 +37,7 @@
             background-color: #e8e8e8;
             padding: 40px;
             justify-content: space-between;
-            height: 602px;
+            height: 720px;
             box-shadow: 0px 5px 4px 0px rgba(0, 0, 0, 0.25);
 
 
@@ -112,20 +112,27 @@
                     display: none;
                 }
 
-                >h6 {
-                    margin: 5px 0px 10px 0px;
-                    font-size: 17px;
-                    align-self: flex-end;
-
-                    b {
-                        color: #661515;
-                    }
-                }
+                
 
                 #produtos-visualizacao {
                     height: 100%;
+                    // padding: 10px 10px 0px 10px;
                 }
-
+                .visualizacao {
+                    margin-top: 30px;
+                    display: flex;
+                    flex-direction: column;
+                    gap: 10px;
+                    > h6 {
+                        margin: 5px 0px 10px 0px;
+                        font-size: 17px;
+                        align-self: flex-end;
+    
+                        b {
+                            color: #661515;
+                        }
+                    }
+                }
                 .produtos-disponiveis {
                     background-color: #D9D9D9;
                     display: flex;
@@ -133,7 +140,7 @@
                     gap: 50px;
                     flex-wrap: wrap;
                     justify-content: center;
-                    padding: 10px;
+                    padding: 15px 10px 15px 10px;
                     height: 50%;
                     overflow: scroll;
                     overflow-x: hidden;
@@ -144,8 +151,20 @@
                         flex-direction: column;
                         align-items: center;
                         justify-content: center;
-                        gap: 10px;
+                        gap: 10px;  
+                        padding: 0px 5px;
+                        img {
+                            height: 115px;
+                            width: 115px;
+                        }
 
+                        #deletar {
+                            z-index: 2;
+                            display: none ;
+                            color:#000;
+                            font-family: 'Inter';
+                            font-weight: 900;
+                        }
                         > div {
                             display: flex;
                             flex-direction: row;
@@ -166,8 +185,41 @@
                                 justify-content: center;
                                 cursor: pointer;
                             }
+                            #deletar {
+                                z-index: 2;
+                                display: none ;
+                                color:#000;
+                                font-family: 'Inter';
+                                font-weight: 900;
+                            }
                         }
                     }
+                    .itemDeletar:hover {
+                        position: relative;
+                        #deletar {
+                            display: flex;
+                            position: absolute;
+                            top: 60px;
+                        }
+    
+                        img {
+                            // transform: scale(1.06);
+                            transition: 0.5s;
+                            opacity: 0.1;
+                            // position: relative;
+                            // left: -37px;
+                        }
+                    }
+                    
+                }
+                .produtos-disponiveis::-webkit-scrollbar{
+                    width: 22px;
+                    scroll-behavior: smooth;
+                }
+                .produtos-disponiveis::-webkit-scrollbar-thumb{
+                    border: 5px solid #d9d9d9;
+                    background-color:#828282;
+                    border-radius: 13px;
                 }
             }
         }
@@ -232,6 +284,7 @@
                     #button2 {
                         display: flex;
                         width: 90%;
+                        outline: none;
                         padding: 10px;
                         text-align: center;
                         align-self: center;

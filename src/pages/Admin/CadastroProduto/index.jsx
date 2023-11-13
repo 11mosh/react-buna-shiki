@@ -279,7 +279,7 @@ function CadastroProduto () {
                         <article className="campo-imagens">
                             {fotos.map((arquivo, indice) => (
                             <div className='imagem-upada' key={indice}>
-                                <p>DELETAR</p>
+                                <p> DELETAR </p>
                                 <img src={arquivo} alt="" onClick={() => removerImagem(indice)}/>
                             </div>
                             ))
