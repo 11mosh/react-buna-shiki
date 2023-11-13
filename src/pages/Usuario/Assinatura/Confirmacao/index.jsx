@@ -13,6 +13,7 @@ import { URLRota } from '../../../../constants.js';
 export default function Confirmacao () {
 
     const [preco, setPreco] = useState(0);
+    const [localEntrega, setLocalEntrega] = useState([]);
     const [precoFinal, setPrecoFinal] = useState(0);
     const [desconto, setDesconto] = useState(0);
     const [dataAtual, setDataAtual] = useState((new Date().toISOString()).substring(0, 10));
@@ -47,31 +48,53 @@ export default function Confirmacao () {
         setPrecoFinal(total);
     }
 
-    useEffect(() => {
-        calcularPreco();
-        
-        const datta = new Date();
-        datta.setDate(datta.getDate() + 30);
-        setProximaData((datta.toISOString()).substring(0, 10));
-    }, [])
-
-    function finalizar () {
+    async function finalizar () {
         const assinatura = {
             idCliente: storage('usuario-logado').id,
-            idEndereco: storage('usuario-logado')
+            idEndereco: Number(storage('endereco-selecionado').idEndereco),
+            mensalidade: Number(precoFinal)
         }
-        const resposta = axios.post((URLRota + '/concluir-assinatura/'), );
+        const resposta = await axios.post((URLRota + '/concluir-assinatura/'), assinatura);
         const dados = resposta.data;
-        console.log(dados);
-        // console.log(dados.id);
+        const idAssinatura = dados.id;
+        storage('id-assinatura', {idAssinatura: idAssinatura});
+        for (let item of itensSelecionados) {
+            const produto = {
+                idProduto: item.id,
+                idAssinatura: idAssinatura,
+                qtd: item.quantidade
+            };
+            const url = URLRota + '/concluir-assinatura/produtos';
+            const resposta = await axios.post(url, produto);
+        };
+        notificacao();
+        redir('/conta/assinaturas')
+    };
+
+    async function localizacao () {
+        const id = Number(storage('endereco-selecionado').idEndereco);
+        const url = URLRota + '/enderecos/' + id;
+        const resposta = await axios.get(url);
+        const dados = resposta.data
+        setLocalEntrega([... dados]);
     }
+
+    useEffect(() => {
+        calcularPreco();
+        localizacao();
+        const data = new Date();
+        data.setDate(data.getDate() + 30);
+        setProximaData((data.toISOString()).substring(0, 10));
+    }, [])
 
     return (
         <main className='confirmacao-assinatura'>
             <CabecalhoUsuario/>
-            <nav className='navegador' onClick={() => storage.remove('itens-selecionados')}>
-                <Link to={'/assinatura'}><img src="/assets/images/icon-seta-preta.png" alt="" />
-                <h1>Voltar à etapa anterior</h1></Link>
+            <nav className='navegador' onClick={() => {storage.remove('itens-selecionados'); storage.remove('endereco-selecionado')}}>
+                <Link to={'/assinatura'}>
+                    <img src="/assets/images/icon-seta-preta.png" alt="" />
+                    <h1>Voltar à etapa anterior</h1>
+                </Link>
             </nav>
 
             <section className='conteudo'>
@@ -126,7 +149,11 @@ export default function Confirmacao () {
                 </div>
 
                 <div className="detalhes-assinatura">
-                    <p>Código da assinatura: 123-A-123: 123-A-123</p>
+                    {localEntrega.map((item) => {
+                        return (
+                            <p>Local de entrega: {item.cidade} - {item.rua}, nº {item.numero}.</p>
+                        )
+                    })}
                     <p>Primeiro pagamento: {dataAtual}</p>
                     <p>Próximo pagamento: {proximaData}</p>
                 </div>

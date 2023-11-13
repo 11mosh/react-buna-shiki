@@ -248,6 +248,7 @@ export default function Assinatura () {
 
     function enviarStorage () {
         storage('itens-selecionados', itensSelecionados);
+        storage('endereco-selecionado', {idEndereco: opcaoEndereco});
     };
 
     useEffect(() => {
@@ -405,7 +406,7 @@ export default function Assinatura () {
                         }
                         
                     </article>
-                    <select name="" value={opcaoEndereco} id="" onChange={e => {setOpcaoEndereco(e.target.value); setCanProced(opcaoEndereco != 0 && opcaoCartao != 0)}}>/
+                    <select name="" value={opcaoEndereco} id="" onChange={e => {setOpcaoEndereco(e.target.value); }}>/
                         <option value={0}>Selecionar endereço</option>
                         {enderecos.map((item) => {
                             return (
@@ -414,9 +415,7 @@ export default function Assinatura () {
                         })}
                     </select>
                     </div>
-                    
                 </section>
-                
                 
                      
                 <button style={{ backgroundColor: isBotaoDisponivel ? '#F47E3C' : 'gray' }}>

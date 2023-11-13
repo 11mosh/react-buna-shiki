@@ -1,15 +1,22 @@
 import './index.scss';
 import UsuarioRodape from '../../../components/Usuario/UsuarioRodape';
 import Cabecalho from '../../../components/Usuario/UsuarioCabecalho';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import { useEffect, useState } from 'react';
 import { buscarCategorias } from '../../../api/produtoApi';
 import { toast } from 'react-toastify';
+import { URLRota } from '../../../constants';
+import axios from 'axios';
+import storage, { set } from 'local-storage';
+
 
 function Home () {
 
     const [categorias, setCategorias] = useState([]);
     const [categoriasAtual, setCategoriasAtual] = useState([]);
+    const [assinante, setAssinante] = useState();
+    const redir = useNavigate();
+    const [idAssinatura, setIdAssinatura] = useState();
 
     async function buscarCategoriasExibicao(){
         try{
@@ -35,6 +42,23 @@ function Home () {
                 return ''
         }
     };
+
+    async function verificarAssinatura (id) {
+        const url = URLRota + '/verificar-assinatura/' + id;
+        const resposta = await axios.get(url);
+        const dados = resposta.data;
+        
+        console.log(dados);
+        
+        if (dados.length > 0) {
+            setAssinante(true);
+            storage('id-assinatura', {idAssinatura: idAssinatura});
+            const idAssinaturaa = dados[0].id_assinatura;
+        setIdAssinatura(idAssinaturaa);
+        } else if (dados.length == 0) {
+            setAssinante(false);
+        }
+    }
     
     function trocarCategorias() {
         let posicao = verificarPosicao()
@@ -45,7 +69,6 @@ function Home () {
             for (let index = 0; index < 4; index++) {
                 novasCategorias[index] = categorias[index]
             }
-            console.log('novasCategorias');
             setCategoriasAtual(novasCategorias)
         }
         else{
@@ -55,7 +78,6 @@ function Home () {
                 novasCategorias[index] = categorias[cont]
                 cont++
             }
-            console.log('novasCategorias2');
             setCategoriasAtual(novasCategorias)
         }   
     }
@@ -90,8 +112,27 @@ function Home () {
 
     useEffect(() => {
         buscarCategoriasExibicao()
-    }, [])
+    }, []);
 
+    // useEffect(() => {
+    //     if (storage('usuario-logado')) {
+    //         const idUsuario = storage('usuario-logado').id;
+    //         verificarAssinatura(idUsuario);
+    //     }
+    // }, [assinante])
+
+
+    useEffect(() => {
+        if (storage('usuario-logado')) {
+            const idCliente = storage('usuario-logado').id;
+            verificarAssinatura(idCliente);
+            
+            if(storage('id-assinatura')) {
+                const idAssinaturaa = storage('id-assinatura').idAssinatura;
+                setIdAssinatura(idAssinaturaa);
+            }
+        }        
+    }, [assinante]);
 
 
     return (
@@ -190,7 +231,10 @@ function Home () {
                     - Preço mais econômico
                 </h3>
                 <button className='botão'>
-                    <Link to={'/assinatura'}>Mais informações</Link>
+                    {assinante 
+                    ? <Link to={'/conta/assinaturas'}>Mais informações</Link>
+                    : <Link to={'/assinatura'}>Mais informações</Link>
+                }
                 </button>
             </article>
             <UsuarioRodape />
