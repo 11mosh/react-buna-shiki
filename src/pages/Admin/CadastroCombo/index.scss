@@ -2,7 +2,7 @@
     display: flex;
     flex-direction: column;
     font-family: 'Inter';
-    
+    justify-content: space-between;
     img {
         width: 85px;
     }
@@ -107,17 +107,13 @@
                 width: 55%;
                 font-family: 'Inter';
                 font-size: 15px;
-
+                height: 100%;
                 #button2{
                     display: none;
                 }
 
                 
 
-                #produtos-visualizacao {
-                    height: 100%;
-                    // padding: 10px 10px 0px 10px;
-                }
                 .visualizacao {
                     margin-top: 30px;
                     display: flex;
@@ -127,7 +123,7 @@
                         margin: 5px 0px 10px 0px;
                         font-size: 17px;
                         align-self: flex-end;
-    
+                        
                         b {
                             color: #661515;
                         }
@@ -141,7 +137,8 @@
                     flex-wrap: wrap;
                     justify-content: center;
                     padding: 15px 10px 15px 10px;
-                    height: 50%;
+                    min-height: 250px;
+                    max-height: 250px;
                     overflow: scroll;
                     overflow-x: hidden;
                     overflow-y: auto;
