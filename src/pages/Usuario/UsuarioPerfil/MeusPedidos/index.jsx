@@ -8,20 +8,22 @@ import { useState, useEffect } from 'react';
 import Avaliacao from './avaliacao/telaAvaliacao';
 import BarraNavegacao from '../../../../components/Usuario/BarraNavegacaoConta';
 import storage from 'local-storage';
+import { toast } from 'react-toastify';
 import { URLRota } from '../../../../constants.js';
 import { Link } from 'react-router-dom';
 
 export default function MeusPedidos () {
 
-    async function avaliacao () {
+    const [idPedido, setIdPedido] = useState(0);
+    const [pedidos, setPedidos] = useState([]);
+
+    async function avaliacao (id) {
         const opcoes = {
-            customUI: () => {
+            customUI: ({onClose}) => {
                 return (
                     <Avaliacao
-                    avaliar={async (numero, idPedido) => {
-                        const url = URLRota + '/pedido/' + idPedido + '/avaliacao/' + numero;
-                        const inserirAvaliacao = await axios.put(url);
-                    }}
+                    idPedido={id}
+                    fechar={onClose}
                     />
 
                 )
@@ -30,7 +32,6 @@ export default function MeusPedidos () {
         confirmAlert(opcoes);
     }
 
-    const [pedidos, setPedidos] = useState([]);
 
     async function chamarPedidos () {
         const idUsuario = storage('usuario-logado').id
@@ -42,6 +43,8 @@ export default function MeusPedidos () {
 
     useEffect(() => {
         chamarPedidos();
+
+        // eslint-disable-next-line 
     }, []);
     
     return (
@@ -74,7 +77,7 @@ export default function MeusPedidos () {
                                 <div className='links'>
                                     <h4 style={ {color: '#0071A1', textDecoration: 'underline', cursor: 'pointer'}}>Exibir detalhes do pedido</h4>
                                     {(item.situacao == 'Entregue') 
-                                    ? <h4 style={ {color: '#0071A1', textDecoration: 'underline', cursor: 'pointer'}} onClick={avaliacao}>Avalie o pedido</h4>
+                                    ? <h4 style={ {color: '#0071A1', textDecoration: 'underline', cursor: 'pointer'}} onClick={() => {avaliacao(item.id);}}>Avalie o pedido</h4>
                                     : <></>
                                     }
                                 </div>
