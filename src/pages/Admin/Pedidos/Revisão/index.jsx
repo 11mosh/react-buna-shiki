@@ -15,7 +15,6 @@ export default function Index() {
     async function buscarPedido() {
         try{
             const pedidoResp = await buscarPedidoPorId(id)
-            console.log(pedidoResp);
             setPedido(pedidoResp)
             setStatus(pedidoResp.situacao)
         }
