@@ -13,6 +13,7 @@ export default function Index() {
     const [dataPedido, setDataPedido] = useState('')
     const [pesquisa, setPesquisa] = useState('')
     const [pedidos, setPedidos] = useState([])
+    const [isTrocandoStatus, setIsTrocandoStatus] = useState(false)
     const navigate = useNavigate()
 
     async function buscarPedidosClick(){
@@ -166,8 +167,10 @@ export default function Index() {
             return nome
     }
 
-    function verResumo(id) {
-        navigate(`/adm/pedidos/resumo/${id}`)
+    function verResumo(id, campo) {
+        if(!campo) {
+            navigate(`/adm/pedidos/resumo/${id}`)
+        }
     }
 
     function verificarTecla(e){
@@ -282,11 +285,11 @@ export default function Index() {
                     <tbody>
                         {pedidos.map((item, index) => {
                             return(
-                                <tr key={item.id} onClick={() => verResumo(item.id)}>
+                                <tr key={item.id} onClick={(e) => verResumo(item.id, e.target.value)}>
                                     <td className='pequeno'> {item.id} </td>
                                     <td className='desaparece4 grande'> {verificarNomeCliente(item.cliente)} </td>
                                     <td className='grande'> 
-                                        <select value={item.situacao} onChange={ e => trocarStatus(e.target.value, item.id, index)}>
+                                        <select onClick={() => {}} value={item.situacao} onChange={ e => trocarStatus(e.target.value, item.id, index)}>
                                             <option value='Pedido realizado'> Pedido realizado </option>
                                             <option value='Pagamento'> Pagamento</option>
                                             <option value='Pedido em preparo'> Pedido em preparo </option>
