@@ -27,6 +27,12 @@ export async function buscarIdDetalhe(id){
     return resp.data
 }
 
+export async function buscarProdutosSugestao() {
+    const resp = await api.get('/produtos/sugestoes')
+
+    return resp.data
+}
+
 export async function buscarIdImagens(idProduto){
     const resp  = await api.get(`/${idProduto}/imagens`)
 

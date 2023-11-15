@@ -1,15 +1,62 @@
 import CabecalhoUsuario from '../../../components/Usuario/UsuarioCabecalho';
 import UsuarioRodape from '../../../components/Usuario/UsuarioRodape';
-import { Link, useParams } from 'react-router-dom';
+import { Link, useNavigate, useParams } from 'react-router-dom';
 import './index.scss';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
+import { toast } from 'react-toastify';
+import { buscarIdProduto, buscarProdutosSugestao, buscarTodosProdutos } from '../../../api/produtoApi';
 
 export default function DescricaoProduto () {
-    const [produto, setProduto] = useState({})
+    const [produto, setProduto] = useState({detalhes: { alergia: '', marca: '', dimensoes: '', peso: ''}, categoria: ''})
     const {id} = useParams()
+    const [produtosSugestao, setProdutosSugestao] = useState([])
+    const navigate = useNavigate()
 
-    async function buscar
+    async function buscarProdutoClick() {
+        try{
+           const respProduto = await buscarIdProduto(id)
+            console.log(respProduto);
+           setProduto(respProduto)
+        }
+        catch(err){
+            if(err.response)
+                toast.error(err.response.data.erro)
+            else    
+                toast.error(err.message)
+        }
+    }
 
+    function produtoSugestaoClicado(id) {
+        navigate(`/descricao/${id}`)
+    }
+
+    async function buscarProdutosSugestaoClick(){
+        try{
+            const respProdutos = await buscarTodosProdutos()
+            let produtos = []
+            while(produtos.length < 4){
+                let num = Math.random() * 100
+                num = num.toFixed(0)
+                if(respProdutos[num])
+                    produtos.push(respProdutos[num])
+            }
+            console.log(produtos);
+
+            setProdutosSugestao(produtos)
+        }
+        catch(err){
+            if(err.response)
+                toast.error(err.response.data.erro)
+            else    
+                toast.error(err.message)
+        }
+    }
+
+    useEffect(() => {
+        buscarProdutoClick()
+        buscarProdutosSugestaoClick()
+        // eslint-disable-next-line
+    }, [id])
     
 return (
     <main className='descricao-produto'>
@@ -45,28 +92,28 @@ return (
                             <img src="/assets/images/intensidade.png" alt="" />
                         </section>
                         <p><b>Intensidade</b></p>
-                        <p>Baixa</p>
+                        <p>{produto.detalhes.intensidade ? produto.detalhes.intensidade : '-'}</p>
                     </div>
                     <div className="tipos">
                         <section className="tipo-imagem">
                             <img src="/assets/images/docura.png" alt="" />
                         </section>
                         <p><b>Doçura</b></p>
-                        <p>Alta</p>
+                        <p>{produto.detalhes.docura ? produto.detalhes.docura : '-'}</p>
                     </div>
                     <div className="tipos">
                         <section className="tipo-imagem">
                             <img src="/assets/images/acidez.png" alt="" />
                         </section>
                         <p><b>Acidez</b></p>
-                        <p>Alta</p>
+                        <p>{produto.detalhes.acidez ? produto.detalhes.acidez : '-'}</p>
                     </div>
                     <div className="tipos">
                         <section className="tipo-imagem">
                             <img src="/assets/images/torra.png" alt="" />
                         </section>
                         <p><b>Torra</b></p>
-                        <p>Média</p>
+                        <p>{produto.detalhes.torra ? produto.detalhes.torra : '-'}</p>
                     </div>
                 </div>
             </main>
@@ -74,9 +121,15 @@ return (
             <main className="compra-categoria">
              <article className='compra'>
                     <nav className="nome-preco">
-                        <h1>Orfeu Clássico 1kg Grão</h1>
-                        <h5>De: <b style={{textDecoration: 'line-through'}}>R$103,90</b></h5>
-                        <h2>POR: <b>R$87,99</b></h2>
+                        <h1>{produto.produto} {produto.categoria === 'Café em grãos' || produto.categoria === 'Café em pó' ? produto.detalhes.peso : ''}</h1>
+                        {produto.promocao !== '0.00' 
+                            ? <h5>De: <b style={{textDecoration: 'line-through'}}>R${produto.preco}</b></h5>
+                            : <></>
+                        }
+                        {produto.promocao !== '0.00'
+                            ? <h2>POR: <b>R${produto.promocao}</b></h2>
+                            : <b>R${produto.preco}</b>
+                        }
                     </nav>
 
                     <nav className="botoes">
@@ -110,13 +163,13 @@ return (
                     </div>
                 </article>
 
-                <div className="categoria"><h1><b>CATEGORIA:</b> CAFÉ EM GRÃO</h1> <img src="/assets/images/cafe-categoria.png" alt="" /></div>
+                <div className="categoria"><h1><b>CATEGORIA:</b> {produto.categoria.toUpperCase()}</h1> <img src="/assets/images/cafe-categoria.png" alt="" /></div>
             </main>
             </section>
 
             <section className="descricao">
                 <h1>Descrição</h1>
-                <p>O Café em Grãos Orfeu Clássico 1KG é um café especial em grãos 100% Arábica, equilibrado e de torra média. O grão de café apresenta notas florais, frutadas e de caramelo. Possui doçura alta, acidez equilibrada, corpo aveludado e aromas complexos, com uma finalização persistente e prazerosa.</p>
+                <p>{produto.detalhes.produto}</p>
             </section>
 
             <section className='detalhes-tecnicos'>
@@ -138,11 +191,11 @@ return (
                     <table id='tabela2'>
                         <tbody>
                         <tr>
-                            <td>ORFEU</td>
-                            <td>Grãos</td>
-                            <td>Não contém glúten</td>
-                            <td>1000 gramas</td>
-                            <td>15 x 9 x 29cm</td>
+                            <td>{produto.detalhes.marca}</td>
+                            <td>{produto.categoria}</td>
+                            <td>{produto.detalhes.alergia}</td>
+                            <td>{produto.detalhes.peso}</td>
+                            <td>{produto.detalhes.dimensoes}</td>
                         </tr>
                         </tbody>
                     </table>
@@ -155,26 +208,15 @@ return (
 
                 <div className='produtos-necessidade'>
                     {/* <button>&gt;</button> */}
-                        <div className="produto">
-                            <img src="/assets/images/cafeteiraa.png" alt="" />
-                            <p>Cafeteira Elétrica Cadence Desperta</p>
-                            <p className='preco-produto'><b>R$104,99</b></p>
+                    {produtosSugestao.map((item) => {
+                        return(
+                        <div className="produto" onClick={() => produtoSugestaoClicado(item.id)}>
+                            <img src={item.imagem} alt="" />
+                            <p> {item.produto}</p>
+                            <p className='preco-produto'><b>R${item.preco}</b></p>
                         </div>
-                        <div className="produto">
-                            <img src="/assets/images/cafeteiraa.png" alt="" />
-                            <p>Cafeteira Elétrica Cadence Desperta</p>
-                            <p className='preco-produto'><b>R$104,99</b></p>
-                        </div>
-                        <div className="produto">
-                            <img src="/assets/images/cafeteiraa.png" alt="" />
-                            <p>Cafeteira Elétrica Cadence Desperta</p>
-                            <p className='preco-produto'><b>R$104,99</b></p>
-                        </div>
-                        <div className="produto">
-                            <img src="/assets/images/cafeteiraa.png" alt="" />
-                            <p>Cafeteira Elétrica Cadence Desperta</p>
-                            <p className='preco-produto'><b>R$104,99</b></p>
-                        </div>
+                        )
+                    })}
                     {/* <button>&gt;</button> */}
                 </div>
             </section>

@@ -7,7 +7,7 @@ import { buscarCombos } from '../../../../api/comboApi';
 import storage from 'local-storage'
 
 export default function Combos(){
-    const [combos, setCombos] = useState([])
+    const [combos, setCombos] = useState([{ produtos: [{ produto: { detalhes: {}}}]}])
 
 
 
@@ -86,7 +86,7 @@ export default function Combos(){
                                             <div key={item.produto.id}>
                                                 <section>
                                                     <img  src={item.produto.imagem} alt='' />
-                                                    <p> {item.produto.produto} {item.produto.categoria === 'Café em grãos' || item.produto.categoria === 'Café em pó' ? item.produto.id : ''} </p>
+                                                    <p> {item.produto.produto} {item.produto.categoria === 'Café em grãos' || item.produto.categoria === 'Café em pó' ? item.produto.peso : ''} </p>
                                                     <h5 className='precoMarrom'> R${item.produto.preco}</h5>
                                                 </section>
                                                 <img className={verificarClasse(indexProdutos)} style={{display: verificarAparicao(item.id, indexProdutos, array)}} src='/assets/images/icon-mais.png' alt='' />

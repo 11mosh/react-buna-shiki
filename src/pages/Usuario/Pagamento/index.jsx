@@ -108,7 +108,7 @@ export default function Index() {
             setEnderecoEscolhido(storage('usuario-pedido').id_endereco)
 
         setProdutos(storage('usuario-pedido').produtos)
-        setSubtotal(storage('usuario-pedido').subtotal)
+        // setSubtotal(storage('usuario-pedido').subtotal)
         
         if(storage('usuario-pedido').tp_entrega && storage('usuario-pedido').frete){
             setTipoEntregaEscolhido({tipo: storage('usuario-pedido').tp_entrega, valor: storage('usuario-pedido').frete})
@@ -144,7 +144,7 @@ export default function Index() {
     }
     
     useEffect(() => {
-        if(storage('usuario-logado').subtotal) {
+        if(storage('usuario-pedido').subtotal) {
             let totalCalc = storage('usuario-pedido').subtotal + tipoEntregaEscolhido.valor 
             setTotal(totalCalc)
         }
