@@ -1,8 +1,29 @@
 import './index.scss';
 import CabecalhoAdm from '../../../../components/Admin/AdmCabecalho';
-import { Link } from 'react-router-dom';
+import { Link, useParams } from 'react-router-dom';
+import { useState } from 'react';
+import { toast } from 'react-toastify';
+import { buscarIdProduto } from '../../../../api/produtoApi';
 
 export default function RevisaoProduto () {
+    const [produto, setProduto] = useState({})
+    const {id} = useParams()
+
+    async function buscarProduto(){
+        try{
+            const produtoResp = buscarIdProduto(id)
+
+            setProduto(produtoResp)
+        }
+        catch(err){
+            if(err.response)
+                toast.error(err.response.data.erro)
+            else    
+                toast.error(err.message)
+        }
+    }
+
+
 
 
     return (
@@ -10,7 +31,7 @@ export default function RevisaoProduto () {
             <CabecalhoAdm />
             <nav >
                 <img src="/assets/images/icon-seta-preta.svg" alt="seta preta esquerda" />
-                
+                <h3> Voltar para a página de consulta de produtos</h3>
             </nav>
 
             <hr />

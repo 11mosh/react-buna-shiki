@@ -83,8 +83,9 @@ export default function Index() {
             <div id='revisao'>
                 <Link to='/adm/pedidos' className='voltar'>
                     <img src='/assets/images/icon-seta-preta.svg' alt='seta-dark-esquerda' />
-                    <h3>Voltar a pagina de consulta de pedidos</h3>
+                    <h3>Voltar para a página de consulta de pedidos</h3>
                 </Link>
+                <hr />
                 <div id='apresentacao'>
                     <h3>Resumo do pedido:</h3>
                 </div>
