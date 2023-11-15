@@ -98,6 +98,28 @@ export async function buscarProdutosPorMarca(marca, categoria){
 
 
 
+
+
+// Alterando
+
+export async function alterar(alteracoes, idDetalhe, idProduto){
+    await api.put(`/produto/${idProduto}/detalhes/${idDetalhe}`, alteracoes)
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 // Deletando
 
 export async function excluirImagens(idFotosExcluir, idProduto){
@@ -126,10 +148,3 @@ export async function excluir(idProduto, idDetalhe) {
 
 
 
-
-
-// Alterando
-
-export async function alterar(alteracoes, idDetalhe, idProduto){
-    await api.put(`/produto/${idProduto}/detalhes/${idDetalhe}`, alteracoes)
-}

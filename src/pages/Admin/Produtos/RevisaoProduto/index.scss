@@ -5,13 +5,18 @@
         flex-direction: row;
         align-items: center;
         gap: 10px;
-        padding: 5px 20px;
+        padding: 10px 40px;
         img {
-            width: 70px;
-            height: 70px;
+            width: 60px;
+            height: 60px;
         }
         a {
+            display: flex;
+            align-items: center;
+            justify-content: center;
             color: black;
+            text-decoration: none;
+            gap: 10px;
         }
     }
 

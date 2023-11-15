@@ -61,7 +61,7 @@ export default function Consulta() {
             const removendoDeletado = produtos.filter(item => item.id !== idProduto)
             setProdutos(removendoDeletado)
           }
-          catch(err){
+          catch(err){ 
             setProdutos([])
             if(err.response)
                 toast.error(err.response.data.erro)
@@ -74,6 +74,11 @@ export default function Consulta() {
         label: 'Não'
       }
       ]})
+  }
+
+  function verResumo(id, campoClass) {
+    if(campoClass != 'fa-regular fa-pen-to-square' && campoClass != 'fa-regular fa-trash-can')
+      navigate(`/adm/${id}/revisao-produto`)
   }
 
   function alterar(id){
@@ -250,7 +255,7 @@ export default function Consulta() {
             <tbody>
               {produtos.map(item => {
                 return(
-                  <tr key={item.id}>
+                  <tr key={item.id} onClick={(e) => verResumo(item.id, e.target.className )}>
                     <div>
                         <td className='id desaparece4'> {item.id} </td>
                       <td className='img'> 
