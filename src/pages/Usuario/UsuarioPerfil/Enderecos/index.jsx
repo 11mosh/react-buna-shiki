@@ -112,7 +112,9 @@ export default function Index(){
             const enderecosResp = await buscarEnderecos(id)
             if(enderecosResp.length === 0)
                 toast.info('Você não possui nenhum endereço cadastrado')
-            setEnderecos(enderecosResp)
+            else{
+                setEnderecos(enderecosResp)
+            }
         }
         catch(err){
             toast.error(err.message)
@@ -163,7 +165,7 @@ export default function Index(){
         <div id='page-conta-enderecos'>
             <UsuarioCabecalho />
             <div id='enderecos'>
-                <BarraNavegacaoConta /> 
+                <BarraNavegacaoConta selecionar={'Endereços'}/> 
                 <main>
                     <section id='s1'>
                         <div>

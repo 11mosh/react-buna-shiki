@@ -17,7 +17,6 @@ export default function CadastroCombo () {
     async function buscarProdutosParaCombo() {
         try{
             const resp = await buscarTodosProdutos()
-            console.log(resp);
             setProdutosParaCombo(resp)
         }
         catch(err){
@@ -115,8 +114,19 @@ export default function CadastroCombo () {
             return totalCalc
         }, 0)
 
-        setPrecoSugerido(total)
+        let desconto = total * 0.05
+        let totalComDesc = total - desconto
+        console.log(total);
+        console.log(desconto);
+
+        setPrecoSugerido(totalComDesc)
     }
+
+    function verificarTecla(e){
+        if(e.key === 'Enter')
+            finalizarCombo()
+    }
+
 
     useEffect(() => {
         buscarProdutosParaCombo()
@@ -137,17 +147,17 @@ export default function CadastroCombo () {
             <CabecalhoAdm/>
             
             <div className='conteudo-site'>
-            <h1 style={{alignSelf: 'center', textAlign: 'center', position: 'relative', left: '-15px', marginTop: '30px', marginBottom: '35px'}}>Cadastrar um novo combo</h1>
+            <h1 style={{alignSelf: 'center', textAlign: 'center', position: 'relative', left: '-15px', marginTop: '10px', marginBottom: '35px'}}>Cadastrar um novo combo</h1>
             <article className="card-cadastro">
                 <section className='sec1'>
                     <div className="formulario">
                         <div>
                             <label htmlFor="">Nome do combo</label>
-                            <input type="text" name="" id="" value={nomeCombo} onChange={e => setNomeCombo(e.target.value)}/>
+                            <input type="text" name="" id="" onKeyDown={(e) => verificarTecla(e)} value={nomeCombo} onChange={e => setNomeCombo(e.target.value)}/>
                         </div>
                         <div>
                             <label htmlFor="">Preço de venda</label>
-                            <input type="text" value={preco} onChange={e => mudarPreco(e.target.value)}/>
+                            <input type="text" onKeyDown={(e) => verificarTecla(e)} value={preco} onChange={e => mudarPreco(e.target.value)}/>
                         </div>
                     </div>
 
@@ -162,6 +172,7 @@ export default function CadastroCombo () {
                                 <div className="item" key={item.id} onClick={() => selecionarProduto(index)}>
                                     <img src={item.imagem} alt="" />
                                     <p>{item.produto} {verificarPeso(index, 'combo')}</p>
+                                    <p>{item.preco}</p>
                                 </div>
                             )
                         })}
@@ -176,6 +187,7 @@ export default function CadastroCombo () {
                                         <img src={item.imagem} alt="" onClick={() => removerProdutosSelecionado(index)}/>
                                         <p id='deletar'> REMOVER </p>
                                         <p>{item.produto} {verificarPeso(index, 'selecionados')}</p>
+                                        <p>{item.preco}</p>
                                     </div>
                                 )
                             })}

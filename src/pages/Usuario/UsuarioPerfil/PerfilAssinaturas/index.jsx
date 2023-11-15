@@ -35,7 +35,6 @@ export default function PerfilAssinatura () {
     }
 
     const [infoAssinatura, setInfoAssinatura] = useState([]);
-    // const [exibirConfirm, setExibirConfirm] = useState(false);
     const [idAssinatura, setIdAssinatura] = useState('');
     const [mensalidade, setMensalidade] = useState();
     const [assinante, setAssinante] = useState(false);
