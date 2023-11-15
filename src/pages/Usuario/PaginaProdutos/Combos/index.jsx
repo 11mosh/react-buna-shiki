@@ -83,10 +83,10 @@ export default function Combos(){
                                     {combo.produtos.map((item, indexProdutos, array) => {
                                         
                                         return(
-                                            <div>
+                                            <div key={item.produto.id}>
                                                 <section>
                                                     <img  src={item.produto.imagem} alt='' />
-                                                    <p> {item.produto.produto} {item.produto.categoria === 'Café em grãos' || item.produto.categoria === 'Café em pó' ? item.produto.detalhes.peso : ''} </p>
+                                                    <p> {item.produto.produto} {item.produto.categoria === 'Café em grãos' || item.produto.categoria === 'Café em pó' ? item.produto.id : ''} </p>
                                                     <h5 className='precoMarrom'> R${item.produto.preco}</h5>
                                                 </section>
                                                 <img className={verificarClasse(indexProdutos)} style={{display: verificarAparicao(item.id, indexProdutos, array)}} src='/assets/images/icon-mais.png' alt='' />

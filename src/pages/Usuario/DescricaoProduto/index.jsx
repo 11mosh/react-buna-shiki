@@ -1,9 +1,14 @@
 import CabecalhoUsuario from '../../../components/Usuario/UsuarioCabecalho';
 import UsuarioRodape from '../../../components/Usuario/UsuarioRodape';
-import { Link } from 'react-router-dom';
+import { Link, useParams } from 'react-router-dom';
 import './index.scss';
+import { useState } from 'react';
 
 export default function DescricaoProduto () {
+    const [produto, setProduto] = useState({})
+    const {id} = useParams()
+
+    async function buscar
 
     
 return (
