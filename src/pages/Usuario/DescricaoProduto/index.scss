@@ -135,7 +135,7 @@
                     background-color: #E8E8E8;
                     flex-direction: column;
                     box-shadow: 0px 5px 4px 0px rgba(0, 0, 0, 0.25);
-                    padding: 20px;
+                    padding: 30px 20px;
                     
                     h1 {
                         font-size: 25px;
@@ -232,13 +232,16 @@
                     margin-top: 20px;
                     box-shadow: 6px 6px 0px 0px #F47E3C;
                     border-radius: 0px 100px 100px 0px;
-                    width: 300px;
+                    width: 350px;
                     padding: 5px 0px 5px 10px;
                     justify-content: space-between;
                     align-items: center;
 
                     img {
                         justify-self: flex-end;
+                        width: 50px;
+                        height: 50px;
+                        border-radius: 30px
                     }
                 }
             }
@@ -462,6 +465,9 @@
 
 @media (max-width: 700px) {
     .descricao-produto {
+        table {
+            font-size: 15px !important;
+        } 
         .produtos-necessidade {
             .produto {
                 > p {

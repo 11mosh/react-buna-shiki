@@ -3,8 +3,9 @@ import UsuarioRodape from '../../../components/Usuario/UsuarioRodape';
 import { Link, useNavigate, useParams } from 'react-router-dom';
 import './index.scss';
 import { useEffect, useState } from 'react';
+import storage from 'local-storage'
 import { toast } from 'react-toastify';
-import { buscarIdProduto, buscarProdutosSugestao, buscarTodosProdutos } from '../../../api/produtoApi';
+import { buscarIdProduto, buscarTodosProdutos } from '../../../api/produtoApi';
 
 export default function DescricaoProduto () {
     const [produto, setProduto] = useState({detalhes: { alergia: '', marca: '', dimensoes: '', peso: ''}, categoria: ''})
@@ -14,8 +15,10 @@ export default function DescricaoProduto () {
 
     async function buscarProdutoClick() {
         try{
-           const respProduto = await buscarIdProduto(id)
-            console.log(respProduto);
+           let respProduto = await buscarIdProduto(id)
+           respProduto.qtd = 1
+           respProduto.imagem = respProduto.imagens[0].caminho
+
            setProduto(respProduto)
         }
         catch(err){
@@ -28,6 +31,33 @@ export default function DescricaoProduto () {
 
     function produtoSugestaoClicado(id) {
         navigate(`/descricao/${id}`)
+    }
+
+    function adicionarCarrinho(){
+        if(!storage('usuario-logado')){
+            toast.info('Faça login ou cadastro para adicionar coisas ao carrinho.')
+            navigate('/login')
+        }
+        else{
+            let pedido = storage('usuario-pedido')
+            pedido.produtos = [...pedido.produtos, produto]
+
+            storage('usuario-pedido', pedido)
+        }
+    }
+
+    function comprar(){
+        if(!storage('usuario-logado')){
+            toast.info('Faça login ou cadastro para comprar algo')
+            navigate('/login')
+        }
+        else{
+            let pedido = storage('usuario-pedido')
+            pedido.produtos = [...pedido.produtos, produto]
+
+            storage('usuario-pedido', pedido)
+            navigate('/carrinho')
+        }
     }
 
     async function buscarProdutosSugestaoClick(){
@@ -61,15 +91,6 @@ export default function DescricaoProduto () {
 return (
     <main className='descricao-produto'>
         <CabecalhoUsuario/>
-        <nav style={{padding: '20px'}}>
-                <Link to='/' style={{ decoration: 'dashed', color: 0}}> Home page </Link>
-                 &gt;
-                <p>Café em grão </p>
-                &gt;
-                <p>Descrição</p>
-        </nav>
-        
-        <hr />
 
         <article className='corpo-site'>
          <section className="agrupamento">
@@ -133,23 +154,23 @@ return (
                     </nav>
 
                     <nav className="botoes">
-                        <button className='botao'>
+                        <button className='botao' onClick={comprar}>
                             Comprar
                         </button>
-                        <button className='botao'>
+                        <button className='botao' onClick={adicionarCarrinho}>
                             Adicionar ao Carrinho
                         </button>
                     </nav>
 
-                    <div className="formas-entrega">
+                    {/* <div className="formas-entrega">
                         <p style={{fontSize: '18px'}}>Calcular valores e formas de entrega</p>
                         <div className="input-botao">
                             <input type="number" placeholder='Digite seu CEP'/>
                             <button className="botao">Calcular</button>
                         </div>
-                    </div>
+                    </div> */}
 
-                    <div className="opcoes-entrega">
+                    {/* <div className="opcoes-entrega">
                         <div>
                             <p>Entrega Econômica</p>
                             <img src="/assets/images/sedex-logo.png" alt="" />
@@ -160,10 +181,10 @@ return (
                             <img src="/assets/images/loggi-logo.png" alt="" id='loggi-logo'/>
                             <p id='texto-loggi'>Receba em até <b>2 dias</b> por <b>R$11,00</b></p>
                         </div>
-                    </div>
+                    </div> */}
                 </article>
 
-                <div className="categoria"><h1><b>CATEGORIA:</b> {produto.categoria.toUpperCase()}</h1> <img src="/assets/images/cafe-categoria.png" alt="" /></div>
+                <div className="categoria"><h1><b>CATEGORIA:</b> {produto.categoria.toUpperCase()}</h1> <img src={produto.imgCategoria} alt="" /></div>
             </main>
             </section>
 

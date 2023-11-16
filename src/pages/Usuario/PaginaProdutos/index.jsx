@@ -2,7 +2,7 @@ import './index.scss';
 import Cabecalho from '../../../components/Usuario/UsuarioCabecalho';
 import UsuarioRodape from '../../../components/Usuario/UsuarioRodape';
 import { useEffect, useState } from 'react';
-import { useParams } from 'react-router';
+import { useNavigate, useParams } from 'react-router';
 import { buscarProdutosPorMarca } from '../../../api/produtoApi';
 import { toast } from 'react-toastify';
 
@@ -14,6 +14,7 @@ export default function Index(){
     const [produtos, setProdutos] = useState([[], [], []])
     const [produtosAtuais, setProdutosAtuais] = useState([[], [], []])
     const [posicoes, setPosicoes] = useState(['', '', ''])
+    const navigate = useNavigate()
 
     async function buscarProdutos(secoes) {
         try {
@@ -187,7 +188,7 @@ export default function Index(){
                                 <div>
                                     <img src={item.imagem}alt='' />
                                     <p> {item.produto} {item.categoria === 'Café em grãos' || item.categoria === 'Café em pó' ? item.detalhes.peso : ''}</p>
-                                    <button> Mais detalhes </button>
+                                    <button onClick={() => navigate(`/descricao/${item.id}`)}> Mais detalhes </button>
                                 </div>
                             )
                         })}
@@ -216,7 +217,7 @@ export default function Index(){
                                 <div>
                                     <img src={item.imagem}alt='' />
                                     <p> {item.produto} {item.categoria === 'Café em grãos' || item.categoria === 'Café em pó' ? item.detalhes.peso : ''}</p>
-                                    <button> Mais detalhes </button>
+                                    <button onClick={() => navigate(`/descricao/${item.id}`)}> Mais detalhes </button>
                                 </div>
                             )
                         })}
@@ -243,7 +244,7 @@ export default function Index(){
                                 <div>
                                     <img src={item.imagem}alt='' />
                                     <p> {item.produto} {item.categoria === 'Café em grãos' || item.categoria === 'Café em pó' ? item.detalhes.peso : ''}</p>
-                                    <button> Mais detalhes </button>
+                                    <button onClick={() => navigate(`/descricao/${item.id}`)}> Mais detalhes </button>
                                 </div>
                             )
                         })}

@@ -47,7 +47,7 @@ export default function Index() {
                 storage('usuario-pedido', {produtos: []})
                 
                 setTimeout(() => {
-                    navigate('/')
+                    navigate('/produtos/cafeemgraos')
                 }, 3000)
             }
         }

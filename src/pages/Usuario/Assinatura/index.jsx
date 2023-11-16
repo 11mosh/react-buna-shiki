@@ -231,7 +231,7 @@ export default function Assinatura () {
             chamarCartoes();
             chamarEnderecos();
         } else {
-            redir('/cadastro');
+            redir('/login');
         }
     }, []);
 

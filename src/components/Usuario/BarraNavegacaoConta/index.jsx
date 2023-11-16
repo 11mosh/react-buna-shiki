@@ -1,7 +1,6 @@
 import { Link, useNavigate } from 'react-router-dom'
 import './index.scss'
 import storage from 'local-storage'
-import { useEffect } from 'react'
 
 
 export default function Index(props) {

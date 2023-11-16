@@ -24,7 +24,7 @@ export default function Index() {
             storage('usuario-logado', resp)
             storage('usuario-pedido', {produtos: []})
             setTimeout(() => {
-                navigate('/')
+                navigate('/produtos/cafeemgraos')
             }, 3000)
         }
         catch(err){

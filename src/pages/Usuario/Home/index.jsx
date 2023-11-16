@@ -112,7 +112,6 @@ function Home () {
 
     useEffect(() => {
         buscarCategoriasExibicao()
-        storage('usuario-pedido', { produtos: [] })
     }, []);
 
     // useEffect(() => {
