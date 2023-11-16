@@ -40,7 +40,6 @@ export default function DescricaoProduto () {
                 if(respProdutos[num])
                     produtos.push(respProdutos[num])
             }
-            console.log(produtos);
 
             setProdutosSugestao(produtos)
         }
@@ -55,6 +54,7 @@ export default function DescricaoProduto () {
     useEffect(() => {
         buscarProdutoClick()
         buscarProdutosSugestaoClick()
+        
         // eslint-disable-next-line
     }, [id])
     

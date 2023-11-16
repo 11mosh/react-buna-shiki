@@ -5,7 +5,7 @@ import { toast } from 'react-toastify';
 import { buscarEstatisticas } from '../../../api/estatisticaApi';
 
 export default function Index() {
-    const [estatisticas, setEstatisticas] = useState()
+    const [estatisticas, setEstatisticas] = useState([{taxa: 0}, {taxa: 0}, {taxa: 0}, {taxa: 0}])
     
 
 
@@ -29,14 +29,16 @@ export default function Index() {
             dateComparacaoInicio = dateComparacaoInicio.toISOString()
             dateComparacaoInicio = dateComparacaoInicio.substr(0, 10)            
 
-            for(let cont = 0; cont < 1; cont++){
+            let estatisticasCalc = []
+            for(let cont = 0; cont < 4; cont++){
                 let qtdRecente = await buscarEstatisticas(dateInicio, dateFim, campos[cont])
                 let qtdAntiga = await buscarEstatisticas(dateComparacaoInicio, dateComparacaoFim, campos[cont])
                 let taxa = (qtdRecente - qtdAntiga) / (qtdAntiga / 100)  
-                console.log(qtdRecente);
-                console.log(qtdAntiga);
-                console.log(taxa);
-            }
+                taxa = taxa.toFixed(0)
+                estatisticasCalc[cont] = {taxa: taxa, qtd: qtdRecente}
+            } 
+
+            setEstatisticas(estatisticasCalc)
         }
         catch(err){
             if(err.response)
@@ -45,6 +47,15 @@ export default function Index() {
                 toast.error(err.message)
         }
     }
+
+    function verificarCor(index){
+        if(estatisticas[index].taxa > 0)
+            return 'textoVerde'
+        else if(estatisticas[index].taxa == 0)
+            return ''
+        else
+            return 'textoVermelho'
+}
     
     useEffect(() => {
         buscarEstatisticasClick()
@@ -65,23 +76,23 @@ export default function Index() {
                 <section id='s2'>
                     <article>
                         <h4>Novas assinaturas</h4>
-                        <p className='textoLaranja'>25</p>
-                        <p className='textoVermelho'>(-0,8%)</p>
+                        <p className='textoLaranja'>{estatisticas[0].qtd}</p>
+                        <p className={verificarCor(0)}>{estatisticas[0].taxa > 0 ? `(+${estatisticas[0].taxa}%)` : `(${estatisticas[0].taxa}%)`}</p>
                     </article>
                     <article>
                         <h4> Compras concluídas </h4>
-                        <p className='textoLaranja'> 376 </p>
-                        <p className='textoVerde'> (+3,5% )</p>
+                        <p className='textoLaranja'> {estatisticas[1].qtd} </p>
+                        <p className={verificarCor(1)}> {estatisticas[1].taxa > 0 ? `(+${estatisticas[1].taxa}%)` : `(${estatisticas[1].taxa}%)`}</p>
                     </article>
                     <article>
                         <h4> Pedidos cancelados </h4>
-                        <p className='textoLaranja'> 32 </p>
-                        <p className='textoVermelho'> (+0,3%) </p>
+                        <p className='textoLaranja'> {estatisticas[2].qtd} </p>
+                        <p className={verificarCor(2)}> {estatisticas[2].taxa > 0 ? `(+${estatisticas[2].taxa}%)` : `(${estatisticas[2].taxa}%)`} </p>
                     </article>
                     <article>
                         <h4> Novos usuários </h4>
-                        <p className='textoLaranja' > 500 </p>
-                        <p className='textoVerde'> (+1%) </p>
+                        <p className='textoLaranja' > {estatisticas[3].qtd} </p>
+                        <p className={verificarCor(3)}>{estatisticas[3].taxa > 0 ? `(+${estatisticas[3].taxa}%)` : `(${estatisticas[3].taxa}%)`} </p>
                     </article>
                 </section>
             </main>

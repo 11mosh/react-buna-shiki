@@ -189,9 +189,12 @@
                         }
                     }
                     tr:hover {
-                        background-color: #828282;
-                        transition: 0.3s;
-                        border: unset !important;
+                        background-color: #514641;
+                        transition: 0.1s;
+                        border: none;
+                    }
+                    tr:active {
+                        background-color: #332e2b;
                     }
                 }
                 tbody::-webkit-scrollbar {

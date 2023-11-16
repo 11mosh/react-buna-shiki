@@ -73,8 +73,9 @@ export default function RevisaoProduto () {
                     <h3> Voltar para a página de consulta de produtos</h3>
                 </Link>
             </nav>
-
-            <hr />
+            <div id='hr'>
+                <hr />
+            </div>
 
             <section className="corpo">
             <main className="imagem-tipos">
@@ -144,7 +145,6 @@ export default function RevisaoProduto () {
                             <tbody>
                             <tr>
                                 <td>Marca</td>
-                                <td>Categoria</td>
                                 <td>Informações sobre alergia</td>
                                 <td>Peso</td>
                                 <td>Dimensões do produto</td>
@@ -156,7 +156,6 @@ export default function RevisaoProduto () {
                             <tbody>
                             <tr>
                                 <td>{produto.detalhes.marca}</td>
-                                <td>{produto.categoria}</td>
                                 <td id='gluten'>{produto.detalhes.alergia}</td>
                                 <td>{produto.detalhes.peso}</td>
                                 <td id='dimensoes'>{produto.detalhes.dimensoes}</td>
