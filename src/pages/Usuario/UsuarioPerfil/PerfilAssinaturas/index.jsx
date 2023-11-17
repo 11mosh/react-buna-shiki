@@ -54,18 +54,19 @@ export default function PerfilAssinatura () {
     }
     
     async function chamarAssinatura (id) {
-        if (assinante == true) {
+        if (assinante) {
             const url = URLRota + '/procurar-assinatura/' + id;
             const resposta = await axios.get(url);
             const dados = resposta.data;
+            console.log(dados)
 
-            setInfoAssinatura(dados);
             const mensalidadee = dados[0].vl_mensalidade;
-            setMensalidade(mensalidadee);
             const fim = dados[0].dt_fim;
             const fimFormatado = fim.toString().substring(0, 10)
-            setProximaData(fimFormatado);
             const codigoFormatado = (storage('id-assinatura').idAssinatura).toString().padStart(4, '0');
+            setMensalidade(mensalidadee);
+            setInfoAssinatura(dados);
+            setProximaData(fimFormatado);
             setCodigo(codigoFormatado);
         }
        
@@ -75,7 +76,6 @@ export default function PerfilAssinatura () {
         if (storage('usuario-logado')) {
             const idCliente = storage('usuario-logado').id;
             verificarAssinatura(idCliente);
-
             if(storage('id-assinatura')) {
                 const idAssinaturaa = storage('id-assinatura').idAssinatura;
                 setIdAssinatura(idAssinaturaa);

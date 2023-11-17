@@ -40,15 +40,17 @@ export default function Confirmacao () {
                 precos = (Number(item.preco) * item.quantidade) + precos;
             }
 
-            setPreco(precos);
+            
             let descontoCalc = precos * 0.05;
             let ponto = (descontoCalc.toString().indexOf('.'));
             const desconto = (descontoCalc.toString().substring(0, (ponto + 3)));
+            let total = (precos - descontoCalc).toString().substring(0, (ponto + 4));
+
             setDesconto(desconto);
-            let total = precos - descontoCalc;
+            setPreco(precos);
             setPrecoFinal(total);
         } catch (error) {
-            toast.warn(error.message)
+            toast.warn(error.message);
         }
         
     }
