@@ -97,12 +97,14 @@ export default function Carrinho () {
     }
  
     useEffect(() => {
-        atribuirProdutos()
+        if(storage('usuario-pedido'))
+            atribuirProdutos()
 
     }, [])
 
     useEffect(() => {
-        calcularSubtotal()
+        if(produtos.length !== 0)
+            calcularSubtotal()
     }, [produtos])
 
     return (    
