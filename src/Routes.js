@@ -55,7 +55,7 @@ export default function Rotas() {
 
                 <Route path='/conta/meus-pedidos' element={<MeusPedidos />} />
                 <Route path='/conta/dados-pessoais' element={<DadosPessoais />} />
-                <Route path='/conta/meus-pedidos/resumo-pedido' element={<ResumoPedido />} />
+                <Route path='/conta/meus-pedidos/resumo-pedido/:id' element={<ResumoPedido />} />
                 <Route path='/avalie' element={<Avaliacao />} />
                 <Route path='/cancelar-assinatura' element={<CancelarAssinatura />} />
                 <Route path='/conta/cartoes' element={<Cartoes />} />

@@ -42,9 +42,12 @@ function Home () {
                 return ''
         }
     };
+  
 
     async function verificarAssinatura (id) {
-        const url = URLRota + '/verificar-assinatura/' + id;
+
+        try {
+            const url = URLRota + '/verificar-assinatura/' + id;
         const resposta = await axios.get(url);
         const dados = resposta.data;
         
@@ -58,6 +61,11 @@ function Home () {
         } else if (dados.length == 0) {
             setAssinante(false);
         }
+        } catch (error) {
+            toast.error(error.message)
+        }
+
+        
     }
     
     function trocarCategorias() {
@@ -111,21 +119,17 @@ function Home () {
     
 
     useEffect(() => {
-        buscarCategoriasExibicao()
+        buscarCategoriasExibicao();
+
+        // eslint-disable-next-line
     }, []);
-
-    // useEffect(() => {
-    //     if (storage('usuario-logado')) {
-    //         const idUsuario = storage('usuario-logado').id;
-    //         verificarAssinatura(idUsuario);
-    //     }
-    // }, [assinante])
-
 
     useEffect(() => {
         if (storage('usuario-logado')) {
             const idCliente = storage('usuario-logado').id;
             verificarAssinatura(idCliente);
+            console.log('assinate: ' + assinante)
+
             
             if(storage('id-assinatura')) {
                 const idAssinaturaa = storage('id-assinatura').idAssinatura;

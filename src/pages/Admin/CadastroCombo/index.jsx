@@ -37,8 +37,8 @@ export default function CadastroCombo () {
                 }
                 const respCombo = await criarCombo(combo)
                 await adicionarItensCombo(respCombo.id, produtosSelecionados)
-                console.log(respCombo);
                 toast.success('Combo criado!!')
+                buscarProdutosParaCombo()
                 limparVariaveis()
             }
             else{

@@ -43,6 +43,15 @@ export default function Index() {
 
     async function finalizarPedido() {
         try{
+            let dtEntrega = new Date()
+            if(tipoEntregaEscolhido.tipo === 'Entrega Express')
+                dtEntrega.setDate(dtEntrega.getDate() + 1)
+            else if(tipoEntregaEscolhido.tipo === 'Entrega Econômica')
+                dtEntrega.setDate(dtEntrega.getDate() + 2)
+            dtEntrega = dtEntrega.toISOString()
+            console.log(dtEntrega);
+            dtEntrega = dtEntrega.substr(0, 10)
+            
             const pedido = {
                 id_cartao: cartaoEscolhido,
                 id_endereco: enderecoEscolhido,
@@ -52,9 +61,9 @@ export default function Index() {
                 subtotal: subtotal,
                 forma_pagamento: formaPagamento,
                 id_cliente: storage('usuario-logado').id,
-                dt_entrega: '2023-06-05'
+                dt_entrega: dtEntrega
             }
-    
+            console.log(pedido);
             const resp = await cadastrarPedido(pedido)
             const respItens = await cadastrarItensPedido(produtos, resp.id)
 
@@ -219,7 +228,7 @@ export default function Index() {
                                         <figure>
                                             <img src='/assets/images/sedex-logo.png' alt='logo da sedex' />
                                         </figure>
-                                        <p> Receba em até <b> 4 dias </b> por R$6,00 </p>
+                                        <p> Receba em até <b> 2 dias </b> por R$6,00 </p>
                                     </article>
                                     <article onClick={() => {setEntregaExpress(!entregaExpress); setEntregaEconomica(false); mudarTipoEntrega('Entrega Express'); trocarValoresStorage('entrega', {tipo: 'Entrega Express', valor: 11.00 })}}>
                                         <div id={entregaExpress === true ? 'tipoEntregaSelecionado' : ''}>
@@ -228,7 +237,7 @@ export default function Index() {
                                         <figure>
                                             <img src='/assets/images/loggi-logo.png' alt='logo da loggi' />
                                         </figure>
-                                        <p> Receba em até <b> 2 dias </b> por R$11,00 </p>
+                                        <p> Receba em até <b> 1 dia </b> por R$11,00 </p>
                                     </article>
                                 </div>
                             </section>

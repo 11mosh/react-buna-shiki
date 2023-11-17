@@ -1,6 +1,6 @@
 import CabecalhoUsuario from '../../../components/Usuario/UsuarioCabecalho';
 import UsuarioRodape from '../../../components/Usuario/UsuarioRodape';
-import { Link, useNavigate, useParams } from 'react-router-dom';
+import { useNavigate, useParams } from 'react-router-dom';
 import './index.scss';
 import { useEffect, useState } from 'react';
 import storage from 'local-storage'
@@ -8,9 +8,10 @@ import { toast } from 'react-toastify';
 import { buscarIdProduto, buscarTodosProdutos } from '../../../api/produtoApi';
 
 export default function DescricaoProduto () {
-    const [produto, setProduto] = useState({detalhes: { alergia: '', marca: '', dimensoes: '', peso: ''}, categoria: ''})
+    const [produto, setProduto] = useState({imagens: [{}], detalhes: { alergia: '', marca: '', dimensoes: '', peso: ''}, categoria: ''})
     const {id} = useParams()
     const [produtosSugestao, setProdutosSugestao] = useState([])
+    const [renderizar, setRenderizar] = useState('')
     const navigate = useNavigate()
 
     async function buscarProdutoClick() {
@@ -18,7 +19,7 @@ export default function DescricaoProduto () {
            let respProduto = await buscarIdProduto(id)
            respProduto.qtd = 1
            respProduto.imagem = respProduto.imagens[0].caminho
-
+            console.log(respProduto);
            setProduto(respProduto)
         }
         catch(err){
@@ -41,7 +42,7 @@ export default function DescricaoProduto () {
         else{
             let pedido = storage('usuario-pedido')
             pedido.produtos = [...pedido.produtos, produto]
-
+            setRenderizar('renderizando')
             storage('usuario-pedido', pedido)
         }
     }
@@ -54,7 +55,8 @@ export default function DescricaoProduto () {
         else{
             let pedido = storage('usuario-pedido')
             pedido.produtos = [...pedido.produtos, produto]
-
+            
+            setRenderizar('renderizando')
             storage('usuario-pedido', pedido)
             navigate('/carrinho')
         }
@@ -96,14 +98,20 @@ return (
          <section className="agrupamento">
             <main className="imagem-tipos">
                 <article className='imagem-principal'>
-                    <img src="/assets/images/filtroo.png" alt="" />
+                    <img src={produto.imagens[0].caminho} alt="" />
                     <nav className='imagens-produto'>
-                        <div className="imagem-baixa">
-                            <img src="/assets/images/filtroo.png" alt="" />
-                        </div>
-                        <div className="imagem-baixa">
-                            <img src="/assets/images/filtroo.png" alt="" />
-                        </div>
+                        { produto.imagens[1] ? 
+                            <div className="imagem-baixa">
+                                <img src={produto.imagens[1].caminho} alt="" />
+                            </div>
+                            : <></>
+                        }
+                        { produto.imagens[2] ? 
+                            <div className="imagem-baixa">
+                                <img src={produto.imagens[2].caminho} alt="" />
+                            </div>
+                        :   <></>
+                        }
                     </nav>
                 </article>
 
