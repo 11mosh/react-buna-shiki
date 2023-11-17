@@ -110,7 +110,7 @@
                         display: flex;
                         justify-content: space-between;
                         th{
-                            width: 100px;
+                            width: 140px;
                         }
                     }
                 }
@@ -130,13 +130,12 @@
                     overflow: scroll;
                     overflow-x: hidden;
                     tr:hover {
-                        background-color: #503e39;
-                        transition: .2s;
-
-                         td {
-                        transition: .2s;
-                       
-                        }
+                        background-color: #514641;
+                        transition: 0.1s;
+                        border: none;
+                    }
+                    tr:active {
+                        background-color: #332e2b;
                     }
                     tr{
                         transition: .2s;
@@ -157,7 +156,7 @@
                             align-items: center;
                         }
                         td{
-                            width: 130px;
+                            width: 140px;
                             height: 30px;
                             padding: 0px 3px;
                             border-radius: 5px;
@@ -166,6 +165,17 @@
                             text-align: center;
                             align-items: center;
                             justify-content: center;
+                            select {
+                                width: 95%;
+                                height: 100%;
+                                background-color: rgba(129, 92, 92, 0);
+                                border: none;
+                                cursor: pointer;
+                                font-size: 14.5px
+                            }
+                            select:focus {
+                                outline: none;
+                            }
                         }
                         #acoes{
                             background-color: unset;

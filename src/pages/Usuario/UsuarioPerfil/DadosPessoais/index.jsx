@@ -15,7 +15,6 @@ export default function Index(){
     const [telefone, setTelefone] = useState('')
     const [email, setEmail] = useState('')
     const [dtNascimento, setDtNascimento] = useState('')
-    const [botaoExcluir, setBotaoExcluir] = useState(true)
     const [botaoSalvar, setBotaoSalvar] = useState(false)
     const navigate = useNavigate()
 
@@ -23,13 +22,6 @@ export default function Index(){
         if(botaoSalvar === false)
             return 'none'
         else if(botaoSalvar === true){
-            return 'flex'
-        }
-    }
-    function verificarBotaoExcluir() {
-        if(botaoExcluir === false)
-            return 'none'
-        else if(botaoExcluir === true){
             return 'flex'
         }
     }
@@ -78,11 +70,9 @@ export default function Index(){
         }
 
         if(alterou === 'sim'){
-            setBotaoExcluir(false)
             setBotaoSalvar(true)
         }
         else if (alterou === 'não'){
-            setBotaoExcluir(true)
             setBotaoSalvar(false)
         }
 
@@ -111,7 +101,6 @@ export default function Index(){
             await alterarCliente(id, dados)
 
             toast.success('Alterações salvas!')
-            setBotaoExcluir(true)
             setBotaoSalvar(false)
 
             const cliente = storage('usuario-logado')
@@ -188,7 +177,7 @@ export default function Index(){
                         <div id='form'>
                             <article id='a1'>
                                 <label> Nome </label>
-                                <input type='txt' placeholder='ex.: João Silva' value={nome} onChange={e => {setNome(e.target.value); verificarAlteracao('nome', )}}/>
+                                <input type='txt' placeholder='ex.: João Silva' value={nome} onChange={e => {setNome(e.target.value); verificarAlteracao('nome', e.target.value)}}/>
                             </article>
                             <div>
                                 <div>
@@ -214,7 +203,6 @@ export default function Index(){
                             </div>
                             <article id='botoes'>
                                 <button id='alteracoes' style={{display: verificarBotaoSalvar()}} onClick={alterarClienteClick}> Salvar alterações</button>
-                                <button style={{display: verificarBotaoExcluir()}}> Excluir conta </button>
                             </article>
                         </div>
                     </section>

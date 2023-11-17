@@ -7,8 +7,8 @@ import { buscarCombos } from '../../../../api/comboApi';
 import storage from 'local-storage'
 
 export default function Combos(){
-    const [combos, setCombos] = useState([{ produtos: [{ produto: { detalhes: {}}}]}])
-
+    const [combos, setCombos] = useState([{produtos: [{ produto: { detalhes: {}}}]}])
+    const [renderizar, setRenderizar] = useState('')
 
 
     function adicionarCarrinho(indexCombo) {
@@ -17,10 +17,9 @@ export default function Combos(){
         for(let cont = 0; cont < combos[indexCombo].produtos.length; cont++){
             let extraindoProdutos = combos[indexCombo].produtos[cont].produto
             extraindoProdutos.qtd = 1
-            console.log(extraindoProdutos);
             pedido.produtos = [...pedido.produtos, extraindoProdutos ]
         }
-
+        setRenderizar('renderizando')
         storage('usuario-pedido', pedido)
     }       
 
@@ -28,8 +27,10 @@ export default function Combos(){
     async function buscarCombosExibir() {
         try{
             const resp = await buscarCombos()
-            console.log(resp);
-            setCombos(resp)
+            if(resp.length === 0)
+                toast.info('Não há combos cadastrados')
+            else
+                setCombos(resp)
         }
         catch(err){
             if(err.response)
@@ -72,40 +73,44 @@ export default function Combos(){
     return(
         <div id='page-combos'>
             <CabecalhoUsuario />
-            <main id='conteudo'>
-                {combos.map((combo, indexCombo) => {
-                    
-                    return(
-                        <section id='s1'>
-                            <article id='a1'>
-                                <h2> {combo.nome} </h2>
-                                <div>
-                                    {combo.produtos.map((item, indexProdutos, array) => {
-                                        
-                                        return(
-                                            <div key={item.produto.id}>
-                                                <section>
-                                                    <img  src={item.produto.imagem} alt='' />
-                                                    <p> {item.produto.produto} {item.produto.categoria === 'Café em grãos' || item.produto.categoria === 'Café em pó' ? item.produto.peso : ''} </p>
-                                                    <h5 className='precoMarrom'> R${item.produto.preco}</h5>
-                                                </section>
-                                                <img className={verificarClasse(indexProdutos)} style={{display: verificarAparicao(item.id, indexProdutos, array)}} src='/assets/images/icon-mais.png' alt='' />
-                                            </div>
-                                        )
-                                    })}
-                                </div>
-                            </article>
-                            <article id='a2'>
-                                <div>
-                                    <h2> Por apenas </h2>
-                                    <h2 className='precoMarrom'> R$ {combo.preco} </h2>
-                                </div>
-                                <button className='btLaranja' onClick={() => adicionarCarrinho(indexCombo)}> Adicionar no carrinho</button>
-                            </article>
-                        </section>
-                    )
-                })}
-            </main>
+            {combos[0].nome
+            
+             ?  <main id='conteudo'>
+                    {combos.map((combo, indexCombo) => {
+                        
+                        return(
+                            <section id='s1'>
+                                <article id='a1'>
+                                    <h2> {combo.nome} </h2>
+                                    <div>
+                                        {combo.produtos.map((item, indexProdutos, array) => {
+                                            
+                                            return(
+                                                <div key={item.produto.id}>
+                                                    <section>
+                                                        <img  src={item.produto.imagem} alt='' />
+                                                        <p> {item.produto.produto} {item.produto.categoria === 'Café em grãos' || item.produto.categoria === 'Café em pó' ? item.produto.peso : ''} </p>
+                                                        <h5 className='precoMarrom'> R${item.produto.preco}</h5>
+                                                    </section>
+                                                    <img className={verificarClasse(indexProdutos)} style={{display: verificarAparicao(item.id, indexProdutos, array)}} src='/assets/images/icon-mais.png' alt='' />
+                                                </div>
+                                            )
+                                        })}
+                                    </div>
+                                </article>
+                                <article id='a2'>
+                                    <div>
+                                        <h2> Por apenas </h2>
+                                        <h2 className='precoMarrom'> R$ {combo.preco} </h2>
+                                    </div>
+                                    <button className='btLaranja' onClick={() => adicionarCarrinho(indexCombo)}> Adicionar no carrinho</button>
+                                </article>
+                            </section>
+                        )
+                    })}
+                </main>
+
+            : <></> }
             <UsuarioRodape />
         </div>
     )

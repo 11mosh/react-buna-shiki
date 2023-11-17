@@ -63,7 +63,7 @@ async function buscarPedido(){
                             </div>
                             <div>
                                 <p> Data do pedido:</p>
-                                <p className='valor'>{pedido.dt_pedido.substring(0, 10)} {pedido.dt_pedido.substring(11, 8)}</p>
+                                <p className='valor'>{pedido.dt_pedido.substring(0, 10)} {pedido.dt_pedido.substr(11, 8)}</p>
                             </div>
                             <div>
                                 <p id='endereco'> Endereço de envio: </p>
