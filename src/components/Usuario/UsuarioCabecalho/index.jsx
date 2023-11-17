@@ -5,6 +5,7 @@ import { buscarCategorias } from '../../../api/produtoApi';
 import { toast } from 'react-toastify';
 import axios from 'axios';
 import { URLRota } from '../../../constants';
+import storage from 'local-storage'
 
 export default function CabecalhoUsuario() {
 
@@ -54,6 +55,17 @@ export default function CabecalhoUsuario() {
         }
     }
 
+    function verificarCarrinho(){
+        if(storage('usuario-pedido')){
+            if(storage('usuario-pedido').produtos.length !== 0 )
+                return 'flex'
+            else
+                return 'none'
+        }
+        else 
+            return 'none'
+    }
+
     async function buscarCategoriasExibicao(){
         try{
             const categoriasBanco = await buscarCategorias()
@@ -71,14 +83,17 @@ export default function CabecalhoUsuario() {
     useEffect(() => {
         buscarCategoriasExibicao();
         pesquisaProdutos();
+        verificarCarrinho()
     }, [])
+
 
     return(
         <div className='comp-usuario-cabecalho'>
             <div>
                 <section id='s1'>
                     <section style={{ "display": exibirPesquisa}}>
-                        <Link to='/carrinho'>
+                        <Link to='/carrinho' id='carrinho'>
+                            <div style={{display: verificarCarrinho()}}></div>
                             <img src='/assets/images/icon-carrinho.svg' alt='carrinho'/>
                             <p> Carrinho </p>
                         </Link>

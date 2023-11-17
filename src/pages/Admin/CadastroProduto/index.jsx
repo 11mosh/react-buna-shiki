@@ -17,10 +17,10 @@ function CadastroProduto () {
     const [peso, setPeso] = useState("");
     const [marca, setMarca] = useState("");
     const [estoque, setEstoque] = useState("");
-    const [precoVenda, setPrecoVenda] = useState(0);
+    const [precoVenda, setPrecoVenda] = useState();
     const [dimensoes, setDimensoes] = useState("");
     const [descricao, setDescricao] = useState("");
-    const [precoPromocao, setPrecoPromocao] = useState(0);
+    const [precoPromocao, setPrecoPromocao] = useState();
     const [alergia, setAlergia] = useState("");
     const [assinatura, setAssinatura] = useState(false);
     const [categoria, setCategoria] = useState(0);
@@ -52,14 +52,22 @@ function CadastroProduto () {
 
         img.onload = () => {
             if(id !== 0) {
-                setFotosAdicionadas([...fotosAdicionadas, urlImagem])
-                let object = { caminho: urlImagem } 
-                setFotos([...fotos, object])
-                setUrlImagem('');
+                if(fotosAdicionadas.length < 3){
+                    setFotosAdicionadas([...fotosAdicionadas, urlImagem])
+                    let object = { caminho: urlImagem } 
+                    setFotos([...fotos, object])
+                    setUrlImagem('');
+                }
+                else
+                    toast.info('Só é possível inserir no máximo 3 imagens')
             }
             else{
-                setFotos([...fotos, urlImagem]);
-                setUrlImagem('');
+                if(fotos.length < 3){
+                    setFotos([...fotos, urlImagem]);
+                    setUrlImagem('');
+                }
+                else
+                    toast.info('Só é possível inserir no máximo 3 imagens')  
             }
         }
         img.onerror = () => {
@@ -187,6 +195,18 @@ function CadastroProduto () {
         }
     }
 
+    function verificarEstoque(alteracao){
+        let isNum = Number(alteracao)
+        
+        if(isNaN(isNum) || alteracao > 2147483647){
+
+        }
+
+        else{
+            setEstoque(alteracao)
+        }
+    }
+
     async function alterarInputs(){
         try{
             const produto = await buscarIdProduto(idParam)
@@ -231,10 +251,10 @@ function CadastroProduto () {
         setPeso("");
         setMarca("");
         setEstoque("");
-        setPrecoVenda(0);
+        setPrecoVenda('');
         setDimensoes("");
         setDescricao("");
-        setPrecoPromocao(0);
+        setPrecoPromocao('');
         setAlergia("");
         setAssinatura(false);
         setCategoria(0);
@@ -243,6 +263,27 @@ function CadastroProduto () {
         setDocura("");
         setTorra("");
     };
+
+    function verificarPreco(alteracao, campo) {
+        if(campo === 'preco'){
+            let isNum = Number(alteracao)
+            if(isNaN(isNum)){}
+            else{
+                if(alteracao <= 9999){
+                    setPrecoVenda(alteracao)
+                }
+            }
+        }
+        else if(campo === 'promocao'){
+            let isNum = Number(alteracao)
+            if(isNaN(isNum)){}
+            else{
+                if(alteracao <= 9999){
+                    setPrecoPromocao(alteracao)
+                }
+            }
+        }
+    }
 
     const enviarEnter = (event) => {
         if (event === 'Enter') {
@@ -302,7 +343,7 @@ function CadastroProduto () {
                         <section className='lado-esquerdo'>
                             <form action="">
                                 <label htmlFor="">Nome do produto</label>
-                                <textarea type="text" name="" id="" style={{resize: 'none', overflow: 'hidden'}}  value={nome} onChange={e => setNome(e.target.value)}/>
+                                <textarea type="text" name="" id="" style={{resize: 'none', overflow: 'hidden'}}  value={nome} onChange={e => {if(nome.length < 400) {setNome(e.target.value)}}}/>
             
 
                                 <div>
@@ -314,7 +355,7 @@ function CadastroProduto () {
                                     
                                     <div>
                                     <label htmlFor="">Estoque</label>
-                                    <textarea type="text" name="" id="estoque" style={{resize: 'none', overflow: 'hidden'}} value={estoque} onChange={e => setEstoque(e.target.value)}/>
+                                    <textarea type="text" name="" id="estoque" style={{resize: 'none', overflow: 'hidden'}} value={estoque} onChange={e => verificarEstoque(e.target.value)}/>
                                     </div>
                                     
                                 </div>
@@ -325,7 +366,7 @@ function CadastroProduto () {
 
                                 <label htmlFor="">Preço de venda</label>
                                 <textarea type="text" name="" id="" style={{resize: 'none', overflow: 'hidden'}}
-                                value={precoVenda} onChange={e => setPrecoVenda(e.target.value)}/>
+                                value={precoVenda} onChange={e => verificarPreco(e.target.value, 'preco')}/>
                                 
 
                                 <label htmlFor="">Dimensões do produto</label>
@@ -361,7 +402,7 @@ function CadastroProduto () {
 
                             <label htmlFor="">Preço promocional</label>
                             <textarea type="text" name='' id='' style={{resize: 'none', overflow: 'hidden'}}
-                            value={precoPromocao} onChange={e => setPrecoPromocao(e.target.value)}/>
+                            value={precoPromocao} onChange={e => verificarPreco(e.target.value, 'promocao')}/>
 
                             <label htmlFor="">Informações sobre alergia</label>
                             <textarea type="text" name='' id='alergia' style={{resize: 'none', overflow: 'hidden'}}

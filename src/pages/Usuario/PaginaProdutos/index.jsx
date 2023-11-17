@@ -14,6 +14,7 @@ export default function Index(){
     const [produtos, setProdutos] = useState([[], [], []])
     const [produtosAtuais, setProdutosAtuais] = useState([[], [], []])
     const [posicoes, setPosicoes] = useState(['', '', ''])
+        
     const navigate = useNavigate()
 
     async function buscarProdutos(secoes) {
