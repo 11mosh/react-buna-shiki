@@ -13,11 +13,11 @@ export default function RevisaoAssinaturaADM () {
     const [fim, setFim] = useState('');
 
     async function chamarAssinatura () {
-        // const url = URLRota + '/procurar-assinatura-completa/' + id;
-        const url = URLRota + '/procurar-assinatura/' + id;
-
+        const url = URLRota + '/procurar-assinatura-completa/' + id;
+        // const url = URLRota + '/procurar-assinatura/' + id;
+        console.log(id)
         const resposta = await axios.get(url);
-        console.log(resposta);
+        console.log(resposta.data);
         const mensal = (resposta.data)[0].vl_mensalidade;
         const fimm = ((resposta.data)[0].dt_fim).substring(0, 10);
         setFim(fimm)
