@@ -49,7 +49,6 @@ export default function Index() {
             else if(tipoEntregaEscolhido.tipo === 'Entrega Econômica')
                 dtEntrega.setDate(dtEntrega.getDate() + 2)
             dtEntrega = dtEntrega.toISOString()
-            console.log(dtEntrega);
             dtEntrega = dtEntrega.substr(0, 10)
             
             const pedido = {
@@ -63,7 +62,6 @@ export default function Index() {
                 id_cliente: storage('usuario-logado').id,
                 dt_entrega: dtEntrega
             }
-            console.log(pedido);
             const resp = await cadastrarPedido(pedido)
             const respItens = await cadastrarItensPedido(produtos, resp.id)
 
@@ -117,7 +115,7 @@ export default function Index() {
             setEnderecoEscolhido(storage('usuario-pedido').id_endereco)
 
         setProdutos(storage('usuario-pedido').produtos)
-        // setSubtotal(storage('usuario-pedido').subtotal)
+        setSubtotal(storage('usuario-pedido').subtotal)
         
         if(storage('usuario-pedido').tp_entrega && storage('usuario-pedido').frete){
             setTipoEntregaEscolhido({tipo: storage('usuario-pedido').tp_entrega, valor: storage('usuario-pedido').frete})
@@ -194,7 +192,9 @@ export default function Index() {
                                     </figure>
                                     <aside> 
                                         <h5> {item.produto} {item.categoria === 'Café em grãos' || item.categoria === 'Café em pó' ? item.detalhes.peso : ''} </h5>
-                                        <b> R${item.preco} </b>
+                                        {item.promocao === 0.00 
+                                            ? <b> R${item.preco} </b>
+                                            : <b> R${item.promocao} </b>}
                                         <div>
                                             {item.qtd}
                                         </div>
@@ -210,7 +210,7 @@ export default function Index() {
                             <h3> Entrega </h3>
                         </div>
                         <div id='entrega-conteudo'>
-                            <select value={enderecoEscolhido} onChange={e => {setEnderecoEscolhido(e.target.value); trocarValoresStorage('endereco', e.target.value)}}>
+                            <select value={enderecoEscolhido} onChange={e => {setEnderecoEscolhido(Number(e.target.value)); trocarValoresStorage('endereco', e.target.value)}}>
                                 <option value={0}> Selecionar endereço </option>
                                 {enderecos.map(item => {
                                     return(
@@ -261,7 +261,7 @@ export default function Index() {
                                 <strong className='preco'> R$ {total}</strong>
                             </div>
                         </div>
-                        <select value={cartaoEscolhido} onChange={e => {setCartaoEscolhido(e.target.value); setFormaPagamento('Cartão'); setPagamentoPix(false); trocarValoresStorage('pagamento', {id: e.target.value, forma: 'Cartão'})}}>
+                        <select value={cartaoEscolhido} onChange={e => {setCartaoEscolhido(Number(e.target.value)); setFormaPagamento('Cartão'); setPagamentoPix(false); trocarValoresStorage('pagamento', {id: e.target.value, forma: 'Cartão'})}}>
                             <option value={0}> Selecionar cartão </option>
                             {cartoes.map(item => {
                                 return(

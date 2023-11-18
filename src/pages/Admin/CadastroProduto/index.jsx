@@ -89,6 +89,12 @@ function CadastroProduto () {
                 if (fotos.length === 0) {
                     toast.error('Insira ao menos uma imagem!')
                 } else {
+                    let promocaoLocal = 0
+                    if(!precoPromocao)
+                        promocaoLocal = 0.00
+                    else
+                        promocaoLocal = precoPromocao
+
                     const idAdm = storage('adm-logado').id
                     const alteracoes = {
                         idAdm: idAdm,
@@ -104,7 +110,7 @@ function CadastroProduto () {
                         idCategoria: categoria,
                         nome: nome,
                         preco: precoVenda,
-                        promocional: precoPromocao,
+                        promocional: promocaoLocal,
                         disponivelAssinatura: assinatura,
                         estoque: estoque
                     };
@@ -120,6 +126,11 @@ function CadastroProduto () {
                 if (fotos.length === 0) {
                     toast.error('Insira ao menos uma imagem!')
                 } else {
+                    let promocaoLocal = 0
+                    if(!precoPromocao)
+                        promocaoLocal = 0.00
+                    else
+                        promocaoLocal = precoPromocao
                     const idAdm = storage('adm-logado').id
                     const produto = {
                         idAdm: idAdm,
@@ -135,7 +146,7 @@ function CadastroProduto () {
                         idCategoria: categoria,
                         nome: nome,
                         preco: precoVenda,
-                        promocional: precoPromocao,
+                        promocional: promocaoLocal,
                         disponivelAssinatura: assinatura,
                         estoque: estoque
                     };

@@ -7,7 +7,7 @@ import axios from 'axios';
 import { URLRota } from '../../../constants';
 import storage from 'local-storage'
 
-export default function CabecalhoUsuario() {
+export default function CabecalhoUsuario(props) {
 
     const [pesquisa, setPesquisa] = useState('');
     const [mostrarInput, setMostrarInput] = useState(false)
@@ -53,6 +53,13 @@ export default function CabecalhoUsuario() {
         if (event.key === "Enter") {
             setPesquisa('');
         }
+    }
+
+    function verificarCategoriaSelecionada(categoria) {
+        if(props.categoriaSelecionada === categoria)
+            return 'bold'
+        else
+            return ''
     }
 
     function verificarCarrinho(){
@@ -187,7 +194,7 @@ export default function CabecalhoUsuario() {
                 <section>
                     {categorias.map(item => {
                         return(
-                            <Link to={caminhos[item.id - 1]} key={item.id}>{item.nome}</Link>
+                            <Link to={caminhos[item.id - 1]} key={item.id} style={{fontWeight: verificarCategoriaSelecionada(item.nome)}}> {item.nome} </Link>
                         )
                     })}
                 </section>

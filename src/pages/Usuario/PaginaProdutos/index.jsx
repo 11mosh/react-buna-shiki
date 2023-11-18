@@ -37,6 +37,23 @@ export default function Index(){
         }
     }
 
+    function verificarCategoria() {
+        if(categoria === 'cafeempo')
+            return 'Café em pó'
+        else if(categoria === 'cafeteiras')
+            return 'Cafeteiras'
+        else if(categoria === 'filtros')
+            return 'Filtros'
+        else if(categoria === 'moedores')
+            return 'Moedores'
+        else if(categoria === 'capsulas')
+            return 'Cápsulas'
+        else if(categoria === 'acessorios')
+            return 'Acessórios'
+        else if(categoria === 'cafeemgraos')
+            return 'Café em grãos'
+    }
+
     function verificarPosicao(secao) {
         if(produtos[secao].length !== 0){
             if(produtos[secao].length > 4){
@@ -172,7 +189,7 @@ export default function Index(){
     
     return(
         <div id='page-produtos'>
-            <Cabecalho />
+            <Cabecalho categoriaSelecionada={verificarCategoria()}/>
             <main id='conteudo'>
                 <section className='faixaApresentacao'>
                     <article>

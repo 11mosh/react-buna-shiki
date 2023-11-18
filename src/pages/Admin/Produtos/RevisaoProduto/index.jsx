@@ -129,7 +129,7 @@ export default function RevisaoProduto () {
                     <div className="details">
                         <div className="s1">
                             <p><b>Preço sem promoção:</b> R$ {produto.preco}</p>
-                            <p><b>Preço promocional:</b> {produto.promocao !== '0.00' ? `R$ ${produto.promocao}` : '-'}</p>
+                            <p><b>Preço promocional:</b> {produto.promocao !== 0.00 ? `R$ ${produto.promocao}` : '-'}</p>
                             <p><b>Estoque:</b> {produto.estoque}</p>
                         </div>
                         <div className="s2">

@@ -13,7 +13,7 @@ export default function Index(props) {
         try{
             const respPedido = await buscarPedidoPorId(props.idPedido)
             
-            console.log(respPedido);
+            
             if(respPedido.id_cliente !== storage('usuario-logado').id)
                 navigate('/conta/meus-pedidos')
             else{

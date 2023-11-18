@@ -72,7 +72,7 @@ export default function Combos(){
     
     return(
         <div id='page-combos'>
-            <CabecalhoUsuario />
+            <CabecalhoUsuario categoriaSelecionada='Combos'/>
             {combos[0].nome
             
              ?  <main id='conteudo'>

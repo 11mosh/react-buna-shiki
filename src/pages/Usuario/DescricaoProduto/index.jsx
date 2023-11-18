@@ -19,8 +19,9 @@ export default function DescricaoProduto () {
            let respProduto = await buscarIdProduto(id)
            respProduto.qtd = 1
            respProduto.imagem = respProduto.imagens[0].caminho
-            console.log(respProduto);
+           
            setProduto(respProduto)
+           buscarProdutosSugestaoClick()
         }
         catch(err){
             if(err.response)
@@ -66,13 +67,18 @@ export default function DescricaoProduto () {
         try{
             const respProdutos = await buscarTodosProdutos()
             let produtos = []
+
+
             while(produtos.length < 4){
                 let num = Math.random() * 100
                 num = num.toFixed(0)
-                if(respProdutos[num])
-                    produtos.push(respProdutos[num])
-            }
+                if(respProdutos[num]){
+                    if(produtos.includes(respProdutos[num]) === false)
+                        produtos.push(respProdutos[num])
+                }
 
+            }
+            
             setProdutosSugestao(produtos)
         }
         catch(err){
@@ -85,7 +91,6 @@ export default function DescricaoProduto () {
 
     useEffect(() => {
         buscarProdutoClick()
-        buscarProdutosSugestaoClick()
         
         // eslint-disable-next-line
     }, [id])
@@ -151,11 +156,11 @@ return (
              <article className='compra'>
                     <nav className="nome-preco">
                         <h1>{produto.produto} {produto.categoria === 'Café em grãos' || produto.categoria === 'Café em pó' ? produto.detalhes.peso : ''}</h1>
-                        {produto.promocao !== '0.00' 
+                        {produto.promocao !== 0.00
                             ? <h5>De: <b style={{textDecoration: 'line-through'}}>R${produto.preco}</b></h5>
                             : <></>
                         }
-                        {produto.promocao !== '0.00'
+                        {produto.promocao !== 0.00
                             ? <h2>POR: <b>R${produto.promocao}</b></h2>
                             : <b>R${produto.preco}</b>
                         }
@@ -239,7 +244,7 @@ return (
                     {/* <button>&gt;</button> */}
                     {produtosSugestao.map((item) => {
                         return(
-                        <div className="produto" onClick={() => produtoSugestaoClicado(item.id)}>
+                        <div key={item.id} className="produto" onClick={() => produtoSugestaoClicado(item.id)}>
                             <img src={item.imagem} alt="" />
                             <p> {item.produto}</p>
                             <p className='preco-produto'><b>R${item.preco}</b></p>

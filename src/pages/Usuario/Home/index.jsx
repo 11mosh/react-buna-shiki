@@ -48,7 +48,7 @@ function Home () {
         const resposta = await axios.get(url);
         const dados = resposta.data;
         
-        console.log(dados);
+        
         
         if (dados.length > 0) {
             setAssinante(true);

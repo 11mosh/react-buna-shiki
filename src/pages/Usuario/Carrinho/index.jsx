@@ -56,7 +56,11 @@ export default function Carrinho () {
 
     function calcularSubtotal() {
         let subtotalCalc = produtos.reduce((total, item) => {
-            total = total + (item.preco * item.qtd)
+            if(item.promocao !== 0.00)
+                total = total + (item.promocao * item.qtd)
+            else
+                total = total + (item.preco * item.qtd)
+
             return total
         }, 0)
 
@@ -71,6 +75,7 @@ export default function Carrinho () {
         const produtosStorage = storage('usuario-pedido').produtos
         let produtos = []
         
+        
         for(let cont = 0; cont < produtosStorage.length; cont++){
             let repetidoPosicao = ''
             for(let conta = 0; conta < produtos.length; conta++){
@@ -81,7 +86,7 @@ export default function Carrinho () {
             }
             if(repetidoPosicao === ''){
                 produtos[cont] = produtosStorage[cont]
-                console.log('inseriu');
+                
             }
             else{
                 produtos[repetidoPosicao].qtd = ++produtos[repetidoPosicao].qtd
@@ -136,7 +141,10 @@ export default function Carrinho () {
                                             </div>
                                             <div id="detalhes">
                                                 <p> {item.produto} {item.categoria === 'Café em grãos' || item.categoria === 'Café em pó' ? item.detalhes.peso : ''}</p>
-                                                <p> R${item.preco} </p>
+                                                {item.promocao !== 0.00
+                                                    ? <p> R${item.promocao} </p>
+                                                    : <p> R${item.preco} </p>
+                                                }
                                                 <div> 
                                                     <button onClick={() => diminuirQtd(item.id, index, item.qtd)}> 
                                                         <p>-</p>
