@@ -230,7 +230,7 @@ export default function Assinatura () {
             chamarCartoes();
             chamarEnderecos();
         } else {
-            redir('/login');
+            redir('/login/assinatura');
         }
 
         // eslint-disable-next-line

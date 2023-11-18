@@ -48,8 +48,8 @@ export default function Rotas() {
                 <Route path='/cabeca' element={<CabecalhoAdm />}/>
                 <Route path='/cabecalho' element={<CabecalhoUsuario />}/>
                 <Route path='/rodape' element={<UsuarioRodape />} />
-                <Route path='/login' element={<UsuarioLogin />}/>
-                <Route path='/cadastro' element={<UsuarioCadastro />} />
+                <Route path='/login/:voltar' element={<UsuarioLogin />}/>
+                <Route path='/cadastro/:voltar' element={<UsuarioCadastro />} />
                 <Route path='/acompanhar-pedido/:id' element={<AcompanharPedido />} />
                 <Route path='/descricao/:id' element={<DescricaoProduto />} />
 

@@ -37,7 +37,7 @@ export default function Index(){
             }
         }
         else if(campo === 'telefone'){
-            if(valor !== cliente.telefone){
+            if(telefone !== cliente.telefone){
                 alterou = 'sim'
             }
             else{
@@ -45,7 +45,7 @@ export default function Index(){
             }
         }
         else if(campo === 'cpf'){
-            if(valor !== cliente.cpf){
+            if(cpf !== cliente.cpf){
                 alterou = 'sim'
             }
             else{
@@ -121,47 +121,64 @@ export default function Index(){
     }
     
     function mudarCPF(alteracao){
-        if((alteracao.length === 3 && alteracao.length > cpf.length) || (alteracao.length === 7 && alteracao.length > cpf.length)){
-            setCPF(`${alteracao}.`)
-        }
-        else if(alteracao.length === 11 && alteracao.length > cpf.length){
-            setCPF(`${alteracao}-`)
-        }
-        else if(alteracao.length <= 14){
+        let novaAlteracao = alteracao.slice(cpf.length)
+        novaAlteracao = Number(novaAlteracao)
+        
+        if(alteracao.length < cpf.length)
             setCPF(alteracao)
+
+        else if(isNaN(novaAlteracao) === false){
+            if((alteracao.length === 3 && alteracao.length > cpf.length) || (alteracao.length === 7 && alteracao.length > cpf.length)){
+                setCPF(`${alteracao}.`)
+            }
+            else if(alteracao.length === 11 && alteracao.length > cpf.length){
+                setCPF(`${alteracao}-`)
+            }
+            else if(alteracao.length <= 14){
+                setCPF(alteracao)
+            }
         }
     }
     function mudarTelefone(alteracao){
-        if(telefone.startsWith('+')){
-            if((alteracao.length === 3 && alteracao.length > telefone.length) || (alteracao.length === 6 && alteracao.length > telefone.length)){
-                setTelefone(`${alteracao} `)
+        let novaAlteracao = alteracao.slice(telefone.length)
+        novaAlteracao = Number(novaAlteracao)
+        
+        if(alteracao.length < telefone.length)
+            setTelefone(alteracao)
+
+        else if(isNaN(novaAlteracao) === false || alteracao === '+'){
+            if(telefone.startsWith('+')){
+                if((alteracao.length === 3 && alteracao.length > telefone.length) || (alteracao.length === 6 && alteracao.length > telefone.length)) {
+                    setTelefone(`${alteracao} `)
+                }
+                else if(alteracao.length === 12 && alteracao.length > telefone.length){
+                    setTelefone(`${alteracao}-`)
+                }
+                else if(alteracao.length <= 17){
+                    setTelefone(alteracao)
+                }
             }
-            else if(alteracao.length === 12 && alteracao.length > telefone.length){
-                setTelefone(`${alteracao}-`)
-            }
-            else if(alteracao.length <= 17){
-                setTelefone(alteracao)
-            }
-        }
-        else{
-            if(alteracao.length === 2 && alteracao.length > telefone.length){
-                setTelefone(`${alteracao} `)
-            }
-            else if(alteracao.length === 8 && alteracao.length > telefone.length){
-                setTelefone(`${alteracao}-`)
-            }
-            else if(alteracao.length <= 13){
-                setTelefone(alteracao)
+            else{
+                if(alteracao.length === 2 && alteracao.length > telefone.length) {
+                    setTelefone(`${alteracao} `)
+                }
+                else if(alteracao.length === 8 && alteracao.length > telefone.length){
+                    setTelefone(`${alteracao}-`)
+                }
+                else if(alteracao.length <= 13){
+                    setTelefone(alteracao)
+                }
             }
         }
     }
     useEffect(() => {
         if(!storage('usuario-logado')){
-            navigate('/login')
+            navigate('/login/conta')
         }
         else{
             completandoInputs()
         }
+        
         // eslint-disable-next-line
     }, [])
     

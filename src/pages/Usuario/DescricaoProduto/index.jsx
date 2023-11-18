@@ -38,7 +38,7 @@ export default function DescricaoProduto () {
     function adicionarCarrinho(){
         if(!storage('usuario-logado')){
             toast.info('Faça login ou cadastro para adicionar coisas ao carrinho.')
-            navigate('/login')
+            navigate(`/login/descricao${id}`)
         }
         else{
             let pedido = storage('usuario-pedido')
@@ -51,7 +51,7 @@ export default function DescricaoProduto () {
     function comprar(){
         if(!storage('usuario-logado')){
             toast.info('Faça login ou cadastro para comprar algo')
-            navigate('/login')
+            navigate(`/login/descricao${id}`)
         }
         else{
             let pedido = storage('usuario-pedido')

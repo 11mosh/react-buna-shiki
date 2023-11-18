@@ -6,7 +6,7 @@ import CancelarAssinatura from './CancelarAssinatura';
 import { confirmAlert } from 'react-confirm-alert';
 import { useEffect, useState } from 'react';
 import { URLRota } from '../../../../constants.js';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import axios from 'axios';
 import storage from 'local-storage';
 
@@ -40,6 +40,7 @@ export default function PerfilAssinatura () {
     const [assinante, setAssinante] = useState(false);
     const [proximaData, setProximaData] = useState();
     const [codigo, setCodigo] = useState('');
+    const navigate = useNavigate()
 
     async function verificarAssinatura (id) {
         const url = URLRota + '/verificar-assinatura/' + id;
@@ -81,6 +82,9 @@ export default function PerfilAssinatura () {
                 setIdAssinatura(idAssinaturaa);
                 chamarAssinatura(idAssinaturaa);
             }
+        }
+        else{
+            navigate('/login/conta')
         }
 
        // eslint-disable-next-line

@@ -41,7 +41,12 @@ export default function MeusPedidos () {
     };
 
     useEffect(() => {
-        chamarPedidos();
+        if(!storage('usuario-logado')){
+            redir('/login/conta')
+        }
+        else{
+            chamarPedidos();
+        }
         // eslint-disable-next-line 
     }, []);
     

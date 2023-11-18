@@ -5,22 +5,30 @@ import { useEffect, useState } from 'react';
 import { toast } from 'react-toastify';
 import { buscarCombos } from '../../../../api/comboApi';
 import storage from 'local-storage'
+import { useNavigate } from 'react-router';
 
 export default function Combos(){
     const [combos, setCombos] = useState([{produtos: [{ produto: { detalhes: {}}}]}])
     const [renderizar, setRenderizar] = useState('')
     const cores = ['#C3937D', '#883715', '#31231D']
+    const navigate = useNavigate()
 
     function adicionarCarrinho(indexCombo) {
-        let pedido = storage('usuario-pedido')
-        
-        for(let cont = 0; cont < combos[indexCombo].produtos.length; cont++){
-            let extraindoProdutos = combos[indexCombo].produtos[cont].produto
-            extraindoProdutos.qtd = 1
-            pedido.produtos = [...pedido.produtos, extraindoProdutos ]
+        if(storage('usuario-logado')){
+            let pedido = storage('usuario-pedido')
+            
+            for(let cont = 0; cont < combos[indexCombo].produtos.length; cont++){
+                let extraindoProdutos = combos[indexCombo].produtos[cont].produto
+                extraindoProdutos.qtd = 1
+                pedido.produtos = [...pedido.produtos, extraindoProdutos ]
+            }
+            setRenderizar('renderizando')
+            storage('usuario-pedido', pedido)
         }
-        setRenderizar('renderizando')
-        storage('usuario-pedido', pedido)
+        else{
+            toast.info('Faça login ou cadastro para inserir um combo no carrinho')
+            navigate('/login/combos')
+        }
     }       
 
 

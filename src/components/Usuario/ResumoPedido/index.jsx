@@ -9,7 +9,7 @@ export default function Index(props) {
     const navigate = useNavigate()
     const [pedido, setPedido] = useState({dt_entrega: '', dt_pedido: '', itens: [], endereco: {}});
 
-async function buscarPedido(){
+    async function buscarPedido(){
         try{
             const respPedido = await buscarPedidoPorId(props.idPedido)
             
@@ -30,7 +30,7 @@ async function buscarPedido(){
 
     useEffect(() => {
         if(!storage('usuario-logado')){
-            navigate('/login')
+            navigate('/login/meuspedidos')
         }
         else{
             buscarPedido()

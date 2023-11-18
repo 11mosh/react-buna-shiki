@@ -1,4 +1,4 @@
-import { Link, useNavigate } from 'react-router-dom';
+import { Link, useNavigate, useParams } from 'react-router-dom';
 import CabecalhoLink from '../../../components/Usuario/CabecalhoLink';
 import UsuarioRodape from '../../../components/Usuario/UsuarioRodape';
 import './index.scss';
@@ -12,6 +12,7 @@ export default function Index() {
     const [email, setEmail] = useState('')
     const [senha, setSenha] = useState('')
     const [carregando, setCarregando] = useState(false)
+    const { voltar } = useParams()
 
     const ref = useRef()
     const navigate = useNavigate()
@@ -24,7 +25,19 @@ export default function Index() {
             storage('usuario-logado', resp)
             storage('usuario-pedido', {produtos: []})
             setTimeout(() => {
-                navigate('/produtos/cafeemgraos')
+                if(voltar === 'meuspedidos')
+                    navigate('/conta/meus-pedidos')
+                else if(voltar === 'assinatura')
+                    navigate('/assinatura')
+                else if(voltar.startsWith('descricao'))
+                    navigate(`/descricao/${voltar.slice(9)}`)
+                else if(voltar === 'combos')
+                    navigate('/combos')
+                else if(voltar === 'conta')
+                    navigate('/conta/dados-pessoais')
+                else
+                    navigate('/')
+                
             }, 3000)
         }
         catch(err){
@@ -68,7 +81,7 @@ export default function Index() {
                                         <p> Não tem um conta? </p>
                                     </div>
                                     <div>
-                                        <Link to='/cadastro'>Cadastre-se!</Link>
+                                        <Link to={{pathname: `/cadastro/${voltar}`}}>Cadastre-se!</Link>
                                     </div>
                                 </div>
                             </article>

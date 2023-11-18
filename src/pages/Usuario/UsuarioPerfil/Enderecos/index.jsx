@@ -7,43 +7,53 @@ import { toast } from 'react-toastify'
 import storage from 'local-storage'
 import { CadastrarEndereco, alterarEndereco, buscarCep, buscarEnderecos, deletarEndereco } from '../../../../api/usuarioApi'
 import { confirmAlert } from 'react-confirm-alert'
+import { useNavigate } from 'react-router'
 
 export default function Index(){
     const [mostrarTabela, setMostrarTabela] = useState('none')
     const [enderecos, setEnderecos] = useState([])
-    const [cep, setCEP] = useState()
+    const [cep, setCEP] = useState('')
     const [numero, setNumero] = useState()
     const [rua, setRua] = useState()
     const [complemento, setComplemento] = useState()
     const [cidade, setCidade] = useState()
     const [id, setId] = useState(0)
+    const navigate = useNavigate()
 
     async function buscarCepClick(alteracao){
         try {
-            if(alteracao.length === 5 && alteracao.length > cep.length){
-                setCEP(`${alteracao}-`)
-            }
-            else if(alteracao.length <= 9){
-                setCEP(alteracao)
-            }
+            let novaAlteracao = alteracao.slice(cep.length)
+            novaAlteracao = Number(novaAlteracao)
             
-            if(alteracao.length === 9){
-                const resp = await buscarCep(alteracao)
+            if(alteracao.length < cep.length)
+                setCEP(alteracao)
 
-                if(resp.erro){
-                    toast.error('CEP inválido')
-                    setCidade('')
-                    setRua('')
+            else if(isNaN(novaAlteracao) === false){
+                if(alteracao.length === 5 && alteracao.length > cep.length){
+                    setCEP(`${alteracao}-`)
                 }
-                else{
-                    setCidade(resp.localidade)
-                    setRua(resp.logradouro)
+                else if(alteracao.length <= 9){
+                    setCEP(alteracao)
                 }
-            }
-
-            else if(alteracao.length < 9){
-                setCidade('')
-                setRua('')
+    
+    
+                if(alteracao.length === 9){
+                    const resp = await buscarCep(alteracao)
+    
+                    if(resp.erro){
+                        toast.error('CEP inválido')
+                        setCidade('')
+                        setRua('')
+                    }
+                    else{
+                        setCidade(resp.localidade)
+                        setRua(resp.logradouro)
+                    }
+                }
+    
+                else if(alteracao.length > 9){
+                    
+                }
             }
         }
         catch(err){
@@ -124,7 +134,6 @@ export default function Index(){
 
     async function deletarEnderecoClick(item) {
         
-        console.log(item);
         confirmAlert({
             title: "Deletar endereço",
             message: `Tem certeza que deseja deletar o endereço da rua "${item.rua}" ?`,
@@ -158,7 +167,12 @@ export default function Index(){
     }
 
     useEffect(() => {
-        buscarTodos()
+        if(!storage('usuario-logado')){
+            navigate('/login/conta')
+        }
+        else{
+            buscarTodos()
+        }
     }, [])
 
     return(
