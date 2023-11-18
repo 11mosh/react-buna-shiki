@@ -77,7 +77,7 @@ export default function Consulta() {
   }
 
   function verResumo(id, campoClass) {
-    if(campoClass != 'fa-regular fa-pen-to-square' && campoClass != 'fa-regular fa-trash-can')
+    if(campoClass !== 'fa-regular fa-pen-to-square' && campoClass !== 'fa-regular fa-trash-can')
       navigate(`/adm/${id}/revisao-produto`)
   }
 

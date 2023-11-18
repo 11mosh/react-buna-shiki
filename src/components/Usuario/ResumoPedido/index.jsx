@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react'
 import './index.scss'
 import { buscarPedidoPorId } from '../../../api/pedidoApi'
-import { useNavigate, useParams } from 'react-router'
+import { useNavigate } from 'react-router'
 import storage from 'local-storage'
 import { toast } from 'react-toastify'
 

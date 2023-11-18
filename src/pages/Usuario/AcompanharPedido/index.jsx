@@ -98,7 +98,7 @@ export default function Index() {
 
     function verificarEstagio(nEstagio) {
         if(nEstagio === 1){
-            if(pedido.situacao == 'Pedido em preparo' || pedido.situacao == 'À caminho' || pedido.situacao == 'Entregue' || pedido.situacao === 'Pagamento' || pedido.situacao === 'Pedido realizado'){
+            if(pedido.situacao === 'Pedido em preparo' || pedido.situacao === 'À caminho' || pedido.situacao === 'Entregue' || pedido.situacao === 'Pagamento' || pedido.situacao === 'Pedido realizado'){
                 return 'concluido'
             }
             else{
@@ -106,7 +106,7 @@ export default function Index() {
             }
         }
         else if(nEstagio === 2 ){
-            if( pedido.situacao === 'Pagamento' ||pedido.situacao == 'Pedido em preparo' || pedido.situacao == 'À caminho' || pedido.situacao == 'Entregue') {
+            if( pedido.situacao === 'Pagamento' ||pedido.situacao === 'Pedido em preparo' || pedido.situacao === 'À caminho' || pedido.situacao === 'Entregue') {
                 return 'concluido'
             }
             else{
@@ -114,7 +114,7 @@ export default function Index() {
             }
         }
         else if(nEstagio === 3){
-            if(pedido.situacao === 'Pedido em preparo' ||pedido.situacao == 'À caminho' || pedido.situacao == 'Entregue'){
+            if(pedido.situacao === 'Pedido em preparo' ||pedido.situacao === 'À caminho' || pedido.situacao === 'Entregue'){
                 return 'concluido'
             }
             else{
@@ -122,7 +122,7 @@ export default function Index() {
             }
         }
         else if(nEstagio === 4){
-            if(pedido.situacao == 'À caminho' || pedido.situacao == 'Entregue'){
+            if(pedido.situacao === 'À caminho' || pedido.situacao === 'Entregue'){
                 return 'concluido'
             }
             else{
@@ -130,7 +130,7 @@ export default function Index() {
             }
         }
         else if(nEstagio === 5){
-            if(pedido.situacao == 'Entregue'){
+            if(pedido.situacao === 'Entregue'){
                 return 'concluido'
             }
             else{
@@ -140,13 +140,13 @@ export default function Index() {
     }
 
     function verificarBarraProgresso(linha) {
-        if(linha == 1){
+        if(linha === 1){
             if(pedido.situacao === 'Pedido realizado' || pedido.situacao === 'Pagamento' || pedido.situacao === 'Pedido em preparo' || pedido.situacao === 'À caminho' || pedido.situacao === 'Entregue')
                 return 'concluido'
             else
                 return ''
         }
-        if(linha == 2){
+        if(linha === 2){
             if(pedido.situacao === 'Pagamento' || pedido.situacao === 'Pedido em preparo' || pedido.situacao === 'À caminho' || pedido.situacao === 'Entregue'){
                 return 'concluido'
             }
@@ -154,7 +154,7 @@ export default function Index() {
                 return ''
             }
         }
-        if(linha == 3){
+        if(linha === 3){
             if(pedido.situacao === 'Pedido em preparo' || pedido.situacao === 'À caminho' || pedido.situacao === 'Entregue'){
                 return 'concluido'
             }
@@ -162,7 +162,7 @@ export default function Index() {
                 return ''
             }
         }
-        if(linha == 4){
+        if(linha === 4){
             if(pedido.situacao === 'À caminho' || pedido.situacao === 'Entregue'){
                 return 'concluido'
             }
@@ -174,6 +174,8 @@ export default function Index() {
 
     useEffect(() => {
         buscarPedido()
+
+        // eslint-disable-next-line
     }, [])
 
     return(

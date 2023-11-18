@@ -51,7 +51,7 @@ export default function Index() {
     function verificarCor(index){
         if(estatisticas[index].taxa > 0)
             return 'textoVerde'
-        else if(estatisticas[index].taxa == 0)
+        else if(estatisticas[index].taxa === 0)
             return ''
         else
             return 'textoVermelho'

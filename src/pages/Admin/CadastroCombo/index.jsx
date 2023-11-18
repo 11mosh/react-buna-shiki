@@ -4,7 +4,6 @@ import { useEffect, useState} from 'react';
 import { toast } from 'react-toastify';
 import { buscarTodosProdutos } from '../../../api/produtoApi';
 import { adicionarItensCombo, criarCombo } from '../../../api/comboApi';
-import { Link } from 'react-router-dom';
 
 export default function CadastroCombo () {
 
@@ -139,6 +138,7 @@ export default function CadastroCombo () {
         if(produtosSelecionados.length !== 0)
             calcularPreco()
 
+        // eslint-disable-next-line
     }, [produtosSelecionados])
  
 

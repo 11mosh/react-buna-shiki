@@ -13,7 +13,6 @@ export default function Index() {
     const [dataPedido, setDataPedido] = useState('')
     const [pesquisa, setPesquisa] = useState('')
     const [pedidos, setPedidos] = useState([])
-    const [isTrocandoStatus, setIsTrocandoStatus] = useState(false)
     const navigate = useNavigate()
 
     async function buscarPedidosClick(){

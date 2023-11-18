@@ -1,6 +1,6 @@
 import './index.scss';
 import CabecalhoAdm from '../../../components/Admin/AdmCabecalho';
-import { Link, useNavigate, useParams } from 'react-router-dom';
+import { useNavigate, useParams } from 'react-router-dom';
 import { useEffect, useState} from 'react';
 import axios from 'axios'
 import { toast } from 'react-toastify';
@@ -296,17 +296,19 @@ function CadastroProduto () {
         }
     }
 
-    const enviarEnter = (event) => {
-        if (event === 'Enter') {
-            adicionarImagem();
-        }
-    }
+    // const enviarEnter = (event) => {
+    //     if (event === 'Enter') {
+    //         adicionarImagem();
+    //     }
+    // }
 
     useEffect(() => {
         if(idParam){
             alterarInputs()
         }
         buscarCategoriasExibicao()
+
+        // eslint-disable-next-line
     }, [])
 
     return ( 

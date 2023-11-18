@@ -2,11 +2,9 @@ import './index.scss'
 import UsuarioCabecalho from '../../../components/Usuario/UsuarioCabecalho'
 import UsuarioRodape from '../../../components/Usuario/UsuarioRodape'
 import ResumoPedido from '../../../components/Usuario/ResumoPedido'
-import { Link, useNavigate, useParams } from 'react-router-dom'
-import { useEffect } from 'react'
+import { Link, useParams } from 'react-router-dom'
 
 export default function Index(){
-    const navigate = useNavigate()
     const {id} = useParams()
     
     

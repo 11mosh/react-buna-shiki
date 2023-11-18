@@ -5,7 +5,6 @@ import './index.scss';
 import { buscarCartoes, buscarEnderecos } from '../../../api/usuarioApi';
 import storage from 'local-storage'
 import { useNavigate } from 'react-router';
-import { Link } from 'react-router-dom';
 import { cadastrarItensPedido, cadastrarPedido } from '../../../api/pedidoApi';
 import { toast } from 'react-toastify';
 
@@ -63,7 +62,7 @@ export default function Index() {
                 dt_entrega: dtEntrega
             }
             const resp = await cadastrarPedido(pedido)
-            const respItens = await cadastrarItensPedido(produtos, resp.id)
+            await cadastrarItensPedido(produtos, resp.id)
 
             storage('usuario-pedido', { produtos: [] })
             setTimeout(() => {
@@ -172,6 +171,7 @@ export default function Index() {
         else
             navigate('/login')
         
+        // eslint-disable-next-line
     }, [])
 
 

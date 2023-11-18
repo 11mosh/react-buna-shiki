@@ -135,7 +135,9 @@ function Home () {
                 const idAssinaturaa = storage('id-assinatura').idAssinatura;
                 setIdAssinatura(idAssinaturaa);
             }
-        }        
+        }      
+        
+        // eslint-disable-next-line
     }, [assinante]);
 
 

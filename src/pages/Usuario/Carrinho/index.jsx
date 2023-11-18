@@ -110,6 +110,8 @@ export default function Carrinho () {
     useEffect(() => {
         if(produtos.length !== 0)
             calcularSubtotal()
+
+        // eslint-disable-next-line
     }, [produtos])
 
     return (    
