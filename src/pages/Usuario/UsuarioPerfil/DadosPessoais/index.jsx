@@ -185,7 +185,7 @@ export default function Index(){
     
     return(
         <div id='page-conta-dados-pessoais'>
-            <CabecalhoUsuario />
+            <CabecalhoUsuario linha='aparecer'/>
             <div id='conteudo'>
                 <main>
                     <BarraNavegacao selecionar='DadosPessoais' />

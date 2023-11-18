@@ -65,7 +65,7 @@ export default function Cartoes () {
 
     return (
         <main className="perfil-cartoes">
-            <Cabecalho/>
+            <Cabecalho linha='aparecer'/>
             <main className="corpo">
 
                 <BarraNavegacao selecionar='Cartões' />

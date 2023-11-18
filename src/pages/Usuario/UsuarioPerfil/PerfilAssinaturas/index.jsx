@@ -109,7 +109,7 @@ export default function PerfilAssinatura () {
 
     return (
         <main className="perfil-assinatura">
-            <Cabecalho/>
+            <Cabecalho linha='aparecer'/>
             <main className="corpo">
 
                 <BarraNavegacao selecionar='Assinaturas' />

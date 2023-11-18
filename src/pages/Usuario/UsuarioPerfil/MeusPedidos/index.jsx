@@ -52,7 +52,7 @@ export default function MeusPedidos () {
     
     return (
         <main className='meusPedidos'>
-            <CabecalhoUsuario />
+            <CabecalhoUsuario linha='aparecer'/>
 
         <div className="corpo">
             

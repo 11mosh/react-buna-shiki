@@ -14,6 +14,7 @@ export async function buscarCombos(){
 
 export async function criarCombo(combo) {
     const resp = await api.post('/combo', {
+        id_admin: combo.id_admin,
         nome: combo.nome,
         preco: combo.preco
     })

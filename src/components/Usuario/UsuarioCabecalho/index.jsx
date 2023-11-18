@@ -62,6 +62,13 @@ export default function CabecalhoUsuario(props) {
             return ''
     }
 
+    function verificarLinha() {
+        if(props.linha === 'aparecer')
+            return 'flex'
+        else
+            return 'none'
+    }
+
     function verificarCarrinho(){
         if(storage('usuario-pedido')){
             if(storage('usuario-pedido').produtos.length !== 0 )
@@ -199,7 +206,7 @@ export default function CabecalhoUsuario(props) {
                     })}
                 </section>
             </nav>
-            <hr id='hrsumir'/>
+            <hr id='hrsumir' style={{display: verificarLinha()}}/>
         </div>
     )
 }

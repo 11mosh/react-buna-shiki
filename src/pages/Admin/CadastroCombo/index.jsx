@@ -4,6 +4,7 @@ import { useEffect, useState} from 'react';
 import { toast } from 'react-toastify';
 import { buscarTodosProdutos } from '../../../api/produtoApi';
 import { adicionarItensCombo, criarCombo } from '../../../api/comboApi';
+import storage from 'local-storage'
 
 export default function CadastroCombo () {
 
@@ -31,8 +32,9 @@ export default function CadastroCombo () {
     async function finalizarCombo() {
         try{
             if(produtosSelecionados.length === 4){
-                console.log('oi');
+                const id = storage('adm-logado').id
                 const combo = {
+                    id_admin: id,
                     nome: nomeCombo,
                     preco: preco
                 }

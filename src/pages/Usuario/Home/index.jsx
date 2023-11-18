@@ -143,7 +143,7 @@ function Home () {
 
     return (
         <main className='home'>
-            <Cabecalho />
+            <Cabecalho/>
             <article className='banner-cafe'>
                     <h1>Presente nos seus melhores momentos de conforto, nossa empresa transforma cada xícara em um momento especial.</h1>
             </article>

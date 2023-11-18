@@ -116,7 +116,7 @@ export default function Carrinho () {
 
     return (    
       <div className="page-carrinho">
-        <Cabecalho />
+        <Cabecalho linha='aparecer'/>
             <main id="carrinho">
                 {produtos.length === 0
                 ?   <div id="carrinho-vazio">
