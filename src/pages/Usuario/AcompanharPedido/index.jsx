@@ -7,7 +7,6 @@ import { useEffect, useState } from 'react';
 import { buscarPedidoPorId, trocarStatusPedido } from '../../../api/pedidoApi';
 import { toast } from 'react-toastify';
 import { confirmAlert } from 'react-confirm-alert';
-import storage from 'local-storage'
 
 export default function Index() {
     const [pedido, setPedido] = useState({})
