@@ -17,6 +17,8 @@ export default function CadastroCombo () {
         try{
             const resp = await buscarTodosProdutos()
             setProdutosParaCombo(resp)
+            setProdutosSelecionados([])
+            setPrecoSugerido()
         }
         catch(err){
             if(err.response)
@@ -115,6 +117,7 @@ export default function CadastroCombo () {
 
         let desconto = total * 0.05
         let totalComDesc = total - desconto
+        totalComDesc =  totalComDesc.toFixed(2)
         console.log(total);
         console.log(desconto);
 

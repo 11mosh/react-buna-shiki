@@ -7,7 +7,7 @@ import { buscarCategorias } from '../../../api/produtoApi';
 import { toast } from 'react-toastify';
 import { URLRota } from '../../../constants';
 import axios from 'axios';
-import storage, { set } from 'local-storage';
+import storage from 'local-storage';
 
 
 function Home () {
@@ -15,7 +15,7 @@ function Home () {
     const [categorias, setCategorias] = useState([]);
     const [categoriasAtual, setCategoriasAtual] = useState([]);
     const [assinante, setAssinante] = useState();
-    const redir = useNavigate();
+    // const redir = useNavigate();
     const [idAssinatura, setIdAssinatura] = useState();
 
     async function buscarCategoriasExibicao(){
@@ -58,7 +58,7 @@ function Home () {
             storage('id-assinatura', {idAssinatura: idAssinatura});
             const idAssinaturaa = dados[0].id_assinatura;
         setIdAssinatura(idAssinaturaa);
-        } else if (dados.length == 0) {
+        } else if (dados.length === 0) {
             setAssinante(false);
         }
         } catch (error) {

@@ -8,13 +8,12 @@ import { useState, useEffect } from 'react';
 import Avaliacao from './avaliacao/telaAvaliacao';
 import BarraNavegacao from '../../../../components/Usuario/BarraNavegacaoConta';
 import storage from 'local-storage';
-import { toast } from 'react-toastify';
 import { URLRota } from '../../../../constants.js';
-import { Link, useNavigate, useParams } from 'react-router-dom';
+import { useNavigate} from 'react-router-dom';
 
 export default function MeusPedidos () {
 
-    const [idPedido, setIdPedido] = useState(0);
+    // const [idPedido, setIdPedido] = useState(0);
     const [pedidos, setPedidos] = useState([]);
     const redir = useNavigate();
 
@@ -75,7 +74,7 @@ export default function MeusPedidos () {
                                 
                                 <div className='links'>
                                     <h4 style={ {color: '#0071A1', textDecoration: 'underline', cursor: 'pointer'}} onClick={() => redir(`/conta/meus-pedidos/resumo-pedido/${item.id}`)}>Exibir detalhes do pedido</h4>
-                                    {(item.situacao == 'Entregue') 
+                                    {(item.situacao === 'Entregue') 
                                     ? <h4 style={ {color: '#0071A1', textDecoration: 'underline', cursor: 'pointer'}} onClick={() => {avaliacao(item.id);}}>Avalie o pedido</h4>
                                     : <></>
                                     }

@@ -19,7 +19,7 @@ export default function PerfilAssinatura () {
                     <CancelarAssinatura
                     sim={async () => {
                         const url = URLRota + '/cancelar-assinatura/' + idAssinatura;
-                        const resposta = await axios.delete(url);
+                        await axios.delete(url);
                         setAssinante(false);
                         onClose();
                     }}
@@ -48,7 +48,7 @@ export default function PerfilAssinatura () {
         
         if (dados.length > 0) {
             setAssinante(true);
-        } else if (dados.length == 0) {
+        } else if (dados.length === 0) {
             setAssinante(false)
         }
     }
@@ -83,7 +83,7 @@ export default function PerfilAssinatura () {
             }
         }
 
-       
+       // eslint-disable-next-line
     }, [assinante])
 
     useEffect(() => {
@@ -97,7 +97,9 @@ export default function PerfilAssinatura () {
                 setIdAssinatura(idAssinaturaa);
                 chamarAssinatura(idAssinaturaa);
             } 
-        }        
+        }    
+
+        // eslint-disable-next-line   
     }, [])
 
 

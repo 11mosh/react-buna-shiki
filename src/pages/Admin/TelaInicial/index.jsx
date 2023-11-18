@@ -26,6 +26,12 @@ export default function Index() {
                         </div>
                         <h3> Adicionar um produto </h3>
                     </Link>
+                    <Link to='/adm/cadastro-combo'>
+                        <div>
+                            <img src='/assets/images/tela-inicial-adm/icon-box.svg' alt='icon-box' />
+                        </div>
+                        <h3> Adicionar um combo </h3>
+                    </Link>
                     <Link to='/adm/produtos'>
                         <div>
                             <img id='eyes' src='/assets/images/tela-inicial-adm/icon-eyes.svg' alt='icon-eyes' />
@@ -38,23 +44,17 @@ export default function Index() {
                         </div>
                         <h3> Visualizar pedidos </h3>
                     </Link>
+                    <Link to='/adm/consulta-assinaturas'>
+                        <div>
+                            <img src='/assets/images/calendar.png' alt='icon-box' />
+                        </div>
+                        <h3> Visualizar assinaturas </h3>
+                    </Link>
                     <Link to='/adm/estatisticas'>
                         <div>
                             <img src='/assets/images/tela-inicial-adm/icon-arrow.svg' alt='icon-arrow' />
                         </div>
                         <h3> Estatísticas </h3>
-                    </Link>
-                    <Link to='/adm/cadastro-combo'>
-                        <div>
-                            <img src='/assets/images/tela-inicial-adm/icon-box.svg' alt='icon-box' />
-                        </div>
-                        <h3> Adicionar um combo </h3>
-                    </Link>
-                    <Link to='/adm/consulta-assinaturas'>
-                        <div>
-                            <img src='/assets/images/calendar.png' alt='icon-box' />
-                        </div>
-                        <h3> Assinaturas </h3>
                     </Link>
                 </section>
                 <section id='s3'>

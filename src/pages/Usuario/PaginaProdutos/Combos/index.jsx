@@ -9,7 +9,7 @@ import storage from 'local-storage'
 export default function Combos(){
     const [combos, setCombos] = useState([{produtos: [{ produto: { detalhes: {}}}]}])
     const [renderizar, setRenderizar] = useState('')
-
+    const cores = ['#C3937D', '#883715', '#31231D']
 
     function adicionarCarrinho(indexCombo) {
         let pedido = storage('usuario-pedido')
@@ -26,11 +26,42 @@ export default function Combos(){
 
     async function buscarCombosExibir() {
         try{
-            const resp = await buscarCombos()
+            let resp = await buscarCombos()
+
             if(resp.length === 0)
                 toast.info('Não há combos cadastrados')
-            else
+            else{
+                for(let cont = 0; cont < resp.length; cont++){
+                    
+                    if(cont === 0){
+                        let combosTrocar = [...resp]
+                        combosTrocar[cont].cor = cores[0]
+                        resp = combosTrocar
+                    }
+                    else{
+                        
+                        let ultimaCor = resp[cont - 1].cor
+                        if(ultimaCor === '#C3937D'){
+                            let combosTrocar = [...resp]
+                            combosTrocar[cont].cor = cores[1]
+                            resp = combosTrocar
+                        }
+                        else if(ultimaCor === '#883715'){
+                            let combosTrocar = [...resp]
+                            combosTrocar[cont].cor = cores[2]
+                            resp = combosTrocar
+                        }
+                        else if(ultimaCor === '#31231D'){
+                            let combosTrocar = [...resp]
+                            combosTrocar[cont].cor = cores[0]
+                            resp = combosTrocar
+                        } 
+                    }
+                }
                 setCombos(resp)
+            }
+            console.log(resp);
+
         }
         catch(err){
             if(err.response)
@@ -58,6 +89,34 @@ export default function Combos(){
             return ''
     }
 
+    // function verificarCorBorda(index, array) {
+    //     if(combos.length !== 0){
+    //         if(index === 0){
+    //             let combosTrocar = [...array]
+    //             combosTrocar[index].cor = cores[0]
+    //             setCombos(combosTrocar)
+    //         }
+    //         else{
+    //             let ultimaCor = array[--index].cor
+    //             if(ultimaCor === '#C3937D'){
+    //                 let combosTrocar = [...array]
+    //                 combosTrocar[index].cor = cores[1]
+    //                 setCombos(combosTrocar)
+    //             }
+    //             else if(ultimaCor === '#883715'){
+    //                 let combosTrocar = [...array]
+    //                 combosTrocar[index].cor = cores[2]
+    //                 setCombos(combosTrocar)
+    //             }
+    //             else if(ultimaCor === '#31231D'){
+    //                 let combosTrocar = [...array]
+    //                 combosTrocar[index].cor = cores[0]
+    //                 setCombos(combosTrocar)
+    //             }
+    //         }
+    //     }
+    // }
+
     useEffect(() => {
         buscarCombosExibir()
 
@@ -76,10 +135,10 @@ export default function Combos(){
             {combos[0].nome
             
              ?  <main id='conteudo'>
-                    {combos.map((combo, indexCombo) => {
+                    {combos.map((combo, indexCombo, arrayCombos) => {
                         
                         return(
-                            <section id='s1'>
+                            <section id='s1' style={{borderColor: combo.cor}}>
                                 <article id='a1'>
                                     <h2> {combo.nome} </h2>
                                     <div>
