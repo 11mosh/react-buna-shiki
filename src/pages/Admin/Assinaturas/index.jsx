@@ -4,16 +4,20 @@ import { useEffect, useState } from 'react';
 import {toast} from 'react-toastify'
 import { buscarAssinaturas, buscarAssinaturasPorStatus, ordenarAssinaturas, pesquisarAssinaturas, trocarStatusAssinatura } from '../../../api/assinaturasApi';
 import { confirmAlert } from 'react-confirm-alert';
+import { useNavigate } from 'react-router';
 
 export default function ConsultaAssinaturas () {
-    const [assinaturas, setAssinaturas] = useState([{dt_inicio: '', cliente: {}, endereco: {}}])
-    const [pesquisa, setPesquisa] = useState(0)
-    const [ordenar, setOrdenar] = useState(0)
-    const [status, setStatus] = useState(0)
+    const [assinaturas, setAssinaturas] = useState([{dt_inicio: '', cliente: {}, endereco: {}}]);
+    const [pesquisa, setPesquisa] = useState(0);
+    const [ordenar, setOrdenar] = useState(0);
+    const [status, setStatus] = useState(0);
+    const redir = useNavigate();
 
     async function buscarAssinaturasLocal(){
       try{
         const assinaturasResp = await buscarAssinaturas()
+        console.log(assinaturasResp)
+
         setAssinaturas(assinaturasResp)
       }
       catch(err){
@@ -58,6 +62,7 @@ export default function ConsultaAssinaturas () {
         let assinaturasResp = await pesquisarAssinaturas(pesquisa)
 
         setAssinaturas(assinaturasResp)
+
       }
       catch(err){
         if(err.response)
@@ -167,7 +172,7 @@ export default function ConsultaAssinaturas () {
             <tbody>
                 {assinaturas.map((item, index) => {
                   return(
-                    <tr >
+                    <tr onClick={() => redir(`/adm/consulta-assinaturas/${item.id}`)}>
                       <div>
                         <td className='id desaparece5'> {item.id} </td>
                         <td className='desaparece'> {verificarNome(item.cliente.nome)} </td>

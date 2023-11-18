@@ -10,12 +10,13 @@ import BarraNavegacao from '../../../../components/Usuario/BarraNavegacaoConta';
 import storage from 'local-storage';
 import { toast } from 'react-toastify';
 import { URLRota } from '../../../../constants.js';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate, useParams } from 'react-router-dom';
 
 export default function MeusPedidos () {
 
     const [idPedido, setIdPedido] = useState(0);
     const [pedidos, setPedidos] = useState([]);
+    const redir = useNavigate();
 
     async function avaliacao (id) {
         const opcoes = {
@@ -25,7 +26,6 @@ export default function MeusPedidos () {
                     idPedido={id}
                     fechar={onClose}
                     />
-
                 )
             }
         }
@@ -35,7 +35,7 @@ export default function MeusPedidos () {
 
     async function chamarPedidos () {
         const idUsuario = storage('usuario-logado').id
-        const url = URLRota + '/pedido/cliente/' + idUsuario;
+        const url = URLRota + '/pedidos/primeiro-item/' + idUsuario;
         const resposta = await axios.get(url);
         const dados = resposta.data;
         setPedidos(dados);
@@ -43,7 +43,6 @@ export default function MeusPedidos () {
 
     useEffect(() => {
         chamarPedidos();
-
         // eslint-disable-next-line 
     }, []);
     
@@ -67,15 +66,15 @@ export default function MeusPedidos () {
 
                             <article className='corpo-pedido'>
                                 <div className='agrupamento-principal'>
-                                    <img src="/assets/images/cafeteiraa.png" alt="" style={{height: '160px'}}/>
+                                    <img src={item.item.imagem} alt="" style={{maxHeight: '160px'}}/>
                                     <div className='descricao-pedido'>
-                                        <p> <b>Cafeteira Cadence Desperta</b></p>
+                                        <p> <b>{item.item.produto}</b></p>
                                         <p style={{ marginTop: '10px'}}> Total: <b style={{color: '#661515'}}>R${item.total}</b></p>
                                     </div>
                                 </div>
                                 
                                 <div className='links'>
-                                    <h4 style={ {color: '#0071A1', textDecoration: 'underline', cursor: 'pointer'}}>Exibir detalhes do pedido</h4>
+                                    <h4 style={ {color: '#0071A1', textDecoration: 'underline', cursor: 'pointer'}} onClick={() => redir(`/conta/meus-pedidos/resumo-pedido/${item.id}`)}>Exibir detalhes do pedido</h4>
                                     {(item.situacao == 'Entregue') 
                                     ? <h4 style={ {color: '#0071A1', textDecoration: 'underline', cursor: 'pointer'}} onClick={() => {avaliacao(item.id);}}>Avalie o pedido</h4>
                                     : <></>

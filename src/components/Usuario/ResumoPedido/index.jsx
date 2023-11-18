@@ -1,15 +1,15 @@
 import { useEffect, useState } from 'react'
 import './index.scss'
 import { buscarPedidoPorId } from '../../../api/pedidoApi'
-import { useNavigate } from 'react-router'
+import { useNavigate, useParams } from 'react-router'
 import storage from 'local-storage'
 import { toast } from 'react-toastify'
 
 export default function Index(props) {
     const navigate = useNavigate()
-    const [pedido, setPedido] = useState({dt_entrega: '', dt_pedido: '', itens: [], endereco: {}})
+    const [pedido, setPedido] = useState({dt_entrega: '', dt_pedido: '', itens: [], endereco: {}});
 
-    async function buscarPedido(){
+async function buscarPedido(){
         try{
             const respPedido = await buscarPedidoPorId(props.idPedido)
             
@@ -53,7 +53,7 @@ export default function Index(props) {
                             </div>
                             <div>
                                 <p> Data de envio:</p>
-                                <p className='valor detalheComprido'> <span> {pedido.tp_entrega} </span> prevista para o dia {pedido.dt_entrega.substr(0, 10)} </p>
+                                <p className='valor detalheComprido'> <span> {pedido.tp_entrega} </span> prevista para o dia {pedido.dt_entrega.substring(0, 10)} </p>
                             </div>
                         </article>
                         <article>

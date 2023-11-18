@@ -34,49 +34,67 @@ export default function Confirmacao () {
     }
 
     function calcularPreco () {
-        let precos = 0;
-        for (let item of itensSelecionados) {
-            precos = (Number(item.preco) * item.quantidade) + precos;
-        }
+        try {
+            let precos = 0;
+            for (let item of itensSelecionados) {
+                precos = (Number(item.preco) * item.quantidade) + precos;
+            }
 
-        setPreco(precos);
-        let descontoCalc = precos * 0.05;
-        let ponto = (descontoCalc.toString().indexOf('.'));
-        const desconto = (descontoCalc.toString().substring(0, (ponto + 3)));
-        setDesconto(desconto);
-        let total = precos - descontoCalc;
-        setPrecoFinal(total);
+            
+            let descontoCalc = precos * 0.05;
+            let ponto = (descontoCalc.toString().indexOf('.'));
+            const desconto = (descontoCalc.toString().substring(0, (ponto + 3)));
+            let total = (precos - descontoCalc).toString().substring(0, (ponto + 4));
+
+            setDesconto(desconto);
+            setPreco(precos);
+            setPrecoFinal(total);
+        } catch (error) {
+            toast.warn(error.message);
+        }
+        
     }
 
     async function finalizar () {
-        const assinatura = {
-            idCliente: storage('usuario-logado').id,
-            idEndereco: Number(storage('endereco-selecionado').idEndereco),
-            mensalidade: Number(precoFinal)
-        }
-        const resposta = await axios.post((URLRota + '/concluir-assinatura/'), assinatura);
-        const dados = resposta.data;
-        const idAssinatura = dados.id;
-        storage('id-assinatura', {idAssinatura: idAssinatura});
-        for (let item of itensSelecionados) {
-            const produto = {
-                idProduto: item.id,
-                idAssinatura: idAssinatura,
-                qtd: item.quantidade
+        try {
+            const assinatura = {
+                idCliente: storage('usuario-logado').id,
+                idEndereco: Number(storage('endereco-selecionado').idEndereco),
+                mensalidade: Number(precoFinal)
+            }
+            console.log(assinatura)
+            const resposta = await axios.post((URLRota + '/concluir-assinatura/'), assinatura);
+            const dados = resposta.data;
+            const idAssinatura = dados.id;
+            storage('id-assinatura', {idAssinatura: idAssinatura});
+            for (let item of itensSelecionados) {
+                const produto = {
+                    idProduto: item.id,
+                    idAssinatura: idAssinatura,
+                    qtd: item.quantidade
+                };
+                const url = URLRota + '/concluir-assinatura/produtos';
+                const resposta = await axios.post(url, produto);
             };
-            const url = URLRota + '/concluir-assinatura/produtos';
-            const resposta = await axios.post(url, produto);
-        };
-        notificacao();
-        redir('/conta/assinaturas')
+            notificacao();
+            redir('/conta/assinaturas')
+        } catch (error) {
+            toast.warn(error.message)
+        }
+        
     };
 
     async function localizacao () {
-        const id = Number(storage('endereco-selecionado').idEndereco);
-        const url = URLRota + '/enderecos/' + id;
-        const resposta = await axios.get(url);
-        const dados = resposta.data
-        setLocalEntrega([... dados]);
+        try {
+            const id = Number(storage('endereco-selecionado').idEndereco);
+            const url = URLRota + '/enderecos/' + id;
+            const resposta = await axios.get(url);
+            const dados = resposta.data
+            setLocalEntrega([... dados]);
+        } catch (error) {
+            toast.warn(error.message)
+        }
+        
     }
 
     useEffect(() => {
