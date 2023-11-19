@@ -58,6 +58,8 @@ export default function Index() {
                         navigate('/combos')
                     else if(voltar === 'conta')
                         navigate('/conta/dados-pessoais')
+                    else if(voltar === 'home')
+                        navigate('/')
                     else
                         navigate('/')
 
