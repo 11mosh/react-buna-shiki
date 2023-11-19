@@ -217,7 +217,7 @@ return (
                         <tr>
                             <td>Marca</td>
                             <td>Categoria</td>
-                            <td>Informações sobre alergia</td>
+                            <td id='alergia'>Informações sobre alergia</td>
                             <td>Peso</td>
                             <td>Dimensões do produto</td>
                         </tr>
@@ -229,7 +229,7 @@ return (
                         <tr>
                             <td>{produto.detalhes.marca}</td>
                             <td>{produto.categoria}</td>
-                            <td>{produto.detalhes.alergia}</td>
+                            <td id='alergia'>{produto.detalhes.alergia}</td>
                             <td>{produto.detalhes.peso}</td>
                             <td>{produto.detalhes.dimensoes}</td>
                         </tr>
@@ -238,7 +238,7 @@ return (
                 </div>
                 
             </section>
-            <h1>Você pode precisar</h1>
+            <h1>Você pode precisar: </h1>
 
             <section className="voce-pode-precisar">
 
@@ -248,8 +248,11 @@ return (
                         return(
                         <div key={item.id} className="produto" onClick={() => produtoSugestaoClicado(item.id)}>
                             <img src={item.imagem} alt="" />
-                            <p> {item.produto}</p>
-                            <p className='preco-produto'><b>R${item.preco}</b></p>
+                            <p id='nomeProduto'> {item.produto}</p>
+                            { item.promocao !== "0.00"
+                               ? <p className='preco-produto'><b>R${item.promocao}</b></p>
+                               : <p className='preco-produto'><b>R${item.preco}</b></p>
+                            }
                         </div>
                         )
                     })}

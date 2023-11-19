@@ -207,7 +207,7 @@ export default function Index(){
                         {produtosAtuais[0].map(item => {
                             return(
                                 <div>
-                                    <img src={item.imagem}alt='' />
+                                    <img src='\assets\images\Gourmet_CERRADO_MINEIRO_lado-3.webp'alt='' />
                                     <p> {item.produto} {item.categoria === 'Café em grãos' || item.categoria === 'Café em pó' ? item.detalhes.peso : ''}</p>
                                     <button onClick={() => navigate(`/descricao/${item.id}`)}> Mais detalhes </button>
                                 </div>
