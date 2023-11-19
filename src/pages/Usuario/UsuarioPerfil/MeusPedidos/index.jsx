@@ -96,7 +96,7 @@ export default function MeusPedidos () {
             </article>
         </div>
             <UsuarioRodape />
-
+ 
         </main>
     )
 }

@@ -50,6 +50,12 @@ export default function Index() {
                         </div>
                         <h3> Visualizar assinaturas </h3>
                     </Link>
+                    <Link to='/adm/combos'>
+                        <div>
+                            <img src='/assets/images/tela-inicial-adm/icon-arrow.svg' alt='icon-arrow' />
+                        </div>
+                        <h3> Visualizar combos </h3>
+                    </Link>
                     <Link to='/adm/estatisticas'>
                         <div>
                             <img src='/assets/images/tela-inicial-adm/icon-arrow.svg' alt='icon-arrow' />

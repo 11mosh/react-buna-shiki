@@ -74,14 +74,6 @@
                 padding-right: 40px;
                 height: 300px;
                 gap: 50px;
-                ::-webkit-scrollbar{
-                    scroll-behavior: smooth;
-                    width: 14px;
-                }
-                ::-webkit-scrollbar-thumb{
-                    background-color: #F47E3C;
-                    border-radius: 10px;
-                }
                 article {
                     display: flex;
                     width: 150px;
@@ -101,9 +93,9 @@
                         width: 100%;
                         position: relative;
                         img {
-                            width: 130px;
-                            height: 130px;
-                        }
+                            width: 90px;
+                            height: 170px;
+                       }
                         #qtd {
                             display: flex;
                             align-items: center;
@@ -130,7 +122,7 @@
                 visibility: hidden;
             }
             #produtos::-webkit-scrollbar-thumb{
-                background-color: #F47E3C;
+                background-color: #661515;
                 border-radius: 10px;
             }
         }
@@ -166,8 +158,8 @@
                     article {
                         div {
                             img {
-                                width: 125px;
-                                height: 125px;
+                                width: 85px;
+                                height: 157px;
                             }
                         }
                         h4 {
@@ -237,8 +229,8 @@
                     article {
                         div {
                             img {
-                                width: 65px;
-                                height: 115px;
+                                width: 80px;
+                                height: 150px;
                             }
                         }
                         h4 {
@@ -282,8 +274,8 @@
                     article {
                         div {
                             img {
-                                width: 60px;
-                                height: 105px;
+                                width: 75px;
+                                height: 145px;
                             }
                         }
                         h4 {

@@ -98,7 +98,6 @@ export default function Index() {
             else
                 toast.error(err.message)
         }
-        console.log('oi');
     }
 
     async function buscarPorData(){
@@ -255,8 +254,7 @@ export default function Index() {
                         <div>
                             <select value={tpPagamento} onChange={e => {setTpPagamento(e.target.value); setOrdenar(''); setStatusPedido(''); setPesquisa(''); setDataPedido('') }}>
                                 <option value=''> Selecionar </option>
-                                <option value='Cartão de crédito'> Cartão de crédito </option>
-                                <option value='Cartão de débito'> Cartão de débito </option>
+                                <option value='Cartão'> Cartão</option>
                                 <option value='Pix'> Pix </option>
                             </select>
                         </div>

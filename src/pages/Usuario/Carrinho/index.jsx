@@ -144,7 +144,7 @@ export default function Carrinho () {
                                                 <img src={item.imagem} alt='' />
                                             </div>
                                             <div id="detalhes">
-                                                <p> {item.produto} {item.categoria === 'Café em grãos' || item.categoria === 'Café em pó' ? item.detalhes.peso : ''}</p>
+                                                <p> Café orfeu  organico {item.categoria === 'Café em grãos' || item.categoria === 'Café em pó' ? item.detalhes.peso : ''}</p>
                                                 {item.promocao !== "0.00"
                                                     ? <p> R${item.promocao} </p>
                                                     : <p> R${item.preco} </p>

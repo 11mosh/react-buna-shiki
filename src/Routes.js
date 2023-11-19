@@ -36,6 +36,7 @@ import Enderecos from './pages/Usuario/UsuarioPerfil/Enderecos'
 import PerfilAssinatura from './pages/Usuario/UsuarioPerfil/PerfilAssinaturas';
 import CancelarAssinatura from './pages/Usuario/UsuarioPerfil/PerfilAssinaturas/CancelarAssinatura';
 import RevisaoAssinaturaADM from './pages/Admin/Assinaturas/RevisaoAssinatura';
+import ConsultaCombos from './pages/Admin/Combos';
 
 export default function Rotas() {
     return(
@@ -76,6 +77,7 @@ export default function Rotas() {
                 <Route path='/adm/:id/alterar-produto' element={<CadastroProduto />} />
                 <Route path='/adm/produtos' element={<Produtos />} />
                 <Route path='/adm/pedidos' element={<Pedidos />} />
+                <Route path='/adm/combos' element={<ConsultaCombos />} />
                 <Route path='/adm/cadastro-combo' element={<CadastroCombo />} />
                 <Route path='/adm/estatisticas' element={<Estatisticas />} />
                 <Route path='/adm/consulta-assinaturas' element={<ConsultaAssinaturas />} />
