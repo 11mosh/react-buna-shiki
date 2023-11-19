@@ -20,6 +20,7 @@ export default function DescricaoProduto () {
            respProduto.qtd = 1
            respProduto.imagem = respProduto.imagens[0].caminho
            
+           console.log(respProduto);
            setProduto(respProduto)
            buscarProdutosSugestaoClick()
         }
@@ -97,7 +98,7 @@ export default function DescricaoProduto () {
     
 return (
     <main className='descricao-produto'>
-        <CabecalhoUsuario/>
+        <CabecalhoUsuario linha='aparecer'/>
 
         <article className='corpo-site'>
          <section className="agrupamento">
@@ -156,13 +157,14 @@ return (
              <article className='compra'>
                     <nav className="nome-preco">
                         <h1>{produto.produto} {produto.categoria === 'Café em grãos' || produto.categoria === 'Café em pó' ? produto.detalhes.peso : ''}</h1>
-                        {produto.promocao !== 0.00
-                            ? <h5>De: <b style={{textDecoration: 'line-through'}}>R${produto.preco}</b></h5>
+                        {produto.promocao !== "0.00"
+                            ? <h3>De: <b style={{textDecoration: 'line-through'}}>R${produto.preco}</b></h3>
                             : <></>
                         }
-                        {produto.promocao !== 0.00
+                        {console.log(produto.promocao)}
+                        {produto.promocao !== "0.00"
                             ? <h2>POR: <b>R${produto.promocao}</b></h2>
-                            : <b>R${produto.preco}</b>
+                            : <h2><b>R${produto.preco}</b></h2>
                         }
                     </nav>
 

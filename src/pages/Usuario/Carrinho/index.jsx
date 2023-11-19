@@ -56,7 +56,7 @@ export default function Carrinho () {
 
     function calcularSubtotal() {
         let subtotalCalc = produtos.reduce((total, item) => {
-            if(item.promocao !== 0.00)
+            if(item.promocao !== "0.00")
                 total = total + (item.promocao * item.qtd)
             else
                 total = total + (item.preco * item.qtd)
@@ -145,7 +145,7 @@ export default function Carrinho () {
                                             </div>
                                             <div id="detalhes">
                                                 <p> {item.produto} {item.categoria === 'Café em grãos' || item.categoria === 'Café em pó' ? item.detalhes.peso : ''}</p>
-                                                {item.promocao !== 0.00
+                                                {item.promocao !== "0.00"
                                                     ? <p> R${item.promocao} </p>
                                                     : <p> R${item.preco} </p>
                                                 }

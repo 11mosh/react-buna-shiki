@@ -128,7 +128,6 @@ function Home () {
         if (storage('usuario-logado')) {
             const idCliente = storage('usuario-logado').id;
             verificarAssinatura(idCliente);
-            console.log('assinate: ' + assinante)
 
             
             if(storage('id-assinatura')) {

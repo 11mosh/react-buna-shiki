@@ -192,7 +192,7 @@ export default function Index() {
                                     </figure>
                                     <aside> 
                                         <h5> {item.produto} {item.categoria === 'Café em grãos' || item.categoria === 'Café em pó' ? item.detalhes.peso : ''} </h5>
-                                        {item.promocao === 0.00 
+                                        {item.promocao === "0.00"
                                             ? <b> R${item.preco} </b>
                                             : <b> R${item.promocao} </b>}
                                         <div>
