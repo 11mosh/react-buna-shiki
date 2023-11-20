@@ -1,6 +1,5 @@
 import { useState, useRef, useEffect } from 'react'
 import './index.scss'
-import { toast } from 'react-toastify';
 import { useNavigate } from 'react-router-dom'
 import LoadingBar from 'react-top-loading-bar';
 import { login } from '../../../api/admApi';
@@ -10,6 +9,7 @@ export default function Index() {
     const [email, setEmail] = useState('');
     const [senha, setSenha] = useState('');
     const [carregando, setCarregando] = useState(false);
+    const [erro, setErro] = useState('')
 
     const navigate = useNavigate();
     const ref = useRef();
@@ -20,22 +20,16 @@ export default function Index() {
         setCarregando(true)
         try{
             const resp = await login(email, senha)
-            if(!resp){
-                toast.error('Senha ou E-mail inválidos ADM!')
-            }
-            else{
-                storage('adm-logado', resp)
-                console.log(resp)
-                setTimeout(() => {
-                    navigate('/adm/inicio')
-                }, 3000)
-            }
-            
+            storage('adm-logado', resp)
+
+            setTimeout(() => {
+                navigate('/adm/inicio')
+            }, 3000)
         }
         catch(err){
             ref.current.complete();
             setCarregando(false)
-            toast.error(err.response.data.erro)
+            setErro(err.response.data.erro)
         }
     }
 
@@ -63,9 +57,10 @@ export default function Index() {
                 <article className='login'>
                     <main>
                         <h2> LOGIN </h2>
-                        <input type='txt' value={email} onKeyUp={teclaPressionada} onChange={e => setEmail(e.target.value)} placeholder='Email'/>
-                        <input type='password' value={senha} onKeyUp={teclaPressionada} onChange={e => setSenha(e.target.value)} placeholder='Password'/>
+                        <input type='txt' value={email} onKeyUp={teclaPressionada} onChange={e => {setEmail(e.target.value); setErro('')}} placeholder='Email'/>
+                        <input type='password' value={senha} onKeyUp={teclaPressionada} onChange={e => {setSenha(e.target.value); setErro('')}} placeholder='Password'/>
                         <button onClick={loginClick} disabled={carregando}> Login </button>
+                        <p style={{color: 'red', fontWeight: 500}}>{erro}</p>
                     </main>
                 </article>
             </section>

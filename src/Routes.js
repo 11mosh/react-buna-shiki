@@ -79,6 +79,7 @@ export default function Rotas() {
                 <Route path='/adm/pedidos' element={<Pedidos />} />
                 <Route path='/adm/combos' element={<ConsultaCombos />} />
                 <Route path='/adm/cadastro-combo' element={<CadastroCombo />} />
+                <Route path='/adm/alterar-combo/:id' element={<CadastroCombo />} />
                 <Route path='/adm/estatisticas' element={<Estatisticas />} />
                 <Route path='/adm/consulta-assinaturas' element={<ConsultaAssinaturas />} />
                 <Route path='/adm/consulta-assinaturas/:id' element={<RevisaoAssinaturaADM />} />

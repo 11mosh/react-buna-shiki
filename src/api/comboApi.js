@@ -28,6 +28,12 @@ export async function ordenarCombosPorCampo(campo){
     return resp.data;
 }
 
+export async function buscarComboPorId(id) {
+    const resp = await api.get(`/combo/${id}`)
+
+    return resp.data
+}
+
 export async function pesquisarCombos(pesquisa) {
     const resp = await api.get(`/combos/pesquisa/${pesquisa}`)
 
@@ -67,3 +73,23 @@ export async function filtrarCombosPorAdm(id) {
 
     return resp.data;
 }
+
+
+export async function alterarCombo(combo) {
+    await api.put(`/combo/${combo.id}`, {
+        id_admin: combo.idAdmin,
+        nome: combo.nome,
+        preco: combo.preco
+    })
+}
+
+export async function alterarItensCombo(itens, idCombo){
+    console.log(itens);
+    console.log(idCombo);
+    for(let cont = 0; cont < itens.length; cont ++){
+        await api.put(`/combo/item/${itens[cont].id_item}`, {
+            id_produto: itens[cont].id,
+            id_combo: idCombo
+        })
+    }
+}   

@@ -173,6 +173,8 @@ export default function Index(){
         else{
             buscarTodos()
         }
+
+        // eslint-disable-next-line
     }, [])
 
     return(

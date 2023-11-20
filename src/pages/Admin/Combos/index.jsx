@@ -1,4 +1,4 @@
-import { Link } from 'react-router-dom'
+import { Link, useNavigate } from 'react-router-dom'
 import CabecalhoAdm from '../../../components/Admin/AdmCabecalho'
 import './index.scss'
 import { useEffect, useState } from 'react'
@@ -13,6 +13,7 @@ export default function Index() {
     const [pesquisa, setPesquisa] = useState('')
     const [filtroAdm, setFiltroAdm] = useState(0)
     const [adms, setAdms] = useState([])
+    const navigate = useNavigate()
 
     async function buscarCombos() {
         try{
@@ -57,6 +58,10 @@ export default function Index() {
                 }
             ]
         })
+    }
+
+    function alterar(id) {
+        navigate(`/adm/alterar-combo/${id}`)
     }
 
     async function ordenarCombos(campo) {
@@ -194,7 +199,7 @@ export default function Index() {
                                         <td className='desaparece2 medio'> R${item.preco} </td>
                                     </div>
                                     <td id='acoes'>
-                                        <i className="fa-regular fa-pen-to-square"></i>
+                                        <i className="fa-regular fa-pen-to-square" onClick={() => alterar(item.id)}></i>
                                         <i className="fa-regular fa-trash-can" onClick={() => excluirComboClick(item.id, item.nome)}></i>
                                     </td>
                                 </tr>
