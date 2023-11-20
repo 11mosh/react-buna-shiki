@@ -163,7 +163,7 @@ export default function Consulta() {
   async function ordenarProdutos(coluna) {
     try {
       const produtosOrdenados = await ordernarProdutosPorColuna(coluna)
-      console.log(produtosOrdenados);
+
       setProdutos(produtosOrdenados)
     }
     catch(err){

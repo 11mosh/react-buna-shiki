@@ -68,7 +68,6 @@ export default function Combos(){
                 }
                 setCombos(resp)
             }
-            console.log(resp);
 
         }
         catch(err){

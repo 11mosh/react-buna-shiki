@@ -16,7 +16,6 @@ export default function ConsultaAssinaturas () {
     async function buscarAssinaturasLocal(){
       try{
         const assinaturasResp = await buscarAssinaturas()
-        console.log(assinaturasResp)
 
         setAssinaturas(assinaturasResp)
       }

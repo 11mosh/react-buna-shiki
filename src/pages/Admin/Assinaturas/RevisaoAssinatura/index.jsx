@@ -24,7 +24,7 @@ export default function RevisaoAssinaturaADM () {
         const url = URLRota + '/procurar-assinatura-completa/' + id;
         // const url = URLRota + '/procurar-assinatura/' + id;
         const resposta = await axios.get(url);
-        console.log(resposta.data);
+        
         const mensal = (resposta.data)[0].vl_mensalidade;
         const fimm = ((resposta.data)[0].dt_fim).substring(0, 10);
         const ruaa = ((resposta.data)[0].ds_rua);

@@ -24,7 +24,6 @@ export default function Carrinho () {
                 novoArray[cont] = produtos[cont]
                 if(index === cont){
                     novoArray[cont].qtd = --novaQtd
-                    console.log(novaQtd);
                 }
             }
         }
@@ -90,7 +89,6 @@ export default function Carrinho () {
             }
             else{
                 produtos[repetidoPosicao].qtd = ++produtos[repetidoPosicao].qtd
-                console.log('inseriuRepetido');
             }
         }
 

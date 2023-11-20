@@ -28,7 +28,6 @@ export default function Index(){
             for(let cont = 0; cont < 3; cont++){
                 todosProdutosBanco[cont] = await buscarProdutosPorMarca(secoes[cont].marcaBusca, categoria)
             }
-            console.log(todosProdutosBanco);
             setProdutos(todosProdutosBanco)
             trocarProdutosAtuais(0, true, todosProdutosBanco)
         }
@@ -112,12 +111,9 @@ export default function Index(){
             if(produtos[secao].length > 4){
                 let posicao = verificarPosicao(secao)
                 if(posicao === ''){
-                    console.log('normal');
                     let produtosSecao = produtosAtuais[secao]
                     let ultimaPosicaoProdutosSecao = produtos[secao].indexOf(produtosSecao[produtosSecao.length - 1])
-                    // console.log(ultimaPosicaoProdutosSecao);
                     let proximosProdutos = produtos[secao].slice(ultimaPosicaoProdutosSecao + 1, ultimaPosicaoProdutosSecao + 5 )
-                    // console.log(proximosProdutos);
                     let novoArray = []
                     if(secao === 0)
                         novoArray = [proximosProdutos, produtosAtuais[1], produtosAtuais[2]]
@@ -125,15 +121,12 @@ export default function Index(){
                         novoArray = [produtosAtuais[0], proximosProdutos, produtosAtuais[2]]
                     if(secao === 2)
                         novoArray = [produtosAtuais[0], produtosAtuais[1], proximosProdutos]
-                    console.log(novoArray);
                     setProdutosAtuais(novoArray)
                 }
                 else if(posicao === 'faixaAoContrario'){
                     if(produtosAtuais[secao][0].id !== produtos[secao][0].id){
-                        console.log('reverse');
                         let produtosSecao = produtosAtuais[secao]
                         let ultimaPosicaoProdutosSecao = produtos[secao].indexOf(produtosSecao[0])
-                        // console.log(ultimaPosicaoProdutosSecao);
 
                         let produtosAnteriores = ''
                         if(ultimaPosicaoProdutosSecao === 4){
@@ -149,7 +142,6 @@ export default function Index(){
                                 novoArray = [produtosAtuais[0], produtosAnteriores, produtosAtuais[2]]
                             else if(secao === 2)
                                 novoArray = [produtosAtuais[0], produtosAtuais[1], produtosAnteriores]
-                            console.log(novoArray);
                             setProdutosAtuais(novoArray)
                         }   
                     }
