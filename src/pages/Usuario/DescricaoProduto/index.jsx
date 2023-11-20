@@ -8,7 +8,7 @@ import { toast } from 'react-toastify';
 import { buscarIdProduto, buscarTodosProdutos } from '../../../api/produtoApi';
 
 export default function DescricaoProduto () {
-    const [produto, setProduto] = useState({imagens: [{}], detalhes: { alergia: '', marca: '', dimensoes: '', peso: ''}, categoria: ''})
+    const [produto, setProduto] = useState({imagens: [{}], detalhes: { alergia: '-', marca: '-', dimensoes: '-', peso: '-'}, categoria: '-'})
     const {id} = useParams()
     const [produtosSugestao, setProdutosSugestao] = useState([])
     const [renderizar, setRenderizar] = useState('')
@@ -16,12 +16,12 @@ export default function DescricaoProduto () {
 
     async function buscarProdutoClick() {
         try{
-           let respProduto = await buscarIdProduto(id)
-           respProduto.qtd = 1
-           respProduto.imagem = respProduto.imagens[0].caminho
-           
-           setProduto(respProduto)
-           buscarProdutosSugestaoClick()
+            let respProduto = await buscarIdProduto(id)
+            respProduto.qtd = 1
+            respProduto.imagem = respProduto.imagens[0].caminho
+            setProduto(respProduto)
+            
+            buscarProdutosSugestaoClick()
         }
         catch(err){
             if(err.response)
@@ -216,7 +216,7 @@ return (
                             <td>Categoria</td>
                             <td id='alergia'>Informações sobre alergia</td>
                             <td>Peso</td>
-                            <td>Dimensões do produto</td>
+                            <td id='alergia'>Dimensões do produto</td>
                         </tr>
                         </tbody>
                     </table>
@@ -228,7 +228,7 @@ return (
                             <td>{produto.categoria}</td>
                             <td id='alergia'>{produto.detalhes.alergia}</td>
                             <td>{produto.detalhes.peso}</td>
-                            <td>{produto.detalhes.dimensoes}</td>
+                            <td id='alergia'>{produto.detalhes.dimensoes}</td>
                         </tr>
                         </tbody>
                     </table>
