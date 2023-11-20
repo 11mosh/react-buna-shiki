@@ -38,7 +38,6 @@ export default function DescricaoProduto () {
     function adicionarCarrinho(){
         if(!storage('usuario-logado')){
             toast.info('Faça login ou cadastro para adicionar coisas ao carrinho.')
-            navigate(`/login/descricao${id}`)
         }
         else{
             let pedido = storage('usuario-pedido')

@@ -27,7 +27,6 @@ export default function Combos(){
         }
         else{
             toast.info('Faça login ou cadastro para inserir um combo no carrinho')
-            navigate('/login/combos')
         }
     }       
 
