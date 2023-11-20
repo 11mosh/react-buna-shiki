@@ -94,7 +94,8 @@ export default function CadastroCombo () {
         if(isNaN(valorNumber)){}
 
         else{
-            setPreco(valor)
+            if(valor <= 99999.99)
+                setPreco(valor)
         }
     }
     
@@ -230,7 +231,7 @@ export default function CadastroCombo () {
                         </div>
                         <div>
                             <label htmlFor="">Preço de venda</label>
-                            <input type="text" onKeyDown={(e) => verificarTecla(e)} value={preco} onChange={e => mudarPreco(Number(e.target.value))}/>
+                            <input type="text" onKeyDown={(e) => verificarTecla(e)} value={preco} onChange={e => mudarPreco((e.target.value))}/>
                         </div>
                     </div>
 
