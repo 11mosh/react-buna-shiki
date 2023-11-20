@@ -88,7 +88,8 @@ export default function Consulta() {
 
   async function buscarCategoriasFiltro(){
     try{
-      const categoriasResp = await buscarCategorias()
+      let categoriasResp = await buscarCategorias()
+      categoriasResp = categoriasResp.filter(item => item.nome !== 'Combos')
       setCategorias(categoriasResp)
     }
     catch(err){
