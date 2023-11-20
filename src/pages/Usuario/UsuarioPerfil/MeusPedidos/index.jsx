@@ -31,10 +31,10 @@ export default function MeusPedidos () {
         confirmAlert(opcoes);
     }
 
-
     async function chamarPedidos () {
         const idUsuario = storage('usuario-logado').id
         const url = URLRota + '/pedidos/primeiro-item/' + idUsuario;
+        console.log(url)
         const resposta = await axios.get(url);
         const dados = resposta.data;
         setPedidos(dados);
