@@ -94,6 +94,7 @@
                     .dropdown {
                     background-color: white;
                     display: flex;
+                    z-index: 2;
                     flex-direction: column;
                     width: 310px;
                     
@@ -176,6 +177,7 @@
 
             .dropdown {
                 background-color: white;
+                z-index: 2;
                 display: flex;
                 flex-direction: column;
                 width: 310px;
