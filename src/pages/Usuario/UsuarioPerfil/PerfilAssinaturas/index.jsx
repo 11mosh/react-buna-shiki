@@ -46,7 +46,7 @@ export default function PerfilAssinatura () {
         const url = URLRota + '/verificar-assinatura/' + id;
         const resposta = await axios.get(url);
         const dados = resposta.data;
-        
+
         if (dados.length > 0) {
             setAssinante(true);
         } else if (dados.length === 0) {
@@ -59,8 +59,8 @@ export default function PerfilAssinatura () {
             const url = URLRota + '/procurar-assinatura/' + id;
             const resposta = await axios.get(url);
             const dados = resposta.data;
-            // console.log(dados)
-
+            console.log(dados)
+            console.log(id);
             const mensalidadee = dados[0].vl_mensalidade;
             const fim = dados[0].dt_fim;
             const fimFormatado = fim.toString().substring(0, 10)
@@ -80,7 +80,7 @@ export default function PerfilAssinatura () {
             if(storage('id-assinatura')) {
                 const idAssinaturaa = storage('id-assinatura').idAssinatura;
                 setIdAssinatura(idAssinaturaa);
-                chamarAssinatura(idAssinaturaa);
+                chamarAssinatura(idCliente);
             }
         }
         else{
@@ -94,12 +94,11 @@ export default function PerfilAssinatura () {
         if (storage('usuario-logado')) {
             const idCliente = storage('usuario-logado').id;
             verificarAssinatura(idCliente);
-            console.log(assinante)
             
             if(storage('id-assinatura')) {
                 const idAssinaturaa = storage('id-assinatura').idAssinatura;
                 setIdAssinatura(idAssinaturaa);
-                chamarAssinatura(idAssinaturaa);
+                chamarAssinatura(idCliente);
             } 
         }    
 
