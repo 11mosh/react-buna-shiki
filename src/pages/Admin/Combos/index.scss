@@ -102,9 +102,9 @@
                 gap: 30px;
                 padding: 30px 0px 0px 0px;
                 thead {
-                    padding: 0px 39px 0px 27px;
+                    padding: 0px 48px 0px 27px;
                     tr{
-                        width: 85%;
+                        width: 90%;
                         padding-right: 16px;
                         display: flex;
                         justify-content: space-between;
@@ -142,10 +142,10 @@
                         background-color: white;
                         border-radius: 10px;
                         min-height: 100px;
-                        padding: 7px 8px 7px 17px;
+                        padding: 7px 17px 7px 17px;
                         align-items: center;
                         > div {
-                            width: 85%;
+                            width: 90%;
                             padding-right: 8px;
                             display: flex;
                             justify-content: space-between;
@@ -164,7 +164,7 @@
                         }
                         #acoes{
                             background-color: unset;
-                            display: flex;
+                            display: none;
                             gap: 10px;
                             margin-bottom: 3px;
 
@@ -183,6 +183,9 @@
                         background-color: #514641;
                         transition: 0.1s;
                         border: none;
+                        #acoes {
+                            display: flex;
+                        }
                     }
                     tr:active {
                         background-color: #332e2b;
@@ -206,18 +209,18 @@
         main {
             > #s4{
                 table{
-                    // thead {
-                    //     tr {
-                    //         width: 85%;
-                    //     }
-                    // }
-                    // tbody {
-                    //     tr{
-                    //         > div {
-                    //             width: 85%;
-                    //         }
-                    //     }
-                    // }
+                    thead {
+                        tr {
+                            width: 85%;
+                        }
+                    }
+                    tbody {
+                        tr{
+                            > div {
+                                width: 85%;
+                            }
+                        }
+                    }
                     .desaparece{
                         display: none;
                     }

@@ -1,10 +1,11 @@
 import './index.scss';
 import CabecalhoAdm from '../../../components/Admin/AdmCabecalho';
 import { Link, useNavigate } from 'react-router-dom';
-import { buscarAdms, buscarCategorias, excluir, filtrarPorAdm, filtrarPorCategorias, filtrarPorAssinatura, buscarTodosProdutos, ordernarProdutosPorColuna, pesquisaInput } from '../../../api/produtoApi';
+import { buscarCategorias, excluir, filtrarPorAdm, filtrarPorCategorias, filtrarPorAssinatura, buscarTodosProdutos, ordernarProdutosPorColuna, pesquisaInput } from '../../../api/produtoApi';
 import { useEffect, useState } from 'react';
 import {toast} from 'react-toastify'
 import { confirmAlert } from 'react-confirm-alert'
+import { buscarAdms } from '../../../api/admApi';
 
 
 export default function Consulta() {

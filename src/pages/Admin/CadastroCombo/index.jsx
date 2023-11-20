@@ -12,11 +12,12 @@ export default function CadastroCombo () {
     const [preco, setPreco] = useState();
     const [produtosParaCombo, setProdutosParaCombo] = useState([])
     const [produtosSelecionados, setProdutosSelecionados] = useState([])
-    const [precoSugerido, setPrecoSugerido] = useState()
+    const [precoSugerido, setPrecoSugerido] = useState(0)
 
     async function buscarProdutosParaCombo() {
         try{
-            const resp = await buscarTodosProdutos()
+            let resp = await buscarTodosProdutos()
+            resp = resp.filter((item) => item.estoque !== 0)
             setProdutosParaCombo(resp)
             setProdutosSelecionados([])
             setPrecoSugerido()
@@ -75,7 +76,7 @@ export default function CadastroCombo () {
 
     function removerProdutosSelecionado(index) {
         setProdutosParaCombo([...produtosParaCombo, produtosSelecionados[index]])
-        
+        // setPrecoSugerido( precoSugerido - produtosSelecionados[index].preco)
         const produtosFiltrados = produtosSelecionados.filter(item => item.id !== produtosSelecionados[index].id)
 
         setProdutosSelecionados(produtosFiltrados)
@@ -120,8 +121,7 @@ export default function CadastroCombo () {
         let desconto = total * 0.05
         let totalComDesc = total - desconto
         totalComDesc =  totalComDesc.toFixed(2)
-        console.log(total);
-        console.log(desconto);
+
 
         setPrecoSugerido(totalComDesc)
     }
@@ -140,7 +140,6 @@ export default function CadastroCombo () {
 
 
     useEffect(() => {
-        if(produtosSelecionados.length !== 0)
             calcularPreco()
 
         // eslint-disable-next-line

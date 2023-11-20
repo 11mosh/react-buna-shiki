@@ -12,7 +12,7 @@ export default function Index(props) {
     async function buscarPedido(){
         try{
             const respPedido = await buscarPedidoPorId(props.idPedido)
-            
+            respPedido.dt_entrega = respPedido.dt_entrega.substring(0, 10).split('-').reverse().join('/')
             
             if(respPedido.id_cliente !== storage('usuario-logado').id)
                 navigate('/conta/meus-pedidos')
@@ -28,7 +28,7 @@ export default function Index(props) {
         }
     }
 
-    useEffect(() => {
+    useEffect(() => { 
         if(!storage('usuario-logado')){
             navigate('/login/meuspedidos')
         }
@@ -53,7 +53,7 @@ export default function Index(props) {
                             </div>
                             <div>
                                 <p> Data de envio:</p>
-                                <p className='valor detalheComprido'> <span> {pedido.tp_entrega} </span> prevista para o dia {pedido.dt_entrega.substring(0, 10)} </p>
+                                <p className='valor detalheComprido'> <span> {pedido.tp_entrega} </span> prevista para o dia {pedido.dt_entrega} </p>
                             </div>
                         </article>
                         <article>

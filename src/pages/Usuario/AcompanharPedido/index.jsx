@@ -180,7 +180,7 @@ export default function Index() {
     return(
         <div>
             <div id='page-acompanhar-pedido'>
-                <CabecalhoUsuario />
+                <CabecalhoUsuario linha='aparecer'/>
                 <div id='conteudo'>
                     <main id='progressoPedido'>
                         <section id='icons'>

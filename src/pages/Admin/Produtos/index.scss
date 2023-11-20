@@ -164,7 +164,7 @@
                         }
                         #acoes{
                             background-color: unset;
-                            display: flex;
+                            display: none;
                             gap: 10px;
                             margin-bottom: 3px;
 
@@ -192,6 +192,9 @@
                         background-color: #514641;
                         transition: 0.1s;
                         border: none;
+                        #acoes {
+                            display: flex;
+                        }
                     }
                     tr:active {
                         background-color: #332e2b;

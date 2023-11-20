@@ -49,7 +49,9 @@ export default function Index() {
                 dtEntrega.setDate(dtEntrega.getDate() + 2)
             dtEntrega = dtEntrega.toISOString()
             dtEntrega = dtEntrega.substr(0, 10)
-            
+            let dtPedido  = new Date().toISOString()
+            dtPedido = `${dtPedido.substring(0, 10)} ${dtPedido.substring(11, 19)}`
+
             const pedido = {
                 id_cartao: cartaoEscolhido,
                 id_endereco: enderecoEscolhido,
@@ -59,7 +61,8 @@ export default function Index() {
                 subtotal: subtotal,
                 forma_pagamento: formaPagamento,
                 id_cliente: storage('usuario-logado').id,
-                dt_entrega: dtEntrega
+                dt_entrega: dtEntrega,
+                dt_pedido: dtPedido
             }
             const resp = await cadastrarPedido(pedido)
             await cadastrarItensPedido(produtos, resp.id)
@@ -177,7 +180,7 @@ export default function Index() {
 
     return(
         <div id='page-pagamento'>
-            <CabecalhoUsuario />
+            <CabecalhoUsuario linha='aparecer'/>
             <main id='conteudo'>
                 <section id='s1'>
                     <div className='etapas'>

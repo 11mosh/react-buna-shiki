@@ -262,7 +262,7 @@ export default function Assinatura () {
 
     return (
         <main className="assinatura">
-            <CabecalhoUsuario/>
+            <CabecalhoUsuario linha='aparecer'/>
             <main className='corpo-site'>
                 <h1>Receba mensalmente os sabores marcantes que você adora, no conforto de sua casa: grãos ou moídos!</h1>
                 <section className='texto-apresentacao'>

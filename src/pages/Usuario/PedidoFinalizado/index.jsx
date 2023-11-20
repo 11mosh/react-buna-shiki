@@ -10,7 +10,7 @@ export default function Index(){
     
     return(
         <div id='page-pedido-finalizado'>
-            <UsuarioCabecalho />
+            <UsuarioCabecalho linha='aparecer'/>
             <main id='conteudo'>
                 <section id='s1'>
                     <h2> Pedido Finalizado!</h2>

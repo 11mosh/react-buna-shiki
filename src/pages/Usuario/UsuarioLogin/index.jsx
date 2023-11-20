@@ -24,6 +24,7 @@ export default function Index() {
             const resp = await Login(email, senha)
             storage('usuario-logado', resp)
             storage('usuario-pedido', {produtos: []})
+            toast('Logado!')
             setTimeout(() => {
                 if(voltar === 'meuspedidos')
                     navigate('/conta/meus-pedidos')

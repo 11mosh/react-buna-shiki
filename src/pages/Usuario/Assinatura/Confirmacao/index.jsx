@@ -107,7 +107,7 @@ export default function Confirmacao () {
 
     return (
         <main className='confirmacao-assinatura'>
-            <CabecalhoUsuario/>
+            <CabecalhoUsuario linha='aparecer'/>
             <nav className='navegador' onClick={() => {storage.remove('itens-selecionados'); storage.remove('endereco-selecionado')}}>
                 <Link to={'/assinatura'}>
                     <img src="/assets/images/icon-seta-preta.png" alt="" />

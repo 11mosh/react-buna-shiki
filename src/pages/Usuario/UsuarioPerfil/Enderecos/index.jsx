@@ -177,7 +177,7 @@ export default function Index(){
 
     return(
         <div id='page-conta-enderecos'>
-            <UsuarioCabecalho />
+            <UsuarioCabecalho linha='aparecer'/>
             <div id='enderecos'>
                 <BarraNavegacaoConta selecionar={'Endereços'}/> 
                 <main>

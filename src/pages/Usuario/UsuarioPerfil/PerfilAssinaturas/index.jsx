@@ -59,7 +59,7 @@ export default function PerfilAssinatura () {
             const url = URLRota + '/procurar-assinatura/' + id;
             const resposta = await axios.get(url);
             const dados = resposta.data;
-            console.log(dados)
+            // console.log(dados)
 
             const mensalidadee = dados[0].vl_mensalidade;
             const fim = dados[0].dt_fim;

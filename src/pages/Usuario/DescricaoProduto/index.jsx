@@ -20,7 +20,6 @@ export default function DescricaoProduto () {
            respProduto.qtd = 1
            respProduto.imagem = respProduto.imagens[0].caminho
            
-           console.log(respProduto);
            setProduto(respProduto)
            buscarProdutosSugestaoClick()
         }
@@ -161,7 +160,6 @@ return (
                             ? <h3>De: <b style={{textDecoration: 'line-through'}}>R${produto.preco}</b></h3>
                             : <></>
                         }
-                        {console.log(produto.promocao)}
                         {produto.promocao !== "0.00"
                             ? <h2>POR: <b>R${produto.promocao}</b></h2>
                             : <h2><b>R${produto.preco}</b></h2>

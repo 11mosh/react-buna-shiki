@@ -22,6 +22,26 @@ export async function criarCombo(combo) {
     return resp.data
 }
 
+export async function ordenarCombosPorCampo(campo){
+    const resp = await api.get(`/combos/ordenar/${campo}`)
+
+    return resp.data;
+}
+
+export async function pesquisarCombos(pesquisa) {
+    const resp = await api.get(`/combos/pesquisa/${pesquisa}`)
+
+    return resp.data
+}
+
+export async function excluirCombo(id) {
+    await api.delete(`/combo/${id}`)
+}
+
+export async function excluirItensCombo(idCombo){
+    await api.delete(`/combo/itens/${idCombo}`)
+}
+
 export async function adicionarItensCombo(idCombo, itens) {
     let itensResp = []
     for(let cont = 0; cont < itens.length; cont++){
@@ -34,4 +54,16 @@ export async function adicionarItensCombo(idCombo, itens) {
     }
 
     return itensResp
+}
+
+export async function buscarCombosAdm() {
+    const resp = await api.get('/combos/adm')
+
+    return resp.data
+}
+
+export async function filtrarCombosPorAdm(id) {
+    const resp = await api.get(`/combos/adm/${id}`)
+
+    return resp.data;
 }

@@ -295,7 +295,7 @@ export default function Index() {
                                             <option value='Cancelado'> Cancelado </option>
                                         </select>
                                     </td>
-                                    <td className='desaparece2 medio'> {item.dt_pedido.substr(0,10)} </td>
+                                    <td className='desaparece2 medio'> {item.dt_pedido.substr(0,10).split('-').reverse().join('/')} </td>
                                     <td className='desaparece3 medio'> R$ {item.total} </td>
                                     <td className='desaparece medio' > {item.forma_pagamento} </td>
                                 </tr>
