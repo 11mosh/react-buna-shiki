@@ -292,6 +292,18 @@
                 #invisivel{
                     display: flex;
                 }
+                > section{
+                    a {
+                        #carrinho {
+                            top: 18px;
+                            left: 15px;
+                        }
+                        #conta {
+                            top: 18px;
+                            left: 80px;
+                        }
+                    }
+                }
             }
             
         }
@@ -343,6 +355,12 @@
         > div {
             #s1 {
                 section {
+                    a {
+                        #conta {
+                            top: 18px;
+                            left: 55px;
+                        }
+                    }
                     gap: 15px;
                 }
             }
@@ -362,6 +380,18 @@
             #s1 {
                 section {
                     a {
+                        #carrinho {
+                            width: 12px;
+                            top: 20px;
+                            left: 12px;
+                            height: 12px;
+                        }
+                        #conta {
+                            width: 12px;
+                            top: 20px;
+                            left: 47px;
+                            height: 12px;
+                        }
                         img {
                             width: 22px;
                         }

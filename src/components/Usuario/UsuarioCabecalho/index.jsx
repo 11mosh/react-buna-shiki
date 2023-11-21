@@ -113,7 +113,7 @@ export default function CabecalhoUsuario(props) {
                             <p> Carrinho </p>
                         </Link>
                         <Link to='/conta/dados-pessoais' onClick={() => assinatura()}>
-                            <div id='conta' style={{display: 'none'}}></div>
+                            <div id='conta' style={{display: 'flex'}}></div>
                             <img src='/assets/images/icon-conta.svg' alt='conta'/>
                             <p>Conta</p>
                         </Link>

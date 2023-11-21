@@ -50,7 +50,6 @@ export default function DescricaoProduto () {
     function comprar(){
         if(!storage('usuario-logado')){
             toast.info('Faça login ou cadastro para comprar algo')
-            navigate(`/login/descricao${id}`)
         }
         else{
             let pedido = storage('usuario-pedido')
