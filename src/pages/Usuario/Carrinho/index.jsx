@@ -24,7 +24,6 @@ export default function Carrinho () {
                 novoArray[cont] = produtos[cont]
                 if(index === cont){
                     novoArray[cont].qtd = --novaQtd
-                    console.log(novaQtd);
                 }
             }
         }
@@ -90,7 +89,6 @@ export default function Carrinho () {
             }
             else{
                 produtos[repetidoPosicao].qtd = ++produtos[repetidoPosicao].qtd
-                console.log('inseriuRepetido');
             }
         }
 
@@ -146,8 +144,8 @@ export default function Carrinho () {
                                             <div id="detalhes">
                                                 <p> Café orfeu  organico {item.categoria === 'Café em grãos' || item.categoria === 'Café em pó' ? item.detalhes.peso : ''}</p>
                                                 {item.promocao !== "0.00"
-                                                    ? <p> R${item.promocao} </p>
-                                                    : <p> R${item.preco} </p>
+                                                    ? <p> R${item.promocao.replace('.', ',')} </p>
+                                                    : <p> R${item.preco.replace('.', ',')} </p>
                                                 }
                                                 <div> 
                                                     <button onClick={() => diminuirQtd(item.id, index, item.qtd)}> 

@@ -7,7 +7,7 @@ import { toast } from 'react-toastify'
 
 export default function Index(props) {
     const navigate = useNavigate()
-    const [pedido, setPedido] = useState({dt_entrega: '', dt_pedido: '', itens: [], endereco: {}});
+    const [pedido, setPedido] = useState({dt_entrega: '', dt_pedido: '', itens: [], endereco: {}, total: '', subtotal: '', frete: ''});
 
     async function buscarPedido(){
         try{
@@ -74,19 +74,19 @@ export default function Index(props) {
                             <div>
                                 <p>Subtotal:</p>
                                 <div >
-                                    <p className='valor'> R$ {pedido.subtotal}</p>
+                                    <p className='valor'> R$ {pedido.subtotal.replace('.', ',')}</p>
                                 </div>
                             </div>
                             <div>
                                 <p> Frete:</p>
                                 <div>
-                                    <p className='valor'>R$ {pedido.frete}</p>
+                                    <p className='valor'>R$ {pedido.frete.replace('.', ',')}</p>
                                 </div>
                             </div>
                             <div>
                                 <p> Total:</p> 
                                 <div>
-                                    <p className='valor'> R$ {pedido.total}</p>
+                                    <p className='valor'> R$ {pedido.total.replace('.', ',')}</p>
                                 </div>
                             </div>
                         </article>
@@ -100,7 +100,9 @@ export default function Index(props) {
                                         <div id='qtd'> {item.qtd} </div>
                                     </div>
                                     <h4> {item.produto.produto} {item.produto.categoria === 'Café em grãos' || item.produto.categoria === 'Café em pó' ? item.produto.detalhes.peso : ''}</h4>
-                                    <span> R$ {item.produto.preco} </span>
+                                    {item.produto.promocao === '0.00'
+                                        ? <span> R$ {item.produto.preco.replace('.', ',')} </span>
+                                        : <span> R$ {item.produto.promocao.replace('.', ',')} </span>}
                                 </article>
                             )
                         })}

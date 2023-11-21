@@ -8,6 +8,7 @@ import { toast } from 'react-toastify';
 import { URLRota } from '../../../constants';
 import axios from 'axios';
 import storage from 'local-storage';
+import { buscarComboPorNome } from '../../../api/comboApi';
 
 
 function Home () {
@@ -17,6 +18,7 @@ function Home () {
     const [assinante, setAssinante] = useState();
     // const redir = useNavigate();
     const [idAssinatura, setIdAssinatura] = useState();
+    const [combo, setCombo] = useState({preco: '', promocao: ''})
 
     async function buscarCategoriasExibicao(){
         try{
@@ -33,6 +35,20 @@ function Home () {
             toast.error('Erro técnico: não foi possível buscar as categorias existentes')
         }
     };
+
+    async function buscarCombo() {
+        try{
+            const respCombo = await buscarComboPorNome('combo iniciante')
+
+            setCombo(respCombo)
+        }
+        catch(err){
+            if(err.response)
+                toast.error(err.response.data.erro)
+            else
+                toast.error(err.message)
+        }
+    }
 
     function verificarPosicao() {
         if(categorias.length !== 0){
@@ -120,6 +136,7 @@ function Home () {
 
     useEffect(() => {
         buscarCategoriasExibicao();
+        buscarCombo()
 
         // eslint-disable-next-line
     }, []);
@@ -179,7 +196,7 @@ function Home () {
                 </div>
             </article>
             <article className="combo-iniciante">
-            <h3 style={{fontSize: '24px'}}>Combo Iniciante</h3>
+            <h3 style={{fontSize: '24px'}}>{combo.nome}</h3>
 
                 <div className='agrupamento-principal'>
                     <div className='agrupamento-itens-combo'>
@@ -216,7 +233,7 @@ function Home () {
                     <div className='preco-combo'>
                         <h2>
                         Por apenas <br></br>
-                        <b style={{color: '#661515'}}>R$430,00 </b>
+                        <b style={{color: '#661515'}}>R${ combo.preco.replace('.', ',')} </b>
                         </h2>
                         <button className='botão'>
                          <Link to={'/carrinho'}>Adicionar ao carrinho</Link>

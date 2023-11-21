@@ -27,7 +27,6 @@ export default function Combos(){
         }
         else{
             toast.info('Faça login ou cadastro para inserir um combo no carrinho')
-            navigate('/login/combos')
         }
     }       
 
@@ -68,7 +67,6 @@ export default function Combos(){
                 }
                 setCombos(resp)
             }
-            console.log(resp);
 
         }
         catch(err){
@@ -157,7 +155,10 @@ export default function Combos(){
                                                     <section>
                                                         <img  src={item.produto.imagem} alt='' />
                                                         <p> {item.produto.produto} {item.produto.categoria === 'Café em grãos' || item.produto.categoria === 'Café em pó' ? item.produto.peso : ''} </p>
-                                                        <h5 className='precoMarrom'> R${item.produto.preco}</h5>
+                                                        { item.produto.promocao === '0.00'
+                                                            ? <h5 className='precoMarrom'> R${item.produto.preco.replace('.', ',')}</h5>
+                                                            : <h5 className='precoMarrom'> R${item.produto.promocao.replace('.', ',')}</h5>
+                                                        }
                                                     </section>
                                                     <img className={verificarClasse(indexProdutos)} style={{display: verificarAparicao(item.id, indexProdutos, array)}} src='/assets/images/icon-mais.png' alt='' />
                                                 </div>
@@ -168,7 +169,7 @@ export default function Combos(){
                                 <article id='a2'>
                                     <div>
                                         <h2> Por apenas </h2>
-                                        <h2 className='precoMarrom'> R$ {combo.preco} </h2>
+                                        <h2 className='precoMarrom'> R$ {combo.preco.replace('.', ',')} </h2>
                                     </div>
                                     <button className='btLaranja' onClick={() => adicionarCarrinho(indexCombo)}> Adicionar no carrinho</button>
                                 </article>

@@ -8,9 +8,13 @@
             min-height: 350px;
             img {
                 position: absolute;
-                width: 280px;
-                top: 0 px;
+                width: 290px;
+                top: 0px;
                 right: 130px;
+            }
+            #imgUnica {
+             width: 270px;  
+             top: 20px;
             }
              article {
                 background-color: #C3937D;
@@ -37,7 +41,6 @@
         .faixaApresentacao2 {
             img {
                 left: 130px;
-                width: 280px;
                 top: 0px;
             }
             > article {
@@ -60,11 +63,6 @@
             > article {
                 background-color: #31231D;
             }
-            img {
-                // width: 350px;
-                top: 0px;
-                // right: 90px;
-            }
         }
         .faixaProdutos {
             display: flex;
@@ -75,12 +73,12 @@
                 display: flex;
                 width: 90%;
                 gap: 60px;
-                flex-wrap: wrap;
+                // flex-wrap: wrap;
                 padding: 0px 15px;
-                justify-content: space-between;
+                // justify-content: space-between;
                 > div {
                     display: flex;
-                    width: 13%;
+                    width: 22%;
                     min-width: 180px;
                     flex-direction: column;
                     align-items: center;
@@ -90,7 +88,7 @@
                         text-align: center;
                     }
                     img {
-                        width: 110px;
+                        width: 108px;
                     }
                     button {
                         border: none;
@@ -245,19 +243,31 @@
                 }
                 img {
                     top: 8px;
-                    width: 245px;
+                    width: 280px;
+                }
+                #imgUnica {
+                    width: 262px;  
+                    top: 20px;
                 }
             }
-            .faixaApresentacao2 {
-                img {
-                    top: 0px;
-                    width: 340px;
+            .faixaProdutos {
+                article {
+                    > div {
+                        img {
+                            width: 101px
+                        }
+                    }
                 }
             }
-            .faixaApresentacao3 {
-                img {
-                    width: 340px;
-                    top: 0px;
+        }
+    }
+}
+@media(max-width: 1250px) {
+    #page-produtos {
+        #conteudo {
+            .faixaProdutos {
+                article {
+                    flex-wrap: wrap
                 }
             }
         }
@@ -272,7 +282,7 @@
                     > div {
                         width: 40%;
                         img {
-                            width: 105px
+                            width: 97px
                         }
                     }
                 }
@@ -287,22 +297,17 @@
                 }
                 img {
                     top: 8px;
-                    width: 245px;
+                    width: 270px;
                     right: 90px;
+                }
+                #imgUnica {
+                    width: 252px;  
+                    top: 20px;
                 }
             }
             .faixaApresentacao2 {
                 img {
-                    top: 0px;
-                    left: 55px;
-                    width: 325px;
-                }
-            }
-            .faixaApresentacao3 {
-                img {
-                    width: 325px;
-                    top: 0px;
-                    right: 55px;
+                    left: 90px;
                 }
             }
         }
@@ -321,7 +326,7 @@
                             font-size: 15px
                         }
                         img {
-                            width: 95px
+                            width: 93px
                         }
                     }
                 }
@@ -338,21 +343,16 @@
                 img {
                     top: 10px;
                     right: 70px;
-                    width: 230px;
+                    width: 260px;
+                }
+                #imgUnica {
+                    width: 242px;  
+                    top: 20px;
                 }
             }
             .faixaApresentacao2 {
                 img {
-                    width: 305px;
-                    top: 2px;
-                    left: 35px;
-                }
-            }
-            .faixaApresentacao3 {
-                img {
-                    right: 30px;
-                    top: 2px;
-                    width: 305px;
+                    left: 70px;
                 }
             }
             .faixaProdutos2 {
@@ -373,7 +373,7 @@
                     > div {
                         width: 30%;
                         img {
-                            width: 85px
+                            width: 87px
                         }
                         button {
                             font-size: 14.5px;
@@ -396,7 +396,11 @@
                 img {
                     top: 10px;
                     right: 60px;
-                    width: 220px;
+                    width: 250px;
+                }
+                #imgUnica {
+                    width: 232px;  
+                    top: 20px;
                 }
             }
             .faixaApresentacao2 {
@@ -410,14 +414,7 @@
                     }
                 }
                 img {
-                    width: 295px;
-                    left: 25px;
-                }
-            }
-            .faixaApresentacao3 {
-                img {
-                    right: 20px;
-                    width: 295px;
+                    left: 60px;
                 }
             }
             #formasPagamento {
@@ -442,11 +439,9 @@
             .faixaProdutos {
                 flex-direction: column;
                 gap: 50px;
-                // align-items: ;
                 article {
                     width: 100%;
                     padding: unset;
-                    // justify-content: center;
                     > div {
                         width: 25%;
                         p {

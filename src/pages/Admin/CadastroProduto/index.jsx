@@ -280,7 +280,7 @@ function CadastroProduto () {
             let isNum = Number(alteracao)
             if(isNaN(isNum)){}
             else{
-                if(alteracao <= 9999){
+                if(alteracao <= 9999.99){
                     setPrecoVenda(alteracao)
                 }
             }
@@ -289,7 +289,7 @@ function CadastroProduto () {
             let isNum = Number(alteracao)
             if(isNaN(isNum)){}
             else{
-                if(alteracao <= 9999){
+                if(alteracao <= 9999.99){
                     setPrecoPromocao(alteracao)
                 }
             }

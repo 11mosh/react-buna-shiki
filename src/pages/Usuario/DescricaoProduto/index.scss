@@ -339,11 +339,11 @@
                         display: flex;
                         flex-direction: column;
                         align-items: center;
-                        width: 180px;
+                        min-width: 180px;
 
                         img {
                             align-self: center;
-                            width: 110px;
+                            width: 105px;
                         }
                         #nomeProduto{
                             text-align: center;
@@ -495,10 +495,17 @@
             }
         }
         .produtos-necessidade {
+            flex-wrap: wrap;
+            gap: 10px;
+            justify-content: flex-start !important;
             .produto {
-                width: 150px !important;
+                width: 32%;
+                min-width: 150px !important;
                 #nomeProduto{
-                    font-size: 16.5px
+                    font-size: 16.2px
+                }
+                img {
+                    width: 90px !important;
                 }
             }
         }
@@ -515,20 +522,22 @@
             font-size: 15px !important;
         } 
         .produtos-necessidade {
-            gap: 10px;
+            gap: 30px;
+            justify-content: center !important;
             .produto {
+                width: 40%;
                 #nomeProduto{
                     font-size: 16px;
                 }
                 img {
-                    width: 60% !important;
+                    width: 85px !important;
                     min-width: 80px;
                 }
             }
 
-            .produto:first-child {
-                display: none !important;
-            }
+            // .produto:first-child {
+            //     display: none !important;
+            // }
         }
 
         
@@ -544,17 +553,15 @@
             }
         } 
         .produtos-necessidade {
-            gap: 10px;
             .produto {
+                min-width: 180px !important;
                 img {
-                    width: 60% !important;
+                    // width: 60% !important;
                     min-width: 80px;
                 }
             }
 
-            .produto:first-child {
-                display: none !important;
-            }
+            
         }
 
         

@@ -107,12 +107,13 @@ export default function CabecalhoUsuario(props) {
             <div>
                 <section id='s1'>
                     <section style={{ "display": exibirPesquisa}}>
-                        <Link to='/carrinho' id='carrinho'>
-                            <div style={{display: verificarCarrinho()}}></div>
+                        <Link to='/carrinho'>
+                            <div id='carrinho' style={{display: verificarCarrinho()}}></div>
                             <img src='/assets/images/icon-carrinho.svg' alt='carrinho'/>
                             <p> Carrinho </p>
                         </Link>
                         <Link to='/conta/dados-pessoais' onClick={() => assinatura()}>
+                            <div id='conta' style={{display: 'none'}}></div>
                             <img src='/assets/images/icon-conta.svg' alt='conta'/>
                             <p>Conta</p>
                         </Link>

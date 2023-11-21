@@ -8,20 +8,20 @@ import { toast } from 'react-toastify';
 import { buscarIdProduto, buscarTodosProdutos } from '../../../api/produtoApi';
 
 export default function DescricaoProduto () {
-    const [produto, setProduto] = useState({imagens: [{}], detalhes: { alergia: '', marca: '', dimensoes: '', peso: ''}, categoria: ''})
+    const [produto, setProduto] = useState({ preco: '', promocao: '', imagens: [{}], detalhes: { alergia: '-', marca: '-', dimensoes: '-', peso: '-'}, categoria: '-'})
     const {id} = useParams()
-    const [produtosSugestao, setProdutosSugestao] = useState([])
+    const [produtosSugestao, setProdutosSugestao] = useState([{promocao: '', preco: ''}])
     const [renderizar, setRenderizar] = useState('')
     const navigate = useNavigate()
 
     async function buscarProdutoClick() {
         try{
-           let respProduto = await buscarIdProduto(id)
-           respProduto.qtd = 1
-           respProduto.imagem = respProduto.imagens[0].caminho
-           
-           setProduto(respProduto)
-           buscarProdutosSugestaoClick()
+            let respProduto = await buscarIdProduto(id)
+            respProduto.qtd = 1
+            respProduto.imagem = respProduto.imagens[0].caminho
+            setProduto(respProduto)
+            
+            buscarProdutosSugestaoClick()
         }
         catch(err){
             if(err.response)
@@ -38,7 +38,6 @@ export default function DescricaoProduto () {
     function adicionarCarrinho(){
         if(!storage('usuario-logado')){
             toast.info('Faça login ou cadastro para adicionar coisas ao carrinho.')
-            navigate(`/login/descricao${id}`)
         }
         else{
             let pedido = storage('usuario-pedido')
@@ -157,12 +156,12 @@ return (
                     <nav className="nome-preco">
                         <h1>{produto.produto} {produto.categoria === 'Café em grãos' || produto.categoria === 'Café em pó' ? produto.detalhes.peso : ''}</h1>
                         {produto.promocao !== "0.00"
-                            ? <h3>De: <b style={{textDecoration: 'line-through'}}>R${produto.preco}</b></h3>
+                            ? <h3>De: <b style={{textDecoration: 'line-through'}}>R${produto.preco.replace('.', ',')}</b></h3>
                             : <></>
                         }
                         {produto.promocao !== "0.00"
-                            ? <h2>POR: <b>R${produto.promocao}</b></h2>
-                            : <h2><b>R${produto.preco}</b></h2>
+                            ? <h2>POR: <b>R${produto.promocao.replace('.', ',')}</b></h2>
+                            : <h2><b>R${produto.preco.replace('.', ',')}</b></h2>
                         }
                     </nav>
 
@@ -217,7 +216,7 @@ return (
                             <td>Categoria</td>
                             <td id='alergia'>Informações sobre alergia</td>
                             <td>Peso</td>
-                            <td>Dimensões do produto</td>
+                            <td id='alergia'>Dimensões do produto</td>
                         </tr>
                         </tbody>
                     </table>
@@ -229,7 +228,7 @@ return (
                             <td>{produto.categoria}</td>
                             <td id='alergia'>{produto.detalhes.alergia}</td>
                             <td>{produto.detalhes.peso}</td>
-                            <td>{produto.detalhes.dimensoes}</td>
+                            <td id='alergia'>{produto.detalhes.dimensoes}</td>
                         </tr>
                         </tbody>
                     </table>
@@ -248,8 +247,8 @@ return (
                             <img src={item.imagem} alt="" />
                             <p id='nomeProduto'> {item.produto}</p>
                             { item.promocao !== "0.00"
-                               ? <p className='preco-produto'><b>R${item.promocao}</b></p>
-                               : <p className='preco-produto'><b>R${item.preco}</b></p>
+                               ? <p className='preco-produto'><b>R${item.promocao.replace('.', ',')}</b></p>
+                               : <p className='preco-produto'><b>R${item.preco.replace('.', ',')}</b></p>
                             }
                         </div>
                         )

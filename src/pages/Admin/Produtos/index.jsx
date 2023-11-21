@@ -88,7 +88,8 @@ export default function Consulta() {
 
   async function buscarCategoriasFiltro(){
     try{
-      const categoriasResp = await buscarCategorias()
+      let categoriasResp = await buscarCategorias()
+      categoriasResp = categoriasResp.filter(item => item.nome !== 'Combos')
       setCategorias(categoriasResp)
     }
     catch(err){
@@ -162,7 +163,7 @@ export default function Consulta() {
   async function ordenarProdutos(coluna) {
     try {
       const produtosOrdenados = await ordernarProdutosPorColuna(coluna)
-      console.log(produtosOrdenados);
+
       setProdutos(produtosOrdenados)
     }
     catch(err){

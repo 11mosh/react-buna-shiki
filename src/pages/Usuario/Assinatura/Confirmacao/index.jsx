@@ -62,7 +62,7 @@ export default function Confirmacao () {
                 idEndereco: Number(storage('endereco-selecionado').idEndereco),
                 mensalidade: Number(precoFinal)
             }
-            console.log(assinatura)
+            // console.log(assinatura)
             const resposta = await axios.post((URLRota + '/concluir-assinatura/'), assinatura);
             const dados = resposta.data;
             const idAssinatura = dados.id;
@@ -136,7 +136,9 @@ export default function Confirmacao () {
                                         <tr>
                                             <td>{item.produto}</td>
                                             <td>{item.quantidade}</td>
-                                            <td>R${item.preco}</td>
+                                            {item.promocao === '0.00'
+                                                ? <td>R${item.preco.replace('.', ',')}</td>
+                                                : <td>R${item.promocao.replace('.', ',')}</td>}
                                         </tr>
                                 )
                             })}
