@@ -136,7 +136,9 @@ export default function Confirmacao () {
                                         <tr>
                                             <td>{item.produto}</td>
                                             <td>{item.quantidade}</td>
-                                            <td>R${item.preco}</td>
+                                            {item.promocao === '0.00'
+                                                ? <td>R${item.preco.replace('.', ',')}</td>
+                                                : <td>R${item.promocao.replace('.', ',')}</td>}
                                         </tr>
                                 )
                             })}

@@ -196,8 +196,8 @@ export default function Index() {
                                     <aside> 
                                         <h5> {item.produto} {item.categoria === 'Café em grãos' || item.categoria === 'Café em pó' ? item.detalhes.peso : ''} </h5>
                                         {item.promocao === "0.00"
-                                            ? <b> R${item.preco} </b>
-                                            : <b> R${item.promocao} </b>}
+                                            ? <b> R${item.preco.replace('.', ',')} </b>
+                                            : <b> R${item.promocao.replace('.', ',')} </b>}
                                         <div>
                                             {item.qtd}
                                         </div>

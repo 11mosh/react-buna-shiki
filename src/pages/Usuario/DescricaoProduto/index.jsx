@@ -8,9 +8,9 @@ import { toast } from 'react-toastify';
 import { buscarIdProduto, buscarTodosProdutos } from '../../../api/produtoApi';
 
 export default function DescricaoProduto () {
-    const [produto, setProduto] = useState({imagens: [{}], detalhes: { alergia: '-', marca: '-', dimensoes: '-', peso: '-'}, categoria: '-'})
+    const [produto, setProduto] = useState({ preco: '', promocao: '', imagens: [{}], detalhes: { alergia: '-', marca: '-', dimensoes: '-', peso: '-'}, categoria: '-'})
     const {id} = useParams()
-    const [produtosSugestao, setProdutosSugestao] = useState([])
+    const [produtosSugestao, setProdutosSugestao] = useState([{promocao: '', preco: ''}])
     const [renderizar, setRenderizar] = useState('')
     const navigate = useNavigate()
 
@@ -156,12 +156,12 @@ return (
                     <nav className="nome-preco">
                         <h1>{produto.produto} {produto.categoria === 'Café em grãos' || produto.categoria === 'Café em pó' ? produto.detalhes.peso : ''}</h1>
                         {produto.promocao !== "0.00"
-                            ? <h3>De: <b style={{textDecoration: 'line-through'}}>R${produto.preco}</b></h3>
+                            ? <h3>De: <b style={{textDecoration: 'line-through'}}>R${produto.preco.replace('.', ',')}</b></h3>
                             : <></>
                         }
                         {produto.promocao !== "0.00"
-                            ? <h2>POR: <b>R${produto.promocao}</b></h2>
-                            : <h2><b>R${produto.preco}</b></h2>
+                            ? <h2>POR: <b>R${produto.promocao.replace('.', ',')}</b></h2>
+                            : <h2><b>R${produto.preco.replace('.', ',')}</b></h2>
                         }
                     </nav>
 
@@ -247,8 +247,8 @@ return (
                             <img src={item.imagem} alt="" />
                             <p id='nomeProduto'> {item.produto}</p>
                             { item.promocao !== "0.00"
-                               ? <p className='preco-produto'><b>R${item.promocao}</b></p>
-                               : <p className='preco-produto'><b>R${item.preco}</b></p>
+                               ? <p className='preco-produto'><b>R${item.promocao.replace('.', ',')}</b></p>
+                               : <p className='preco-produto'><b>R${item.preco.replace('.', ',')}</b></p>
                             }
                         </div>
                         )

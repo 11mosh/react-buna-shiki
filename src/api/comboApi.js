@@ -74,6 +74,12 @@ export async function filtrarCombosPorAdm(id) {
     return resp.data;
 }
 
+export async function buscarComboPorNome(nome) {
+    const resp = await api.get(`/combo/nome/${nome}`)
+
+    return resp.data
+}
+
 
 export async function alterarCombo(combo) {
     await api.put(`/combo/${combo.id}`, {

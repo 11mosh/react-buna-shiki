@@ -78,7 +78,7 @@ export default function CadastroCombo () {
                 }
             }
             else{
-                toast.warn('É preciso adicionar 4 produtos para fazer um combo')
+                toast.warn('É preciso adicionar 4 produtos para fazer um combo.')
             }
         }
         catch(err){

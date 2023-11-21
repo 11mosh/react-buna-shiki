@@ -14,7 +14,7 @@ import { useNavigate} from 'react-router-dom';
 export default function MeusPedidos () {
 
     // const [idPedido, setIdPedido] = useState(0);
-    const [pedidos, setPedidos] = useState([]);
+    const [pedidos, setPedidos] = useState([{total: '', dt_pedido: '', id: 0, item: {}}]);
     const redir = useNavigate();
 
     async function avaliacao (id) {
@@ -34,9 +34,9 @@ export default function MeusPedidos () {
     async function chamarPedidos () {
         const idUsuario = storage('usuario-logado').id
         const url = URLRota + '/pedidos/primeiro-item/' + idUsuario;
-        console.log(url)
         const resposta = await axios.get(url);
         const dados = resposta.data;
+        console.log(dados)
         setPedidos(dados);
     };
 
@@ -73,7 +73,7 @@ export default function MeusPedidos () {
                                     <img src={item.item.imagem} alt="" style={{maxHeight: '160px'}}/>
                                     <div className='descricao-pedido'>
                                         <p> <b>{item.item.produto}</b></p>
-                                        <p style={{ marginTop: '10px'}}> Total: <b style={{color: '#661515'}}>R${item.total}</b></p>
+                                        <p style={{ marginTop: '10px'}}> Total: <b style={{color: '#661515'}}>R${item.total.replace('.', ',')}</b></p>
                                     </div>
                                 </div>
                                 
