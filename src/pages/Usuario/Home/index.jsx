@@ -36,6 +36,19 @@ function Home () {
         }
     };
 
+    function adicionarCarrinho() {
+        let pedido = storage('usuario-pedido')
+        let produto = {}
+        
+        for(let cont = 0 ; cont < combo.produtos.length; cont++){
+            produto = combo.produtos[cont].produto
+            produto.qtd = 1
+            pedido.produtos = [...pedido.produtos, produto]
+        }
+
+        storage('usuario-pedido', pedido)
+    }
+
     async function buscarCombo() {
         try{
             const respCombo = await buscarComboPorNome('combo iniciante')
@@ -146,7 +159,6 @@ function Home () {
     useEffect(() => {
         buscarCategoriasExibicao();
         buscarCombo()
-
         // eslint-disable-next-line
     }, []);
 
@@ -232,8 +244,8 @@ function Home () {
                         Por apenas <br></br>
                         <b style={{color: '#661515'}}>R${ combo.preco.replace('.', ',')} </b>
                         </h2>
-                        <button className='botão'>
-                         <Link to={'/carrinho'}>Adicionar ao carrinho</Link>
+                        <button className='botão' onClick={adicionarCarrinho}>
+                            Adicionar ao carrinho
                         </button>
                 </div>
                 </div>

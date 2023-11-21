@@ -85,7 +85,6 @@ export default function Carrinho () {
             }
             if(repetidoPosicao === ''){
                 produtos[cont] = produtosStorage[cont]
-                
             }
             else{
                 produtos[repetidoPosicao].qtd = ++produtos[repetidoPosicao].qtd

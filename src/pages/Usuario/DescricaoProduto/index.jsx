@@ -213,7 +213,6 @@ return (
                         <tbody>
                         <tr>
                             <td>Marca</td>
-                            <td>Categoria</td>
                             <td id='alergia'>Informações sobre alergia</td>
                             <td>Peso</td>
                             <td id='alergia'>Dimensões do produto</td>
@@ -225,7 +224,6 @@ return (
                         <tbody>
                         <tr>
                             <td>{produto.detalhes.marca}</td>
-                            <td>{produto.categoria}</td>
                             <td id='alergia'>{produto.detalhes.alergia}</td>
                             <td>{produto.detalhes.peso}</td>
                             <td id='alergia'>{produto.detalhes.dimensoes}</td>
