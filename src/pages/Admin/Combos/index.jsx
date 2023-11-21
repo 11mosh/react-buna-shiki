@@ -191,8 +191,8 @@ export default function Index() {
                     <tbody>
                         {combos.map((item) => {
                             return(
-                                <tr>
-                                    <div>
+                                <tr >
+                                    <div onClick={() => navigate(`/adm/combos/${item.id}`)}>
                                         <td className='desaparece3'> {item.id} </td>
                                         <td className='maior'> {item.nome }</td>
                                         <td className='desaparece medio'> {item.admin} </td>

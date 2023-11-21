@@ -130,7 +130,7 @@ export default function RevisaoAssinaturaADM () {
                             <tbody>
                                 <tr>
                                     <td> Código da assinatura: </td>
-                                    <td className='valor'> 0000001-00</td>
+                                    <td className='valor'></td>
                                 </tr>
                                 <tr id='select-assinatura'>
                                     <td> Status da assinatura: </td>
