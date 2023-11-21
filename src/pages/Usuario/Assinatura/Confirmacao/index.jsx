@@ -172,8 +172,8 @@ export default function Confirmacao () {
                             <p>Local de entrega: {item.cidade} - {item.rua}, nº {item.numero}.</p>
                         )
                     })}
-                    <p>Primeiro pagamento: {dataAtual}</p>
-                    <p>Próximo pagamento: {proximaData}</p>
+                    <p>Primeiro pagamento: {dataAtual.split('-').reverse().join('/')}</p>
+                    <p>Próximo pagamento: {proximaData.split('-').reverse().join('/')}</p>
                 </div>
 
                 <div className="permanencia">
