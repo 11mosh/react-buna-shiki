@@ -13,7 +13,7 @@ import { URLRota } from '../../../../constants.js';
 export default function Confirmacao () {
 
     const [preco, setPreco] = useState(0);
-    const [localEntrega, setLocalEntrega] = useState([]);
+    const [localEntrega, setLocalEntrega] = useState({});
     const [precoFinal, setPrecoFinal] = useState(0);
     const [desconto, setDesconto] = useState(0);
     const [dataAtual, setDataAtual] = useState((new Date().toISOString()).substring(0, 10));
@@ -62,7 +62,7 @@ export default function Confirmacao () {
                 idEndereco: Number(storage('endereco-selecionado').idEndereco),
                 mensalidade: Number(precoFinal)
             }
-            console.log(assinatura)
+            // console.log(assinatura)
             const resposta = await axios.post((URLRota + '/concluir-assinatura/'), assinatura);
             const dados = resposta.data;
             const idAssinatura = dados.id;
@@ -87,10 +87,11 @@ export default function Confirmacao () {
     async function localizacao () {
         try {
             const id = Number(storage('endereco-selecionado').idEndereco);
-            const url = URLRota + '/enderecos/' + id;
+            const url = URLRota + '/endereco/' + id;
             const resposta = await axios.get(url);
             const dados = resposta.data
-            setLocalEntrega([... dados]);
+            setLocalEntrega(dados);
+
         } catch (error) {
             toast.warn(error.message)
         }
@@ -107,7 +108,7 @@ export default function Confirmacao () {
 
     return (
         <main className='confirmacao-assinatura'>
-            <CabecalhoUsuario/>
+            <CabecalhoUsuario linha='aparecer'/>
             <nav className='navegador' onClick={() => {storage.remove('itens-selecionados'); storage.remove('endereco-selecionado')}}>
                 <Link to={'/assinatura'}>
                     <img src="/assets/images/icon-seta-preta.png" alt="" />
@@ -136,7 +137,9 @@ export default function Confirmacao () {
                                         <tr>
                                             <td>{item.produto}</td>
                                             <td>{item.quantidade}</td>
-                                            <td>R${item.preco}</td>
+                                            {item.promocao === '0.00'
+                                                ? <td>R${item.preco.replace('.', ',')}</td>
+                                                : <td>R${item.promocao.replace('.', ',')}</td>}
                                         </tr>
                                 )
                             })}
@@ -167,13 +170,9 @@ export default function Confirmacao () {
                 </div>
 
                 <div className="detalhes-assinatura">
-                    {localEntrega.map((item) => {
-                        return (
-                            <p>Local de entrega: {item.cidade} - {item.rua}, nº {item.numero}.</p>
-                        )
-                    })}
-                    <p>Primeiro pagamento: {dataAtual}</p>
-                    <p>Próximo pagamento: {proximaData}</p>
+                    <p>Local de entrega: {localEntrega.cidade} - {localEntrega.rua}, nº {localEntrega.numero}.</p>
+                    <p>Primeiro pagamento: {dataAtual.split('-').reverse().join('/')}</p>
+                    <p>Próximo pagamento: {proximaData.split('-').reverse().join('/')}</p>
                 </div>
 
                 <div className="permanencia">

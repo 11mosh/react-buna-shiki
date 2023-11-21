@@ -1,15 +1,16 @@
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import './index.scss'
 import { useEffect, useState } from 'react'
 import { buscarCategorias } from '../../../api/produtoApi';
 import { toast } from 'react-toastify';
 import axios from 'axios';
-import { URLRota } from '../../../constants';
+import { URLRota } from '../../../constants.js';
 import storage from 'local-storage'
 
-export default function CabecalhoUsuario() {
+export default function CabecalhoUsuario(props) {
 
     const [pesquisa, setPesquisa] = useState('');
+    const navigate = useNavigate();
     const [mostrarInput, setMostrarInput] = useState(false)
     const [categorias, setCategorias] = useState([]);
     const [sugestao, setSugestao] = useState([]);
@@ -20,7 +21,6 @@ export default function CabecalhoUsuario() {
         try {
             const respostaProdutos = await axios.get(URLRota + '/produtos');
             const produtos = respostaProdutos.data;
-          
             const sugestoes = [];
           
             for (const produto of produtos) {
@@ -30,7 +30,8 @@ export default function CabecalhoUsuario() {
      
               const sugestaoobj = {
                 nome: produto.produto,
-                imagem: imagem[0].caminho
+                imagem: imagem[0].caminho,
+                idProduto: id
               };
           
               sugestoes.push(sugestaoobj);
@@ -53,6 +54,20 @@ export default function CabecalhoUsuario() {
         if (event.key === "Enter") {
             setPesquisa('');
         }
+    }
+
+    function verificarCategoriaSelecionada(categoria) {
+        if(props.categoriaSelecionada === categoria)
+            return 'bold'
+        else
+            return ''
+    }
+
+    function verificarLinha() {
+        if(props.linha === 'aparecer')
+            return 'flex'
+        else
+            return 'none'
     }
 
     function verificarCarrinho(){
@@ -92,12 +107,13 @@ export default function CabecalhoUsuario() {
             <div>
                 <section id='s1'>
                     <section style={{ "display": exibirPesquisa}}>
-                        <Link to='/carrinho' id='carrinho'>
-                            <div style={{display: verificarCarrinho()}}></div>
+                        <Link to='/carrinho'>
+                            <div id='carrinho' style={{display: verificarCarrinho()}}></div>
                             <img src='/assets/images/icon-carrinho.svg' alt='carrinho'/>
                             <p> Carrinho </p>
                         </Link>
                         <Link to='/conta/dados-pessoais' onClick={() => assinatura()}>
+                            <div id='conta' style={{display: 'none'}}></div>
                             <img src='/assets/images/icon-conta.svg' alt='conta'/>
                             <p>Conta</p>
                         </Link>
@@ -129,7 +145,7 @@ export default function CabecalhoUsuario() {
                                             .slice(0, 8)
                                             .map((item, index, array) => (
                                             <div
-                                                onClick={() => setPesquisa('')}
+                                                onClick={() => {navigate(`/descricao/${item.idProduto}`); setPesquisa('')}}
                                                 className="dropdown-row"
                                                 key={item.nome}
                                             >
@@ -150,7 +166,7 @@ export default function CabecalhoUsuario() {
                 </section>
                 <section id='s2'>
                     <div className='campo1'>
-                        <input type="text" placeholder='Pesquise por produtos aqui...' value={pesquisa} onChange={e => setPesquisa(e.target.value)} onKeyDown={zerarPesquisa} />
+                        <input type="text" placeholder='Pesquise por produtos aqui...' value={pesquisa} onChange={e => setPesquisa(e.target.value)}      />
                         <img src='/assets/images/lupa-dark.svg' alt="Erro ao exibir imagem" onClick={exibirPesquisa}/>
                     </div>
                     <hr />
@@ -165,15 +181,15 @@ export default function CabecalhoUsuario() {
                                     fullName.startsWith(usuPesquisa) 
                                 );
                                 })
-                                .slice(0, 8)
-                                .map((item, index, array) => (
+                            .slice(0, 8)
+                            .map((item, index, array) => (
                                 <div
-                                    onClick={() => setPesquisa('')}
+                                    onClick={() => {navigate(`/descricao/${item.idProduto}`); setPesquisa('')}}
                                     className="dropdown-row"
                                     key={item.nome}
                                 >
                                     <div>
-                                        <img src={item.imagem} alt="" srcset="" />
+                                        <img src={item.imagem} alt="" srcSet="" />
                                         <h2>{item.nome}</h2>
                                     </div>
                                     {index !== array.length - 1 ? <hr /> : (<></>)}
@@ -187,12 +203,12 @@ export default function CabecalhoUsuario() {
                 <section>
                     {categorias.map(item => {
                         return(
-                            <Link to={caminhos[item.id - 1]} key={item.id}>{item.nome}</Link>
+                            <Link to={caminhos[item.id - 1]} key={item.id} style={{fontWeight: verificarCategoriaSelecionada(item.nome)}}> {item.nome} </Link>
                         )
                     })}
                 </section>
             </nav>
-            <hr id='hrsumir'/>
+            <hr id='hrsumir' style={{display: verificarLinha()}}/>
         </div>
     )
 }

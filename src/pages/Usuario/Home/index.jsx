@@ -7,7 +7,8 @@ import { buscarCategorias } from '../../../api/produtoApi';
 import { toast } from 'react-toastify';
 import { URLRota } from '../../../constants';
 import axios from 'axios';
-import storage, { set } from 'local-storage';
+import storage from 'local-storage';
+import { buscarComboPorNome } from '../../../api/comboApi';
 
 
 function Home () {
@@ -15,8 +16,9 @@ function Home () {
     const [categorias, setCategorias] = useState([]);
     const [categoriasAtual, setCategoriasAtual] = useState([]);
     const [assinante, setAssinante] = useState();
-    const redir = useNavigate();
+    // const redir = useNavigate();
     const [idAssinatura, setIdAssinatura] = useState();
+    const [combo, setCombo] = useState({preco: '', promocao: '', produtos: []})
 
     async function buscarCategoriasExibicao(){
         try{
@@ -33,6 +35,33 @@ function Home () {
             toast.error('Erro técnico: não foi possível buscar as categorias existentes')
         }
     };
+
+    function adicionarCarrinho() {
+        let pedido = storage('usuario-pedido')
+        let produto = {}
+        
+        for(let cont = 0 ; cont < combo.produtos.length; cont++){
+            produto = combo.produtos[cont].produto
+            produto.qtd = 1
+            pedido.produtos = [...pedido.produtos, produto]
+        }
+
+        storage('usuario-pedido', pedido)
+    }
+
+    async function buscarCombo() {
+        try{
+            const respCombo = await buscarComboPorNome('combo iniciante')
+
+            setCombo(respCombo)
+        }
+        catch(err){
+            if(err.response)
+                toast.error(err.response.data.erro)
+            else
+                toast.error(err.message)
+        }
+    }
 
     function verificarPosicao() {
         if(categorias.length !== 0){
@@ -51,14 +80,14 @@ function Home () {
         const resposta = await axios.get(url);
         const dados = resposta.data;
         
-        console.log(dados);
+        
         
         if (dados.length > 0) {
             setAssinante(true);
             storage('id-assinatura', {idAssinatura: idAssinatura});
             const idAssinaturaa = dados[0].id_assinatura;
         setIdAssinatura(idAssinaturaa);
-        } else if (dados.length == 0) {
+        } else if (dados.length === 0) {
             setAssinante(false);
         }
         } catch (error) {
@@ -116,11 +145,20 @@ function Home () {
             return '/produtos/capsulas'
         }
     }
+
+    function verificarSeperador(index, campo) {
+        if(index === 3 && !campo)
+            return 'hidden'
+        if(campo === 'excluir' && index === 1)
+            return 'separadorSumir'
+        else 
+            return ''
+    }
     
 
     useEffect(() => {
         buscarCategoriasExibicao();
-
+        buscarCombo()
         // eslint-disable-next-line
     }, []);
 
@@ -128,20 +166,21 @@ function Home () {
         if (storage('usuario-logado')) {
             const idCliente = storage('usuario-logado').id;
             verificarAssinatura(idCliente);
-            console.log('assinate: ' + assinante)
 
             
             if(storage('id-assinatura')) {
                 const idAssinaturaa = storage('id-assinatura').idAssinatura;
                 setIdAssinatura(idAssinaturaa);
             }
-        }        
+        }      
+        
+        // eslint-disable-next-line
     }, [assinante]);
 
 
     return (
         <main className='home'>
-            <Cabecalho />
+            <Cabecalho/>
             <article className='banner-cafe'>
                     <h1>Presente nos seus melhores momentos de conforto, nossa empresa transforma cada xícara em um momento especial.</h1>
             </article>
@@ -178,47 +217,35 @@ function Home () {
                 </div>
             </article>
             <article className="combo-iniciante">
-            <h3 style={{fontSize: '24px'}}>Combo Iniciante</h3>
+            <h3 style={{fontSize: '24px'}}>{combo.nome}</h3>
 
                 <div className='agrupamento-principal'>
                     <div className='agrupamento-itens-combo'>
                         <div className="divisoria1">
-                            <div className='item-combo'>
-                                <img src="/assets/images/cafee3.png" alt="" />
-                                <p>Café 3 Corações Orgânico</p>
-                                <b><p>R$20,00 x 3</p></b>
-                            </div>
-                            <p id='separacao-moedor'> + </p>
-                            <div className='item-combo'>
-                                <img src="/assets/images/moedorr.png" alt="" />
-                                <p>Moedor de café Hamilton </p>
-                                <b><p>R$369,45</p></b>
-                            </div>
-                            <p id='separacao-meio'> + </p>
+                            {combo.produtos.map((item, index) => {
+                                return(
+                                    <div>
+                                        <div className='item-combo'>
+                                            <img src="/assets/images/cafee3.png" alt="" />
+                                            <p> {item.produto.produto} {item.produto.categoria === 'Café em grãos' || item.produto.categoria === 'Café em pó' ? item.produto.detalhes.peso : ''}</p>
+                                            <b><p>R${ item.produto.promocao !== '0.00'
+                                                        ? item.produto.promocao.replace('.', ',')
+                                                        : item.produto.preco.replace('.', ',')}
+                                            </p></b>
+                                        </div>
+                                        <p id='separacao-moedor' className={verificarSeperador(index, 'excluir')} style={{visibility: verificarSeperador(index)}}> + </p>
+                                    </div>
+                                )
+                            })}
                         </div>
-                        <div className="divisoria2">
-                            <div className='item-combo' id='filtro'>
-                                <img src="/assets/images/filtroo.png" alt="" />
-                                <p>Filtro de papel Melitta</p>
-                                <b><p>R$6,50</p></b>
-                            </div>
-                            <p id='separacao-cafeteira'> + </p>
-                            <div className='item-combo' id='cafeteira'>
-                                <img src="/assets/images/cafeteiraa.png" alt="" />
-                                <p>Cafeteira Elétrica Cadence </p>
-                                <b><p>R$104,90</p></b>
-                            </div>
-                        </div>
-                        
-                        
                     </div>
                     <div className='preco-combo'>
                         <h2>
                         Por apenas <br></br>
-                        <b style={{color: '#661515'}}>R$430,00 </b>
+                        <b style={{color: '#661515'}}>R${ combo.preco.replace('.', ',')} </b>
                         </h2>
-                        <button className='botão'>
-                         <Link to={'/carrinho'}>Adicionar ao carrinho</Link>
+                        <button className='botão' onClick={adicionarCarrinho}>
+                            Adicionar ao carrinho
                         </button>
                 </div>
                 </div>

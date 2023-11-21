@@ -19,7 +19,8 @@ export async function cadastrarPedido(pedido){
         dt_entrega: pedido.dt_entrega,
         subtotal: pedido.subtotal,
         frete: pedido.frete,
-        total: pedido.total
+        total: pedido.total,
+        dt_pedido: pedido.dt_pedido
     })
 
     return resp.data

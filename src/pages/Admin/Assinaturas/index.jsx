@@ -7,16 +7,15 @@ import { confirmAlert } from 'react-confirm-alert';
 import { useNavigate } from 'react-router';
 
 export default function ConsultaAssinaturas () {
-    const [assinaturas, setAssinaturas] = useState([{dt_inicio: '', cliente: {}, endereco: {}}])
-    const [pesquisa, setPesquisa] = useState(0)
-    const [ordenar, setOrdenar] = useState(0)
-    const [status, setStatus] = useState(0)
-    const redir = useNavigate()
+    const [assinaturas, setAssinaturas] = useState([{dt_inicio: '', cliente: {}, endereco: {}}]);
+    const [pesquisa, setPesquisa] = useState(0);
+    const [ordenar, setOrdenar] = useState(0);
+    const [status, setStatus] = useState(0);
+    const redir = useNavigate();
 
     async function buscarAssinaturasLocal(){
       try{
         const assinaturasResp = await buscarAssinaturas()
-        console.log(assinaturasResp)
 
         setAssinaturas(assinaturasResp)
       }

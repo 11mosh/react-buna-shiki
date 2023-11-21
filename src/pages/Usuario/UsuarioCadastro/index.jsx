@@ -5,7 +5,7 @@ import './index.scss';
 import { toast } from 'react-toastify'
 import {CadastrarCliente, CadastrarEndereco, buscarCep } from '../../../api/usuarioApi';
 import LoadingBar from 'react-top-loading-bar';
-import { useNavigate, Link } from 'react-router-dom';
+import { useNavigate, Link, useParams } from 'react-router-dom';
 import storage from 'local-storage'
 
 export default function Index() {
@@ -21,6 +21,7 @@ export default function Index() {
     const [complemento, setComplemento] = useState('')
     const [nrEndereco, setNrEndereco] = useState('')
     const [carregando, setCarregando] = useState(false)
+    const { voltar } = useParams()
 
     const ref = useRef()
     const navigate = useNavigate()
@@ -47,7 +48,21 @@ export default function Index() {
                 storage('usuario-pedido', {produtos: []})
                 
                 setTimeout(() => {
-                    navigate('/produtos/cafeemgraos')
+                    if(voltar === 'meuspedidos')
+                        navigate('/conta/meus-pedidos')
+                    else if(voltar === 'assinatura')
+                        navigate('/assinatura')
+                    else if(voltar.startsWith('descricao'))
+                        navigate(`/descricao/${voltar.slice(9)}`)
+                    else if(voltar === 'combos')
+                        navigate('/combos')
+                    else if(voltar === 'conta')
+                        navigate('/conta/dados-pessoais')
+                    else if(voltar === 'home')
+                        navigate('/')
+                    else
+                        navigate('/')
+
                 }, 3000)
             }
         }
@@ -63,32 +78,41 @@ export default function Index() {
 
     async function BuscarCep(alteracao) {
         try{
-            if(alteracao.length === 5 && alteracao.length > cep.length){
-                setCEP(`${alteracao}-`)
-            }
-            else if(alteracao.length <= 9){
+            let novaAlteracao = alteracao.slice(cep.length)
+            novaAlteracao = Number(novaAlteracao)
+            
+            if(alteracao.length < cep.length)
                 setCEP(alteracao)
-            }
 
-
-            if(alteracao.length === 9){
-                const resp = await buscarCep(alteracao)
-
-                if(resp.erro){
-                    toast.error('CEP inválido')
-                    setCidade('')
-                    setRua('')
+            else if(isNaN(novaAlteracao) === false){
+                if(alteracao.length === 5 && alteracao.length > cep.length){
+                    setCEP(`${alteracao}-`)
                 }
-                else{
-                    setCidade(resp.localidade)
-                    setRua(resp.logradouro)
+                else if(alteracao.length <= 9){
+                    setCEP(alteracao)
+                }
+    
+    
+                if(alteracao.length === 9){
+                    const resp = await buscarCep(alteracao)
+    
+                    if(resp.erro){
+                        toast.error('CEP inválido')
+                        setCidade('')
+                        setRua('')
+                    }
+                    else{
+                        setCidade(resp.localidade)
+                        setRua(resp.logradouro)
+                    }
+                }
+    
+                else if(alteracao.length > 9){
+                    
                 }
             }
-
-            else if(alteracao.length > 9){
-                setCidade('')
-                setRua('')
-            }
+            
+            
         }
         catch(err){
             toast.error(err.message)
@@ -106,37 +130,63 @@ export default function Index() {
     }
 
     function mudarCPF(alteracao){
-        if((alteracao.length === 3 && alteracao.length > cpf.length) || (alteracao.length === 7 && alteracao.length > cpf.length)){
-            setCPF(`${alteracao}.`)
-        }
-        else if(alteracao.length === 11 && alteracao.length > cpf.length){
-            setCPF(`${alteracao}-`)
-        }
-        else if(alteracao.length <= 14){
+        let novaAlteracao = alteracao.slice(cpf.length)
+        novaAlteracao = Number(novaAlteracao)
+        
+        if(alteracao.length < cpf.length)
             setCPF(alteracao)
+
+        else if(isNaN(novaAlteracao) === false){
+            if((alteracao.length === 3 && alteracao.length > cpf.length) || (alteracao.length === 7 && alteracao.length > cpf.length)){
+                setCPF(`${alteracao}.`)
+            }
+            else if(alteracao.length === 11 && alteracao.length > cpf.length){
+                setCPF(`${alteracao}-`)
+            }
+            else if(alteracao.length <= 14){
+                setCPF(alteracao)
+            }
         }
+        
     }
     function mudarTelefone(alteracao) {
-        if(telefone.startsWith('+')){
-            if((alteracao.length === 3 && alteracao.length > telefone.length) || (alteracao.length === 6 && alteracao.length > telefone.length)) {
-                setTelefone(`${alteracao} `)
+        let novaAlteracao = alteracao.slice(telefone.length)
+        novaAlteracao = Number(novaAlteracao)
+        
+        if(alteracao.length < telefone.length)
+            setTelefone(alteracao)
+
+        else if(isNaN(novaAlteracao) === false || alteracao === '+'){
+            if(telefone.startsWith('+')){
+                if((alteracao.length === 3 && alteracao.length > telefone.length)) {
+                    setTelefone(`${alteracao} `)
+                }
+                else if(alteracao.length === 5 && alteracao.length > telefone.length){
+                    setTelefone(`${alteracao.substring(0, 4)}(${alteracao.substring(5)}`)
+                }
+                else if(alteracao.length === 7 && alteracao.length > telefone.length){
+                    setTelefone(`${alteracao}) `)
+                }
+                else if(alteracao.length === 14 && alteracao.length > telefone.length){
+                    setTelefone(`${alteracao}-`)
+                }
+                else if(alteracao.length <= 19){
+                    setTelefone(alteracao)
+                }
             }
-            else if(alteracao.length === 12 && alteracao.length > telefone.length){
-                setTelefone(`${alteracao}-`)
-            }
-            else if(alteracao.length <= 17){
-                setTelefone(alteracao)
-            }
-        }
-        else{
-            if(alteracao.length === 2 && alteracao.length > telefone.length) {
-                setTelefone(`${alteracao} `)
-            }
-            else if(alteracao.length === 8 && alteracao.length > telefone.length){
-                setTelefone(`${alteracao}-`)
-            }
-            else if(alteracao.length <= 13){
-                setTelefone(alteracao)
+            else{
+                if(alteracao.length === 1 && alteracao.length > telefone.length){
+                    setTelefone(`(${alteracao}`)
+                }
+                else if(alteracao.length === 3 && alteracao.length > telefone.length){
+                    setTelefone(`${alteracao}) `)
+                }
+                else if(alteracao.length === 10 && alteracao.length > telefone.length){
+                    setTelefone(`${alteracao}-`)
+                }
+                else if(alteracao.length <= 15){
+                    setTelefone(alteracao)
+                }
             }
         }
     }
@@ -182,9 +232,9 @@ export default function Index() {
                                     <p> Já tem uma conta? </p>
                                 </div>
                                 <div>
-                                    <Link to='/login'>Faça login!</Link>
+                                    <Link to={{pathname: `/login/${voltar}`}}>Faça login!</Link>
                                 </div>
-                            </div>
+                            </div> 
                         </div>
 
                     </article>

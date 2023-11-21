@@ -68,7 +68,7 @@
                     box-shadow: 0px 5px 4px 0px rgba(0, 0, 0, 0.25);
                     
                     > img {
-                        width: 300px;
+                        width: 150px;
                         margin-bottom: 30px;
                     }
         
@@ -83,7 +83,11 @@
                         .imagem-baixa {
                             padding: 10px;
                             border: 1px solid black;
-        
+                            width: 120px;
+                            display: flex;
+                            align-items: center;
+                            justify-content: center;
+
                             img {
                                 width: 80px;
                             }
@@ -145,7 +149,7 @@
                         display: flex;
                         flex-direction: column;
                         h1 {
-                            margin-bottom: 10px;
+                            margin-bottom: 20px;
                         }
 
                        
@@ -155,7 +159,7 @@
                         display: flex;
                         flex-direction: row;
                         justify-content: space-evenly;
-                        margin-top: 30px;
+                        margin-top: 35px;
 
                         button {
                             width: 40%;
@@ -301,7 +305,7 @@
 
                 
                 img {
-                    width: 140px;
+                    width: 110px;
                     transition: .3s;
                     margin-bottom: 5px;
                 }
@@ -312,7 +316,6 @@
                     flex-direction: row;
                     justify-content: space-around;
                     width: 100%;
-
                     button:first-child {
                         transform: rotate(180deg);
                     }
@@ -336,12 +339,16 @@
                         display: flex;
                         flex-direction: column;
                         align-items: center;
-                        width: 15%;
+                        min-width: 180px;
 
                         img {
                             align-self: center;
+                            width: 105px;
                         }
-
+                        #nomeProduto{
+                            text-align: center;
+                            margin: 8px 0px 2px 0px;
+                        }
                         p {
                             font-size: large;
                         }
@@ -383,6 +390,14 @@
                 }
             }
         }
+        .produtos-necessidade {
+            .produto {
+                img {
+                    align-self: center;
+                    width: 100px !important;
+                }
+            }
+        }
     }
 }
 
@@ -397,21 +412,28 @@
         .detalhes-produto {
             width: 90% !important;
         }
+        .produtos-necessidade {
+            .produto {
+                img {
+                    width: 95px !important;
+                }
+            }
+        }
 
         .imagem-principal {
 
              img {
-                width: 90% !important;
+                width: 50% !important;
             }
 
             .imagem-baixa {
-                width: 30% !important;
+                width: 120px !important;
                 align-items: center;
                 justify-content: center;
                 display: flex;
 
                 img {
-                    width: 140% !important;
+                    width: 70% !important;
                 }
             }
         }
@@ -429,7 +451,23 @@
                 .imagem-principal {
 
                     img {
-                       width: 90% !important;
+                       width: 22% !important;
+                       min-width: 95px;
+                   }
+
+                   .imagens-produto {
+                    .imagem-baixa {
+                        width: 120px !important;
+                        align-items: center;
+                        justify-content: center;
+                        display: flex;
+        
+                        img {
+                            width: 17% !important;
+                            min-width: 55px;
+                        }
+                    }
+
                    }
                 }   
                 
@@ -456,7 +494,22 @@
                 }
             }
         }
-
+        .produtos-necessidade {
+            flex-wrap: wrap;
+            gap: 10px;
+            justify-content: flex-start !important;
+            .produto {
+                width: 32%;
+                min-width: 150px !important;
+                #nomeProduto{
+                    font-size: 16.2px
+                }
+                img {
+                    width: 90px !important;
+                }
+            }
+        }
+        
         table {
             width: 50% !important;
         }
@@ -469,18 +522,46 @@
             font-size: 15px !important;
         } 
         .produtos-necessidade {
+            gap: 30px;
+            justify-content: center !important;
             .produto {
-                > p {
-                    font-size: 18px !important;
+                width: 40%;
+                #nomeProduto{
+                    font-size: 16px;
                 }
                 img {
-                    width: 150% !important;
+                    width: 85px !important;
+                    min-width: 80px;
                 }
             }
 
-            .produto:first-child {
-                display: none !important;
+            // .produto:first-child {
+            //     display: none !important;
+            // }
+        }
+
+        
+    }
+}
+
+@media (max-width: 480px) {
+    .descricao-produto {
+        table {
+            font-size: 15px !important;
+            #alergia {
+                height: 50px;
             }
+        } 
+        .produtos-necessidade {
+            .produto {
+                min-width: 180px !important;
+                img {
+                    // width: 60% !important;
+                    min-width: 80px;
+                }
+            }
+
+            
         }
 
         

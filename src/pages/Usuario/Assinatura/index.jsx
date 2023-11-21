@@ -5,7 +5,6 @@ import UsuarioRodape from '../../../components/Usuario/UsuarioRodape';
 import { Link, useNavigate } from 'react-router-dom';
 import axios from 'axios';
 import storage from 'local-storage';
-import ItemDisponivel from './Item';
 import { filtrarPorCategorias } from '../../../api/produtoApi.js';
 import { CadastrarEndereco, buscarCep } from '../../../api/usuarioApi';
 import {toast} from 'react-toastify';
@@ -143,7 +142,7 @@ export default function Assinatura () {
                 identidade: cpf
             };
 
-            const resposta = await axios.post(urlCartao, infoCartao);
+            await axios.post(urlCartao, infoCartao);
             toast.success('Novo cartão cadastrado!');
 
             setNumeroCartao('');
@@ -231,8 +230,10 @@ export default function Assinatura () {
             chamarCartoes();
             chamarEnderecos();
         } else {
-            redir('/login');
+            redir('/login/assinatura');
         }
+
+        // eslint-disable-next-line
     }, []);
 
     function verificarQtd () {
@@ -252,16 +253,16 @@ export default function Assinatura () {
     };
 
     useEffect(() => {
-        if (opcaoCartao == 0 || opcaoEndereco == 0 || qtdSelecionado < 3) {
+        if (opcaoCartao === 0 || opcaoEndereco === 0 || qtdSelecionado < 3) {
             setIsBotaoDisponivel(false);
-        } else if (opcaoCartao != 0 && opcaoEndereco != 0 && qtdSelecionado >= 3) {
+        } else if (opcaoCartao !== 0 && opcaoEndereco !== 0 && qtdSelecionado >= 3) {
             setIsBotaoDisponivel(true)
         }
     }, [opcaoCartao, opcaoEndereco, qtdSelecionado]);
 
     return (
         <main className="assinatura">
-            <CabecalhoUsuario/>
+            <CabecalhoUsuario linha='aparecer'/>
             <main className='corpo-site'>
                 <h1>Receba mensalmente os sabores marcantes que você adora, no conforto de sua casa: grãos ou moídos!</h1>
                 <section className='texto-apresentacao'>
@@ -300,6 +301,10 @@ export default function Assinatura () {
                                             <p>{item.quantidade}</p>
                                             <p className='adicionar' onClick={() => {aumentarItens(item.quantidade, index); verificarQtd();}}>+</p>
                                         </div>
+                                        {item.promocao !== "0.00"
+                                            ? <p> R${item.promocao.replace('.', ',')} </p>
+                                            : <p> R${item.preco.replace('.', ',')} </p>
+                                        }
                                     </div>
                                 </main>           
                             )
@@ -351,7 +356,7 @@ export default function Assinatura () {
                             }
                             
                         </article>
-                        <select name="" value={opcaoCartao} id="" onChange={e => {setOpcaoCartao(e.target.value); setCanProced(opcaoEndereco != 0 && opcaoCartao != 0)}}>/   
+                        <select name="" value={opcaoCartao} id="" onChange={e => {setOpcaoCartao(e.target.value); setCanProced(opcaoEndereco !== 0 && opcaoCartao !== 0)}}>/   
                             <option value={0}>Selecionar cartão</option>
                             {cartoes.map((item) => {
                                 return (
@@ -420,7 +425,7 @@ export default function Assinatura () {
                      
                 <button style={{ backgroundColor: isBotaoDisponivel ? '#F47E3C' : 'gray' }}>
                     {isBotaoDisponivel
-                    ?   <Link to={{pathname: '/assinatura/confirmacao'}} onClick={() => enviarStorage()}>
+                    ?   <Link href='' to={{pathname: '/assinatura/confirmacao'}} onClick={() => enviarStorage()}>
                             <img src="/assets/images/icon-s.png" alt="" id='imagem-fantasma' />
                             <p>Continuar</p>
                             <img src="/assets/images/icon-seta-longa-esquerda.png" alt="" style={{transform: 'rotate(180deg)', width: '50px'}}/>

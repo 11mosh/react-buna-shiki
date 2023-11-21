@@ -7,6 +7,7 @@ import { URLRota } from '../../../../constants';
 import {toast} from 'react-toastify';
 import axios from 'axios';
 import storage from 'local-storage';
+import { useNavigate } from 'react-router';
 
 export default function Cartoes () {
 
@@ -17,6 +18,7 @@ export default function Cartoes () {
     const [nomeTitular, setNomeTitular] = useState('');
     const [cpf, setCpf] = useState('');
     const [cartoes, setCartoes] = useState([]);
+    const navigate = useNavigate()
 
     async function chamarCartoes () {
         const idUsuario = storage('usuario-logado').id
@@ -53,12 +55,17 @@ export default function Cartoes () {
     };
 
     useEffect(() => {
-        chamarCartoes();
+        if(!storage('usuario-logado')){
+            navigate('/login/conta')
+        }
+        else{
+            chamarCartoes();
+        }
     }, [])
 
     return (
         <main className="perfil-cartoes">
-            <Cabecalho/>
+            <Cabecalho linha='aparecer'/>
             <main className="corpo">
 
                 <BarraNavegacao selecionar='Cartões' />

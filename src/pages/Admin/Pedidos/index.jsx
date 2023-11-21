@@ -13,7 +13,6 @@ export default function Index() {
     const [dataPedido, setDataPedido] = useState('')
     const [pesquisa, setPesquisa] = useState('')
     const [pedidos, setPedidos] = useState([])
-    const [isTrocandoStatus, setIsTrocandoStatus] = useState(false)
     const navigate = useNavigate()
 
     async function buscarPedidosClick(){
@@ -99,7 +98,6 @@ export default function Index() {
             else
                 toast.error(err.message)
         }
-        console.log('oi');
     }
 
     async function buscarPorData(){
@@ -256,8 +254,7 @@ export default function Index() {
                         <div>
                             <select value={tpPagamento} onChange={e => {setTpPagamento(e.target.value); setOrdenar(''); setStatusPedido(''); setPesquisa(''); setDataPedido('') }}>
                                 <option value=''> Selecionar </option>
-                                <option value='Cartão de crédito'> Cartão de crédito </option>
-                                <option value='Cartão de débito'> Cartão de débito </option>
+                                <option value='Cartão'> Cartão</option>
                                 <option value='Pix'> Pix </option>
                             </select>
                         </div>
@@ -298,7 +295,7 @@ export default function Index() {
                                             <option value='Cancelado'> Cancelado </option>
                                         </select>
                                     </td>
-                                    <td className='desaparece2 medio'> {item.dt_pedido.substr(0,10)} </td>
+                                    <td className='desaparece2 medio'> {item.dt_pedido.substr(0,10).split('-').reverse().join('/')} </td>
                                     <td className='desaparece3 medio'> R$ {item.total} </td>
                                     <td className='desaparece medio' > {item.forma_pagamento} </td>
                                 </tr>

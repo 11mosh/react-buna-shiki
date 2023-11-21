@@ -5,7 +5,6 @@ import './index.scss';
 import { buscarCartoes, buscarEnderecos } from '../../../api/usuarioApi';
 import storage from 'local-storage'
 import { useNavigate } from 'react-router';
-import { Link } from 'react-router-dom';
 import { cadastrarItensPedido, cadastrarPedido } from '../../../api/pedidoApi';
 import { toast } from 'react-toastify';
 
@@ -49,9 +48,10 @@ export default function Index() {
             else if(tipoEntregaEscolhido.tipo === 'Entrega Econômica')
                 dtEntrega.setDate(dtEntrega.getDate() + 2)
             dtEntrega = dtEntrega.toISOString()
-            console.log(dtEntrega);
             dtEntrega = dtEntrega.substr(0, 10)
-            
+            let dtPedido  = new Date().toISOString()
+            dtPedido = `${dtPedido.substring(0, 10)} ${dtPedido.substring(11, 19)}`
+
             const pedido = {
                 id_cartao: cartaoEscolhido,
                 id_endereco: enderecoEscolhido,
@@ -61,11 +61,11 @@ export default function Index() {
                 subtotal: subtotal,
                 forma_pagamento: formaPagamento,
                 id_cliente: storage('usuario-logado').id,
-                dt_entrega: dtEntrega
+                dt_entrega: dtEntrega,
+                dt_pedido: dtPedido
             }
-            console.log(pedido);
             const resp = await cadastrarPedido(pedido)
-            const respItens = await cadastrarItensPedido(produtos, resp.id)
+            await cadastrarItensPedido(produtos, resp.id)
 
             storage('usuario-pedido', { produtos: [] })
             setTimeout(() => {
@@ -117,7 +117,7 @@ export default function Index() {
             setEnderecoEscolhido(storage('usuario-pedido').id_endereco)
 
         setProdutos(storage('usuario-pedido').produtos)
-        // setSubtotal(storage('usuario-pedido').subtotal)
+        setSubtotal(storage('usuario-pedido').subtotal)
         
         if(storage('usuario-pedido').tp_entrega && storage('usuario-pedido').frete){
             setTipoEntregaEscolhido({tipo: storage('usuario-pedido').tp_entrega, valor: storage('usuario-pedido').frete})
@@ -174,12 +174,13 @@ export default function Index() {
         else
             navigate('/login')
         
+        // eslint-disable-next-line
     }, [])
 
 
     return(
         <div id='page-pagamento'>
-            <CabecalhoUsuario />
+            <CabecalhoUsuario linha='aparecer'/>
             <main id='conteudo'>
                 <section id='s1'>
                     <div className='etapas'>
@@ -194,7 +195,9 @@ export default function Index() {
                                     </figure>
                                     <aside> 
                                         <h5> {item.produto} {item.categoria === 'Café em grãos' || item.categoria === 'Café em pó' ? item.detalhes.peso : ''} </h5>
-                                        <b> R${item.preco} </b>
+                                        {item.promocao === "0.00"
+                                            ? <b> R${item.preco.replace('.', ',')} </b>
+                                            : <b> R${item.promocao.replace('.', ',')} </b>}
                                         <div>
                                             {item.qtd}
                                         </div>
@@ -210,7 +213,7 @@ export default function Index() {
                             <h3> Entrega </h3>
                         </div>
                         <div id='entrega-conteudo'>
-                            <select value={enderecoEscolhido} onChange={e => {setEnderecoEscolhido(e.target.value); trocarValoresStorage('endereco', e.target.value)}}>
+                            <select value={enderecoEscolhido} onChange={e => {setEnderecoEscolhido(Number(e.target.value)); trocarValoresStorage('endereco', e.target.value)}}>
                                 <option value={0}> Selecionar endereço </option>
                                 {enderecos.map(item => {
                                     return(
@@ -261,7 +264,7 @@ export default function Index() {
                                 <strong className='preco'> R$ {total}</strong>
                             </div>
                         </div>
-                        <select value={cartaoEscolhido} onChange={e => {setCartaoEscolhido(e.target.value); setFormaPagamento('Cartão'); setPagamentoPix(false); trocarValoresStorage('pagamento', {id: e.target.value, forma: 'Cartão'})}}>
+                        <select value={cartaoEscolhido} onChange={e => {setCartaoEscolhido(Number(e.target.value)); setFormaPagamento('Cartão'); setPagamentoPix(false); trocarValoresStorage('pagamento', {id: e.target.value, forma: 'Cartão'})}}>
                             <option value={0}> Selecionar cartão </option>
                             {cartoes.map(item => {
                                 return(

@@ -1,6 +1,6 @@
 import './index.scss';
 import CabecalhoAdm from '../../../components/Admin/AdmCabecalho';
-import { Link, useNavigate, useParams } from 'react-router-dom';
+import { useNavigate, useParams } from 'react-router-dom';
 import { useEffect, useState} from 'react';
 import axios from 'axios'
 import { toast } from 'react-toastify';
@@ -89,6 +89,12 @@ function CadastroProduto () {
                 if (fotos.length === 0) {
                     toast.error('Insira ao menos uma imagem!')
                 } else {
+                    let promocaoLocal = 0
+                    if(!precoPromocao)
+                        promocaoLocal = 0.00
+                    else
+                        promocaoLocal = precoPromocao
+
                     const idAdm = storage('adm-logado').id
                     const alteracoes = {
                         idAdm: idAdm,
@@ -104,7 +110,7 @@ function CadastroProduto () {
                         idCategoria: categoria,
                         nome: nome,
                         preco: precoVenda,
-                        promocional: precoPromocao,
+                        promocional: promocaoLocal,
                         disponivelAssinatura: assinatura,
                         estoque: estoque
                     };
@@ -120,6 +126,11 @@ function CadastroProduto () {
                 if (fotos.length === 0) {
                     toast.error('Insira ao menos uma imagem!')
                 } else {
+                    let promocaoLocal = 0
+                    if(!precoPromocao)
+                        promocaoLocal = 0.00
+                    else
+                        promocaoLocal = precoPromocao
                     const idAdm = storage('adm-logado').id
                     const produto = {
                         idAdm: idAdm,
@@ -135,7 +146,7 @@ function CadastroProduto () {
                         idCategoria: categoria,
                         nome: nome,
                         preco: precoVenda,
-                        promocional: precoPromocao,
+                        promocional: promocaoLocal,
                         disponivelAssinatura: assinatura,
                         estoque: estoque
                     };
@@ -269,7 +280,7 @@ function CadastroProduto () {
             let isNum = Number(alteracao)
             if(isNaN(isNum)){}
             else{
-                if(alteracao <= 9999){
+                if(alteracao <= 9999.99){
                     setPrecoVenda(alteracao)
                 }
             }
@@ -278,24 +289,26 @@ function CadastroProduto () {
             let isNum = Number(alteracao)
             if(isNaN(isNum)){}
             else{
-                if(alteracao <= 9999){
+                if(alteracao <= 9999.99){
                     setPrecoPromocao(alteracao)
                 }
             }
         }
     }
 
-    const enviarEnter = (event) => {
-        if (event === 'Enter') {
-            adicionarImagem();
-        }
-    }
+    // const enviarEnter = (event) => {
+    //     if (event === 'Enter') {
+    //         adicionarImagem();
+    //     }
+    // }
 
     useEffect(() => {
         if(idParam){
             alterarInputs()
         }
         buscarCategoriasExibicao()
+
+        // eslint-disable-next-line
     }, [])
 
     return ( 

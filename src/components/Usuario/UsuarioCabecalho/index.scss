@@ -43,12 +43,19 @@
                         font-size: 13.5px;
                         color: white;
                     }
-                }
-                #carrinho {
-                    div {
+                    #carrinho {
                         width: 13px;
                         top: 10px;
                         left: 30px;
+                        height: 13px;
+                        background:  #F47E3C;
+                        border-radius: 50px;
+                        position: absolute 
+                    }
+                    #conta {
+                        width: 13px;
+                        top: 10px;
+                        left: 115px;
                         height: 13px;
                         background:  #F47E3C;
                         border-radius: 50px;
@@ -94,6 +101,7 @@
                     .dropdown {
                     background-color: white;
                     display: flex;
+                    z-index: 2;
                     flex-direction: column;
                     width: 310px;
                     
@@ -176,6 +184,7 @@
 
             .dropdown {
                 background-color: white;
+                z-index: 2;
                 display: flex;
                 flex-direction: column;
                 width: 310px;

@@ -1,4 +1,4 @@
-#page-adm-produtos{
+#page-adm-combos{
     height: 100vh;
     main{
         font-family: 'Inter';
@@ -101,11 +101,8 @@
                 height: 470px;
                 gap: 30px;
                 padding: 30px 0px 0px 0px;
-                .id {
-                    width: 60px;
-                }
                 thead {
-                    padding: 0px 39px 0px 27px;
+                    padding: 0px 48px 0px 27px;
                     tr{
                         width: 90%;
                         padding-right: 16px;
@@ -115,16 +112,19 @@
                             display: flex;
                             align-items: center;
                             justify-content: center;
-                            width: 100px;
+                            width: 60px;
                         }
                     }
+                }
+                .medio {
+                    width: 150px;
+                }
+                .maior{
+                    min-width: 200px;
                 }
                 hr{
                     width: 98%;
                     align-self: center;
-                }
-                .categoria {
-                    width: 130px !important;
                 }
                 tbody{
                     padding: 0px 20px 0px 10px;
@@ -141,8 +141,8 @@
                         justify-content: space-between;
                         background-color: white;
                         border-radius: 10px;
-                        height: 140px;
-                        padding: 7px 8px 7px 17px;
+                        min-height: 100px;
+                        padding: 7px 17px 7px 17px;
                         align-items: center;
                         > div {
                             width: 90%;
@@ -152,7 +152,7 @@
                             align-items: center;
                         }
                         td{
-                            width: 100px;
+                            width: 60px;
                             min-height: 30px;
                             padding: 5px 8px;
                             border-radius: 5px;
@@ -176,15 +176,6 @@
                             i:hover {
                                 color: red;
                                 transition: 0.2s;
-                            }
-                        }
-                        .img {
-                            background-color: unset;
-                            width: 100px;
-                            height: 138px;
-                            img {
-                                max-width: 100px;
-                                max-height: 138px;
                             }
                         }
                     }
@@ -213,8 +204,8 @@
     }
 }
 
-@media(max-width: 1300px){
-    #page-adm-produtos{
+@media(max-width: 1050px){
+    #page-adm-combos{
         main {
             > #s4{
                 table{
@@ -241,8 +232,8 @@
 
 
 
-@media(max-width: 900px) {
-    #page-adm-produtos{
+@media(max-width: 770px) {
+    #page-adm-combos{
         main {
             > #s3 {
                 justify-content: center;
@@ -271,7 +262,7 @@
 }
 
 @media(max-width: 650px) {
-    #page-adm-produtos{
+    #page-adm-combos{
         main {
             > #s1 {
                 flex-direction: column;
@@ -281,31 +272,11 @@
                     font-size: 22px;
                 }
             }
-            > #s4{
-                table{
-                    thead {
-                        tr {
-                            width: 65%;
-                        }
-                    }
-                    tbody {
-                        tr{
-                            > div {
-                                width: 65%;
-                            }
-                        }
-                    }
-                    
-                    .desaparece3{
-                        display: none;
-                    }
-                }
-            }
         }
     }
 }
-@media(max-width: 500px) {
-    #page-adm-produtos{
+@media(max-width: 550px) {
+    #page-adm-combos{
         main {
             > #s1 {
                 h1 {
@@ -335,20 +306,38 @@
             }
             > #s4{
                 table{
-                    .desaparece4{
+                    .desaparece3 {
                         display: none;
                     }
+                    .maior {
+                        font-size: 15px;
+                        min-width: 160px;
+                    }
+
                     tbody {
                         tr {
-                            > div {
-                                .img {
-                                    img {
-                                        width: 70px;
-                                        height: 130px;
-                                    }
+                            gap: 10px;
+                            #acoes{
+                                gap: 8px;
+                                i{
+                                    font-size: 25px;
                                 }
                             }
                         }
+                    }
+                }
+            }
+        }
+    }
+}
+
+@media(max-width: 400px) {
+    #page-adm-combos{
+        main {
+            > #s4{
+                table{
+                    .maior {
+                        min-width: 110px;
                     }
                 }
             }

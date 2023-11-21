@@ -11,15 +11,32 @@ export default function RevisaoAssinaturaADM () {
     const [info, setInfo] = useState([]);
     const [mensalidade, setMensalidade] = useState('');
     const [fim, setFim] = useState('');
+    const [rua, setRua] = useState('');
+    const [nome, setNome] = useState('');
+    const [tele, setTele] = useState('');
+    const [cpf, setCpf] = useState('');
+    const [email, setEmail] = useState('');
+
+    // const [nome, setNome] = useState('');
+
 
     async function chamarAssinatura () {
-        // const url = URLRota + '/procurar-assinatura-completa/' + id;
-        const url = URLRota + '/procurar-assinatura/' + id;
-
+        const url = URLRota + '/procurar-assinatura-completa/' + id;
+        // const url = URLRota + '/procurar-assinatura/' + id;
         const resposta = await axios.get(url);
-        console.log(resposta);
+        
         const mensal = (resposta.data)[0].vl_mensalidade;
         const fimm = ((resposta.data)[0].dt_fim).substring(0, 10);
+        const ruaa = ((resposta.data)[0].ds_rua);
+        const nomee = ((resposta.data)[0].nm_cliente);
+        const cpff = ((resposta.data)[0].ds_cpf);
+        const emaill = ((resposta.data)[0].ds_email);
+        const telee = ((resposta.data)[0].ds_telefone);
+        setCpf(cpff)
+        setEmail(emaill)
+        setTele(telee)
+        setNome(nomee)
+        setRua(ruaa)
         setFim(fimm)
         setMensalidade(mensal)
         setInfo(resposta.data);
@@ -101,10 +118,6 @@ export default function RevisaoAssinaturaADM () {
                         </table>
                         <table className='duasInformacoes' id='continuacaoDetalhesProdutos'>
                                         <tbody>
-                                            <tr>
-                                                <td className='topico'>Frete: </td>
-                                                <td className='valor'>R$</td>
-                                            </tr>
                                             <tr className='ultimaLinha'>
                                                 <td className='topico'>Valor Total: </td>
                                                 <td >R${mensalidade}</td>
@@ -117,7 +130,7 @@ export default function RevisaoAssinaturaADM () {
                             <tbody>
                                 <tr>
                                     <td> Código da assinatura: </td>
-                                    <td className='valor'> 0000001-00</td>
+                                    <td className='valor'></td>
                                 </tr>
                                 <tr id='select-assinatura'>
                                     <td> Status da assinatura: </td>
@@ -137,7 +150,7 @@ export default function RevisaoAssinaturaADM () {
                                 </tr>
                                 <tr>
                                     <td> Endereço de envio: </td>
-                                    <td className='valor'> Entrega Express</td>
+                                    <td className='valor'> {rua}</td>
                                 </tr>
                                 <tr className='ultimaLinha'></tr>
                             </tbody>
@@ -146,19 +159,19 @@ export default function RevisaoAssinaturaADM () {
                             <tbody>
                                 <tr>
                                     <td> Cliente: </td>
-                                    <td className='valor'> Josadac Mesquita</td>
+                                    <td className='valor'> {nome}</td>
                                 </tr>
                                 <tr>
                                     <td> CPF: </td>
-                                    <td className='valor'>999.999.999-99</td>
+                                    <td className='valor'>{cpf}</td>
                                 </tr>
                                 <tr>
                                     <td> Telefone: </td>
-                                    <td className='valor'> 99999-9999</td>
+                                    <td className='valor'>{tele} </td>
                                 </tr>
                                 <tr className='ultimaLinha'>
                                     <td> Email: </td>
-                                    <td className='valor'> pietroteste@gmail.com</td>
+                                    <td className='valor'> {email}</td>
                                 </tr>
                             </tbody>
                         </table>

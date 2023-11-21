@@ -82,11 +82,11 @@
                    background-color: #dddada;
                    #a1 {
                        display: flex;
-                       gap: 5px;
+                       gap: 15px;
                        #produto {
                            img {
-                                width: 130px;
-                                height: 130px;
+                                width: 90px;
+                                height: 170px;
                            }
                        }
                        #detalhes {
@@ -221,9 +221,9 @@
             > section {
                 padding: 20px 25px !important;
                 min-width: 550px !important;
-                #a1 {
-                    gap: 5px !important;
-                }
+                // #a1 {
+                //     gap: 5px !important;
+                // }
             }
         }
     }
@@ -279,11 +279,10 @@
                 width: 100% !important;
                 min-width: 430px !important;
                 #a1 {
-                    gap: 5px !important;
                     #produto {
                         img {
-                            width: 120px !important;
-                            height: 120px !important;
+                            width: 80px !important;
+                            height: 160px !important;
                         }
                     }
                 }
@@ -294,7 +293,7 @@
                 width: 400px !important;
             }
             article {
-                width: 100%;
+                
                 font-size: 18px !important;
             }
         }
@@ -331,8 +330,8 @@
                 #a1 {
                     #produto {
                         img {
-                            width: 110px !important;
-                            height: 110px !important;
+                            width:80px !important;
+                            height: 155px !important;
                         }
                     }
                     #detalhes {
@@ -402,8 +401,8 @@
                     }
                     #produto {
                         img {
-                            width: 100px !important;
-                            height: 100px !important;
+                            width: 75px !important;
+                            height: 150px !important;
                         }
                     }
                 }

@@ -24,7 +24,6 @@ export default function Carrinho () {
                 novoArray[cont] = produtos[cont]
                 if(index === cont){
                     novoArray[cont].qtd = --novaQtd
-                    console.log(novaQtd);
                 }
             }
         }
@@ -56,7 +55,11 @@ export default function Carrinho () {
 
     function calcularSubtotal() {
         let subtotalCalc = produtos.reduce((total, item) => {
-            total = total + (item.preco * item.qtd)
+            if(item.promocao !== "0.00")
+                total = total + (item.promocao * item.qtd)
+            else
+                total = total + (item.preco * item.qtd)
+
             return total
         }, 0)
 
@@ -71,6 +74,7 @@ export default function Carrinho () {
         const produtosStorage = storage('usuario-pedido').produtos
         let produtos = []
         
+        
         for(let cont = 0; cont < produtosStorage.length; cont++){
             let repetidoPosicao = ''
             for(let conta = 0; conta < produtos.length; conta++){
@@ -81,11 +85,9 @@ export default function Carrinho () {
             }
             if(repetidoPosicao === ''){
                 produtos[cont] = produtosStorage[cont]
-                console.log('inseriu');
             }
             else{
                 produtos[repetidoPosicao].qtd = ++produtos[repetidoPosicao].qtd
-                console.log('inseriuRepetido');
             }
         }
 
@@ -97,17 +99,21 @@ export default function Carrinho () {
     }
  
     useEffect(() => {
-        atribuirProdutos()
+        if(storage('usuario-pedido'))
+            atribuirProdutos()
 
     }, [])
 
     useEffect(() => {
-        calcularSubtotal()
+        if(produtos.length !== 0)
+            calcularSubtotal()
+
+        // eslint-disable-next-line
     }, [produtos])
 
     return (    
       <div className="page-carrinho">
-        <Cabecalho />
+        <Cabecalho linha='aparecer'/>
             <main id="carrinho">
                 {produtos.length === 0
                 ?   <div id="carrinho-vazio">
@@ -136,7 +142,10 @@ export default function Carrinho () {
                                             </div>
                                             <div id="detalhes">
                                                 <p> {item.produto} {item.categoria === 'Café em grãos' || item.categoria === 'Café em pó' ? item.detalhes.peso : ''}</p>
-                                                <p> R${item.preco} </p>
+                                                {item.promocao !== "0.00"
+                                                    ? <p> R${item.promocao.replace('.', ',')} </p>
+                                                    : <p> R${item.preco.replace('.', ',')} </p>
+                                                }
                                                 <div> 
                                                     <button onClick={() => diminuirQtd(item.id, index, item.qtd)}> 
                                                         <p>-</p>

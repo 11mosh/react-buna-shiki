@@ -21,7 +21,7 @@
             padding: 30px 50px ;
             border-radius: 10px;
             gap: 80px;
-            border: 2px solid black;
+            border: 5px solid black;
             > #a1 {
                 display: flex;
                 flex-direction: column;
@@ -54,7 +54,7 @@
                                 font-size: 15px;
                             }
                             img {
-                                width: 115px ;
+                                width: 103px ;
                             }
                         }
                     }
@@ -109,7 +109,7 @@
                         > div {
                             > section {
                                 img {
-                                    width: 110px;
+                                    width: 100px;
                                 }
                             }
                         }
@@ -127,7 +127,7 @@
     #page-combos{
         > #conteudo {
             > section {
-               width: 600px;
+               width: 570px;
                 #a1 {
                     align-items: center;
                     width: 100%;
@@ -136,15 +136,16 @@
                     }
                     > div {
                         flex-wrap: wrap;
-                        width: 470px;
-                        gap: 25px;
+                        width: 440px;
+                        gap: 50px;
                         > div {
+                            gap: 50px;
                             > section {
+                                min-width: 130px;
                                 margin-top: 15px;
-                                > section {
-                                    img {
-                                        width: 105px;
-                                    }
+                                text-align: center;
+                                img {
+                                    width: 97px;
                                 }
                             } 
                             .some {
@@ -175,7 +176,7 @@
                         div {
                             section {
                                 img {
-                                    width: 100px !important;
+                                    width: 95px !important;
                                 }
                             }
                         }
@@ -198,12 +199,13 @@
                         text-align: center;
                     }
                     > div {
-                        width: 80%;
-                        gap: 0px;
+                        // width: 80%;
+                        gap: 20px;
                         div {
+                            gap: 20px;
                             section {
                                 img {
-                                    width: 95px !important;
+                                    width: 90px !important;
                                 }
                             }
                         }
