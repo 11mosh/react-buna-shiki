@@ -301,6 +301,10 @@ export default function Assinatura () {
                                             <p>{item.quantidade}</p>
                                             <p className='adicionar' onClick={() => {aumentarItens(item.quantidade, index); verificarQtd();}}>+</p>
                                         </div>
+                                        {item.promocao !== "0.00"
+                                            ? <p> R${item.promocao.replace('.', ',')} </p>
+                                            : <p> R${item.preco.replace('.', ',')} </p>
+                                        }
                                     </div>
                                 </main>           
                             )
