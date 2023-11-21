@@ -142,7 +142,7 @@ export default function Carrinho () {
                                                 <img src={item.imagem} alt='' />
                                             </div>
                                             <div id="detalhes">
-                                                <p> Café orfeu  organico {item.categoria === 'Café em grãos' || item.categoria === 'Café em pó' ? item.detalhes.peso : ''}</p>
+                                                <p> {item.produto} {item.categoria === 'Café em grãos' || item.categoria === 'Café em pó' ? item.detalhes.peso : ''}</p>
                                                 {item.promocao !== "0.00"
                                                     ? <p> R${item.promocao.replace('.', ',')} </p>
                                                     : <p> R${item.preco.replace('.', ',')} </p>

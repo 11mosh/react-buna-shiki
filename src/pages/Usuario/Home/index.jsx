@@ -18,7 +18,7 @@ function Home () {
     const [assinante, setAssinante] = useState();
     // const redir = useNavigate();
     const [idAssinatura, setIdAssinatura] = useState();
-    const [combo, setCombo] = useState({preco: '', promocao: ''})
+    const [combo, setCombo] = useState({preco: '', promocao: '', produtos: []})
 
     async function buscarCategoriasExibicao(){
         try{
@@ -132,6 +132,15 @@ function Home () {
             return '/produtos/capsulas'
         }
     }
+
+    function verificarSeperador(index, campo) {
+        if(index === 3 && !campo)
+            return 'hidden'
+        if(campo === 'excluir' && index === 1)
+            return 'separadorSumir'
+        else 
+            return ''
+    }
     
 
     useEffect(() => {
@@ -201,34 +210,22 @@ function Home () {
                 <div className='agrupamento-principal'>
                     <div className='agrupamento-itens-combo'>
                         <div className="divisoria1">
-                            <div className='item-combo'>
-                                <img src="/assets/images/cafee3.png" alt="" />
-                                <p>Café 3 Corações Orgânico</p>
-                                <b><p>R$20,00 x 3</p></b>
-                            </div>
-                            <p id='separacao-moedor'> + </p>
-                            <div className='item-combo'>
-                                <img src="/assets/images/moedorr.png" alt="" />
-                                <p>Moedor de café Hamilton </p>
-                                <b><p>R$369,45</p></b>
-                            </div>
-                            <p id='separacao-meio'> + </p>
+                            {combo.produtos.map((item, index) => {
+                                return(
+                                    <div>
+                                        <div className='item-combo'>
+                                            <img src="/assets/images/cafee3.png" alt="" />
+                                            <p> {item.produto.produto} {item.produto.categoria === 'Café em grãos' || item.produto.categoria === 'Café em pó' ? item.produto.detalhes.peso : ''}</p>
+                                            <b><p>R${ item.produto.promocao !== '0.00'
+                                                        ? item.produto.promocao.replace('.', ',')
+                                                        : item.produto.preco.replace('.', ',')}
+                                            </p></b>
+                                        </div>
+                                        <p id='separacao-moedor' className={verificarSeperador(index, 'excluir')} style={{visibility: verificarSeperador(index)}}> + </p>
+                                    </div>
+                                )
+                            })}
                         </div>
-                        <div className="divisoria2">
-                            <div className='item-combo' id='filtro'>
-                                <img src="/assets/images/filtroo.png" alt="" />
-                                <p>Filtro de papel Melitta</p>
-                                <b><p>R$6,50</p></b>
-                            </div>
-                            <p id='separacao-cafeteira'> + </p>
-                            <div className='item-combo' id='cafeteira'>
-                                <img src="/assets/images/cafeteiraa.png" alt="" />
-                                <p>Cafeteira Elétrica Cadence </p>
-                                <b><p>R$104,90</p></b>
-                            </div>
-                        </div>
-                        
-                        
                     </div>
                     <div className='preco-combo'>
                         <h2>
