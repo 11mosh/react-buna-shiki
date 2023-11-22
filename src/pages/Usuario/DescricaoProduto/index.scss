@@ -2,6 +2,22 @@
     display: flex;
     flex-direction: column;
 
+    .back-to-page {
+        border: none;
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        gap: 5px;
+        margin: -20px 0px 20px 0px;
+        font-size: 16px;
+        h1 {
+
+        }
+        img {
+            width: 40px;
+        }
+    }
+
     .botao {
         display: flex;
         padding: 8px 30px;
@@ -520,7 +536,19 @@
     .descricao-produto {
         table {
             font-size: 15px !important;
-        } 
+        }
+
+        .imagem-principal {
+            width: 114% !important;
+        }
+
+        .compra-categoria {
+            width: 100% !important;
+
+            .compra {
+                width: 100% !important;
+            }
+        }
         .produtos-necessidade {
             gap: 30px;
             justify-content: center !important;

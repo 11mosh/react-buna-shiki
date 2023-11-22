@@ -169,7 +169,6 @@ export default function CabecalhoUsuario(props) {
                         <input type="text" placeholder='Pesquise por produtos aqui...' value={pesquisa} onChange={e => setPesquisa(e.target.value)}      />
                         <img src='/assets/images/lupa-dark.svg' alt="Erro ao exibir imagem" onClick={exibirPesquisa}/>
                     </div>
-                    <hr />
                     <div className="dropdown">
                         {sugestao
                             .filter((item) => {

@@ -1,6 +1,7 @@
 import CabecalhoUsuario from '../../../components/Usuario/UsuarioCabecalho';
 import UsuarioRodape from '../../../components/Usuario/UsuarioRodape';
 import { useNavigate, useParams } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 import './index.scss';
 import { useEffect, useState } from 'react';
 import storage from 'local-storage'
@@ -12,7 +13,13 @@ export default function DescricaoProduto () {
     const {id} = useParams()
     const [produtosSugestao, setProdutosSugestao] = useState([{promocao: '', preco: ''}])
     const [renderizar, setRenderizar] = useState('')
-    const navigate = useNavigate()
+    const navigate = useNavigate();
+
+    function voltar () {
+        window.history.back();
+        // navigate(-1);
+    }
+
 
     async function buscarProdutoClick() {
         try{
@@ -98,6 +105,10 @@ return (
         <CabecalhoUsuario linha='aparecer'/>
 
         <article className='corpo-site'>
+            <div onClick={() => window.history.back()} className='back-to-page'>
+                <img src="/assets/images/icon-seta-preta.png" alt="Erro ao exibir a imagem"/>
+                <h3>Voltar para a página anterior</h3>
+            </div>
          <section className="agrupamento">
             <main className="imagem-tipos">
                 <article className='imagem-principal'>
