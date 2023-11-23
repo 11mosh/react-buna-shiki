@@ -46,12 +46,6 @@ export async function buscarCategorias(){
     return resp.data
 }
 
-export async function buscarAdms(){
-    const resp = await api.get('/adms')
-
-    return resp.data
-}
-
 export async function filtrarPorCategorias(idCategoria){
     const resp = await api.get(`/filtro/produtos/categorias/${idCategoria}`)
 

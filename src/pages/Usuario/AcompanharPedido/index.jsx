@@ -7,7 +7,6 @@ import { useEffect, useState } from 'react';
 import { buscarPedidoPorId, trocarStatusPedido } from '../../../api/pedidoApi';
 import { toast } from 'react-toastify';
 import { confirmAlert } from 'react-confirm-alert';
-import storage from 'local-storage'
 
 export default function Index() {
     const [pedido, setPedido] = useState({})
@@ -98,7 +97,7 @@ export default function Index() {
 
     function verificarEstagio(nEstagio) {
         if(nEstagio === 1){
-            if(pedido.situacao == 'Pedido em preparo' || pedido.situacao == 'À caminho' || pedido.situacao == 'Entregue' || pedido.situacao === 'Pagamento' || pedido.situacao === 'Pedido realizado'){
+            if(pedido.situacao === 'Pedido em preparo' || pedido.situacao === 'À caminho' || pedido.situacao === 'Entregue' || pedido.situacao === 'Pagamento' || pedido.situacao === 'Pedido realizado'){
                 return 'concluido'
             }
             else{
@@ -106,7 +105,7 @@ export default function Index() {
             }
         }
         else if(nEstagio === 2 ){
-            if( pedido.situacao === 'Pagamento' ||pedido.situacao == 'Pedido em preparo' || pedido.situacao == 'À caminho' || pedido.situacao == 'Entregue') {
+            if( pedido.situacao === 'Pagamento' ||pedido.situacao === 'Pedido em preparo' || pedido.situacao === 'À caminho' || pedido.situacao === 'Entregue') {
                 return 'concluido'
             }
             else{
@@ -114,7 +113,7 @@ export default function Index() {
             }
         }
         else if(nEstagio === 3){
-            if(pedido.situacao === 'Pedido em preparo' ||pedido.situacao == 'À caminho' || pedido.situacao == 'Entregue'){
+            if(pedido.situacao === 'Pedido em preparo' ||pedido.situacao === 'À caminho' || pedido.situacao === 'Entregue'){
                 return 'concluido'
             }
             else{
@@ -122,7 +121,7 @@ export default function Index() {
             }
         }
         else if(nEstagio === 4){
-            if(pedido.situacao == 'À caminho' || pedido.situacao == 'Entregue'){
+            if(pedido.situacao === 'À caminho' || pedido.situacao === 'Entregue'){
                 return 'concluido'
             }
             else{
@@ -130,7 +129,7 @@ export default function Index() {
             }
         }
         else if(nEstagio === 5){
-            if(pedido.situacao == 'Entregue'){
+            if(pedido.situacao === 'Entregue'){
                 return 'concluido'
             }
             else{
@@ -140,13 +139,13 @@ export default function Index() {
     }
 
     function verificarBarraProgresso(linha) {
-        if(linha == 1){
+        if(linha === 1){
             if(pedido.situacao === 'Pedido realizado' || pedido.situacao === 'Pagamento' || pedido.situacao === 'Pedido em preparo' || pedido.situacao === 'À caminho' || pedido.situacao === 'Entregue')
                 return 'concluido'
             else
                 return ''
         }
-        if(linha == 2){
+        if(linha === 2){
             if(pedido.situacao === 'Pagamento' || pedido.situacao === 'Pedido em preparo' || pedido.situacao === 'À caminho' || pedido.situacao === 'Entregue'){
                 return 'concluido'
             }
@@ -154,7 +153,7 @@ export default function Index() {
                 return ''
             }
         }
-        if(linha == 3){
+        if(linha === 3){
             if(pedido.situacao === 'Pedido em preparo' || pedido.situacao === 'À caminho' || pedido.situacao === 'Entregue'){
                 return 'concluido'
             }
@@ -162,7 +161,7 @@ export default function Index() {
                 return ''
             }
         }
-        if(linha == 4){
+        if(linha === 4){
             if(pedido.situacao === 'À caminho' || pedido.situacao === 'Entregue'){
                 return 'concluido'
             }
@@ -172,14 +171,31 @@ export default function Index() {
         }
     }
 
+    function verificarStatus(status, campo) {
+        if(!campo){
+            if(pedido.situacao == status)
+                return 'statusAtual'
+            else
+                return ''
+        }
+        else{
+            if(pedido.situacao == status)
+                return '...'
+            else
+                return ''
+        }
+    }
+
     useEffect(() => {
         buscarPedido()
+
+        // eslint-disable-next-line
     }, [])
 
     return(
         <div>
             <div id='page-acompanhar-pedido'>
-                <CabecalhoUsuario />
+                <CabecalhoUsuario linha='aparecer'/>
                 <div id='conteudo'>
                     <main id='progressoPedido'>
                         <section id='icons'>
@@ -206,19 +222,19 @@ export default function Index() {
                         </section>
                         <section id='status'>
                             <div>
-                                <p> Pedido realizado</p>
+                                <p id={verificarStatus('Pedido realizado')}> Pedido realizado{verificarStatus('Pedido realizado', 'pontos')}</p>
                             </div>
                             <div>
-                                <p id='statusAtual'> Pagamento...</p>
+                                <p id={verificarStatus('Pagamento')}> Pagamento{verificarStatus('Pagamento', 'pontos')}</p>
                             </div>
                             <div>
-                                <p> Pedido em preparo </p>
+                                <p id={verificarStatus('Pedido em preparo')}> Pedido em preparo{verificarStatus('Pedido em preparo', 'pontos')} </p>
                             </div>
                             <div>
-                                <p> À caminho </p>
+                                <p id={verificarStatus('À caminho')}> À caminho{verificarStatus('À caminho', 'pontos')} </p>
                             </div>
                             <div>
-                                <p> Entregue</p>
+                                <p id={verificarStatus('Entregue')}> Entregue</p>
                             </div>
                         </section>
                         <section id='barraProgresso'>

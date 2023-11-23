@@ -9,6 +9,9 @@ import { toast } from 'react-toastify';
 
 export default function Index(){
     const categorias = [{categoria: 'cafeemgraos', secoes: [{marca: '3 Corações: Edição Gourmet', marcaBusca: '3 coracoes', imagemSuporte: '/assets/images/categorias/apresentacao/graos/cafe3coracoes.svg'}, {marca: 'Orfeu: 100% arábica', marcaBusca: 'orfeu', imagemSuporte: '/assets/images/categorias/apresentacao/graos/cafeOrfeu.png'}, {marca: 'Santa Mônica', marcaBusca: 'santa monica' , imagemSuporte: '/assets/images/categorias/apresentacao/graos/cafeSantaMonica.png'}]}, {categoria: 'filtros', secoes: [ {marca: 'Chemex: Bonded Filters', marcaBusca: 'chemex' , imagemSuporte: '/assets/images/categorias/apresentacao/filtros/chemex.png'}, {marca: 'Hario V60', marcaBusca: 'hario' , imagemSuporte: '/assets/images/categorias/apresentacao/filtros/hario.png'}, {marca: '3 corações', marcaBusca: '3 coracoes' ,  imagemSuporte: '/assets/images/categorias/apresentacao/filtros/3coracoes.png'}]}, {categoria: 'moedores', secoes: [ {marca: 'Tramontina ', marcaBusca: 'tramontina', imagemSuporte: '/assets/images/categorias/apresentacao/moedores/tramontina.png'}, {marca: 'Hario', marcaBusca:'hario' , imagemSuporte: '/assets/images/categorias/apresentacao/moedores/hario.png'}, {marca: 'Hamilton Beach', marcaBusca: 'hamilton', imagemSuporte: '/assets/images/categorias/apresentacao/moedores/hamilton.png'}]}, {categoria: 'cafeteiras', secoes: [ {marca: 'Oster', marcaBusca: 'oster', imagemSuporte: '/assets/images/categorias/apresentacao/cafeteiras/oster.png'}, {marca: 'Nespresso', marcaBusca: 'nespresso', imagemSuporte: '/assets/images/categorias/apresentacao/cafeteiras/nespresso.png'}, {marca: 'DeLonghi', marcaBusca: 'delonghi', imagemSuporte: '/assets/images/categorias/apresentacao/cafeteiras/delonghi.png'}]}, {categoria: 'capsulas', secoes: [{marca: 'Orfeu', marcaBusca: 'orfeu', imagemSuporte: '/assets/images/categorias/apresentacao/capsulas/orfeu.png'}, {marca: `L'or Expresso`, marcaBusca: `l'or`, imagemSuporte: '/assets/images/categorias/apresentacao/capsulas/lor.png'},{marca: 'Baggio Café', marcaBusca: 'baggio', imagemSuporte: '/assets/images/categorias/apresentacao/capsulas/baggio.png'}]}, {categoria: 'cafeempo', secoes: [{marca: 'Baggio Café', marcaBusca: 'baggio', imagemSuporte: '/assets/images/categorias/apresentacao/cafePo/baggio.png'}, {marca: 'Melitta', marcaBusca: 'melitta', imagemSuporte: '/assets/images/categorias/apresentacao/cafePo/melitta.png'}, {marca: 'Starbucks', marcaBusca: 'starbucks', imagemSuporte: '/assets/images/categorias/apresentacao/cafePo/starbucks.png'}]}, {categoria: 'acessorios', secoes: [{marca: 'Garrafas térmicas Stanley', marcaBusca: 'stanley', imagemSuporte: '/assets/images/categorias/apresentacao/acessorios/stanley.png'} , {marca: 'Coadores Hario', marcaBusca: 'hario', imagemSuporte: '/assets/images/categorias/apresentacao/acessorios/hario.png'}, {marca: 'Bules Electrolux', marcaBusca: 'electrolux', imagemSuporte: '/assets/images/categorias/apresentacao/acessorios/electrolux.png'}]}]
+    
+    // const categorias = [{categoria: 'cafeemgraos', secoes: [{marca: '3 Corações: Edição Gourmet', marcaBusca: '3 coracoes', imagemSuporte: '/assets/images/categorias/apresentacao/graos/cafe3coracoes'}, {marca: 'Orfeu: 100% arábica', marcaBusca: 'orfeu', imagemSuporte: '/assets/images/categorias/apresentacao/graos/cafeOrfeu'}, {marca: 'Santa Mônica', marcaBusca: 'santa monica' , imagemSuporte: '/assets/images/categorias/apresentacao/graos/cafeSantaMonica'}]}, {categoria: 'filtros', secoes: [ {marca: 'Chemex: Bonded Filters', marcaBusca: 'chemex' , imagemSuporte: '/assets/images/categorias/apresentacao/filtros/chemex'}, {marca: 'Hario V60', marcaBusca: 'hario' , imagemSuporte: '/assets/images/categorias/apresentacao/filtros/hario'}, {marca: '3 corações', marcaBusca: '3 coracoes' ,  imagemSuporte: '/assets/images/categorias/apresentacao/filtros/3coracoes'}]}, {categoria: 'moedores', secoes: [ {marca: 'Tramontina ', marcaBusca: 'tramontina', imagemSuporte: '/assets/images/categorias/apresentacao/moedores/tramontina'}, {marca: 'Hario', marcaBusca:'hario' , imagemSuporte: '/assets/images/categorias/apresentacao/moedores/hario'}, {marca: 'Hamilton Beach', marcaBusca: 'hamilton', imagemSuporte: '/assets/images/categorias/apresentacao/moedores/hamilton'}]}, {categoria: 'cafeteiras', secoes: [ {marca: 'Oster', marcaBusca: 'oster', imagemSuporte: '/assets/images/categorias/apresentacao/cafeteiras/oster'}, {marca: 'Nespresso', marcaBusca: 'nespresso', imagemSuporte: '/assets/images/categorias/apresentacao/cafeteiras/nespresso'}, {marca: 'DeLonghi', marcaBusca: 'delonghi', imagemSuporte: '/assets/images/categorias/apresentacao/cafeteiras/delonghi'}]}, {categoria: 'capsulas', secoes: [{marca: 'Orfeu', marcaBusca: 'orfeu', imagemSuporte: '/assets/images/categorias/apresentacao/capsulas/orfeu'}, {marca: `L'or Expresso`, marcaBusca: `l'or`, imagemSuporte: '/assets/images/categorias/apresentacao/capsulas/lor'},{marca: 'Baggio Café', marcaBusca: 'baggio', imagemSuporte: '/assets/images/categorias/apresentacao/capsulas/baggio'}]}, {categoria: 'cafeempo', secoes: [{marca: 'Baggio Café', marcaBusca: 'baggio', imagemSuporte: '/assets/images/categorias/apresentacao/cafePo/baggio'}, {marca: 'Melitta', marcaBusca: 'melitta', imagemSuporte: '/assets/images/categorias/apresentacao/cafePo/melitta'}, {marca: 'Starbucks', marcaBusca: 'starbucks', imagemSuporte: '/assets/images/categorias/apresentacao/cafePo/starbucks'}]}, {categoria: 'acessorios', secoes: [{marca: 'Garrafas térmicas Stanley', marcaBusca: 'stanley', imagemSuporte: '/assets/images/categorias/apresentacao/acessorios/stanley'} , {marca: 'Coadores Hario', marcaBusca: 'hario', imagemSuporte: '/assets/images/categorias/apresentacao/acessorios/hario'}, {marca: 'Bules Electrolux', marcaBusca: 'electrolux', imagemSuporte: '/assets/images/categorias/apresentacao/acessorios/electrolux'}]}]
+    
     const [categoriaAtual, setCategoriaAtual] = useState([{marca: '', imagemSuporte: ''}, {marca: '', imagemSuporte: ''}, {marca: '', imagemSuporte: ''}])
     const { categoria } = useParams()
     const [produtos, setProdutos] = useState([[], [], []])
@@ -25,7 +28,6 @@ export default function Index(){
             for(let cont = 0; cont < 3; cont++){
                 todosProdutosBanco[cont] = await buscarProdutosPorMarca(secoes[cont].marcaBusca, categoria)
             }
-            
             setProdutos(todosProdutosBanco)
             trocarProdutosAtuais(0, true, todosProdutosBanco)
         }
@@ -37,14 +39,31 @@ export default function Index(){
         }
     }
 
+    function verificarCategoria() {
+        if(categoria === 'cafeempo')
+            return 'Café em pó'
+        else if(categoria === 'cafeteiras')
+            return 'Cafeteiras'
+        else if(categoria === 'filtros')
+            return 'Filtros'
+        else if(categoria === 'moedores')
+            return 'Moedores'
+        else if(categoria === 'capsulas')
+            return 'Cápsulas'
+        else if(categoria === 'acessorios')
+            return 'Acessórios'
+        else if(categoria === 'cafeemgraos')
+            return 'Café em grãos'
+    }
+
     function verificarPosicao(secao) {
         if(produtos[secao].length !== 0){
             if(produtos[secao].length > 4){
                 let produtosSecao = produtosAtuais[secao]
                 let novoArray = []
-                console.log(posicoes);
+
                 if(posicoes[secao] === 'contraria'){
-                    // console.log(produtos);
+
                     if(produtosSecao[0].id === produtos[secao][0].id){
                         if(secao === 0)
                             novoArray = ['', posicoes[1], posicoes[2]]
@@ -63,7 +82,7 @@ export default function Index(){
                 }
                 
                 else if(posicoes[secao] === ''){
-                    // console.log(produtos);
+
                     if(produtosSecao[produtosSecao.length - 1].id === produtos[secao][produtos[secao].length - 1].id){
                         if(secao === 0)
                             novoArray = ['contraria', posicoes[1], posicoes[2]]
@@ -71,14 +90,13 @@ export default function Index(){
                             novoArray = [posicoes[0], 'contraria', posicoes[2]]
                         if(secao === 2)
                             novoArray = [posicoes[0], posicoes[1], 'contraria']
-                        console.log('oi1');
+
                         setPosicoes(novoArray)
-                        // console.log(posicoes);
-                        console.log(novoArray);
+
+
                         return 'faixaAoContrario'
                     }
                     else {
-                    // console.log('oi2'); 
                         
                         return ''
                     }
@@ -93,12 +111,9 @@ export default function Index(){
             if(produtos[secao].length > 4){
                 let posicao = verificarPosicao(secao)
                 if(posicao === ''){
-                    console.log('normal');
                     let produtosSecao = produtosAtuais[secao]
                     let ultimaPosicaoProdutosSecao = produtos[secao].indexOf(produtosSecao[produtosSecao.length - 1])
-                    // console.log(ultimaPosicaoProdutosSecao);
                     let proximosProdutos = produtos[secao].slice(ultimaPosicaoProdutosSecao + 1, ultimaPosicaoProdutosSecao + 5 )
-                    // console.log(proximosProdutos);
                     let novoArray = []
                     if(secao === 0)
                         novoArray = [proximosProdutos, produtosAtuais[1], produtosAtuais[2]]
@@ -106,15 +121,12 @@ export default function Index(){
                         novoArray = [produtosAtuais[0], proximosProdutos, produtosAtuais[2]]
                     if(secao === 2)
                         novoArray = [produtosAtuais[0], produtosAtuais[1], proximosProdutos]
-                    console.log(novoArray);
                     setProdutosAtuais(novoArray)
                 }
                 else if(posicao === 'faixaAoContrario'){
                     if(produtosAtuais[secao][0].id !== produtos[secao][0].id){
-                        console.log('reverse');
                         let produtosSecao = produtosAtuais[secao]
                         let ultimaPosicaoProdutosSecao = produtos[secao].indexOf(produtosSecao[0])
-                        // console.log(ultimaPosicaoProdutosSecao);
 
                         let produtosAnteriores = ''
                         if(ultimaPosicaoProdutosSecao === 4){
@@ -130,7 +142,6 @@ export default function Index(){
                                 novoArray = [produtosAtuais[0], produtosAnteriores, produtosAtuais[2]]
                             else if(secao === 2)
                                 novoArray = [produtosAtuais[0], produtosAtuais[1], produtosAnteriores]
-                            console.log(novoArray);
                             setProdutosAtuais(novoArray)
                         }   
                     }
@@ -172,7 +183,7 @@ export default function Index(){
     
     return(
         <div id='page-produtos'>
-            <Cabecalho />
+            <Cabecalho categoriaSelecionada={verificarCategoria()}/>
             <main id='conteudo'>
                 <section className='faixaApresentacao'>
                     <article>
@@ -180,7 +191,7 @@ export default function Index(){
                             <h3> {categoriaAtual[0].marca} </h3>
                         </div>
                     </article> 
-                    <img src={categoriaAtual[0].imagemSuporte} alt='imagem-suporte-cafe3coracoes' />
+                    <img id={categoriaAtual[0].imagemSuporte === '/assets/images/categorias/apresentacao/graos/cafe3coracoes.svg' ? 'imgUnica' : ''} src={categoriaAtual[0].imagemSuporte} alt='imagem-suporte-cafe3coracoes' />
                 </section>
                 <section id={verificarPosicao(0)} className='faixaProdutos faixaProdutos1' >
                     <article>

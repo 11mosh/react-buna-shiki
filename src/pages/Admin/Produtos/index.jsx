@@ -1,10 +1,11 @@
 import './index.scss';
 import CabecalhoAdm from '../../../components/Admin/AdmCabecalho';
 import { Link, useNavigate } from 'react-router-dom';
-import { buscarAdms, buscarCategorias, excluir, filtrarPorAdm, filtrarPorCategorias, filtrarPorAssinatura, buscarTodosProdutos, ordernarProdutosPorColuna, pesquisaInput } from '../../../api/produtoApi';
+import { buscarCategorias, excluir, filtrarPorAdm, filtrarPorCategorias, filtrarPorAssinatura, buscarTodosProdutos, ordernarProdutosPorColuna, pesquisaInput } from '../../../api/produtoApi';
 import { useEffect, useState } from 'react';
 import {toast} from 'react-toastify'
 import { confirmAlert } from 'react-confirm-alert'
+import { buscarAdms } from '../../../api/admApi';
 
 
 export default function Consulta() {
@@ -77,7 +78,7 @@ export default function Consulta() {
   }
 
   function verResumo(id, campoClass) {
-    if(campoClass != 'fa-regular fa-pen-to-square' && campoClass != 'fa-regular fa-trash-can')
+    if(campoClass !== 'fa-regular fa-pen-to-square' && campoClass !== 'fa-regular fa-trash-can')
       navigate(`/adm/${id}/revisao-produto`)
   }
 
@@ -87,7 +88,8 @@ export default function Consulta() {
 
   async function buscarCategoriasFiltro(){
     try{
-      const categoriasResp = await buscarCategorias()
+      let categoriasResp = await buscarCategorias()
+      categoriasResp = categoriasResp.filter(item => item.nome !== 'Combos')
       setCategorias(categoriasResp)
     }
     catch(err){
@@ -161,7 +163,7 @@ export default function Consulta() {
   async function ordenarProdutos(coluna) {
     try {
       const produtosOrdenados = await ordernarProdutosPorColuna(coluna)
-      console.log(produtosOrdenados);
+
       setProdutos(produtosOrdenados)
     }
     catch(err){

@@ -1,6 +1,7 @@
 import CabecalhoUsuario from '../../../components/Usuario/UsuarioCabecalho';
 import UsuarioRodape from '../../../components/Usuario/UsuarioRodape';
 import { useNavigate, useParams } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 import './index.scss';
 import { useEffect, useState } from 'react';
 import storage from 'local-storage'
@@ -8,19 +9,26 @@ import { toast } from 'react-toastify';
 import { buscarIdProduto, buscarTodosProdutos } from '../../../api/produtoApi';
 
 export default function DescricaoProduto () {
-    const [produto, setProduto] = useState({imagens: [{}], detalhes: { alergia: '', marca: '', dimensoes: '', peso: ''}, categoria: ''})
+    const [produto, setProduto] = useState({ preco: '', promocao: '', imagens: [{}], detalhes: { alergia: '-', marca: '-', dimensoes: '-', peso: '-'}, categoria: '-'})
     const {id} = useParams()
-    const [produtosSugestao, setProdutosSugestao] = useState([])
+    const [produtosSugestao, setProdutosSugestao] = useState([{promocao: '', preco: ''}])
     const [renderizar, setRenderizar] = useState('')
-    const navigate = useNavigate()
+    const navigate = useNavigate();
+
+    function voltar () {
+        window.history.back();
+        // navigate(-1);
+    }
+
 
     async function buscarProdutoClick() {
         try{
-           let respProduto = await buscarIdProduto(id)
-           respProduto.qtd = 1
-           respProduto.imagem = respProduto.imagens[0].caminho
-            console.log(respProduto);
-           setProduto(respProduto)
+            let respProduto = await buscarIdProduto(id)
+            respProduto.qtd = 1
+            respProduto.imagem = respProduto.imagens[0].caminho
+            setProduto(respProduto)
+            
+            buscarProdutosSugestaoClick()
         }
         catch(err){
             if(err.response)
@@ -37,20 +45,19 @@ export default function DescricaoProduto () {
     function adicionarCarrinho(){
         if(!storage('usuario-logado')){
             toast.info('Faça login ou cadastro para adicionar coisas ao carrinho.')
-            navigate('/login')
         }
         else{
             let pedido = storage('usuario-pedido')
             pedido.produtos = [...pedido.produtos, produto]
             setRenderizar('renderizando')
             storage('usuario-pedido', pedido)
+            toast('Adicionado!')
         }
     }
 
     function comprar(){
         if(!storage('usuario-logado')){
             toast.info('Faça login ou cadastro para comprar algo')
-            navigate('/login')
         }
         else{
             let pedido = storage('usuario-pedido')
@@ -66,13 +73,18 @@ export default function DescricaoProduto () {
         try{
             const respProdutos = await buscarTodosProdutos()
             let produtos = []
+
+
             while(produtos.length < 4){
                 let num = Math.random() * 100
                 num = num.toFixed(0)
-                if(respProdutos[num])
-                    produtos.push(respProdutos[num])
-            }
+                if(respProdutos[num]){
+                    if(produtos.includes(respProdutos[num]) === false)
+                        produtos.push(respProdutos[num])
+                }
 
+            }
+            
             setProdutosSugestao(produtos)
         }
         catch(err){
@@ -85,16 +97,19 @@ export default function DescricaoProduto () {
 
     useEffect(() => {
         buscarProdutoClick()
-        buscarProdutosSugestaoClick()
         
         // eslint-disable-next-line
     }, [id])
     
 return (
     <main className='descricao-produto'>
-        <CabecalhoUsuario/>
+        <CabecalhoUsuario linha='aparecer'/>
 
         <article className='corpo-site'>
+            <div onClick={() => window.history.back()} className='back-to-page'>
+                <img src="/assets/images/icon-seta-preta.png" alt="Erro ao exibir a imagem"/>
+                <h3>Voltar para a página anterior</h3>
+            </div>
          <section className="agrupamento">
             <main className="imagem-tipos">
                 <article className='imagem-principal'>
@@ -151,13 +166,13 @@ return (
              <article className='compra'>
                     <nav className="nome-preco">
                         <h1>{produto.produto} {produto.categoria === 'Café em grãos' || produto.categoria === 'Café em pó' ? produto.detalhes.peso : ''}</h1>
-                        {produto.promocao !== '0.00' 
-                            ? <h5>De: <b style={{textDecoration: 'line-through'}}>R${produto.preco}</b></h5>
+                        {produto.promocao !== "0.00"
+                            ? <h3>De: <b style={{textDecoration: 'line-through'}}>R${produto.preco.replace('.', ',')}</b></h3>
                             : <></>
                         }
-                        {produto.promocao !== '0.00'
-                            ? <h2>POR: <b>R${produto.promocao}</b></h2>
-                            : <b>R${produto.preco}</b>
+                        {produto.promocao !== "0.00"
+                            ? <h2>POR: <b>R${produto.promocao.replace('.', ',')}</b></h2>
+                            : <h2><b>R${produto.preco.replace('.', ',')}</b></h2>
                         }
                     </nav>
 
@@ -209,10 +224,9 @@ return (
                         <tbody>
                         <tr>
                             <td>Marca</td>
-                            <td>Categoria</td>
-                            <td>Informações sobre alergia</td>
+                            <td id='alergia'>Informações sobre alergia</td>
                             <td>Peso</td>
-                            <td>Dimensões do produto</td>
+                            <td id='alergia'>Dimensões do produto</td>
                         </tr>
                         </tbody>
                     </table>
@@ -221,17 +235,16 @@ return (
                         <tbody>
                         <tr>
                             <td>{produto.detalhes.marca}</td>
-                            <td>{produto.categoria}</td>
-                            <td>{produto.detalhes.alergia}</td>
+                            <td id='alergia'>{produto.detalhes.alergia}</td>
                             <td>{produto.detalhes.peso}</td>
-                            <td>{produto.detalhes.dimensoes}</td>
+                            <td id='alergia'>{produto.detalhes.dimensoes}</td>
                         </tr>
                         </tbody>
                     </table>
                 </div>
                 
             </section>
-            <h1>Você pode precisar</h1>
+            <h1>Você pode precisar: </h1>
 
             <section className="voce-pode-precisar">
 
@@ -239,11 +252,14 @@ return (
                     {/* <button>&gt;</button> */}
                     {produtosSugestao.map((item) => {
                         return(
-                        <div className="produto" onClick={() => produtoSugestaoClicado(item.id)}>
+                        <Link to={{pathname: `/descricao/${item.id}`}} key={item.id} className="produto" onClick={() => produtoSugestaoClicado(item.id)}>
                             <img src={item.imagem} alt="" />
-                            <p> {item.produto}</p>
-                            <p className='preco-produto'><b>R${item.preco}</b></p>
-                        </div>
+                            <p id='nomeProduto'> {item.produto}</p>
+                            { item.promocao !== "0.00"
+                               ? <p className='preco-produto'><b>R${item.promocao.replace('.', ',')}</b></p>
+                               : <p className='preco-produto'><b>R${item.preco.replace('.', ',')}</b></p>
+                            }
+                        </Link>
                         )
                     })}
                     {/* <button>&gt;</button> */}

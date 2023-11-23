@@ -1,19 +1,19 @@
 import { useEffect, useState } from 'react'
 import './index.scss'
 import { buscarPedidoPorId } from '../../../api/pedidoApi'
-import { useNavigate, useParams } from 'react-router'
+import { useNavigate } from 'react-router'
 import storage from 'local-storage'
 import { toast } from 'react-toastify'
 
 export default function Index(props) {
     const navigate = useNavigate()
-    const [pedido, setPedido] = useState({dt_entrega: '', dt_pedido: '', itens: [], endereco: {}});
+    const [pedido, setPedido] = useState({id: '', dt_entrega: '', dt_pedido: '', itens: [], endereco: {}, total: '', subtotal: '', frete: ''});
 
-async function buscarPedido(){
+    async function buscarPedido(){
         try{
             const respPedido = await buscarPedidoPorId(props.idPedido)
-            
-            console.log(respPedido);
+            respPedido.dt_entrega = respPedido.dt_entrega.substring(0, 10).split('-').reverse().join('/')
+
             if(respPedido.id_cliente !== storage('usuario-logado').id)
                 navigate('/conta/meus-pedidos')
             else{
@@ -28,9 +28,10 @@ async function buscarPedido(){
         }
     }
 
-    useEffect(() => {
+
+    useEffect(() => { 
         if(!storage('usuario-logado')){
-            navigate('/login')
+            navigate('/login/meuspedidos')
         }
         else{
             buscarPedido()
@@ -53,17 +54,17 @@ async function buscarPedido(){
                             </div>
                             <div>
                                 <p> Data de envio:</p>
-                                <p className='valor detalheComprido'> <span> {pedido.tp_entrega} </span> prevista para o dia {pedido.dt_entrega.substring(0, 10)} </p>
+                                <p className='valor detalheComprido'> <span> {pedido.tp_entrega} </span> prevista para o dia {pedido.dt_entrega} </p>
                             </div>
                         </article>
                         <article>
                             <div>
                                 <p> Codigo do pedido:</p>
-                                <p className='valor'>{pedido.codigo}</p>
+                                <p className='valor'>BS - {pedido.id.toString().padStart(4, '0')}</p>
                             </div>
                             <div>
                                 <p> Data do pedido:</p>
-                                <p className='valor'>{pedido.dt_pedido.substring(0, 10)} {pedido.dt_pedido.substr(11, 8)}</p>
+                                <p className='valor'>{pedido.dt_pedido.substring(0, 10).split('-').reverse().join('/')}</p>
                             </div>
                             <div>
                                 <p id='endereco'> Endereço de envio: </p>
@@ -74,19 +75,19 @@ async function buscarPedido(){
                             <div>
                                 <p>Subtotal:</p>
                                 <div >
-                                    <p className='valor'> R$ {pedido.subtotal}</p>
+                                    <p className='valor'> R$ {pedido.subtotal.replace('.', ',')}</p>
                                 </div>
                             </div>
                             <div>
                                 <p> Frete:</p>
                                 <div>
-                                    <p className='valor'>R$ {pedido.frete}</p>
+                                    <p className='valor'>R$ {pedido.frete.replace('.', ',')}</p>
                                 </div>
                             </div>
                             <div>
                                 <p> Total:</p> 
                                 <div>
-                                    <p className='valor'> R$ {pedido.total}</p>
+                                    <p className='valor'> R$ {pedido.total.replace('.', ',')}</p>
                                 </div>
                             </div>
                         </article>
@@ -100,7 +101,9 @@ async function buscarPedido(){
                                         <div id='qtd'> {item.qtd} </div>
                                     </div>
                                     <h4> {item.produto.produto} {item.produto.categoria === 'Café em grãos' || item.produto.categoria === 'Café em pó' ? item.produto.detalhes.peso : ''}</h4>
-                                    <span> R$ {item.produto.preco} </span>
+                                    {item.produto.promocao === '0.00'
+                                        ? <span> R$ {item.produto.preco.replace('.', ',')} </span>
+                                        : <span> R$ {item.produto.promocao.replace('.', ',')} </span>}
                                 </article>
                             )
                         })}

@@ -6,7 +6,7 @@ import CancelarAssinatura from './CancelarAssinatura';
 import { confirmAlert } from 'react-confirm-alert';
 import { useEffect, useState } from 'react';
 import { URLRota } from '../../../../constants.js';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import axios from 'axios';
 import storage from 'local-storage';
 
@@ -19,7 +19,7 @@ export default function PerfilAssinatura () {
                     <CancelarAssinatura
                     sim={async () => {
                         const url = URLRota + '/cancelar-assinatura/' + idAssinatura;
-                        const resposta = await axios.delete(url);
+                        await axios.delete(url);
                         setAssinante(false);
                         onClose();
                     }}
@@ -40,15 +40,16 @@ export default function PerfilAssinatura () {
     const [assinante, setAssinante] = useState(false);
     const [proximaData, setProximaData] = useState();
     const [codigo, setCodigo] = useState('');
+    const navigate = useNavigate()
 
     async function verificarAssinatura (id) {
         const url = URLRota + '/verificar-assinatura/' + id;
         const resposta = await axios.get(url);
         const dados = resposta.data;
-        
+
         if (dados.length > 0) {
             setAssinante(true);
-        } else if (dados.length == 0) {
+        } else if (dados.length === 0) {
             setAssinante(false)
         }
     }
@@ -58,8 +59,8 @@ export default function PerfilAssinatura () {
             const url = URLRota + '/procurar-assinatura/' + id;
             const resposta = await axios.get(url);
             const dados = resposta.data;
-            console.log(dados)
-
+            
+            
             const mensalidadee = dados[0].vl_mensalidade;
             const fim = dados[0].dt_fim;
             const fimFormatado = fim.toString().substring(0, 10)
@@ -79,31 +80,35 @@ export default function PerfilAssinatura () {
             if(storage('id-assinatura')) {
                 const idAssinaturaa = storage('id-assinatura').idAssinatura;
                 setIdAssinatura(idAssinaturaa);
-                chamarAssinatura(idAssinaturaa);
+                chamarAssinatura(idCliente);
             }
         }
+        else{
+            navigate('/login/conta')
+        }
 
-       
+       // eslint-disable-next-line
     }, [assinante])
 
     useEffect(() => {
         if (storage('usuario-logado')) {
             const idCliente = storage('usuario-logado').id;
             verificarAssinatura(idCliente);
-            console.log(assinante)
             
             if(storage('id-assinatura')) {
                 const idAssinaturaa = storage('id-assinatura').idAssinatura;
                 setIdAssinatura(idAssinaturaa);
-                chamarAssinatura(idAssinaturaa);
+                chamarAssinatura(idCliente);
             } 
-        }        
+        }    
+
+        // eslint-disable-next-line   
     }, [])
 
 
     return (
         <main className="perfil-assinatura">
-            <Cabecalho/>
+            <Cabecalho linha='aparecer'/>
             <main className="corpo">
 
                 <BarraNavegacao selecionar='Assinaturas' />

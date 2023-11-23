@@ -164,7 +164,7 @@
                         }
                         #acoes{
                             background-color: unset;
-                            display: flex;
+                            display: none;
                             gap: 10px;
                             margin-bottom: 3px;
 
@@ -181,10 +181,10 @@
                         .img {
                             background-color: unset;
                             width: 100px;
-                            height: 136px;
+                            height: 138px;
                             img {
                                 max-width: 100px;
-                                max-height: 125px;
+                                max-height: 138px;
                             }
                         }
                     }
@@ -192,6 +192,9 @@
                         background-color: #514641;
                         transition: 0.1s;
                         border: none;
+                        #acoes {
+                            display: flex;
+                        }
                     }
                     tr:active {
                         background-color: #332e2b;
@@ -337,13 +340,11 @@
                     }
                     tbody {
                         tr {
-                            height: 120px;
                             > div {
-                            height: 120px;
                                 .img {
                                     img {
-                                        width: 80px;
-                                        height: 80px;
+                                        width: 70px;
+                                        height: 130px;
                                     }
                                 }
                             }

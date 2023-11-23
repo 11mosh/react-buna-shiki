@@ -13,3 +13,10 @@ export async function login(email, senha) {
 
     return resp.data
 }
+
+
+export async function buscarAdms(){
+    const resp = await api.get('/adms')
+
+    return resp.data
+}

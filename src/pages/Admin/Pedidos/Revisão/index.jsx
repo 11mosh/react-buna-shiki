@@ -152,11 +152,11 @@ export default function Index() {
                                 </tr>
                                 <tr>
                                     <td> Data do pedido: </td>
-                                    <td className='valor'> {pedido.dt_pedido.substring(0, 10)} {pedido.dt_pedido.substring(11, 19)}</td>
+                                    <td className='valor'> {pedido.dt_pedido.substring(0, 10).split('-').reverse().join('/')} {pedido.dt_pedido.substring(11, 19)}</td>
                                 </tr>
                                 <tr>
                                     <td> Data de entrega: </td>
-                                    <td className='valor'> {pedido.dt_entrega.substring(0, 10)} </td>
+                                    <td className='valor'> {pedido.dt_entrega.substring(0, 10).split('-').reverse().join('/')} </td>
                                 </tr>
                                 <tr>
                                     <td> Tipo de entrega: </td>

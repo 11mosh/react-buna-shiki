@@ -8,14 +8,13 @@ import { useState, useEffect } from 'react';
 import Avaliacao from './avaliacao/telaAvaliacao';
 import BarraNavegacao from '../../../../components/Usuario/BarraNavegacaoConta';
 import storage from 'local-storage';
-import { toast } from 'react-toastify';
 import { URLRota } from '../../../../constants.js';
-import { Link, useNavigate, useParams } from 'react-router-dom';
+import { useNavigate} from 'react-router-dom';
 
 export default function MeusPedidos () {
 
-    const [idPedido, setIdPedido] = useState(0);
-    const [pedidos, setPedidos] = useState([]);
+    // const [idPedido, setIdPedido] = useState(0);
+    const [pedidos, setPedidos] = useState([{total: '', dt_pedido: '', id: 0, item: {}}]);
     const redir = useNavigate();
 
     async function avaliacao (id) {
@@ -32,23 +31,28 @@ export default function MeusPedidos () {
         confirmAlert(opcoes);
     }
 
-
     async function chamarPedidos () {
         const idUsuario = storage('usuario-logado').id
         const url = URLRota + '/pedidos/primeiro-item/' + idUsuario;
         const resposta = await axios.get(url);
         const dados = resposta.data;
+        console.log(dados)
         setPedidos(dados);
     };
 
     useEffect(() => {
-        chamarPedidos();
+        if(!storage('usuario-logado')){
+            redir('/login/conta')
+        }
+        else{
+            chamarPedidos();
+        }
         // eslint-disable-next-line 
     }, []);
     
     return (
         <main className='meusPedidos'>
-            <CabecalhoUsuario />
+            <CabecalhoUsuario linha='aparecer'/>
 
         <div className="corpo">
             
@@ -69,13 +73,13 @@ export default function MeusPedidos () {
                                     <img src={item.item.imagem} alt="" style={{maxHeight: '160px'}}/>
                                     <div className='descricao-pedido'>
                                         <p> <b>{item.item.produto}</b></p>
-                                        <p style={{ marginTop: '10px'}}> Total: <b style={{color: '#661515'}}>R${item.total}</b></p>
+                                        <p style={{ marginTop: '10px'}}> Total: <b style={{color: '#661515'}}>R${item.total.replace('.', ',')}</b></p>
                                     </div>
                                 </div>
                                 
                                 <div className='links'>
                                     <h4 style={ {color: '#0071A1', textDecoration: 'underline', cursor: 'pointer'}} onClick={() => redir(`/conta/meus-pedidos/resumo-pedido/${item.id}`)}>Exibir detalhes do pedido</h4>
-                                    {(item.situacao == 'Entregue') 
+                                    {(item.situacao === 'Entregue') 
                                     ? <h4 style={ {color: '#0071A1', textDecoration: 'underline', cursor: 'pointer'}} onClick={() => {avaliacao(item.id);}}>Avalie o pedido</h4>
                                     : <></>
                                     }
@@ -85,14 +89,19 @@ export default function MeusPedidos () {
                     )
                 })}
 
-                <hr style={{width: '90%'}}/>
-
-                <h3 style={ {opacity: 0.5, marginTop: '5px' }}>Seus pedidos acabam por aqui.</h3>
-                <img src="/assets/images/pedidosAcabam.png" alt="" style={{height: '80px', opacity: 0.5, marginBottom: '40px'}}/>
+                {pedidos.length == 0 
+                ? <>
+                    <h1>OPS!</h1>
+                    <h3 style={ {opacity: 0.5, marginTop: '-15px' }}>Você ainda não fez nenhum pedido.</h3>
+                    <img src="/assets/images/pedidosAcabam.png" alt="" style={{height: '80px', opacity: 0.5, marginBottom: '40px'}}/>
+                    <button style={{backgroundColor: '#F47e3c', color: 'white', border: 'none', padding: '10px', fontSize: '17px', borderRadius: '10px 0px', cursor: 'pointer'}}>Veja produtos</button>
+                  </>
+                : <></>
+                }
             </article>
         </div>
             <UsuarioRodape />
-
+ 
         </main>
     )
 }
