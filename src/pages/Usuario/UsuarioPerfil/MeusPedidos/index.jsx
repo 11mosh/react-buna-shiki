@@ -89,10 +89,15 @@ export default function MeusPedidos () {
                     )
                 })}
 
-                <hr style={{width: '90%'}}/>
-
-                <h3 style={ {opacity: 0.5, marginTop: '5px' }}>Seus pedidos acabam por aqui.</h3>
-                <img src="/assets/images/pedidosAcabam.png" alt="" style={{height: '80px', opacity: 0.5, marginBottom: '40px'}}/>
+                {pedidos.length == 0 
+                ? <>
+                    <h1>OPS!</h1>
+                    <h3 style={ {opacity: 0.5, marginTop: '-15px' }}>Você ainda não fez nenhum pedido.</h3>
+                    <img src="/assets/images/pedidosAcabam.png" alt="" style={{height: '80px', opacity: 0.5, marginBottom: '40px'}}/>
+                    <button style={{backgroundColor: '#F47e3c', color: 'white', border: 'none', padding: '10px', fontSize: '17px', borderRadius: '10px 0px', cursor: 'pointer'}}>Veja produtos</button>
+                  </>
+                : <></>
+                }
             </article>
         </div>
             <UsuarioRodape />
