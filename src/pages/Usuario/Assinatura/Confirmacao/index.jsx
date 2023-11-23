@@ -62,6 +62,7 @@ export default function Confirmacao () {
                 idEndereco: Number(storage('endereco-selecionado').idEndereco),
                 mensalidade: Number(precoFinal)
             }
+
             console.log(assinatura)
             const resposta = await axios.post((URLRota + '/concluir-assinatura/'), assinatura);
             const dados = resposta.data;
