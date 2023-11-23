@@ -91,8 +91,8 @@ export default function Carrinho () {
                 }
             }
             if(repetidoPosicao === ''){
-                produtos[contador] = produtosStorage[contador]
-                contador += 1
+                produtos[contador] = produtosStorage[cont]
+                contador++
             }
             else{
                 produtos[repetidoPosicao].qtd = ++produtos[repetidoPosicao].qtd

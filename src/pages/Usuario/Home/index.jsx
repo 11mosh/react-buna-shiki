@@ -19,6 +19,7 @@ function Home () {
     // const redir = useNavigate();
     const [idAssinatura, setIdAssinatura] = useState();
     const [combo, setCombo] = useState({preco: '', promocao: '', produtos: []})
+    const [renderizar, setRenderizar] = useState('')
 
     async function buscarCategoriasExibicao(){
         try{
@@ -37,16 +38,21 @@ function Home () {
     };
 
     function adicionarCarrinho() {
-        let pedido = storage('usuario-pedido')
-        let produto = {}
-        
-        for(let cont = 0 ; cont < combo.produtos.length; cont++){
-            produto = combo.produtos[cont].produto
-            produto.qtd = 1
-            pedido.produtos = [...pedido.produtos, produto]
+        if(!storage('usuario-logado'))
+            toast.info('Faça login ou cadastro para adicionar coisas ao carrinho.')
+        else{
+            let pedido = storage('usuario-pedido')
+            let produto = {}
+            
+            for(let cont = 0 ; cont < combo.produtos.length; cont++){
+                produto = combo.produtos[cont].produto
+                produto.qtd = 1
+                pedido.produtos = [...pedido.produtos, produto]
+            }
+            setRenderizar('renderizando')
+            storage('usuario-pedido', pedido)
+            toast('Adicionado!')
         }
-
-        storage('usuario-pedido', pedido)
     }
 
     async function buscarCombo() {

@@ -127,7 +127,10 @@
                         > div {
                             display: flex;
                             flex-direction: row;
-                            
+                            h2 {
+                                font-size: 16.5px;
+                                font-weight: 600;
+                            }
                             img {
                                 margin-right: 10px;
                             }
@@ -140,8 +143,8 @@
                         transform: translateY(-5px);
                     }
                     img {
-                        width: 70px;
-                        height: 70px;
+                        width: 65px;
+                        height: 130px;
                     }
                     }
 
@@ -162,6 +165,7 @@
                     top: 60px;
                     position: absolute;
                     display: none;
+                    visibility: hidden;
                     height: 350px;
                     width: 200px;
                     flex-direction: column;
@@ -246,11 +250,14 @@
                     > div {
                         display: flex;
                         flex-direction: row;
-                        
+                        gap: 10px;
+                        h2 {
+                            font-size: 16.5px;
+                            font-weight: 600;
+                        }
                         img {
-                            margin-right: 10px;
-                            width: 70px;
-                            height: 70px;
+                            width: 65px;
+                            height: 130px;
                         }
                     }
                 }
@@ -312,7 +319,7 @@
 }
 
 
-@media(max-width:1000px){
+@media(max-width:1050px){
     .comp-usuario-cabecalho {
         > div {
             #s1{
@@ -364,15 +371,15 @@
                 
                 .lupa {
                     nav {
-                        display: flex ;
+                        visibility: visible;
                     }
                     > div {
                         display: none;
                     }
                     #menu {
                         display: flex;
-                        width: 27px;
-                        height: 27px;
+                        width: 26px;
+                        height: 26px;
                     }
                     img {
                         display: none;
@@ -439,6 +446,12 @@
                         img {
                             width: 22px;
                         }
+                    }
+                }
+                .lupa {
+                    #menu {
+                        width: 22px ;
+                        height: 22px;
                     }
                 }
             }

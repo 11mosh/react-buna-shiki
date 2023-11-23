@@ -377,6 +377,9 @@
                         width: 100px !important;
                         height: 100px !important;
                     }
+                    p {
+                        font-size: 16.5px;
+                    }
                 }
             }
         }
@@ -409,12 +412,12 @@
     }
 }
 
-@media (max-width: 670px) {
+@media (max-width: 710px) {
     .home {
         
         .categorias-carrossel {
            
-
+            gap: 50px;
             #posicaoContraria{
                 flex-direction: column !important;
                 margin-top: 50px;

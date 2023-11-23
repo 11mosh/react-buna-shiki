@@ -24,6 +24,7 @@ export default function Combos(){
             }
             setRenderizar('renderizando')
             storage('usuario-pedido', pedido)
+            toast('Adicionado!')
         }
         else{
             toast.info('Faça login ou cadastro para inserir um combo no carrinho')

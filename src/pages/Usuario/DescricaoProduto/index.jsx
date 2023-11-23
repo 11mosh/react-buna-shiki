@@ -51,6 +51,7 @@ export default function DescricaoProduto () {
             pedido.produtos = [...pedido.produtos, produto]
             setRenderizar('renderizando')
             storage('usuario-pedido', pedido)
+            toast('Adicionado!')
         }
     }
 
