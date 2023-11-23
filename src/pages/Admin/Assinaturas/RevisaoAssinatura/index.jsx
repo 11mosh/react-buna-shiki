@@ -14,7 +14,7 @@ export default function RevisaoAssinaturaADM () {
 
     async function chamarAssinatura () {
         const url = URLRota + '/procurar-assinatura-completa/' + id;
-        // const url = URLRota + '/procurar-assinatura/' + id;
+        // const url = URLRota + '/procurar-assinatur                                                                     a/' + id;
         console.log(id)
         const resposta = await axios.get(url);
         console.log(resposta.data);
