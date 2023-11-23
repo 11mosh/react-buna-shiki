@@ -7,13 +7,13 @@ import { toast } from 'react-toastify'
 
 export default function Index(props) {
     const navigate = useNavigate()
-    const [pedido, setPedido] = useState({dt_entrega: '', dt_pedido: '', itens: [], endereco: {}, total: '', subtotal: '', frete: ''});
+    const [pedido, setPedido] = useState({id: '', dt_entrega: '', dt_pedido: '', itens: [], endereco: {}, total: '', subtotal: '', frete: ''});
 
     async function buscarPedido(){
         try{
             const respPedido = await buscarPedidoPorId(props.idPedido)
             respPedido.dt_entrega = respPedido.dt_entrega.substring(0, 10).split('-').reverse().join('/')
-            
+
             if(respPedido.id_cliente !== storage('usuario-logado').id)
                 navigate('/conta/meus-pedidos')
             else{
@@ -27,6 +27,7 @@ export default function Index(props) {
                 toast.error(err.message)
         }
     }
+
 
     useEffect(() => { 
         if(!storage('usuario-logado')){
@@ -59,11 +60,11 @@ export default function Index(props) {
                         <article>
                             <div>
                                 <p> Codigo do pedido:</p>
-                                <p className='valor'>{pedido.codigo}</p>
+                                <p className='valor'>BS - {pedido.id.toString().padStart(4, '0')}</p>
                             </div>
                             <div>
                                 <p> Data do pedido:</p>
-                                <p className='valor'>{pedido.dt_pedido.substring(0, 10)} {pedido.dt_pedido.substr(11, 8)}</p>
+                                <p className='valor'>{pedido.dt_pedido.substring(0, 10).split('-').reverse().join('/')}</p>
                             </div>
                             <div>
                                 <p id='endereco'> Endereço de envio: </p>

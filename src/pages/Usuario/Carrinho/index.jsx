@@ -10,8 +10,9 @@ import { toast } from "react-toastify";
 export default function Carrinho () {
 
     // eslint-disable-next-line
-    const [produtos, setProdutos] = useState([])
+    const [produtos, setProdutos] = useState([{promocao: '', preco: ''}])
     const [subtotal, setSubtotal] = useState(0)
+    const [qtdProdutos, setQtdProdutos] = useState(0)
 
     function diminuirQtd(id, index, qtd) {
         let novoArray = []
@@ -54,15 +55,19 @@ export default function Carrinho () {
     }
 
     function calcularSubtotal() {
+        let qtd = 0
         let subtotalCalc = produtos.reduce((total, item) => {
+            qtd = qtd + (1 * item.qtd)
+
             if(item.promocao !== "0.00")
                 total = total + (item.promocao * item.qtd)
             else
                 total = total + (item.preco * item.qtd)
-
+            
             return total
         }, 0)
-
+        
+        setQtdProdutos(qtd)
         let trocandoSubtotal = storage('usuario-pedido')
         trocandoSubtotal.subtotal = subtotalCalc
         storage('usuario-pedido', trocandoSubtotal)
@@ -74,34 +79,53 @@ export default function Carrinho () {
         const produtosStorage = storage('usuario-pedido').produtos
         let produtos = []
         
-        
+        let contador = 0
         for(let cont = 0; cont < produtosStorage.length; cont++){
             let repetidoPosicao = ''
             for(let conta = 0; conta < produtos.length; conta++){
+                // console.log(contador);
                 if(produtos[conta].id === produtosStorage[cont].id){
                     repetidoPosicao = conta
+                    console.log(repetidoPosicao);
                     break
                 }
             }
             if(repetidoPosicao === ''){
-                produtos[cont] = produtosStorage[cont]
+                produtos[contador] = produtosStorage[contador]
+                contador += 1
             }
             else{
                 produtos[repetidoPosicao].qtd = ++produtos[repetidoPosicao].qtd
             }
         }
+        console.log(produtos);
+        console.log(produtosStorage);
 
         let pedido = storage('usuario-pedido')
         pedido.produtos = produtos
-        storage('usuario-pedido', pedido)
+        // storage('usuario-pedido', pedido)
 
         setProdutos(produtos)
+    }
+
+    function verificarSubtotalProduto(item) {
+        let subtotal = 0
+        if(item.promocao !== "0.00"){
+            subtotal = item.promocao * item.qtd
+        }
+        else
+            subtotal = item.preco * item.qtd
+
+        
+        subtotal = String(subtotal).replace('.', ',')
+
+        return subtotal
     }
  
     useEffect(() => {
         if(storage('usuario-pedido'))
             atribuirProdutos()
-
+        console.log(produtos);
     }, [])
 
     useEffect(() => {
@@ -142,9 +166,9 @@ export default function Carrinho () {
                                             </div>
                                             <div id="detalhes">
                                                 <p> {item.produto} {item.categoria === 'Café em grãos' || item.categoria === 'Café em pó' ? item.detalhes.peso : ''}</p>
-                                                {item.promocao !== "0.00"
-                                                    ? <p> R${item.promocao.replace('.', ',')} </p>
-                                                    : <p> R${item.preco.replace('.', ',')} </p>
+                                                {item.promocao === "0.00"
+                                                    ? <p> R${item.preco.replace('.', ',')} </p>
+                                                    : <p> R${item.promocao.replace('.', ',')} </p>
                                                 }
                                                 <div> 
                                                     <button onClick={() => diminuirQtd(item.id, index, item.qtd)}> 
@@ -155,6 +179,10 @@ export default function Carrinho () {
                                                         <p>+</p>
                                                     </button>
                                                 </div>
+                                                {item.qtd !== 1
+                                                    ? <p> Subtotal do produto: {verificarSubtotalProduto(item)} </p>
+                                                    : ""
+                                                }
                                             </div>
                                         </article>
                                         <article id="a2">
@@ -168,7 +196,7 @@ export default function Carrinho () {
                             <hr />
                             <article>
                                 <p id="subtotal"> Subtotal: </p>
-                                <p> R$ {subtotal} </p>
+                                <p> R$ {subtotal} {`(${qtdProdutos} produtos)`}</p>
                             </article>
                         </section>
                         <section id="s3">

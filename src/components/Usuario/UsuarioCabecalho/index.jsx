@@ -6,6 +6,7 @@ import { toast } from 'react-toastify';
 import axios from 'axios';
 import { URLRota } from '../../../constants.js';
 import storage from 'local-storage'
+import { buscarPedidosCliente } from '../../../api/usuarioApi';
 
 export default function CabecalhoUsuario(props) {
 
@@ -14,6 +15,8 @@ export default function CabecalhoUsuario(props) {
     const [mostrarInput, setMostrarInput] = useState(false)
     const [categorias, setCategorias] = useState([]);
     const [sugestao, setSugestao] = useState([]);
+    const [mostrarMenu, setMostrarMenu] = useState(false)
+    const [categoriasLugar, setCategoriasLugar] = useState('')
 
     const caminhos = ['/produtos/cafeemgraos', '/produtos/cafeempo', '/produtos/cafeteiras', '/combos', '/produtos/filtros', '/produtos/capsulas', '/produtos/moedores', '/produtos/acessorios' ];
 
@@ -70,6 +73,28 @@ export default function CabecalhoUsuario(props) {
             return 'none'
     }
 
+    function verificarMenu() {
+        if(mostrarMenu === false)
+            return 'none'
+        else if(mostrarInput == false)
+            return 'flex'
+    }
+
+    // async function verificarCompra() {
+    //     try {
+    //         if(storage('usuario-logado')){
+    //             const id = storage('usuario-logado').id
+    //             const resp = await buscarPedidosCliente()
+    //         }
+    //     }
+    //     catch(err){
+    //         if(err.response)
+    //             toast.error(err.response.data.erro)
+    //         else
+    //             toast.error(err.message)
+    //     }
+    // }
+
     function verificarCarrinho(){
         if(storage('usuario-pedido')){
             if(storage('usuario-pedido').produtos.length !== 0 )
@@ -113,7 +138,7 @@ export default function CabecalhoUsuario(props) {
                             <p> Carrinho </p>
                         </Link>
                         <Link to='/conta/dados-pessoais' onClick={() => assinatura()}>
-                            <div id='conta' style={{display: 'flex'}}></div>
+                            <div id='conta' style={{display: 'none'}}></div>
                             <img src='/assets/images/icon-conta.svg' alt='conta'/>
                             <p>Conta</p>
                         </Link>
@@ -161,13 +186,23 @@ export default function CabecalhoUsuario(props) {
                                     )
                                     : (<></>)}
                                 
-                        <img src='/assets/images/lupa-1.svg' alt="Erro ao exibir imagem" onClick={exibirPesquisa}/>
+                        <img src='/assets/images/lupa.svg' alt="Erro ao exibir imagem" onClick={exibirPesquisa}/>
+                        <img onClick={() => setMostrarMenu(!mostrarMenu)} id='menu' src='/assets/images/icon-menu.png' alt='icon-conta'/>
+                        <nav style={{display: verificarMenu()}}>
+                            {categorias.map(item => {
+                                return(
+                                    <div>
+                                        <Link to={caminhos[item.id - 1]} key={item.id} style={{fontWeight: verificarCategoriaSelecionada(item.nome)}}> {item.nome} </Link>
+                                    </div>
+                                )
+                            })}
+                        </nav>
                     </div>
                 </section>
                 <section id='s2'>
                     <div className='campo1'>
                         <input type="text" placeholder='Pesquise por produtos aqui...' value={pesquisa} onChange={e => setPesquisa(e.target.value)}      />
-                        <img src='/assets/images/lupa-dark.svg' alt="Erro ao exibir imagem" onClick={exibirPesquisa}/>
+                        <img src='/assets/images/lupa-dark.svg' alt="Erro ao exibir imagem"/>
                     </div>
                     <div className="dropdown">
                         {sugestao

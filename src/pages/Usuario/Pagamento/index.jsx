@@ -34,10 +34,12 @@ export default function Index() {
         }
     }
     function verificarPagamentoPix(){
-        if(pagamentoPix === true)
+        if(pagamentoPix === true){
             return 'pagamentoPixSelecionado'
-        else
+        }
+        else{
             return ''
+        }
     }
 
     async function finalizarPedido() {
@@ -68,9 +70,7 @@ export default function Index() {
             await cadastrarItensPedido(produtos, resp.id)
 
             storage('usuario-pedido', { produtos: [] })
-            setTimeout(() => {
-                navigate(`/pedido-finalizado/${resp.id}`)
-            }, 1000)
+            navigate(`/pedido-finalizado/${resp.id}`)
             
         }
         catch(err){
@@ -128,6 +128,15 @@ export default function Index() {
     
             if(storage('usuario-pedido').forma_pagamento === 'Pix')
                 setPagamentoPix(true)
+        }
+    }
+
+    function trocarFormaPagamento(valor) {
+        if(valor === true){
+            setFormaPagamento('Pix')
+        }
+        else{
+            setFormaPagamento('')
         }
     }
 
@@ -272,7 +281,7 @@ export default function Index() {
                                 )
                             })}
                         </select>
-                        <div className='pagamentoPix' id={verificarPagamentoPix()} onClick={() => {setPagamentoPix(!pagamentoPix); setFormaPagamento('Pix'); trocarValoresStorage('pagamento', {id: 0, forma: 'Pix'}); setCartaoEscolhido(0)}} >
+                        <div className='pagamentoPix' id={verificarPagamentoPix()} onClick={() => {setPagamentoPix(!pagamentoPix); trocarFormaPagamento(!pagamentoPix); trocarValoresStorage('pagamento', {id: 0, forma: 'Pix'}); setCartaoEscolhido(0)}} >
                             <div>
                                 <img src='/assets/images/formas de pagamento/pix.svg' alt='simbolo do pix' />
                                 <p> Pix </p>
@@ -280,7 +289,7 @@ export default function Index() {
                             <p> Chave CNPJ: xx.xxx.xxx/0001-xx </p>
                         </div>
                         <div id='alinharButton'>
-                            <button onClick={finalizarPedido}> Finalizar pedido </button>
+                            <button onClick={finalizarPedido} > Finalizar pedido </button>
                         </div>
                     </section>
                 </div>

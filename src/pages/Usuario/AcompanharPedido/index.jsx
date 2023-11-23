@@ -171,6 +171,21 @@ export default function Index() {
         }
     }
 
+    function verificarStatus(status, campo) {
+        if(!campo){
+            if(pedido.situacao == status)
+                return 'statusAtual'
+            else
+                return ''
+        }
+        else{
+            if(pedido.situacao == status)
+                return '...'
+            else
+                return ''
+        }
+    }
+
     useEffect(() => {
         buscarPedido()
 
@@ -207,19 +222,19 @@ export default function Index() {
                         </section>
                         <section id='status'>
                             <div>
-                                <p> Pedido realizado</p>
+                                <p id={verificarStatus('Pedido realizado')}> Pedido realizado{verificarStatus('Pedido realizado', 'pontos')}</p>
                             </div>
                             <div>
-                                <p id='statusAtual'> Pagamento...</p>
+                                <p id={verificarStatus('Pagamento')}> Pagamento{verificarStatus('Pagamento', 'pontos')}</p>
                             </div>
                             <div>
-                                <p> Pedido em preparo </p>
+                                <p id={verificarStatus('Pedido em preparo')}> Pedido em preparo{verificarStatus('Pedido em preparo', 'pontos')} </p>
                             </div>
                             <div>
-                                <p> À caminho </p>
+                                <p id={verificarStatus('À caminho')}> À caminho{verificarStatus('À caminho', 'pontos')} </p>
                             </div>
                             <div>
-                                <p> Entregue</p>
+                                <p id={verificarStatus('Entregue')}> Entregue</p>
                             </div>
                         </section>
                         <section id='barraProgresso'>

@@ -59,6 +59,12 @@ export async function buscarCartoes(id){
     return resp.data
 }
 
+export async function buscarPedidosCliente(id) {
+    const resp = await api.get(`/pedidos/primeiro-item/${id}`)
+
+    return resp.data
+}
+
 
 // Alterando
 

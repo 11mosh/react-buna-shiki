@@ -160,11 +160,11 @@ export default function ConsultaAssinaturas () {
             <thead>
               <tr>
                 <th className='id desaparece5'> ID </th>
-                <th className='img'> Cliente </th>
+                <th className='img desaparece4'> Cliente </th>
                 <th className='desaparece1'> Endereço </th>
-                <th className='desaparece2'> Valor </th>
-                <th className='desaparece4'> Inicio </th>
-                <th className='desaparece3'> Status </th>
+                <th className='desaparece3'> Valor </th>
+                <th className='desaparece2'> Inicio </th>
+                <th className=''> Status </th>
               </tr>
             </thead>
             <hr />
@@ -172,20 +172,18 @@ export default function ConsultaAssinaturas () {
                 {assinaturas.map((item, index) => {
                   return(
                     <tr onClick={() => redir(`/adm/consulta-assinaturas/${item.id}`)}>
-                      <div>
-                        <td className='id desaparece5'> {item.id} </td>
-                        <td className='desaparece'> {verificarNome(item.cliente.nome)} </td>
-                        <td className='desaparece1'> {item.endereco.cep} </td>
-                        <td className='desaparece2'> R${item.mensalidade} </td>
-                        <td className='desaparece4'> {item.dt_inicio.substring(0, 10)} </td>
-                        <td className=''> 
-                            <select value={item.situacao} onChange={e => trocarStatusLocal(e.target.value, item.id, index)}>
-                                <option value='Não pago'> Não pago </option>
-                                <option value='Pago'> Pago</option>
-                                <option value='Cancelado'> Cancelado </option>
-                            </select>
-                        </td>
-                      </div>
+                      <td className='id desaparece5'> {item.id} </td>
+                      <td className='desaparece4'> {verificarNome(item.cliente.nome)} </td>
+                      <td className='desaparece1'> {item.endereco.cep} </td>
+                      <td className='desaparece3'> R${item.mensalidade} </td>
+                      <td className='desaparece2'> {item.dt_inicio.substring(0, 10)} </td>
+                      <td className=''> 
+                          <select value={item.situacao} onChange={e => trocarStatusLocal(e.target.value, item.id, index)}>
+                              <option value='Não pago'> Não pago </option>
+                              <option value='Pago'> Pago</option>
+                              <option value='Cancelado'> Cancelado </option>
+                          </select>
+                      </td>
                     </tr>
                   )
                 })}

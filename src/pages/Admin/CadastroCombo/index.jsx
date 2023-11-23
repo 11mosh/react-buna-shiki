@@ -16,7 +16,7 @@ export default function CadastroCombo () {
     const [precoSugerido, setPrecoSugerido] = useState(0)
     const {id: idParam} = useParams()
     const [novosProdutosSelecionados, setNovosProdutosSelecionados] = useState([])
-    const [idItemTroca, setIdItemTroca] = useState(0)
+    const [idsItemTroca, setIdsItemTroca] = useState([])
     const navigate = useNavigate()
 
     async function buscarProdutosParaCombo(produtosAlterar) {
@@ -67,7 +67,7 @@ export default function CadastroCombo () {
                         nome: nomeCombo,
                         preco: preco
                     }
-                    await alterarItensCombo(novosProdutosSelecionados, idParam)
+                    await alterarItensCombo(novosProdutosSelecionados, idParam, idsItemTroca)
                     await alterarCombo(combo)
                     buscarProdutosParaCombo()
                     limparVariaveis()
@@ -109,9 +109,9 @@ export default function CadastroCombo () {
 
     function removerProdutosSelecionado(index) {
         if(idParam)
-            setIdItemTroca(produtosSelecionados[index].id_item)
+            setIdsItemTroca([...idsItemTroca, produtosSelecionados[index].id_item])
         setProdutosParaCombo([...produtosParaCombo, produtosSelecionados[index]])
-        // setPrecoSugerido( precoSugerido - produtosSelecionados[index].preco)
+        
         const produtosFiltrados = produtosSelecionados.filter(item => item.id !== produtosSelecionados[index].id)
 
         setProdutosSelecionados(produtosFiltrados)
@@ -121,9 +121,10 @@ export default function CadastroCombo () {
 
     function selecionarProduto(index){
         if(produtosSelecionados.length !== 4) {
-            setProdutosSelecionados([...produtosSelecionados, produtosParaCombo[index]])
-            if(idParam){
-                produtosParaCombo[index].id_item = idItemTroca
+            if(!idParam)
+                setProdutosSelecionados([...produtosSelecionados, produtosParaCombo[index]])
+            else{
+                setProdutosSelecionados([...produtosSelecionados, produtosParaCombo[index]])
                 setNovosProdutosSelecionados([...novosProdutosSelecionados, produtosParaCombo[index]])
             }
 

@@ -89,11 +89,10 @@ export async function alterarCombo(combo) {
     })
 }
 
-export async function alterarItensCombo(itens, idCombo){
-    console.log(itens);
-    console.log(idCombo);
+export async function alterarItensCombo(itens, idCombo, idsItem){
+
     for(let cont = 0; cont < itens.length; cont ++){
-        await api.put(`/combo/item/${itens[cont].id_item}`, {
+        await api.put(`/combo/item/${idsItem[cont]}`, {
             id_produto: itens[cont].id,
             id_combo: idCombo
         })

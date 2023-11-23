@@ -251,14 +251,14 @@ return (
                     {/* <button>&gt;</button> */}
                     {produtosSugestao.map((item) => {
                         return(
-                        <div key={item.id} className="produto" onClick={() => produtoSugestaoClicado(item.id)}>
+                        <Link to={{pathname: `/descricao/${item.id}`}} key={item.id} className="produto" onClick={() => produtoSugestaoClicado(item.id)}>
                             <img src={item.imagem} alt="" />
                             <p id='nomeProduto'> {item.produto}</p>
                             { item.promocao !== "0.00"
                                ? <p className='preco-produto'><b>R${item.promocao.replace('.', ',')}</b></p>
                                : <p className='preco-produto'><b>R${item.preco.replace('.', ',')}</b></p>
                             }
-                        </div>
+                        </Link>
                         )
                     })}
                     {/* <button>&gt;</button> */}

@@ -145,16 +145,10 @@
                         border: 1px solid black;
                         border-radius: 10px;
                         height: 85px;
-                        padding: 7px 8px 7px 17px;
+                        padding: 7px 17px 7px 17px;
+                        gap: 15px;
+                        width: 100%;
                         align-items: center;
-                        > div {
-                            width: 100%;
-                            transition: .2s;
-                            padding-right: 8px;
-                            display: flex;
-                            justify-content: space-between;
-                            align-items: center;
-                        }
                         td{
                             width: 140px;
                             height: 30px;
@@ -215,78 +209,14 @@
     }
 }
 
-// @media(max-width: 1300px){
-//     #page-adm-produtos{
-//         main {
-//             > #s4{
-//                 table{
-//                     padding: 15px 0px;
-//                     height: 800px;
-//                     flex-direction: row;
-//                     hr {
-//                         display: none;
-                        
-//                     }
-//                     thead {
-//                         padding: 7px 30px;
-//                         height: 100%;
-//                         tr {
-//                             height: 90%;
-//                             min-width: 120px;
-//                             padding-bottom:px;
-//                             display: flex;
-//                             flex-direction: column;
-//                             th {
-//                                 display: flex;
-//                                 justify-content: flex-start;
-//                                 align-items: center;
-//                                 height: 30px;
-//                             }
-//                             .img {
-//                                 height: 80px;
-//                             }
-//                         }
-//                     }
-//                     tbody {
-//                         flex-direction: row;
-//                         padding-bottom: 0px;
-//                         height: 100%;
-//                         tr {
-//                             height: 100%;
-//                             padding-right: 17px;
-//                             > div {
-//                                 flex-direction: column;
-//                                 height: 90%;
-//                                 padding: unset;
-//                                 min-width: 100px;
-//                                 .img {
-//                                     height: 80px;
-//                                     img {
-//                                         max-height: 80px;
-//                                     }
-//                                 }
-//                                 .id {
-//                                     margin: unset;
-//                                 }
-//                             }
-//                             flex-direction: column;
-//                         }
-//                     }
-//                 }
-//             }
-//         }
-//     }
-// }
+@media(max-width: 1300px){
+    #page-consulta-assinaturas{
+        main {
+            > #s4{
+                table{
+                    .desaparece1{
+                        display: none;
 
-@media (max-width: 800px) {
-    #page-consulta-assinaturas {
-        table {
-            tbody {
-                tr {
-                    > div {
-                        display: flex;
-                        align-items: center;
-                        justify-content: center;
                     }
                 }
             }
@@ -294,41 +224,33 @@
     }
 }
 
-@media (max-width: 776px) {
+@media (max-width: 950px) {
     #page-consulta-assinaturas {
-        .desaparece1 {
-            display: none !important;
+        table {
+            .desaparece2 {
+                display: none !important;
+            }
         }
     }
 }
 
-@media (max-width: 657px) {
+@media (max-width: 770px) {
     #page-consulta-assinaturas {
-        .desaparece2 {
-            display: none !important;
+        .id{
+            margin-right: 20px !important;
         }
-    }
-}
-
-@media (max-width: 546px) {
-    #page-consulta-assinaturas {
         .desaparece3 {
             display: none !important;
         }
     }
 }
 
-@media (max-width: 445px) {
+@media (max-width: 550px) {
     #page-consulta-assinaturas {
-        .desaparece4 {
-            display: none !important;
+        #s3 {
+            padding: 30px !important;
         }
-    }
-}
-
-@media (max-width: 6px) {
-    #page-consulta-assinaturas {
-        .desaparece5 {
+        .desaparece4 {
             display: none !important;
         }
     }
