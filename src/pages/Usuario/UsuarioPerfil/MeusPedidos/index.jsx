@@ -9,7 +9,7 @@ import Avaliacao from './avaliacao/telaAvaliacao';
 import BarraNavegacao from '../../../../components/Usuario/BarraNavegacaoConta';
 import storage from 'local-storage';
 import { URLRota } from '../../../../constants.js';
-import { useNavigate} from 'react-router-dom';
+import { Link, useNavigate} from 'react-router-dom';
 
 export default function MeusPedidos () {
 
@@ -99,7 +99,7 @@ export default function MeusPedidos () {
                     <h1>OPS!</h1>
                     <h3 style={ {opacity: 0.5, marginTop: '-15px' }}>Você ainda não fez nenhum pedido.</h3>
                     <img src="/assets/images/pedidosAcabam.png" alt="" style={{height: '80px', opacity: 0.5, marginBottom: '40px'}}/>
-                    <button style={{backgroundColor: '#F47e3c', color: 'white', border: 'none', padding: '10px', fontSize: '17px', borderRadius: '10px 0px', cursor: 'pointer'}}>Veja produtos</button>
+                    <Link to='/produtos/cafeemgraos' style={{backgroundColor: '#F47e3c', textDecoration: 'none', color: 'white', border: 'none', padding: '10px', fontSize: '17px', borderRadius: '10px 0px', cursor: 'pointer'}}>Veja produtos</Link>
                   </>
                 : <></>
                 }
