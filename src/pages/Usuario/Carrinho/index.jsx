@@ -10,7 +10,7 @@ import { toast } from "react-toastify";
 export default function Carrinho () {
 
     // eslint-disable-next-line
-    const [produtos, setProdutos] = useState([{promocao: '', preco: ''}])
+    const [produtos, setProdutos] = useState([])
     const [subtotal, setSubtotal] = useState(0)
     const [qtdProdutos, setQtdProdutos] = useState(0)
 
@@ -98,8 +98,6 @@ export default function Carrinho () {
                 produtos[repetidoPosicao].qtd = ++produtos[repetidoPosicao].qtd
             }
         }
-        console.log(produtos);
-        console.log(produtosStorage);
 
         let pedido = storage('usuario-pedido')
         pedido.produtos = produtos
@@ -125,7 +123,6 @@ export default function Carrinho () {
     useEffect(() => {
         if(storage('usuario-pedido'))
             atribuirProdutos()
-        console.log(produtos);
     }, [])
 
     useEffect(() => {
