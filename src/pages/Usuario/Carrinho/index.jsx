@@ -117,7 +117,7 @@ export default function Carrinho () {
         
         subtotal = String(subtotal).replace('.', ',')
 
-        return subtotal
+        return subtotal.toFixed(2)
     }
  
     useEffect(() => {
