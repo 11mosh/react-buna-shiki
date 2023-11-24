@@ -52,7 +52,7 @@ export default function Index() {
                     </Link>
                     <Link to='/adm/combos'>
                         <div>
-                            <img src='/assets/images/tela-inicial-adm/icon-arrow.svg' alt='icon-arrow' />
+                            <img src='/assets/images/tela-inicial-adm/icon-box.svg' alt='icon-arrow' />
                         </div>
                         <h3> Visualizar combos </h3>
                     </Link>

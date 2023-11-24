@@ -64,15 +64,15 @@ export default function Carrinho () {
             else
                 total = total + (item.preco * item.qtd)
             
-            return total
+            return total.toFixed(2)
         }, 0)
         
         setQtdProdutos(qtd)
         let trocandoSubtotal = storage('usuario-pedido')
-        trocandoSubtotal.subtotal = subtotalCalc
+        trocandoSubtotal.subtotal = subtotalCalc.toFixed(2)
         storage('usuario-pedido', trocandoSubtotal)
 
-        setSubtotal(subtotalCalc)
+        setSubtotal(subtotalCalc.toFixed(2))
     }
 
     function atribuirProdutos() {
