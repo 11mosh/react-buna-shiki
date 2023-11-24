@@ -116,7 +116,7 @@ function CadastroProduto () {
                     };
                     await alterar(alteracoes, idDetalhe, id)
                     cadastrarImagens(id)
-                    resetarCampos()
+                    // resetarCampos()
                     toast.success('Produto alterado!')
                     setTimeout(() => {
                         navigate('/adm/produtos')
@@ -155,7 +155,7 @@ function CadastroProduto () {
                     let respostaProduto = await axios.post(urlProduto, produto);
         
                     cadastrarImagens(respostaProduto.data.idProduto)
-                    resetarCampos();
+                    // resetarCampos();
                     toast.success('Produto cadastrado!')
                 }
             }

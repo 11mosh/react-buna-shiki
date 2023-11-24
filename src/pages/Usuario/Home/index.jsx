@@ -232,7 +232,7 @@ function Home () {
                                 return(
                                     <div>
                                         <div className='item-combo'>
-                                            <img src="/assets/images/cafee3.png" alt="" />
+                                            <img src={item.produto.imagem} alt="" />
                                             <p> {item.produto.produto} {item.produto.categoria === 'Café em grãos' || item.produto.categoria === 'Café em pó' ? item.produto.detalhes.peso : ''}</p>
                                             <b><p>R${ item.produto.promocao !== '0.00'
                                                         ? item.produto.promocao.replace('.', ',')

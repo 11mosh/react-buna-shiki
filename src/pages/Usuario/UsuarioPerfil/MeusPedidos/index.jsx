@@ -35,6 +35,7 @@ export default function MeusPedidos () {
         const idUsuario = storage('usuario-logado').id
         const url = URLRota + '/pedidos/primeiro-item/' + idUsuario;
         const resposta = await axios.get(url);
+        console.log(resposta)
         const dados = resposta.data;
         console.log(dados)
         setPedidos(dados);
@@ -78,7 +79,11 @@ export default function MeusPedidos () {
                                 </div>
                                 
                                 <div className='links'>
-                                    <h4 style={ {color: '#0071A1', textDecoration: 'underline', cursor: 'pointer'}} onClick={() => redir(`/conta/meus-pedidos/resumo-pedido/${item.id}`)}>Exibir detalhes do pedido</h4>
+                                    {(item.situacao === 'Entregue' || item.situacao === 'Cancelado') 
+                                    ? <h4 style={ {color: '#0071A1', textDecoration: 'underline', cursor: 'pointer'}} onClick={() => redir(`/conta/meus-pedidos/resumo-pedido/${item.id}`)}>Exibir detalhes do pedido</h4>
+                                    : <h4 style={ {color: '#0071A1', textDecoration: 'underline', cursor: 'pointer'}} onClick={() => redir(`/acompanhar-pedido/${item.id}`)}>Acompanhar pedido</h4>
+                                    }
+                                    
                                     {(item.situacao === 'Entregue') 
                                     ? <h4 style={ {color: '#0071A1', textDecoration: 'underline', cursor: 'pointer'}} onClick={() => {avaliacao(item.id);}}>Avalie o pedido</h4>
                                     : <></>

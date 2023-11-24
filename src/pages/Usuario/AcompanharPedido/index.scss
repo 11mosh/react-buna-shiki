@@ -1,10 +1,28 @@
 #page-acompanhar-pedido {
+
+    .back-to-page {
+        border: none;
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        margin: 30px 30px -30px 40px;
+        gap: 5px;
+        cursor: pointer;
+        font-size: 16px;
+
+        img {
+            width: 40px;
+        }
+    }
+
     > #conteudo {
         font-family: 'Inter';
         padding: 80px 50px 50px 50px;
         display: flex;
         flex-direction: column;
         gap: 50px;
+
+        
         > #progressoPedido {
             display: flex;
             width: 100%;
@@ -12,6 +30,9 @@
             align-items: center;
             gap: 30px;
             margin-bottom: 30px;
+
+
+
             #icons {
                 width: 1250px;
                 display: flex;

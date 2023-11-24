@@ -196,6 +196,11 @@ export default function Index() {
         <div>
             <div id='page-acompanhar-pedido'>
                 <CabecalhoUsuario linha='aparecer'/>
+                <div onClick={() => window.history.back()} className='back-to-page'>
+                    <img src="/assets/images/icon-seta-preta.png" alt="Erro ao exibir a imagem"/>
+                    <h3>Voltar para a página anterior</h3>
+                </div>
+
                 <div id='conteudo'>
                     <main id='progressoPedido'>
                         <section id='icons'>

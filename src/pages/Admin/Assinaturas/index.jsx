@@ -115,14 +115,40 @@ export default function ConsultaAssinaturas () {
   
     }
 
+    function verResumo(id, campo) {
+      if(!campo) {
+          redir(`/adm/consulta-assinaturas/${id}`)
+      }
+  }
+
     useEffect(() => {
-      buscarAssinaturasLocal()
-    }, [])
+      buscarAssinaturasLocal();
+    }, []);
+
+
+    const [temImagem, setTemImagem] = useState(false);
+    const handleFileChange = (event) => {
+      const fileInput = event.target;
+      
+      if (fileInput.files.length > 0) {
+        setTemImagem(true);
+      } else {
+        setTemImagem(false);
+      }
+    };
 
     return (
         <div id='page-consulta-assinaturas'>
       <CabecalhoAdm />
       <main>
+
+
+        <label htmlFor="">
+          <input type="file" name="" id="" onChange={e => handleFileChange(e)}/>
+          <p style={temImagem ? {'visibility': 'hidden'} : {}}></p>     
+        </label>
+
+
         <section id='s1'>
           <h1> Consulta de assinaturas </h1>
         </section>
@@ -171,7 +197,7 @@ export default function ConsultaAssinaturas () {
             <tbody>
                 {assinaturas.map((item, index) => {
                   return(
-                    <tr onClick={() => redir(`/adm/consulta-assinaturas/${item.id}`)}>
+                    <tr key={item.id} onClick={(e) => verResumo(item.id, e.target.value)}>
                       <td className='id desaparece5'> {item.id} </td>
                       <td className='desaparece4'> {verificarNome(item.cliente.nome)} </td>
                       <td className='desaparece1'> {item.endereco.cep} </td>
