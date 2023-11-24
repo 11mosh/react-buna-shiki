@@ -109,15 +109,15 @@ export default function Carrinho () {
     function verificarSubtotalProduto(item) {
         let subtotal = 0
         if(item.promocao !== "0.00"){
-            subtotal = item.promocao * item.qtd
+            subtotal = (item.promocao * item.qtd).toFixed(2)
         }
         else
-            subtotal = item.preco * item.qtd
+            subtotal = (item.preco * item.qtd).toFixed(2)
 
         
         subtotal = String(subtotal).replace('.', ',')
 
-        return subtotal.toFixed(2)
+        return subtotal
     }
  
     useEffect(() => {
