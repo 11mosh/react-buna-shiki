@@ -43,7 +43,7 @@ export default function MeusPedidos () {
 
     useEffect(() => {
         if(!storage('usuario-logado')){
-            redir('/login/conta')
+            redir('/login')
         }
         else{
             chamarPedidos();

@@ -84,7 +84,7 @@ export default function PerfilAssinatura () {
             }
         }
         else{
-            navigate('/login/conta')
+            navigate('/login')
         }
 
        // eslint-disable-next-line

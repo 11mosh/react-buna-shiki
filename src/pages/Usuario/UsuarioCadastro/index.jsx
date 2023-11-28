@@ -21,6 +21,8 @@ export default function Index() {
     const [complemento, setComplemento] = useState('')
     const [nrEndereco, setNrEndereco] = useState('')
     const [carregando, setCarregando] = useState(false)
+    const [isCadastrado, setIsCadastrado] = useState(false)
+    const [cliente, setCliente] = useState({})
     const { voltar } = useParams()
 
     const ref = useRef()
@@ -29,42 +31,23 @@ export default function Index() {
     async function Cadastrar(){
         setCarregando(true)
         try{
-            if(!cep)
-                toast.warn('CEP obrigatório')
-            else if(!cidade)
-                toast.warn('CEP incorreto')
-            else if(!rua)
-                toast.warn('CEP incorreto')
-            else if(!nrEndereco)
-                toast.warn('Número da casa obrigatório')
-            else{
-                const infoCliente = await CadastrarCliente(nome, cpf, telefone, email, senha)
-                await CadastrarEndereco(cep, rua, cidade, complemento, nrEndereco, infoCliente.id)
-                
-                toast.success('Cadastro finalizado com sucesso, aproveite as compras.')
-                ref.current.continuousStart()
-                storage('usuario-logado', infoCliente)
-                storage('id-assinatura', {idAssinatura: 0});
-                storage('usuario-pedido', {produtos: []})
-                
-                setTimeout(() => {
-                    if(voltar === 'meuspedidos')
-                        navigate('/conta/meus-pedidos')
-                    else if(voltar === 'assinatura')
-                        navigate('/assinatura')
-                    else if(voltar.startsWith('descricao'))
-                        navigate(`/descricao/${voltar.slice(9)}`)
-                    else if(voltar === 'combos')
-                        navigate('/combos')
-                    else if(voltar === 'conta')
-                        navigate('/conta/dados-pessoais')
-                    else if(voltar === 'home')
-                        navigate('/')
-                    else
-                        navigate('/')
-
-                }, 3000)
+            let infoCliente = cliente
+            if(isCadastrado === false){
+                infoCliente = await CadastrarCliente(nome, cpf, telefone, email, senha)
+                setCliente(infoCliente)
+                setIsCadastrado(true)
             }
+            await CadastrarEndereco(cep, rua, cidade, complemento, nrEndereco, infoCliente.id)
+            
+            toast.success('Cadastro finalizado com sucesso, aproveite as compras.')
+            ref.current.continuousStart()
+            storage('usuario-logado', infoCliente)
+            storage('id-assinatura', {idAssinatura: 0});
+            storage('usuario-pedido', {produtos: []})
+            
+            setTimeout(() => {
+                navigate('/')
+            }, 3000)
         }
         catch(err){ 
             setCarregando(false)
@@ -83,7 +66,7 @@ export default function Index() {
             
             if(alteracao.length < cep.length)
                 setCEP(alteracao)
-
+            
             else if(isNaN(novaAlteracao) === false){
                 if(alteracao.length === 5 && alteracao.length > cep.length){
                     setCEP(`${alteracao}-`)
@@ -232,7 +215,7 @@ export default function Index() {
                                     <p> Já tem uma conta? </p>
                                 </div>
                                 <div>
-                                    <Link to={{pathname: `/login/${voltar}`}}>Faça login!</Link>
+                                    <Link to={{pathname: `/login`}}>Faça login!</Link>
                                 </div>
                             </div> 
                         </div>

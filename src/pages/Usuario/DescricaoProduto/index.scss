@@ -356,23 +356,31 @@
                         display: flex;
                         flex-direction: column;
                         align-items: center;
+                        justify-content: space-between;
                         min-width: 180px;
+                        max-width: 250px;
+                        height: 300px;
                         text-decoration: none;
                         img {
                             align-self: center;
                             width: 105px;
                         }
-                        #nomeProduto{
-                            text-align: center;
-                            color: black;
-                            margin: 8px 0px 2px 0px;
-                        }
-                        p {
-                            font-size: large;
-                        }
-
-                        .preco-produto {
-                            font-size: larger;
+                        > div {
+                            display: flex;
+                            flex-direction: column;
+                            gap: 10px;
+                            #nomeProduto{
+                                text-align: center;
+                                color: black;
+                                margin: 8px 0px 2px 0px;
+                            }
+                            p {
+                                font-size: large;
+                            }
+    
+                            .preco-produto {
+                                font-size: larger;
+                            }
                         }
                     }
 

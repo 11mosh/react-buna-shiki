@@ -60,11 +60,11 @@ export default function Carrinho () {
             qtd = qtd + (1 * item.qtd)
 
             if(item.promocao !== "0.00")
-                total = total + (item.promocao * item.qtd)
+                total = total + (Number(item.promocao) * item.qtd)
             else
-                total = total + (item.preco * item.qtd)
-            
-            return total.toFixed(2)
+                total = total + (Number(item.preco) * item.qtd)
+
+            return total
         }, 0)
         
         setQtdProdutos(qtd)
@@ -72,7 +72,7 @@ export default function Carrinho () {
         trocandoSubtotal.subtotal = subtotalCalc
         storage('usuario-pedido', trocandoSubtotal)
 
-        setSubtotal(subtotalCalc)
+        setSubtotal(subtotalCalc.toFixed(2))
     }
 
     function atribuirProdutos() {
@@ -83,10 +83,8 @@ export default function Carrinho () {
         for(let cont = 0; cont < produtosStorage.length; cont++){
             let repetidoPosicao = ''
             for(let conta = 0; conta < produtos.length; conta++){
-                // console.log(contador);
                 if(produtos[conta].id === produtosStorage[cont].id){
                     repetidoPosicao = conta
-                    console.log(repetidoPosicao);
                     break
                 }
             }

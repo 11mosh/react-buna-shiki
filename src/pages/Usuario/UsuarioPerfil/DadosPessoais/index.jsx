@@ -182,7 +182,7 @@ export default function Index(){
     }
     useEffect(() => {
         if(!storage('usuario-logado')){
-            navigate('/login/home')
+            navigate('/login')
         }
         else{
             completandoInputs()

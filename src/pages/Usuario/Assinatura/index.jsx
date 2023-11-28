@@ -230,7 +230,7 @@ export default function Assinatura () {
             chamarCartoes();
             chamarEnderecos();
         } else {
-            redir('/login/assinatura');
+            toast.info('É preciso fazer login ou cadastro para fazer uma assinatura.')
         }
 
         // eslint-disable-next-line

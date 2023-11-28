@@ -26,21 +26,7 @@ export default function Index() {
             storage('usuario-pedido', {produtos: []})
             toast('Logado!')
             setTimeout(() => {
-                if(voltar === 'meuspedidos')
-                    navigate('/conta/meus-pedidos')
-                else if(voltar === 'assinatura')
-                    navigate('/assinatura')
-                else if(voltar.startsWith('descricao'))
-                    navigate(`/descricao/${voltar.slice(9)}`)
-                else if(voltar === 'combos')
-                    navigate('/combos')
-                else if(voltar === 'conta')
-                    navigate('/conta/dados-pessoais')
-                else if(voltar === 'home')
-                    navigate('/')
-                else
-                    navigate('/')
-                
+                navigate('/')
             }, 3000)
         }
         catch(err){
@@ -84,7 +70,7 @@ export default function Index() {
                                         <p> Não tem um conta? </p>
                                     </div>
                                     <div>
-                                        <Link to={{pathname: `/cadastro/${voltar}`}}>Cadastre-se!</Link>
+                                        <Link to={{pathname: `/cadastro`}}>Cadastre-se!</Link>
                                     </div>
                                 </div>
                             </article>

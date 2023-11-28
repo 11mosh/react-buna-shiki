@@ -23,12 +23,12 @@ export default function DescricaoProduto () {
 
     async function buscarProdutoClick() {
         try{
+            buscarProdutosSugestaoClick()
             let respProduto = await buscarIdProduto(id)
             respProduto.qtd = 1
             respProduto.imagem = respProduto.imagens[0].caminho
             setProduto(respProduto)
             
-            buscarProdutosSugestaoClick()
         }
         catch(err){
             if(err.response)
@@ -57,7 +57,7 @@ export default function DescricaoProduto () {
 
     function comprar(){
         if(!storage('usuario-logado')){
-            toast.info('Faça login ou cadastro para comprar algo')
+            toast.info('Faça login ou cadastro para comprar algo.')
         }
         else{
             let pedido = storage('usuario-pedido')
@@ -97,7 +97,9 @@ export default function DescricaoProduto () {
 
     useEffect(() => {
         buscarProdutoClick()
-        
+        // setTimeout(() => {
+        //     window.scrollTo(0, 0)
+        // }, 1000)
         // eslint-disable-next-line
     }, [id])
     
@@ -254,11 +256,13 @@ return (
                         return(
                         <Link to={{pathname: `/descricao/${item.id}`}} key={item.id} className="produto" onClick={() => produtoSugestaoClicado(item.id)}>
                             <img src={item.imagem} alt="" />
-                            <p id='nomeProduto'> {item.produto}</p>
-                            { item.promocao !== "0.00"
-                               ? <p className='preco-produto'><b>R${item.promocao.replace('.', ',')}</b></p>
-                               : <p className='preco-produto'><b>R${item.preco.replace('.', ',')}</b></p>
-                            }
+                            <div>
+                                <p id='nomeProduto'> {item.produto}</p>
+                                { item.promocao !== "0.00"
+                                ? <p className='preco-produto'><b> {produtosSugestao.length !== 1 ? 'R$' : '' }{item.promocao.replace('.', ',')}</b></p>
+                                : <p className='preco-produto'><b>{produtosSugestao.length !== 1 ? 'R$' : '' } {item.preco.replace('.', ',')}</b></p>
+                                }
+                            </div>
                         </Link>
                         )
                     })}

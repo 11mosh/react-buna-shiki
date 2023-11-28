@@ -27,7 +27,7 @@ export default function Combos(){
             toast('Adicionado!')
         }
         else{
-            toast.info('Faça login ou cadastro para inserir um combo no carrinho')
+            toast.info('Faça login ou cadastro para inserir um combo no carrinho.')
         }
     }       
 

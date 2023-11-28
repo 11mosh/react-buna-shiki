@@ -56,7 +56,7 @@ export default function Cartoes () {
 
     useEffect(() => {
         if(!storage('usuario-logado')){
-            navigate('/login/conta')
+            navigate('/login')
         }
         else{
             chamarCartoes();

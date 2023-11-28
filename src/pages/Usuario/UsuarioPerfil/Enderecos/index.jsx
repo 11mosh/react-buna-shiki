@@ -168,7 +168,7 @@ export default function Index(){
 
     useEffect(() => {
         if(!storage('usuario-logado')){
-            navigate('/login/conta')
+            navigate('/login')
         }
         else{
             buscarTodos()
