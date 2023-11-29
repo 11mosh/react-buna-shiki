@@ -199,8 +199,10 @@ export default function Index(){
                             return(
                                 <div>
                                     <img src={item.imagem}alt='' />
-                                    <p> {item.produto} {item.categoria === 'Café em grãos' || item.categoria === 'Café em pó' ? item.detalhes.peso : ''}</p>
-                                    <button onClick={() => navigate(`/descricao/${item.id}`)}> Mais detalhes </button>
+                                    <div>
+                                        <p> {item.produto} {item.categoria === 'Café em grãos' || item.categoria === 'Café em pó' ? item.detalhes.peso : ''}</p>
+                                        <button onClick={() => navigate(`/descricao/${item.id}`)}> Mais detalhes </button>
+                                    </div>
                                 </div>
                             )
                         })}
@@ -228,8 +230,10 @@ export default function Index(){
                             return(
                                 <div>
                                     <img src={item.imagem}alt='' />
-                                    <p> {item.produto} {item.categoria === 'Café em grãos' || item.categoria === 'Café em pó' ? item.detalhes.peso : ''}</p>
-                                    <button onClick={() => navigate(`/descricao/${item.id}`)}> Mais detalhes </button>
+                                    <div>
+                                        <p> {item.produto} {item.categoria === 'Café em grãos' || item.categoria === 'Café em pó' ? item.detalhes.peso : ''}</p>
+                                        <button onClick={() => navigate(`/descricao/${item.id}`)}> Mais detalhes </button>
+                                    </div>
                                 </div>
                             )
                         })}
@@ -255,8 +259,10 @@ export default function Index(){
                             return(
                                 <div>
                                     <img src={item.imagem}alt='' />
-                                    <p> {item.produto} {item.categoria === 'Café em grãos' || item.categoria === 'Café em pó' ? item.detalhes.peso : ''}</p>
-                                    <button onClick={() => navigate(`/descricao/${item.id}`)}> Mais detalhes </button>
+                                    <div>
+                                        <p> {item.produto} {item.categoria === 'Café em grãos' || item.categoria === 'Café em pó' ? item.detalhes.peso : ''}</p>
+                                        <button onClick={() => navigate(`/descricao/${item.id}`)}> Mais detalhes </button>
+                                    </div>
                                 </div>
                             )
                         })}

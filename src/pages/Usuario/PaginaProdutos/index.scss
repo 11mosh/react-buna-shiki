@@ -80,32 +80,40 @@
                     display: flex;
                     width: 22%;
                     min-width: 180px;
+                    height: 300px;
                     flex-direction: column;
                     align-items: center;
+                    justify-content: space-between;
                     gap: 10px;
-                    p {
-                        font-size: 16px;
-                        text-align: center;
-                    }
                     img {
                         width: 108px;
                     }
-                    button {
-                        border: none;
-                        font-size: 15px;
-                        outline: none;
-                        height: 35px;
-                        background-color: #C3937D;
-                        width: 180px;
-                        border-radius: 10px;
-                        color: white;
-                        cursor: pointer;
-                    }
-                    button:hover {
-                        background-color: #ddb3a1
-                    }
-                    button:active {
-                        background-color: #a58070
+                    > div {
+                        display: flex;
+                        flex-direction: column;
+                        align-items: center;
+                        gap: 10px;
+                        p {
+                            font-size: 16px;
+                            text-align: center;
+                        }
+                        button {
+                            border: none;
+                            font-size: 15px;
+                            outline: none;
+                            height: 35px;
+                            background-color: #C3937D;
+                            width: 180px;
+                            border-radius: 10px;
+                            color: white;
+                            cursor: pointer;
+                        }
+                        button:hover {
+                            background-color: #ddb3a1
+                        }
+                        button:active {
+                            background-color: #a58070
+                        }
                     }
                 }
             }

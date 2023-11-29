@@ -332,6 +332,8 @@
                     align-items: center;
                     flex-direction: row;
                     justify-content: space-around;
+                    flex-wrap: wrap;
+                    gap: 30px;
                     width: 100%;
                     button:first-child {
                         transform: rotate(180deg);
@@ -360,6 +362,7 @@
                         min-width: 180px;
                         max-width: 250px;
                         height: 300px;
+                        max-height: 300px;
                         text-decoration: none;
                         img {
                             align-self: center;
@@ -521,9 +524,6 @@
             }
         }
         .produtos-necessidade {
-            flex-wrap: wrap;
-            gap: 10px;
-            justify-content: flex-start !important;
             .produto {
                 width: 32%;
                 min-width: 150px !important;
