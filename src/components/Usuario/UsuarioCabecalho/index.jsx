@@ -7,6 +7,7 @@ import axios from 'axios';
 import { URLRota } from '../../../constants.js';
 import storage from 'local-storage'
 import { buscarPedidosCliente } from '../../../api/usuarioApi';
+import { buscarPedidosPorCliente } from '../../../api/pedidoApi';
 
 export default function CabecalhoUsuario(props) {
 
@@ -17,7 +18,7 @@ export default function CabecalhoUsuario(props) {
     const [sugestao, setSugestao] = useState([]);
     const [mostrarMenu, setMostrarMenu] = useState(false)
     const [categoriasLugar, setCategoriasLugar] = useState('')
-
+    const [isPedidoEmAndamento, setIsPedidoEmAndamento] = useState(false)
     const caminhos = ['/produtos/cafeemgraos', '/produtos/cafeempo', '/produtos/cafeteiras', '/combos', '/produtos/filtros', '/produtos/capsulas', '/produtos/moedores', '/produtos/acessorios' ];
 
     async function pesquisaProdutos() {
@@ -44,9 +45,27 @@ export default function CabecalhoUsuario(props) {
           }
           catch(err){
             toast.error(err.message)
-          }
         }
+    }
+    
+    async function buscarPedidos() {
+        if(storage('usuario-logado')){
+            const resp = await buscarPedidosPorCliente(storage('usuario-logado').id)
+            if(resp.length !== 0){
+                if(resp.find(item => item.situacao === 'Pagamento') || resp.find(item => item.situacao === 'Pedido realizado') ||  resp.find(item => item.situacao === 'Pedido em preparo') || resp.find(item => item.situacao === 'À caminho')){
+                    setIsPedidoEmAndamento(true)
+                }
+            }
+        }
+    }
+    function verificarPedidos() {
+        if(isPedidoEmAndamento)
+            return 'flex'
+        else
+            return 'none'
+    }
 
+ 
     function exibirPesquisa () {
         setMostrarInput(!mostrarInput)
             if(mostrarInput === false)
@@ -72,6 +91,7 @@ export default function CabecalhoUsuario(props) {
         else
             return 'none'
     }
+
 
     function verificarMenu() {
         if(mostrarMenu === false)
@@ -106,6 +126,7 @@ export default function CabecalhoUsuario(props) {
             return 'none'
     }
 
+
     async function buscarCategoriasExibicao(){
         try{
             const categoriasBanco = await buscarCategorias()
@@ -124,6 +145,7 @@ export default function CabecalhoUsuario(props) {
         buscarCategoriasExibicao();
         pesquisaProdutos();
         verificarCarrinho()
+        buscarPedidos()
     }, [])
 
 
@@ -138,7 +160,7 @@ export default function CabecalhoUsuario(props) {
                             <p> Carrinho </p>
                         </Link>
                         <Link to='/conta/dados-pessoais' onClick={() => assinatura()}>
-                            <div id='conta' style={{display: 'none'}}></div>
+                            <div id='conta' style={{display: verificarPedidos()}}></div>
                             <img src='/assets/images/icon-conta.svg' alt='conta'/>
                             <p>Conta</p>
                         </Link>

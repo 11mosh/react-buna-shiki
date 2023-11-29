@@ -35,11 +35,21 @@ export default function MeusPedidos () {
         const idUsuario = storage('usuario-logado').id
         const url = URLRota + '/pedidos/primeiro-item/' + idUsuario;
         const resposta = await axios.get(url);
-        console.log(resposta)
         const dados = resposta.data;
-        console.log(dados)
         setPedidos(dados);
     };
+
+    function verificarPedido(pedido) {
+        console.log(pedido);
+        if(pedido){
+            if(pedido.situacao !== 'Entregue' && pedido.situacao !== 'Cancelado')
+                return 'flex'
+            else 
+                return 'none'
+        }
+        else 
+            return 'none'
+    }
 
     useEffect(() => {
         if(!storage('usuario-logado')){
@@ -67,6 +77,7 @@ export default function MeusPedidos () {
                                 <p id='desaparece1'>Pedido realizado em: {(item.dt_pedido).substring(0, 10)}</p>
                                 <p>Status: <b>{item.situacao}</b></p>
                                 <p id='desaparece2'>N° do pedido: {(item.id).toString().padStart(4, 0)}</p>
+                                <div id='bolinha' style={{display: verificarPedido(item)}}></div>
                             </nav>
 
                             <article className='corpo-pedido'>

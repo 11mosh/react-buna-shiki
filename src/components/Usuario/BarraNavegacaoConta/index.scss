@@ -24,8 +24,21 @@
             height: 90%;
             display: flex;
             align-self: center;
-        }
 
+        }
+        
+        div {
+            position: relative;
+            #bolinha{
+                width: 13px;
+                right: 0;
+                top: 0;
+                height: 13px;
+                background:  #F47E3C;
+                border-radius: 50px;
+                position: absolute 
+            }
+        }
 
         > nav {
             display: flex;

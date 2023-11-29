@@ -100,6 +100,12 @@ export async function buscarPedidoPorId(id) {
     return resp.data
 }
 
+export async function buscarPedidosPorCliente(idCliente) {
+    const resp = await api.get(`/pedidos/primeiro-item/${idCliente}`)
+
+    return resp.data;
+}
+
 
 // Alterando 
 
